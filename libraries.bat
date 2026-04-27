@@ -1,6 +1,6 @@
 haxelib newrepo
-haxelib install openfl
 haxelib install flixel
+haxelib git openfl https://github.com/openfl/openfl 0d93f1d46016f2beea37c48c5682bda5b3e73158
 haxelib run lime setup flixel
 haxelib run lime setup
 haxelib install flixel-tools
