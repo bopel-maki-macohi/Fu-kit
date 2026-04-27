@@ -22,8 +22,8 @@ using StringTools;
 class Debug
 {
 	static final LOG_STYLE_ERROR:LogStyle = new LogStyle('[ERROR] ', 'FF8888', 12, true, false, false, 'flixel/sounds/beep', true);
-	static final LOG_STYLE_WARN:LogStyle = new LogStyle('[WARN ] ', 'D9F85C', 12, true, false, false, 'flixel/sounds/beep', true);
-	static final LOG_STYLE_INFO:LogStyle = new LogStyle('[INFO ] ', '5CF878', 12, false);
+	static final LOG_STYLE_WARN:LogStyle = new LogStyle('[WARN] ', 'D9F85C', 12, true, false, false, 'flixel/sounds/beep', true);
+	static final LOG_STYLE_INFO:LogStyle = new LogStyle('[INFO] ', '5CF878', 12, false);
 	static final LOG_STYLE_TRACE:LogStyle = new LogStyle('[TRACE] ', '5CF878', 12, false);
 
 	static var logFileWriter:DebugLogWriter = null;
@@ -210,6 +210,7 @@ class Debug
 		logInfo('HaxeFlixel version: ${Std.string(FlxG.VERSION)}');
 		logInfo('Friday Night Funkin\' version: ${MainMenuState.gameVer}');
 		logInfo('KadeEngine version: ${MainMenuState.kadeEngineVer}');
+		logInfo('Fu-Kit version: ${MainMenuState.modVer}');
 	}
 
 	/**
@@ -338,7 +339,7 @@ class Debug
 			return inArray;
 
 		// Format the position ourselves.
-		var output:Array<Dynamic> = ['(${pos.className}/${pos.methodName}#${pos.lineNumber}): '];
+		var output:Array<Dynamic> = ['(${pos.className}:${pos.lineNumber}): '];
 
 		return output.concat(inArray);
 	}
