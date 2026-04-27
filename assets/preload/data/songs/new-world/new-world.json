@@ -1,29 +1,25 @@
 {
  "song": {
-  "songName": "New World",
-  "songId": "new-world",
   "player1": "bf",
+  "songId": "new-world",
+  "songName": "New World",
+  "player2": "dad",
   "notes": [
    {
-    "endTime": 2000,
-    "sectionNotes": [
-     [
-      2000,
-      0,
-      0,
-      false,
-      4
-     ]
-    ],
-    "lengthInSteps": 16,
     "typeOfSection": 0,
-    "startTime": 0,
-    "mustHitSection": true
+    "lengthInSteps": 16,
+    "sectionNotes": [],
+    "endTime": 2000,
+    "mustHitSection": true,
+    "startTime": 0
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 4000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [
      [
@@ -74,32 +70,96 @@
       0,
       false,
       6.75
+     ],
+     [
+      2000,
+      0,
+      0,
+      false,
+      4
+     ],
+     [
+      3999.875,
+      0,
+      0,
+      0,
+      4
      ]
     ],
     "bpm": 120,
     "startTime": 2000,
-    "changeBPM": false,
-    "endTime": 4000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
-    "altAnim": false,
-    "CPUAltAnim": false,
-    "typeOfSection": 0,
-    "sectionNotes": [],
-    "bpm": 120,
-    "startTime": 4000,
-    "changeBPM": false,
     "endTime": 6000,
     "playerAltAnim": false,
-    "mustHitSection": true
-   },
-   {
-    "lengthInSteps": 16,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
+    "typeOfSection": 0,
+    "sectionNotes": [
+     [
+      4124.875,
+      1,
+      0,
+      0,
+      4.25
+     ],
+     [
+      4374.875,
+      3,
+      0,
+      0,
+      4.75
+     ],
+     [
+      4499.875,
+      2,
+      0,
+      0,
+      5
+     ],
+     [
+      4749.875,
+      0,
+      0,
+      0,
+      5.5
+     ],
+     [
+      4999.875,
+      3,
+      0,
+      0,
+      6
+     ],
+     [
+      5124.875,
+      2,
+      0,
+      0,
+      6.25
+     ],
+     [
+      5374.875,
+      1,
+      0,
+      0,
+      6.75
+     ]
+    ],
+    "bpm": 120,
+    "startTime": 4000,
+    "changeBPM": false
+   },
+   {
+    "endTime": 8000,
+    "playerAltAnim": false,
+    "altAnim": false,
+    "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [
      [
@@ -126,234 +186,230 @@
     ],
     "bpm": 120,
     "startTime": 6000,
-    "changeBPM": false,
-    "endTime": 8000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 10000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 8000,
-    "changeBPM": false,
-    "endTime": 10000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 12000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 10000,
-    "changeBPM": false,
-    "endTime": 12000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 14000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 12000,
-    "changeBPM": false,
-    "endTime": 14000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 16000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 14000,
-    "changeBPM": false,
-    "endTime": 16000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 18000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 16000,
-    "changeBPM": false,
-    "endTime": 18000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 20000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 18000,
-    "changeBPM": false,
-    "endTime": 20000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 22000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 20000,
-    "changeBPM": false,
-    "endTime": 22000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 24000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 22000,
-    "changeBPM": false,
-    "endTime": 24000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 26000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 24000,
-    "changeBPM": false,
-    "endTime": 26000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 28000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 26000,
-    "changeBPM": false,
-    "endTime": 28000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 30000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 28000,
-    "changeBPM": false,
-    "endTime": 30000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 32000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 30000,
-    "changeBPM": false,
-    "endTime": 32000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 34000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 32000,
-    "changeBPM": false,
-    "endTime": 34000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 36000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 34000,
-    "changeBPM": false,
-    "endTime": 36000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 38000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 36000,
-    "changeBPM": false,
-    "endTime": 38000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 40000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": false,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 38000,
-    "changeBPM": false,
-    "endTime": 40000,
-    "playerAltAnim": false,
-    "mustHitSection": false
+    "changeBPM": false
    },
    {
-    "lengthInSteps": 16,
+    "endTime": 42000,
+    "playerAltAnim": false,
     "altAnim": false,
     "CPUAltAnim": false,
+    "mustHitSection": true,
+    "lengthInSteps": 16,
     "typeOfSection": 0,
     "sectionNotes": [],
     "bpm": 120,
     "startTime": 40000,
-    "changeBPM": false,
-    "endTime": 42000,
-    "playerAltAnim": false,
-    "mustHitSection": true
+    "changeBPM": false
    }
   ],
-  "player2": "dad",
   "offset": 0,
   "song": "new-world",
   "validScore": true,
@@ -371,7 +427,7 @@
   ],
   "sections": 0,
   "needsVoices": true,
-  "bpm": 120,
-  "noteStyle": "normal"
+  "noteStyle": "normal",
+  "bpm": 120
  }
 }
