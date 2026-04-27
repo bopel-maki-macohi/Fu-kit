@@ -6,22 +6,14 @@
   "notes": [
    {
     "endTime": null,
-    "sectionNotes": [
-     [
-      1000,
-      1,
-      0,
-      false,
-      2
-     ]
-    ],
+    "sectionNotes": [],
     "lengthInSteps": 16,
     "typeOfSection": 0,
     "startTime": 0,
-    "mustHitSection": true
+    "mustHitSection": false
    }
   ],
-  "player2": "gf",
+  "player2": "dad",
   "offset": 0,
   "song": "new-world",
   "validScore": true,
