@@ -1,20 +1,45 @@
 {
-  "song": {
-    "song": "new-world",
-    "bpm": 120,
-    "sections": 0,
-    "needsVoices": false,
-    "player1": "bf",
-    "player2": "gf",
-    "sectionLengths": [],
-    "speed": 1,
-    "notes": [
-      {
-        "mustHitSection": true,
-        "typeOfSection": 0,
-        "lengthInSteps": 16,
-        "sectionNotes": []
-      }
-    ]
-  }
+ "song": {
+  "songName": "New World",
+  "songId": "new-world",
+  "player1": "bf",
+  "notes": [
+   {
+    "endTime": null,
+    "sectionNotes": [
+     [
+      1000,
+      1,
+      0,
+      false,
+      2
+     ]
+    ],
+    "lengthInSteps": 16,
+    "typeOfSection": 0,
+    "startTime": 0,
+    "mustHitSection": true
+   }
+  ],
+  "player2": "gf",
+  "offset": 0,
+  "song": "new-world",
+  "validScore": true,
+  "speed": 2,
+  "sectionLengths": [],
+  "gfVersion": "gf",
+  "chartVersion": "KE1",
+  "eventObjects": [
+   {
+    "name": "Init BPM",
+    "position": 0,
+    "value": 120,
+    "type": "BPM Change"
+   }
+  ],
+  "sections": 0,
+  "needsVoices": false,
+  "bpm": 120,
+  "noteStyle": "normal"
+ }
 }
