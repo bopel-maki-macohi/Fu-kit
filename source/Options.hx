@@ -1823,7 +1823,7 @@ class ResetSettings extends Option
 		FlxG.save.data.inputShow = null;
 		FlxG.save.data.optimize = null;
 		FlxG.save.data.cacheImages = null;
-		FlxG.save.data.editor = null;
+		FlxG.save.data.editorBG = null;
 		FlxG.save.data.laneTransparency = 0;
 
 		KadeEngineData.initSave();

@@ -25,7 +25,7 @@ class KadeEngineData
 			FlxG.save.data.dfjk = false;
 
 		if (FlxG.save.data.accuracyDisplay == null)
-			FlxG.save.data.accuracyDisplay = true;
+			FlxG.save.data.accuracyDisplay = false;
 
 		if (FlxG.save.data.offset == null)
 			FlxG.save.data.offset = 0;
@@ -62,7 +62,7 @@ class KadeEngineData
 			FlxG.save.data.frames = 10;
 
 		if (FlxG.save.data.accuracyMod == null)
-			FlxG.save.data.accuracyMod = 1;
+			FlxG.save.data.accuracyMod = 0;
 
 		if (FlxG.save.data.watermark == null)
 			FlxG.save.data.watermark = true;
@@ -74,7 +74,7 @@ class KadeEngineData
 			FlxG.save.data.distractions = true;
 
 		if (FlxG.save.data.colour == null)
-			FlxG.save.data.colour = true;
+			FlxG.save.data.colour = false;
 
 		if (FlxG.save.data.stepMania == null)
 			FlxG.save.data.stepMania = false;
@@ -92,7 +92,7 @@ class KadeEngineData
 			FlxG.save.data.botplay = false;
 
 		if (FlxG.save.data.cpuStrums == null)
-			FlxG.save.data.cpuStrums = false;
+			FlxG.save.data.cpuStrums = true;
 
 		if (FlxG.save.data.strumline == null)
 			FlxG.save.data.strumline = false;
@@ -104,7 +104,7 @@ class KadeEngineData
 			FlxG.save.data.camzoom = true;
 
 		if (FlxG.save.data.scoreScreen == null)
-			FlxG.save.data.scoreScreen = true;
+			FlxG.save.data.scoreScreen = false;
 
 		if (FlxG.save.data.inputShow == null)
 			FlxG.save.data.inputShow = false;
@@ -118,13 +118,13 @@ class KadeEngineData
 			FlxG.save.data.middleScroll = false;
 
 		if (FlxG.save.data.editorBG == null)
-			FlxG.save.data.editor = false;
+			FlxG.save.data.editorBG = true;
 
 		if (FlxG.save.data.zoom == null)
 			FlxG.save.data.zoom = 1;
 
 		if (FlxG.save.data.judgementCounter == null)
-			FlxG.save.data.judgementCounter = true;
+			FlxG.save.data.judgementCounter = false;
 
 		if (FlxG.save.data.laneUnderlay == null)
 			FlxG.save.data.laneUnderlay = true;
