@@ -28,8 +28,6 @@ class PauseSubState extends MusicBeatSubstate
 	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Options', 'Exit to menu'];
 	var curSelected:Int = 0;
 
-	public static var playingPause:Bool = false;
-
 	var pauseMusic:FlxSound;
 
 	var perSongOffset:FlxText;
@@ -59,24 +57,10 @@ class PauseSubState extends MusicBeatSubstate
 				i.pause();
 		}
 
-		if (!playingPause)
-		{
-			playingPause = true;
-			pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
-			pauseMusic.volume = 0;
-			pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
-			pauseMusic.ID = 9000;
-
-			FlxG.sound.list.add(pauseMusic);
-		}
-		else
-		{
-			for (i in FlxG.sound.list)
-			{
-				if (i.ID == 9000) // jankiest static variable
-					pauseMusic = i;
-			}
-		}
+		pauseMusic = new FlxSound().loadEmbedded(Paths.music('breakfast'), true, true);
+		pauseMusic.volume = 0;
+		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
+		pauseMusic.ID = 9000;
 
 		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
@@ -260,7 +244,6 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			Debug.logTrace("destroying music for pauseeta");
 			pauseMusic.destroy();
-			playingPause = false;
 		}
 
 		super.destroy();
