@@ -101,7 +101,10 @@ class StageDebugState extends FlxState
 		camGame.zoom = 0.7;
 		FlxG.cameras.add(camGame);
 		FlxG.cameras.add(camHUD);
-		FlxCamera.defaultCameras = [camGame];
+
+		@:privateAccess
+		FlxCamera._defaultCameras = [camGame];
+
 		FlxG.camera = camGame;
 		camGame.follow(camFollow);
 
@@ -111,19 +114,21 @@ class StageDebugState extends FlxState
 		posText.cameras = [camHUD];
 		add(posText);
 
-    addHelpText();
+		addHelpText();
 	}
 
-  var helpText:FlxText;
-  function addHelpText():Void {
-    var helpTextValue = "Help:\nQ/E : Zoom in and out\nI/J/K/L : Pan Camera\nSpace : Cycle Object\nShift : Switch Mode (Char/Stage)\nClick and Drag : Move Active Object\nZ/X : Rotate Object\nR : Reset Rotation\nCTRL-S : Save Offsets to File\nESC : Return to Stage\nPress F1 to hide/show this!\n";
-    helpText = new FlxText(940, 0, 0, helpTextValue, 15);
-    helpText.scrollFactor.set();
-		helpText.cameras = [camHUD];
-    helpText.color = FlxColor.WHITE;
+	var helpText:FlxText;
 
-    add(helpText);
-  }
+	function addHelpText():Void
+	{
+		var helpTextValue = "Help:\nQ/E : Zoom in and out\nI/J/K/L : Pan Camera\nSpace : Cycle Object\nShift : Switch Mode (Char/Stage)\nClick and Drag : Move Active Object\nZ/X : Rotate Object\nR : Reset Rotation\nCTRL-S : Save Offsets to File\nESC : Return to Stage\nPress F1 to hide/show this!\n";
+		helpText = new FlxText(940, 0, 0, helpTextValue, 15);
+		helpText.scrollFactor.set();
+		helpText.cameras = [camHUD];
+		helpText.color = FlxColor.WHITE;
+
+		add(helpText);
+	}
 
 	override public function update(elapsed:Float)
 	{
@@ -180,7 +185,7 @@ class StageDebugState extends FlxState
 		}
 
 		if (FlxG.mouse.pressed
-			&& FlxCollision.pixelPerfectPointCheck(Math.floor(FlxG.mouse.x), Math.floor(FlxG.mouse.y), curChar)
+			&& curChar.pixelsOverlapPoint(flixel.math.FlxPoint.weak(Math.floor(FlxG.mouse.x), Math.floor(FlxG.mouse.y)))
 			&& !dragging)
 		{
 			dragging = true;
@@ -242,10 +247,10 @@ class StageDebugState extends FlxState
 		if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.S)
 			saveBoyPos();
 
-    if (FlxG.keys.justPressed.F1)
+		if (FlxG.keys.justPressed.F1)
 			FlxG.save.data.showHelp = !FlxG.save.data.showHelp;
 
-    helpText.visible = FlxG.save.data.showHelp;
+		helpText.visible = FlxG.save.data.showHelp;
 
 		super.update(elapsed);
 	}

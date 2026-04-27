@@ -32,7 +32,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.ui.FlxSpriteButton;
@@ -1940,26 +1940,12 @@ class ChartingState extends MusicBeatState
 			{
 				if (FlxG.sound.music.playing)
 				{
-					@:privateAccess
-					{
-						#if desktop
-						// The __backend.handle attribute is only available on native.
-						lime.media.openal.AL.sourcef(FlxG.sound.music._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, speed);
-						try
-						{
-							// We need to make CERTAIN vocals exist and are non-empty
-							// before we try to play them. Otherwise the game crashes.
-							if (vocals != null && vocals.length > 0)
-							{
-								lime.media.openal.AL.sourcef(vocals._channel.__source.__backend.handle, lime.media.openal.AL.PITCH, speed);
-							}
-						}
-						catch (e)
-						{
-							// Debug.logTrace("failed to pitch vocals (probably cuz they don't exist)");
-						}
-						#end
-					}
+					FlxG.sound.music.pitch = speed;
+
+					// We need to make CERTAIN vocals exist and are non-empty
+					// before we try to play them. Otherwise the game crashes.
+					if (vocals != null && vocals.length > 0)
+						vocals.pitch = speed;
 				}
 			}
 
@@ -2807,7 +2793,7 @@ class ChartingState extends MusicBeatState
 
 				var sustainVis:FlxSprite = new FlxSprite(curSelectedNoteObject.x + (GRID_SIZE / 2),
 					curSelectedNoteObject.y + GRID_SIZE).makeGraphic(8,
-					Math.floor((getYfromStrum(curSelectedNoteObject.strumTime + curSelectedNote[2]) * zoomFactor) - curSelectedNoteObject.y));
+						Math.floor((getYfromStrum(curSelectedNoteObject.strumTime + curSelectedNote[2]) * zoomFactor) - curSelectedNoteObject.y));
 				curSelectedNoteObject.sustainLength = curSelectedNote[2];
 				Debug.logTrace("new sustain " + curSelectedNoteObject.sustainLength);
 				curSelectedNoteObject.noteCharterObject = sustainVis;

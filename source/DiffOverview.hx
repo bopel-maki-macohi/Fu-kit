@@ -5,7 +5,7 @@ import flixel.FlxCamera;
 import flixel.math.FlxRect;
 import Song.SongData;
 import Section.SwagSection;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxAxes;
 import flixel.FlxSubState;
@@ -63,7 +63,8 @@ class DiffOverview extends FlxSubState
 
 		FlxG.cameras.add(camHUD);
 
-		FlxCamera.defaultCameras = [camGame];
+		@:privateAccess
+		FlxCamera._defaultCameras = [camGame];
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 

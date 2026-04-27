@@ -20,7 +20,7 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" fps="" background="#000000" hardware="true" vsync="false" />
+	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
@@ -197,7 +197,7 @@
   <!-- Defines whether WebM videos should be enabled. Currently only enabled on Windows. -->
   <haxedef name="FEATURE_WEBM" if="windows" />
   <!-- Defines whether StepMania files can be loaded. -->
-  <!-- <haxedef name="FEATURE_STEPMANIA" if="desktop" /> -->
+  <haxedef name="FEATURE_STEPMANIA" if="desktop" />
   <!-- Defines whether the Thread class can be used. -->
   <haxedef name="FEATURE_MULTITHREADING" if="cpp" />
 

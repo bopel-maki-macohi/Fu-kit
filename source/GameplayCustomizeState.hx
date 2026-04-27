@@ -78,7 +78,8 @@ class GameplayCustomizeState extends MusicBeatState
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 
-		FlxCamera.defaultCameras = [camGame];
+		@:privateAccess
+		FlxCamera._defaultCameras = [camGame];
 
 		camHUD.zoom = FlxG.save.data.zoom;
 
@@ -306,8 +307,7 @@ class GameplayCustomizeState extends MusicBeatState
 		laneunderlayOpponent.screenCenter(Y);
 
 		text = new FlxText(5, FlxG.height + 40, 0,
-			"Click and drag around gameplay elements to customize their positions. Press R to reset. Q/E to change zoom. C to show combo. Escape to exit.",
-			12);
+			"Click and drag around gameplay elements to customize their positions. Press R to reset. Q/E to change zoom. C to show combo. Escape to exit.", 12);
 		text.scrollFactor.set();
 		text.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 
