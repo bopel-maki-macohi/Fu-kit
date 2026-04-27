@@ -76,7 +76,17 @@ class Paths
 
 	static public function loadJSON(key:String, ?library:String):Dynamic
 	{
-		var rawJson = OpenFlAssets.getText(Paths.json(key, library)).trim();
+		var rawJson:String = '';
+
+		try
+		{
+			rawJson = OpenFlAssets.getText(Paths.json(key, library)).trim();
+		}
+		catch (e)
+		{
+			lime.app.Application.current.window.alert(e.message, e.message);
+			return null;
+		}
 
 		// Perform cleanup on files that have bad data at the end.
 		while (!rawJson.endsWith("}"))
