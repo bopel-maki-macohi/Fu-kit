@@ -81,7 +81,6 @@ class Character extends FlxSprite
 				setGraphicSize(Std.int(width * CoolUtil.daPixelZoom));
 				updateHitbox();
 				antialiasing = false;
-
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('DADDY_DEAREST', 'shared', true);
@@ -92,6 +91,19 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24, false);
 				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24, false);
 				animation.addByIndices('idleLoop', "Dad idle dance", [11, 12], "", 12, true);
+
+				loadOffsetFile(curCharacter);
+				barColor = 0xFFaf66ce;
+
+				playAnim('idle');
+			case 'arpe':
+				// DAD ANIMATION LOADING CODE
+				frames = Paths.getSparrowAtlas('arpe', 'fukit', true);
+				animation.addByPrefix('idle', 'arpe anim idle', 24, false);
+				animation.addByPrefix('singLEFT', 'arpe anim left', 24, false);
+				animation.addByPrefix('singDOWN', 'arpe anim down', 24, false);
+				animation.addByPrefix('singUP', 'arpe anim up', 24, false);
+				animation.addByPrefix('singRIGHT', 'arpe anim right', 24, false);
 
 				loadOffsetFile(curCharacter);
 				barColor = 0xFFaf66ce;
