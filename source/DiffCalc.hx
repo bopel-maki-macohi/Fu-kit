@@ -46,7 +46,7 @@ class DiffCalc
 			}
 		}
 
-		trace('calcuilafjwaf ' + cleanedNotes.length);
+		// trace('calcuilafjwaf ' + cleanedNotes.length);
 
 		var handOne:Array<SmallNote> = [];
 		var handTwo:Array<SmallNote> = [];
@@ -54,7 +54,7 @@ class DiffCalc
 		cleanedNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
 		if (cleanedNotes.length == 0)
-			return 90000000000000000;
+			return 90000000000000000; // WHY.
 
 		var firstNoteTime = cleanedNotes[0].strumTime;
 
