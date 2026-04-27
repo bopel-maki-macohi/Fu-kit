@@ -1262,7 +1262,7 @@ class ReplayOption extends Option
 	public override function press():Bool
 	{
 		trace("switch");
-		FlxG.switchState(new LoadReplayState());
+		FlxG.switchState(() -> new LoadReplayState());
 		return false;
 	}
 
@@ -1320,7 +1320,7 @@ class CustomizeGameplay extends Option
 		if (OptionsMenu.isInPause)
 			return false;
 		trace("switch");
-		FlxG.switchState(new GameplayCustomizeState());
+		FlxG.switchState(() -> new GameplayCustomizeState());
 		return false;
 	}
 
@@ -1675,7 +1675,7 @@ class DebugMode extends Option
 
 	public override function press():Bool
 	{
-		FlxG.switchState(new AnimationDebug());
+		FlxG.switchState(() -> new AnimationDebug());
 		return false;
 	}
 

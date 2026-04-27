@@ -204,7 +204,7 @@ class Caching extends MusicBeatState
 
 		trace(OpenFlAssets.cache.hasBitmapData('GF_assets'));
 		#end
-		FlxG.switchState(new TitleState());
+		FlxG.switchState(() -> new TitleState());
 	}
 }
 #end

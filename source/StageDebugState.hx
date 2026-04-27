@@ -212,7 +212,7 @@ class StageDebugState extends FlxState
 
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
-			FlxG.switchState(new PlayState());
+			FlxG.switchState(() -> new PlayState());
 			PlayState.stageTesting = true;
 			for (i in Stage.toAdd)
 			{

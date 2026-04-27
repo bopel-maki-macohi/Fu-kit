@@ -77,10 +77,10 @@ class GameOverSubstate extends MusicBeatSubstate
 				GameplayCustomizeState.freeplayStage = 'stage';
 				GameplayCustomizeState.freeplaySong = 'bopeebo';
 				GameplayCustomizeState.freeplayWeek = 1;
-				FlxG.switchState(new StoryMenuState());
+				FlxG.switchState(() -> new StoryMenuState());
 			}
 			else
-				FlxG.switchState(new FreeplayState());
+				FlxG.switchState(() -> new FreeplayState());
 			PlayState.loadRep = false;
 			PlayState.stageTesting = false;
 		}
