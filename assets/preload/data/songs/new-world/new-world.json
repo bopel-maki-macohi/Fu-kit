@@ -6,7 +6,15 @@
   "notes": [
    {
     "endTime": 2000,
-    "sectionNotes": [],
+    "sectionNotes": [
+     [
+      2000,
+      0,
+      0,
+      false,
+      4
+     ]
+    ],
     "lengthInSteps": 16,
     "typeOfSection": 0,
     "startTime": 0,
@@ -17,7 +25,57 @@
     "altAnim": false,
     "CPUAltAnim": false,
     "typeOfSection": 0,
-    "sectionNotes": [],
+    "sectionNotes": [
+     [
+      2125,
+      1,
+      0,
+      false,
+      4.25
+     ],
+     [
+      2375,
+      3,
+      0,
+      false,
+      4.75
+     ],
+     [
+      2500,
+      2,
+      0,
+      false,
+      5
+     ],
+     [
+      2750,
+      0,
+      0,
+      false,
+      5.5
+     ],
+     [
+      3000,
+      3,
+      0,
+      false,
+      6
+     ],
+     [
+      3125,
+      2,
+      0,
+      false,
+      6.25
+     ],
+     [
+      3375,
+      1,
+      0,
+      false,
+      6.75
+     ]
+    ],
     "bpm": 120,
     "startTime": 2000,
     "changeBPM": false,
@@ -43,7 +101,29 @@
     "altAnim": false,
     "CPUAltAnim": false,
     "typeOfSection": 0,
-    "sectionNotes": [],
+    "sectionNotes": [
+     [
+      6000,
+      0,
+      0,
+      false,
+      12
+     ],
+     [
+      6250,
+      1,
+      0,
+      false,
+      12.5
+     ],
+     [
+      6500,
+      3,
+      0,
+      false,
+      13
+     ]
+    ],
     "bpm": 120,
     "startTime": 6000,
     "changeBPM": false,
