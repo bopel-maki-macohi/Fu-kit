@@ -1,60 +1,35 @@
 package;
 
+import fukit.play.songs.NewWorldSong;
+import flixel.util.FlxSignal;
 import openfl.geom.Matrix;
 import openfl.display.BitmapData;
-import openfl.utils.AssetType;
-import lime.graphics.Image;
-import flixel.graphics.FlxGraphic;
-import openfl.utils.AssetManifest;
-import openfl.utils.AssetLibrary;
-import flixel.system.FlxAssets;
 #if LUA_ALLOWED
 import llua.Convert;
 import llua.Lua;
 import llua.State;
 import llua.LuaL;
 #end
-import lime.app.Application;
-import lime.media.AudioContext;
-import lime.media.AudioManager;
 import openfl.Lib;
 import Section.SwagSection;
 import Song.SwagSong;
-import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.FlxGame;
 import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.FlxSubState;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.addons.effects.FlxTrail;
-import flixel.addons.effects.FlxTrailArea;
-import flixel.addons.effects.chainable.FlxEffectSprite;
-import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.graphics.atlas.FlxAtlas;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
 import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.ui.FlxBar;
-import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
-import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
-import haxe.Json;
-import lime.utils.Assets;
-import openfl.display.BlendMode;
-import openfl.display.StageQuality;
-import openfl.filters.ShaderFilter;
 #if windows
 import Discord.DiscordClient;
 #end
@@ -191,256 +166,19 @@ class PlayState extends MusicBeatState
 
 	private var executeModchart = false;
 
-	// LUA SHIT
-	#if LUA_ALLOWED
-	public static var lua:State = null;
-	#else
-	public static var lua:Dynamic = null;
-	#end
+	public static var onCreate:FlxSignal = new FlxSignal();
+	public static var onUpdate:FlxTypedSignal<Float->Void> = new FlxTypedSignal<Float->Void>();
 
-	function callLua(func_name:String, args:Array<Dynamic>, ?type:String):Dynamic
-	{
-		var result:Any = null;
-
-		#if LUA_ALLOWED
-		Lua.getglobal(lua, func_name);
-
-		for (arg in args)
-		{
-			Convert.toLua(lua, arg);
-		}
-
-		result = Lua.pcall(lua, args.length, 1, 0);
-
-		if (getLuaErrorMessage(lua) != null)
-			trace(func_name + ' LUA CALL ERROR ' + Lua.tostring(lua, result));
-		#end
-
-		if (result == null)
-		{
-			return null;
-		}
-		else
-		{
-			return convert(result, type);
-		}
-	}
-
-	function getType(l, type):Any
-	{
-		#if LUA_ALLOWED
-		return switch Lua.type(l, type)
-		{
-			case t if (t == Lua.LUA_TNIL): null;
-			case t if (t == Lua.LUA_TNUMBER): Lua.tonumber(l, type);
-			case t if (t == Lua.LUA_TSTRING): (Lua.tostring(l, type) : String);
-			case t if (t == Lua.LUA_TBOOLEAN): Lua.toboolean(l, type);
-			case t: throw 'you don goofed up. lua type error ($t)';
-		}
-		#else
-		return null;
-		#end
-	}
-
-	function getReturnValues(l)
-	{
-		var lua_v:Int;
-		var v:Any = null;
-
-		#if LUA_ALLOWED
-		while ((lua_v = Lua.gettop(l)) != 0)
-		{
-			var type:String = getType(l, lua_v);
-			v = convert(lua_v, type);
-			Lua.pop(l, 1);
-		}
-		#end
-
-		return v;
-	}
-
-	private function convert(v:Any, type:String):Dynamic
-	{ // I didn't write this lol
-		if (Std.isOfType(v, String) && type != null)
-		{
-			var v:String = v;
-			if (type.substr(0, 4) == 'array')
-			{
-				if (type.substr(4) == 'float')
-				{
-					var array:Array<String> = v.split(',');
-					var array2:Array<Float> = new Array();
-
-					for (vars in array)
-					{
-						array2.push(Std.parseFloat(vars));
-					}
-
-					return array2;
-				}
-				else if (type.substr(4) == 'int')
-				{
-					var array:Array<String> = v.split(',');
-					var array2:Array<Int> = new Array();
-
-					for (vars in array)
-					{
-						array2.push(Std.parseInt(vars));
-					}
-
-					return array2;
-				}
-				else
-				{
-					var array:Array<String> = v.split(',');
-					return array;
-				}
-			}
-			else if (type == 'float')
-			{
-				return Std.parseFloat(v);
-			}
-			else if (type == 'int')
-			{
-				return Std.parseInt(v);
-			}
-			else if (type == 'bool')
-			{
-				if (v == 'true')
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return v;
-			}
-		}
-		else
-		{
-			return v;
-		}
-	}
-
-	function getLuaErrorMessage(l)
-	{
-		#if LUA_ALLOWED
-		var v:String = Lua.tostring(l, -1);
-		Lua.pop(l, 1);
-		return v;
-		#else
-		return 'No Lua';
-		#end
-	}
-
-	public function setVar(var_name:String, object:Dynamic)
-	{
-		// trace('setting variable ' + var_name + ' to ' + object);
-
-		#if LUA_ALLOWED
-		Lua.pushnumber(lua, object);
-		Lua.setglobal(lua, var_name);
-		#end
-	}
-
-	public function getVar(var_name:String, type:String):Dynamic
-	{
-		var result:Any = null;
-
-		// trace('getting variable ' + var_name + ' with a type of ' + type);
-
-		#if LUA_ALLOWED
-		Lua.getglobal(lua, var_name);
-		result = Convert.fromLua(lua, -1);
-		Lua.pop(lua, 1);
-		#end
-
-		if (result == null)
-		{
-			return null;
-		}
-		else
-		{
-			var result = convert(result, type);
-			// trace(var_name + ' result: ' + result);
-			return result;
-		}
-	}
-
-	function getActorByName(id:String):Dynamic
-	{
-		// pre defined names
-		switch (id)
-		{
-			case 'boyfriend':
-				return boyfriend;
-			case 'girlfriend':
-				return gf;
-			case 'dad':
-				return dad;
-		}
-		// lua objects or what ever
-		if (luaSprites.get(id) == null)
-			return strumLineNotes.members[Std.parseInt(id)];
-		return luaSprites.get(id);
-	}
-
-	public static var luaSprites:Map<String, FlxSprite> = [];
-
-	function makeLuaSprite(spritePath:String, toBeCalled:String, drawBehind:Bool)
-	{
-		#if sys
-		var data:BitmapData = BitmapData.fromFile(Sys.getCwd() + "assets/data/" + PlayState.SONG.song.toLowerCase() + '/' + spritePath + ".png");
-
-		var sprite:FlxSprite = new FlxSprite(0, 0);
-		var imgWidth:Float = FlxG.width / data.width;
-		var imgHeight:Float = FlxG.height / data.height;
-		var scale:Float = imgWidth <= imgHeight ? imgWidth : imgHeight;
-
-		// Cap the scale at x1
-		if (scale > 1)
-		{
-			scale = 1;
-		}
-
-		sprite.makeGraphic(Std.int(data.width * scale), Std.int(data.width * scale), FlxColor.TRANSPARENT);
-
-		var data2:BitmapData = sprite.pixels.clone();
-		var matrix:Matrix = new Matrix();
-		matrix.identity();
-		matrix.scale(scale, scale);
-		data2.fillRect(data2.rect, FlxColor.TRANSPARENT);
-		data2.draw(data, matrix, null, null, null, true);
-		sprite.pixels = data2;
-
-		luaSprites.set(toBeCalled, sprite);
-		// and I quote:
-		// shitty layering but it works!
-		if (drawBehind)
-		{
-			remove(gf);
-			remove(boyfriend);
-			remove(dad);
-		}
-		add(sprite);
-		if (drawBehind)
-		{
-			add(gf);
-			add(boyfriend);
-			add(dad);
-		}
-		#end
-		return toBeCalled;
-	}
-
-	// LUA SHIT
+	public static var onStepHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
+	public static var onBeatHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 
 	override public function create()
 	{
+		var signals:Array<FlxTypedSignal<Any>> = [onCreate, onUpdate, onStepHit, onBeatHit];
+
+		for (signal in signals)
+			signal.removeAll();
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -540,37 +278,13 @@ class PlayState extends MusicBeatState
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale);
 
 		// dialogue
-		switch (SONG.song.toLowerCase())
-		{
-			case 'tutorial':
-				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
-			case 'bopeebo':
-				dialogue = [
-					'HEY!',
-					"You think you can just sing\nwith my daughter like that?",
-					"If you want to date her...",
-					"You're going to have to go \nthrough ME first!"
-				];
-			case 'fresh':
-				dialogue = ["Not too shabby boy.", ""];
-			case 'dadbattle':
-				dialogue = [
-					"gah you think you're hot stuff?",
-					"If you can beat me here...",
-					"Only then I will even CONSIDER letting you\ndate my daughter!"
-				];
-			case 'senpai':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
-			case 'roses':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
-			case 'thorns':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-		}
 
 		// stage
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
+				new NewWorldSong();
+
 				curStage = 'grassworld';
 
 				var sky = new FlxSprite(0, 0, Paths.image('stages/grassworld/sky', 'fu-kit'));
@@ -786,6 +500,8 @@ class PlayState extends MusicBeatState
 
 		if (!loadRep)
 			rep = new Replay("na");
+
+		onCreate.dispatch();
 
 		super.create();
 	}
@@ -1092,9 +808,7 @@ class PlayState extends MusicBeatState
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else
-				{
-				}
+				else {}
 			}
 			daBeats += 1;
 		}
@@ -1598,9 +1312,7 @@ class PlayState extends MusicBeatState
 				// Don't animate GF if something else is already animating her (eg. train passing)
 				if (gf.animation?.curAnim?.name == 'danceLeft'
 					|| gf.animation?.curAnim?.name == 'danceRight'
-					|| gf.animation?.curAnim?.name == 'idle')
-				{
-				}
+					|| gf.animation?.curAnim?.name == 'idle') {}
 			}
 
 			if (camFollow.x != dad.getMidpoint().x + 150 && !PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
@@ -1842,6 +1554,8 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.ONE)
 			endSong();
 		#end
+
+		onUpdate.dispatch(elapsed);
 	}
 
 	function endSong():Void
@@ -2496,6 +2210,8 @@ class PlayState extends MusicBeatState
 			+ misses, iconRPC, true, songLength
 			- Conductor.songPosition);
 		#end
+
+		onStepHit.dispatch(curStep);
 	}
 
 	override function beatHit()
@@ -2556,6 +2272,254 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('hey', true);
 			dad.playAnim('cheer', true);
 		}
+
+		onBeatHit.dispatch(curBeat);
+	}
+
+	// LUA SHIT
+	#if LUA_ALLOWED
+	public static var lua:State = null;
+	#else
+	public static var lua:Dynamic = null;
+	#end
+
+	function callLua(func_name:String, args:Array<Dynamic>, ?type:String):Dynamic
+	{
+		var result:Any = null;
+
+		#if LUA_ALLOWED
+		Lua.getglobal(lua, func_name);
+
+		for (arg in args)
+		{
+			Convert.toLua(lua, arg);
+		}
+
+		result = Lua.pcall(lua, args.length, 1, 0);
+
+		if (getLuaErrorMessage(lua) != null)
+			trace(func_name + ' LUA CALL ERROR ' + Lua.tostring(lua, result));
+		#end
+
+		if (result == null)
+		{
+			return null;
+		}
+		else
+		{
+			return convert(result, type);
+		}
+	}
+
+	function getType(l, type):Any
+	{
+		#if LUA_ALLOWED
+		return switch Lua.type(l, type)
+		{
+			case t if (t == Lua.LUA_TNIL): null;
+			case t if (t == Lua.LUA_TNUMBER): Lua.tonumber(l, type);
+			case t if (t == Lua.LUA_TSTRING): (Lua.tostring(l, type) : String);
+			case t if (t == Lua.LUA_TBOOLEAN): Lua.toboolean(l, type);
+			case t: throw 'you don goofed up. lua type error ($t)';
+		}
+		#else
+		return null;
+		#end
+	}
+
+	function getReturnValues(l)
+	{
+		var lua_v:Int;
+		var v:Any = null;
+
+		#if LUA_ALLOWED
+		while ((lua_v = Lua.gettop(l)) != 0)
+		{
+			var type:String = getType(l, lua_v);
+			v = convert(lua_v, type);
+			Lua.pop(l, 1);
+		}
+		#end
+
+		return v;
+	}
+
+	private function convert(v:Any, type:String):Dynamic
+	{ // I didn't write this lol
+		if (Std.isOfType(v, String) && type != null)
+		{
+			var v:String = v;
+			if (type.substr(0, 4) == 'array')
+			{
+				if (type.substr(4) == 'float')
+				{
+					var array:Array<String> = v.split(',');
+					var array2:Array<Float> = new Array();
+
+					for (vars in array)
+					{
+						array2.push(Std.parseFloat(vars));
+					}
+
+					return array2;
+				}
+				else if (type.substr(4) == 'int')
+				{
+					var array:Array<String> = v.split(',');
+					var array2:Array<Int> = new Array();
+
+					for (vars in array)
+					{
+						array2.push(Std.parseInt(vars));
+					}
+
+					return array2;
+				}
+				else
+				{
+					var array:Array<String> = v.split(',');
+					return array;
+				}
+			}
+			else if (type == 'float')
+			{
+				return Std.parseFloat(v);
+			}
+			else if (type == 'int')
+			{
+				return Std.parseInt(v);
+			}
+			else if (type == 'bool')
+			{
+				if (v == 'true')
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return v;
+			}
+		}
+		else
+		{
+			return v;
+		}
+	}
+
+	function getLuaErrorMessage(l)
+	{
+		#if LUA_ALLOWED
+		var v:String = Lua.tostring(l, -1);
+		Lua.pop(l, 1);
+		return v;
+		#else
+		return 'No Lua';
+		#end
+	}
+
+	public function setVar(var_name:String, object:Dynamic)
+	{
+		// trace('setting variable ' + var_name + ' to ' + object);
+
+		#if LUA_ALLOWED
+		Lua.pushnumber(lua, object);
+		Lua.setglobal(lua, var_name);
+		#end
+	}
+
+	public function getVar(var_name:String, type:String):Dynamic
+	{
+		var result:Any = null;
+
+		// trace('getting variable ' + var_name + ' with a type of ' + type);
+
+		#if LUA_ALLOWED
+		Lua.getglobal(lua, var_name);
+		result = Convert.fromLua(lua, -1);
+		Lua.pop(lua, 1);
+		#end
+
+		if (result == null)
+		{
+			return null;
+		}
+		else
+		{
+			var result = convert(result, type);
+			// trace(var_name + ' result: ' + result);
+			return result;
+		}
+	}
+
+	function getActorByName(id:String):Dynamic
+	{
+		// pre defined names
+		switch (id)
+		{
+			case 'boyfriend':
+				return boyfriend;
+			case 'girlfriend':
+				return gf;
+			case 'dad':
+				return dad;
+		}
+		// lua objects or what ever
+		if (luaSprites.get(id) == null)
+			return strumLineNotes.members[Std.parseInt(id)];
+		return luaSprites.get(id);
+	}
+
+	public static var luaSprites:Map<String, FlxSprite> = [];
+
+	function makeLuaSprite(spritePath:String, toBeCalled:String, drawBehind:Bool)
+	{
+		#if sys
+		var data:BitmapData = BitmapData.fromFile(Sys.getCwd() + "assets/data/" + PlayState.SONG.song.toLowerCase() + '/' + spritePath + ".png");
+
+		var sprite:FlxSprite = new FlxSprite(0, 0);
+		var imgWidth:Float = FlxG.width / data.width;
+		var imgHeight:Float = FlxG.height / data.height;
+		var scale:Float = imgWidth <= imgHeight ? imgWidth : imgHeight;
+
+		// Cap the scale at x1
+		if (scale > 1)
+		{
+			scale = 1;
+		}
+
+		sprite.makeGraphic(Std.int(data.width * scale), Std.int(data.width * scale), FlxColor.TRANSPARENT);
+
+		var data2:BitmapData = sprite.pixels.clone();
+		var matrix:Matrix = new Matrix();
+		matrix.identity();
+		matrix.scale(scale, scale);
+		data2.fillRect(data2.rect, FlxColor.TRANSPARENT);
+		data2.draw(data, matrix, null, null, null, true);
+		sprite.pixels = data2;
+
+		luaSprites.set(toBeCalled, sprite);
+		// and I quote:
+		// shitty layering but it works!
+		if (drawBehind)
+		{
+			remove(gf);
+			remove(boyfriend);
+			remove(dad);
+		}
+		add(sprite);
+		if (drawBehind)
+		{
+			add(gf);
+			add(boyfriend);
+			add(dad);
+		}
+		#end
+		return toBeCalled;
 	}
 
 	function initLua()
