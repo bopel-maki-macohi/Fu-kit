@@ -44,7 +44,7 @@ class ScreenshotPlugin extends FlxBasic
 
 		showFancyPreview(data);
 
-		FlxG.sound.play(Paths.sound('CLAP', 'shared'));
+		FlxG.sound.play(Paths.sound('screenshot', 'shared'));
 	}
 
 	function showFancyPreview(data:BitmapData)
