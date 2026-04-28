@@ -109,9 +109,9 @@ class TitleState extends MusicBeatState
 		}
 
 		#if FREEPLAY
-		FlxG.switchState(new FreeplayState());
+		FlxG.switchState(() -> new FreeplayState());
 		#elseif CHARTING
-		FlxG.switchState(new ChartingState());
+		FlxG.switchState(() -> new ChartingState());
 		#else
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
@@ -316,17 +316,17 @@ class TitleState extends MusicBeatState
 					{
 						trace('outdated lmao! ' + data.trim() + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = data;
-						FlxG.switchState(new OutdatedSubState());
+						FlxG.switchState(() -> new OutdatedSubState());
 					}
 					else
 					{
-						FlxG.switchState(new MainMenuState());
+						FlxG.switchState(() -> new MainMenuState());
 					}
 				}
 				
 				http.onError = function (error) {
 				  trace('error: $error');
-				  FlxG.switchState(new MainMenuState()); // fail but we go anyway
+				  FlxG.switchState(() -> new MainMenuState()); // fail but we go anyway
 				}
 				
 				http.request();

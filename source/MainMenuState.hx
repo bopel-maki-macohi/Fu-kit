@@ -146,7 +146,7 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.BACK)
 			{
-				FlxG.switchState(new TitleState());
+				FlxG.switchState(() -> new TitleState());
 			}
 
 			if (controls.ACCEPT)
@@ -187,15 +187,15 @@ class MainMenuState extends MusicBeatState
 								switch (daChoice)
 								{
 									case 'story mode':
-										FlxG.switchState(new StoryMenuState());
+										FlxG.switchState(() -> new StoryMenuState());
 										trace("Story Menu Selected");
 									case 'freeplay':
-										FlxG.switchState(new FreeplayState());
+										FlxG.switchState(() -> new FreeplayState());
 
 										trace("Freeplay Menu Selected");
 
 									case 'options':
-										FlxG.switchState(new OptionsMenu());
+										FlxG.switchState(() -> new OptionsMenu());
 								}
 							});
 						}

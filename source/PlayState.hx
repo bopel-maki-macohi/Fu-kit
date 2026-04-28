@@ -2195,7 +2195,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.random.bool(0.1))
 			{
 				// gitaroo man easter egg
-				FlxG.switchState(new GitarooPause());
+				FlxG.switchState(() -> new GitarooPause());
 			}
 			else
 				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
@@ -2206,7 +2206,7 @@ class PlayState extends MusicBeatState
 			#if windows
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
-			FlxG.switchState(new ChartingState());
+			FlxG.switchState(() -> new ChartingState());
 			if (lua != null)
 			{
 				Lua.close(lua);
@@ -2242,12 +2242,12 @@ class PlayState extends MusicBeatState
 			iconP2.animation.curAnim.curFrame = 0;
 
 		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
+			FlxG.switchState(() -> new Charting()); */
 
 		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 		{
-			FlxG.switchState(new AnimationDebug(SONG.player2));
+			FlxG.switchState(() -> new AnimationDebug(SONG.player2));
 			if (lua != null)
 			{
 				Lua.close(lua);
@@ -2473,7 +2473,7 @@ class PlayState extends MusicBeatState
 					gfSpeed = 1;
 				case 163:
 					// FlxG.sound.music.stop();
-					// FlxG.switchState(new TitleState());
+					// FlxG.switchState(() -> new TitleState());
 			}
 		}
 
@@ -2484,7 +2484,7 @@ class PlayState extends MusicBeatState
 				case 128, 129, 130:
 					vocals.volume = 0;
 					// FlxG.sound.music.stop();
-					// FlxG.switchState(new PlayState());
+					// FlxG.switchState(() -> new PlayState());
 			}
 		}
 
@@ -2506,7 +2506,7 @@ class PlayState extends MusicBeatState
 			DiscordClient.changePresence("GAME OVER -- " + SONG.song + " (" + storyDifficultyText + ") " + generateRanking(),"\nAcc: " + truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 			#end
 
-			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			// FlxG.switchState(() -> new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		}
 
 		if (unspawnNotes[0] != null)
@@ -2685,7 +2685,7 @@ class PlayState extends MusicBeatState
 					transIn = FlxTransitionableState.defaultTransIn;
 					transOut = FlxTransitionableState.defaultTransOut;
 
-					FlxG.switchState(new StoryMenuState());
+					FlxG.switchState(() -> new StoryMenuState());
 
 					if (lua != null)
 					{
@@ -2742,7 +2742,7 @@ class PlayState extends MusicBeatState
 			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
-				FlxG.switchState(new FreeplayState());
+				FlxG.switchState(() -> new FreeplayState());
 			}
 		}
 	}
