@@ -89,8 +89,12 @@
 	<haxelib name="newgrounds"/>
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="polymod"/>
+	
 	<!-- <haxelib name="discord_rpc" if="windows"/> -->
-	<haxelib name="linc_luajit" unless="hl"/>
+	
+	<define name="LUA_ALLOWED" unless="hl"/>
+	
+	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 

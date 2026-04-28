@@ -8,10 +8,12 @@ import flixel.graphics.FlxGraphic;
 import openfl.utils.AssetManifest;
 import openfl.utils.AssetLibrary;
 import flixel.system.FlxAssets;
+#if LUA_ALLOWED
 import llua.Convert;
 import llua.Lua;
 import llua.State;
 import llua.LuaL;
+#end
 import lime.app.Application;
 import lime.media.AudioContext;
 import lime.media.AudioManager;
@@ -190,12 +192,17 @@ class PlayState extends MusicBeatState
 	private var executeModchart = false;
 
 	// LUA SHIT
+	#if LUA_ALLOWED
 	public static var lua:State = null;
+	#else
+	public static var lua:Dynamic = null;
+	#end
 
 	function callLua(func_name:String, args:Array<Dynamic>, ?type:String):Dynamic
 	{
 		var result:Any = null;
 
+		#if LUA_ALLOWED
 		Lua.getglobal(lua, func_name);
 
 		for (arg in args)
@@ -207,6 +214,7 @@ class PlayState extends MusicBeatState
 
 		if (getLuaErrorMessage(lua) != null)
 			trace(func_name + ' LUA CALL ERROR ' + Lua.tostring(lua, result));
+		#end
 
 		if (result == null)
 		{
@@ -220,6 +228,7 @@ class PlayState extends MusicBeatState
 
 	function getType(l, type):Any
 	{
+		#if LUA_ALLOWED
 		return switch Lua.type(l, type)
 		{
 			case t if (t == Lua.LUA_TNIL): null;
@@ -228,18 +237,25 @@ class PlayState extends MusicBeatState
 			case t if (t == Lua.LUA_TBOOLEAN): Lua.toboolean(l, type);
 			case t: throw 'you don goofed up. lua type error ($t)';
 		}
+		#else
+		return null;
+		#end
 	}
 
 	function getReturnValues(l)
 	{
 		var lua_v:Int;
 		var v:Any = null;
+
+		#if LUA_ALLOWED
 		while ((lua_v = Lua.gettop(l)) != 0)
 		{
 			var type:String = getType(l, lua_v);
 			v = convert(lua_v, type);
 			Lua.pop(l, 1);
 		}
+		#end
+
 		return v;
 	}
 
@@ -312,17 +328,23 @@ class PlayState extends MusicBeatState
 
 	function getLuaErrorMessage(l)
 	{
+		#if LUA_ALLOWED
 		var v:String = Lua.tostring(l, -1);
 		Lua.pop(l, 1);
 		return v;
+		#else
+		return 'No Lua';
+		#end
 	}
 
 	public function setVar(var_name:String, object:Dynamic)
 	{
 		// trace('setting variable ' + var_name + ' to ' + object);
 
+		#if LUA_ALLOWED
 		Lua.pushnumber(lua, object);
 		Lua.setglobal(lua, var_name);
+		#end
 	}
 
 	public function getVar(var_name:String, type:String):Dynamic
@@ -331,9 +353,11 @@ class PlayState extends MusicBeatState
 
 		// trace('getting variable ' + var_name + ' with a type of ' + type);
 
+		#if LUA_ALLOWED
 		Lua.getglobal(lua, var_name);
 		result = Convert.fromLua(lua, -1);
 		Lua.pop(lua, 1);
+		#end
 
 		if (result == null)
 		{
@@ -1474,7 +1498,7 @@ class PlayState extends MusicBeatState
 				scoreTxt.text += '$songScore ($songScoreDef)';
 			else
 				scoreTxt.text += '$songScore';
-			
+
 			scoreTxt.text += ' | Combo: $combo';
 			scoreTxt.text += ' | Combo Breaks: $misses';
 
@@ -1513,7 +1537,9 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(() -> new ChartingState());
 			if (lua != null)
 			{
+				#if LUA_ALLOWED
 				Lua.close(lua);
+				#end
 				lua = null;
 			}
 		}
@@ -1554,7 +1580,9 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(() -> new AnimationDebug(SONG.player2));
 			if (lua != null)
 			{
+				#if LUA_ALLOWED
 				Lua.close(lua);
+				#end
 				lua = null;
 			}
 		}
@@ -1858,7 +1886,9 @@ class PlayState extends MusicBeatState
 
 		if (executeModchart)
 		{
+			#if LUA_ALLOWED
 			Lua.close(lua);
+			#end
 			lua = null;
 		}
 
@@ -1898,7 +1928,9 @@ class PlayState extends MusicBeatState
 
 					if (lua != null)
 					{
+						#if LUA_ALLOWED
 						Lua.close(lua);
+						#end
 						lua = null;
 					}
 
@@ -2563,6 +2595,7 @@ class PlayState extends MusicBeatState
 
 	function initLua()
 	{
+		#if LUA_ALLOWED
 		trace('opening a lua state (because we are cool :))');
 		lua = LuaL.newstate();
 		LuaL.openlibs(lua);
@@ -2901,5 +2934,6 @@ class PlayState extends MusicBeatState
 		trace('calling start function');
 
 		trace('return: ' + Lua.tostring(lua, callLua('start', [PlayState.SONG.song])));
+		#end
 	}
 }

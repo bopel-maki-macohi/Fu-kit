@@ -3,5 +3,3 @@
 - ?.? - Customizable Keybinds
 
 - 2.0 - Custom Menus
-
-- ?.? - Hashlink compiling support
