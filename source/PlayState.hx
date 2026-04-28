@@ -2281,7 +2281,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.NINE)
 		{
-			if (iconP1.animation.curAnim.name == 'bf-old')
+			if (iconP1.animation?.curAnim?.name == 'bf-old')
 				iconP1.animation.play(SONG.player1);
 			else
 				iconP1.animation.play('bf-old');
@@ -2442,9 +2442,9 @@ class PlayState extends MusicBeatState
 			if (allowedToHeadbang)
 			{
 				// Don't animate GF if something else is already animating her (eg. train passing)
-				if (gf.animation.curAnim.name == 'danceLeft'
-					|| gf.animation.curAnim.name == 'danceRight'
-					|| gf.animation.curAnim.name == 'idle')
+				if (gf.animation?.curAnim?.name == 'danceLeft'
+					|| gf.animation?.curAnim?.name == 'danceRight'
+					|| gf.animation?.curAnim?.name == 'idle')
 				{
 					// Per song treatment since some songs will only have the 'Hey' at certain times
 					switch (curSong)
@@ -3467,7 +3467,7 @@ class PlayState extends MusicBeatState
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
 		{
-			if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+			if (boyfriend.animation?.curAnim?.name.startsWith('sing') && !boyfriend.animation?.curAnim?.name.endsWith('miss'))
 			{
 				boyfriend.playAnim('idle');
 			}
@@ -3492,7 +3492,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (upP && spr.animation.curAnim.name != 'confirm' && !loadRep)
+						if (upP && spr.animation?.curAnim?.name != 'confirm' && !loadRep)
 						{
 							spr.animation.play('pressed');
 							trace('play');
@@ -3518,7 +3518,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (rightP && spr.animation.curAnim.name != 'confirm' && !loadRep)
+						if (rightP && spr.animation?.curAnim?.name != 'confirm' && !loadRep)
 							spr.animation.play('pressed');
 						if (rightR)
 						{
@@ -3541,7 +3541,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (downP && spr.animation.curAnim.name != 'confirm' && !loadRep)
+						if (downP && spr.animation?.curAnim?.name != 'confirm' && !loadRep)
 							spr.animation.play('pressed');
 						if (downR)
 						{
@@ -3564,7 +3564,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (leftP && spr.animation.curAnim.name != 'confirm' && !loadRep)
+						if (leftP && spr.animation?.curAnim?.name != 'confirm' && !loadRep)
 							spr.animation.play('pressed');
 						if (leftR)
 						{
@@ -3574,7 +3574,7 @@ class PlayState extends MusicBeatState
 					}
 			}
 
-			if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+			if (spr.animation?.curAnim?.name == 'confirm' && !curStage.startsWith('school'))
 			{
 				spr.centerOffsets();
 				spr.offset.x -= 13;
@@ -3978,7 +3978,7 @@ class PlayState extends MusicBeatState
 			gf.dance();
 		}
 
-		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
+		if (!boyfriend.animation?.curAnim?.name.startsWith("sing"))
 		{
 			boyfriend.playAnim('idle');
 		}

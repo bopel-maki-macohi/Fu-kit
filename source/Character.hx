@@ -548,7 +548,7 @@ class Character extends FlxSprite
 	{
 		if (!curCharacter.startsWith('bf'))
 		{
-			if (animation.curAnim.name.startsWith('sing'))
+			if (animation?.curAnim?.name.startsWith('sing'))
 			{
 				holdTimer += elapsed;
 			}
@@ -567,7 +567,7 @@ class Character extends FlxSprite
 		switch (curCharacter)
 		{
 			case 'gf':
-				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
+				if (animation?.curAnim?.name == 'hairFall' && animation?.curAnim?.finished)
 					playAnim('danceRight');
 		}
 
@@ -586,7 +586,7 @@ class Character extends FlxSprite
 			switch (curCharacter)
 			{
 				case 'gf':
-					if (!animation.curAnim.name.startsWith('hair'))
+					if (!animation?.curAnim?.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -597,7 +597,7 @@ class Character extends FlxSprite
 					}
 
 				case 'gf-christmas':
-					if (!animation.curAnim.name.startsWith('hair'))
+					if (!animation?.curAnim?.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -608,7 +608,7 @@ class Character extends FlxSprite
 					}
 
 				case 'gf-car':
-					if (!animation.curAnim.name.startsWith('hair'))
+					if (!animation?.curAnim?.name.startsWith('hair'))
 					{
 						danced = !danced;
 
@@ -618,7 +618,7 @@ class Character extends FlxSprite
 							playAnim('danceLeft');
 					}
 				case 'gf-pixel':
-					if (!animation.curAnim.name.startsWith('hair'))
+					if (!animation?.curAnim?.name.startsWith('hair'))
 					{
 						danced = !danced;
 

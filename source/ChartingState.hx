@@ -801,7 +801,7 @@ class ChartingState extends MusicBeatState
 		trace('beat');
 
 		super.beatHit();
-		if (!player2.animation.curAnim.name.startsWith("sing"))
+		if (!player2.animation?.curAnim?.name.startsWith("sing"))
 		{
 			player2.playAnim('idle');
 		}
