@@ -1,6 +1,6 @@
 package;
 
-import fukit.play.songs.NewWorldSong;
+import fukit.play.songs.World1Song;
 import flixel.util.FlxSignal;
 import openfl.geom.Matrix;
 import openfl.display.BitmapData;
@@ -283,7 +283,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
-				new NewWorldSong();
+				new World1Song();
 
 				curStage = 'grassworld';
 
