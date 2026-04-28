@@ -1583,7 +1583,6 @@ class PlayState extends MusicBeatState
 
 				default:
 					babyArrow.frames = noteskinSprite;
-					Debug.logTrace(babyArrow.frames);
 					for (j in 0...4)
 					{
 						babyArrow.animation.addByPrefix(dataColor[j], 'arrow' + dataSuffix[j]);
