@@ -12,9 +12,44 @@ class HealthIcon extends FlxSprite
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
-		
-		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
+		switch (char)
+		{
+			case 'arpe':
+				makeBaseFuKitIcon(char);
 
+			default:
+				makeDefaultIcon(char);
+		}
+
+		scrollFactor.set();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (sprTracker != null)
+			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
+	}
+
+	function makeBaseFuKitIcon(char:String)
+	{
+		loadGraphic(Paths.image('icons/fu-kit_baseIcon', 'fu-kit'), true, 150, 150);
+		animation.add(char, [0, 1], 0, false, isPlayer);
+
+		color = switch (char)
+		{
+			case 'arpe':
+				0x786D8E;
+
+			default:
+				FlxColor.WHITE;
+		}
+	}
+
+	function makeDefaultIcon(char:String)
+	{
+		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
 
 		animation.add('bf', [0, 1], 0, false, isPlayer);
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
@@ -38,24 +73,12 @@ class HealthIcon extends FlxSprite
 		animation.add('monster', [19, 20], 0, false, isPlayer);
 		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
 		animation.play(char);
-		switch(char){
-			case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':
-				{
+		antialiasing = true;
 
-				}
-			default:
-				{
-					antialiasing = true;
-				}
+		switch (char)
+		{
+			case 'bf-pixel', 'senpai', 'senpai-angry', 'spirit', 'gf-pixel':
+				antialiasing = false;
 		}
-		scrollFactor.set();
-	}
-
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-
-		if (sprTracker != null)
-			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
 	}
 }
