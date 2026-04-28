@@ -1,6 +1,6 @@
 haxelib newrepo
 
-haxelib install lime
+haxelib git lime https://github.com/FunkinCrew/lime 826d25199c17329b730ae09838f3df7a2903c471
 haxelib run lime setup
 
 haxelib install flixel-animate --skip-dependencies
