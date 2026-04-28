@@ -5,10 +5,10 @@ haxelib run lime setup
 
 haxelib install flixel-animate --skip-dependencies
 
-haxelib install flixel
-haxelib install flixel-addons
+haxelib git flixel https://github.com/FunkinCrew/flixel e7ad26b5a6e08729f6eec351ed15de7b555b275f
+haxelib git flixel-addons https://github.com/FunkinCrew/flixel-addons 187f93b34f93c6a405d634a42913c745e443463a
 
-haxelib git openfl https://github.com/openfl/openfl 0d93f1d46016f2beea37c48c5682bda5b3e73158
+haxelib git openfl https://github.com/FunkinCrew/openfl 88534506595a32c3f02b21b3987e789a24074ae7
 
 haxelib install flixel-tools
 haxelib install flixel-ui
