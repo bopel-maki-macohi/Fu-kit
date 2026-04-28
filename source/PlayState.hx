@@ -1474,10 +1474,12 @@ class PlayState extends MusicBeatState
 				scoreTxt.text += '$songScore ($songScoreDef)';
 			else
 				scoreTxt.text += '$songScore';
+			
+			scoreTxt.text += ' | Combo: $combo';
+			scoreTxt.text += ' | Combo Breaks: $misses';
 
 			if (FlxG.save.data.accuracyDisplay)
 			{
-				scoreTxt.text += ' | Combo Breaks: $misses';
 				scoreTxt.text += ' | Accuracy: ${truncateFloat(accuracy, 2)}%';
 				scoreTxt.text += ' | ${generateRanking()}';
 			}
