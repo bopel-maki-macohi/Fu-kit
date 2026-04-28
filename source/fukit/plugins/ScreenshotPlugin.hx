@@ -26,31 +26,23 @@ class ScreenshotPlugin extends FlxBasic
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.anyPressed([SCREENSHOT_KEY]))
+		if (FlxG.keys.anyJustPressed([SCREENSHOT_KEY]))
 			performScreenshot();
 	}
 
 	public static var SCREENSHOT_DIRECTORY:String = 'screenshots';
 
-    public static var SCREENSHOT_DELAY_TIME_SECONDS:Float = 5;
-
-    public var lastScreenshotTime_MS:Float = 0;
-    public var currentScreenshotTime_MS:Float = 0;
+	public static var SCREENSHOT_DELAY_TIME_SECONDS:Float = 5;
 
 	function performScreenshot()
 	{
-        lastScreenshotTime_MS = currentScreenshotTime_MS;
-        currentScreenshotTime_MS = Date.now().getTime();
+		// Wanted format:
+		// Screenshot 2026-04-28 162426
 
-        if (currentScreenshotTime_MS - lastScreenshotTime_MS < (SCREENSHOT_DELAY_TIME_SECONDS * 1000))
-        {
-            trace('${(currentScreenshotTime_MS - lastScreenshotTime_MS) / 1000}s left');
-            return;
-        }
+        var currentDate:Date = Date.now();
+        var formatText:String = 'Screenshot ${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()} ${Math.round(currentDate.getTime() / 1000)}';
 
-        // Wanted format: 
-        // Screenshot 2026-03-07 215514
-		var path:String = '$SCREENSHOT_DIRECTORY/$currentScreenshotTime_MS.png';
+		var path:String = '$SCREENSHOT_DIRECTORY/$formatText.png';
 
 		if (!FileSystem.exists(SCREENSHOT_DIRECTORY))
 			FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
