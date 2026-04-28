@@ -15,10 +15,10 @@ class HealthIcon extends FlxSprite
 		switch (char)
 		{
 			case 'arpe':
-				makeBaseFuKitIcon(char);
+				makeBaseFuKitIcon(char, isPlayer);
 
 			default:
-				makeDefaultIcon(char);
+				makeDefaultIcon(char, isPlayer);
 		}
 
 		scrollFactor.set();
@@ -32,7 +32,7 @@ class HealthIcon extends FlxSprite
 			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
 	}
 
-	function makeBaseFuKitIcon(char:String)
+	function makeBaseFuKitIcon(char:String = 'bf', isPlayer:Bool = false)
 	{
 		loadGraphic(Paths.image('icons/fu-kit_baseIcon', 'fu-kit'), true, 150, 150);
 		animation.add(char, [0, 1], 0, false, isPlayer);
@@ -47,7 +47,7 @@ class HealthIcon extends FlxSprite
 		}
 	}
 
-	function makeDefaultIcon(char:String)
+	function makeDefaultIcon(char:String = 'bf', isPlayer:Bool = false)
 	{
 		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
 
