@@ -1,5 +1,6 @@
 package;
 
+import fukit.Global;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionableState;
@@ -12,7 +13,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
-
 #if windows
 import Discord.DiscordClient;
 #end
@@ -23,18 +23,12 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 
-	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['New World'],
-	];
+	var weekData:Array<Dynamic> = [['Tutorial'], ['New World'],];
 	var curDifficulty:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true];
 
-	var weekCharacters:Array<Dynamic> = [
-		['', 'bf', 'gf'],
-		['', 'bf', 'gf'],
-	];
+	var weekCharacters:Array<Dynamic> = [['', 'bf', 'gf'], ['', 'bf', 'gf'],];
 
 	var weekNames:Array<String> = [
 		"How to Funk",
@@ -271,28 +265,11 @@ class StoryMenuState extends MusicBeatState
 				stopspamming = true;
 			}
 
-			PlayState.storyPlaylist = weekData[curWeek];
-			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
-			var diffic = "";
-
-			switch (curDifficulty)
-			{
-				case 0:
-					diffic = '-easy';
-				case 2:
-					diffic = '-hard';
-			}
-
-			PlayState.storyDifficulty = curDifficulty;
-
-			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
-			PlayState.storyWeek = curWeek;
-			PlayState.campaignScore = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
+				Global.goIntoWeek(weekData[curWeek], curDifficulty, curWeek, true);
 			});
 		}
 	}

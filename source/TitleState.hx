@@ -23,11 +23,9 @@ import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
-
 #if windows
 import Discord.DiscordClient;
 #end
-
 #if desktop
 import sys.thread.Thread;
 #end
@@ -53,7 +51,7 @@ class TitleState extends MusicBeatState
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
-		
+
 		#if sys
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
 			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
@@ -63,16 +61,16 @@ class TitleState extends MusicBeatState
 		{
 			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
 		}
-		
+
 		PlayerSettings.init();
 
 		#if windows
 		DiscordClient.initialize();
 
-		Application.current.onExit.add (function (exitCode) {
+		Application.current.onExit.add(function(exitCode)
+		{
 			DiscordClient.shutdown();
-		 });
-		 
+		});
 		#end
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
@@ -114,6 +112,8 @@ class TitleState extends MusicBeatState
 		FlxG.switchState(() -> new ChartingState());
 		#elseif ANIMDEBUG
 		FlxG.switchState(() -> new AnimationDebug('arpe'));
+		#elseif SONG
+		fukit.Global.goIntoSong('New World', 2, 0);
 		#else
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
@@ -307,18 +307,17 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-
 				// Get current version of Kade Engine
 
 				var http = new haxe.Http("https://raw.githubusercontent.com/bopel-maki-macohi/Fu-kit/main/version.downloadMe");
 
-				http.onData = function (data:String) {
-				  
-				  	if (!MainMenuState.modVer.contains(data.trim()) && !OutdatedSubState.leftState && MainMenuState.nightly == "")
+				http.onData = function(data:String)
+				{
+					if (!MainMenuState.modVer.contains(data.trim()) && !OutdatedSubState.leftState && MainMenuState.nightly == "")
 					{
 						trace('outdated lmao! ' + data.trim() + ' != ' + MainMenuState.modVer);
 						OutdatedSubState.needVer = data;
-						
+
 						FlxG.switchState(() -> new OutdatedSubState());
 						// FlxG.switchState(() -> new MainMenuState());
 					}
@@ -327,14 +326,14 @@ class TitleState extends MusicBeatState
 						FlxG.switchState(() -> new MainMenuState());
 					}
 				}
-				
-				http.onError = function (error) {
-				  trace('error: $error');
-				  FlxG.switchState(() -> new MainMenuState()); // fail but we go anyway
-				}
-				
-				http.request();
 
+				http.onError = function(error)
+				{
+					trace('error: $error');
+					FlxG.switchState(() -> new MainMenuState()); // fail but we go anyway
+				}
+
+				http.request();
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
