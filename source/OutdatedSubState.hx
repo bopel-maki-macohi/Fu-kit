@@ -19,8 +19,8 @@ class OutdatedSubState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"Kade Engine is Outdated!\n"
-			+ MainMenuState.kadeEngineVer
+			"Fu-Kit is Outdated!\n"
+			+ MainMenuState.modVer
 			+ " is your current version\nwhile the most recent version is " + needVer
 			+ "!\nPress Space to go to the github or ESCAPE to ignore this!!",
 			32);
