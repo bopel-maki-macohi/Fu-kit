@@ -1,6 +1,7 @@
 - New World BG
 
-- Remove Tutorial - Week 6
+- Remove Week 1 - Week 6
+- Remove Unused Assets
 
 - put this in characters once in KE 1.4.2
 ```haxe
