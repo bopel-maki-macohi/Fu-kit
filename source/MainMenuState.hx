@@ -36,7 +36,7 @@ class MainMenuState extends MusicBeatState
 	var newGaming2:FlxText;
 	var newInput:Bool = true;
 
-	public static var nightly:String = "";
+	public static var nightly:String = #if debug " (PROTOTYPE)" #else '' #end ;
 
 	public static var modVer(get, never):String;
 
