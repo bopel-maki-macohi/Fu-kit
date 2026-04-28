@@ -1,5 +1,3 @@
-- 1.0 - New World BG
-
 - 1.1 - Remove Week 1 - Week 6
 - 1.1 - Remove Unused Assets
 
