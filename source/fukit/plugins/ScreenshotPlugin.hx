@@ -32,9 +32,25 @@ class ScreenshotPlugin extends FlxBasic
 
 	public static var SCREENSHOT_DIRECTORY:String = 'screenshots';
 
+    public static var SCREENSHOT_DELAY_TIME_SECONDS:Float = 5;
+
+    public var lastScreenshotTime_MS:Float = 0;
+    public var currentScreenshotTime_MS:Float = 0;
+
 	function performScreenshot()
 	{
-		var path:String = '$SCREENSHOT_DIRECTORY/${Date.now().getTime()}.png';
+        lastScreenshotTime_MS = currentScreenshotTime_MS;
+        currentScreenshotTime_MS = Date.now().getTime();
+
+        if (currentScreenshotTime_MS - lastScreenshotTime_MS < (SCREENSHOT_DELAY_TIME_SECONDS * 1000))
+        {
+            trace('${(currentScreenshotTime_MS - lastScreenshotTime_MS) / 1000}s left');
+            return;
+        }
+
+        // Wanted format: 
+        // Screenshot 2026-03-07 215514
+		var path:String = '$SCREENSHOT_DIRECTORY/$currentScreenshotTime_MS.png';
 
 		if (!FileSystem.exists(SCREENSHOT_DIRECTORY))
 			FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
