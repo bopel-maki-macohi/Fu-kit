@@ -577,6 +577,8 @@ class PlayState extends MusicBeatState
 				ground.screenCenter();
 				ground.active = false;
 
+				ground.y += ground.height * 1.5;
+
 				add(sky);
 				add(ground);
 
@@ -913,6 +915,7 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 				}
 		}
+		
 		var gfVersion:String = 'gf';
 
 		switch (curStage)
@@ -1063,7 +1066,7 @@ class PlayState extends MusicBeatState
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (30 / (cast(Lib.current.getChildAt(0), Main)).getFPS()));
+		FlxG.camera.follow(camFollow, LOCKON, 0.04 * (60 / (cast(Lib.current.getChildAt(0), Main)).getFPS()));
 		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
