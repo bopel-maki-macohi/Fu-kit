@@ -38,7 +38,7 @@ class MainMenuState extends MusicBeatState
 
 	public static var nightly:String = "";
 
-	public static var modVer:String = "1.0" + nightly;
+	public static var modVer:String = Application.current.meta.get('version') + nightly;
 	public static var kadeEngineVer:String = "1.4.2";
 	public static var gameVer:String = "0.2.7.1";
 
