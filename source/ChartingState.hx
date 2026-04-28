@@ -1120,10 +1120,10 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(stepperSpeed);
 		tab_group_song.add(stepperSpeedLabel);
 
-		// tab_group_song.add(stepperVocalVol);
-		// tab_group_song.add(stepperVocalVolLabel);
-		// tab_group_song.add(stepperSongVol);
-		// tab_group_song.add(stepperSongVolLabel);
+		tab_group_song.add(stepperVocalVol);
+		tab_group_song.add(stepperVocalVolLabel);
+		tab_group_song.add(stepperSongVol);
+		tab_group_song.add(stepperSongVolLabel);
 
 		tab_group_song.add(shiftNoteDialLabel);
 		tab_group_song.add(stepperShiftNoteDial);
