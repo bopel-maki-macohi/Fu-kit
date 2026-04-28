@@ -15,8 +15,6 @@ Developer(s): Maki
 
 ## Compiling
 
-## Compiling
-
 Step by Step to get Compiling once you have the repo downloaded:
 
 1. Install [Haxe](https://haxe.org/download/) (4.3.7 recommended, I don't know about earlier or later versions having support)
