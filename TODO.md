@@ -1,16 +1,16 @@
-- New World BG
+- 1.0 - New World BG
 
-- Remove Week 1 - Week 6
-- Remove Unused Assets
+- 1.1 - Remove Week 1 - Week 6
+- 1.1 - Remove Unused Assets
 
-- put this in characters once in KE 1.4.2
+- 1.1 - put this in characters once in KE 1.4.2
 ```haxe
 	function loadTextures(textures:Array<FlxAtlasFrames>)
 		frames = animate.FlxAnimateFrames.combineAtlas(textures);
 ```
 
-- Do the FNF fix for title state beat stuff getting out of sync
+- 1.1 - Do the FNF fix for title state beat stuff getting out of sync
 
-- Customizable Keybinds
+- ?.? - Customizable Keybinds
 
-- Custom Menus
+- 2.0 - Custom Menus
