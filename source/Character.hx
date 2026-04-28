@@ -47,6 +47,14 @@ class Character extends FlxSprite
 					'singRIGHT' => [0, 0],
 				];
 
+				if (curCharacter == 'arpe')
+				{
+					offsets.set('singDOWN', [-5, -190]);
+					offsets.set('singRIGHT', [20, -30]);
+					offsets.set('singUP', [80, 40]);
+					offsets.set('singLEFT', [60, -30]);
+				}
+
 				for (anim => set in offsets)
 					addOffset(anim, set[0], set[1]);
 
