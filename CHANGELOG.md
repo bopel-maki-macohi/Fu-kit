@@ -2,6 +2,10 @@
 
 Hi
 
+## 1.5 - 4/30/2026
+
+- Added the ability to screenshot (F3)
+
 ## 1.1 - 4/28/2026
 
 - Removed "Donate" main menu button
