@@ -20,6 +20,13 @@ class ScreenshotPlugin extends FlxBasic
 		FlxG.plugins.addIfUniqueType(new ScreenshotPlugin());
 	}
 
+	override public function new()
+	{
+		super();
+
+		lastDate = Date.now();
+	}
+
 	public static var SCREENSHOT_KEY:FlxKey = F3;
 
 	override function update(elapsed:Float)
@@ -34,13 +41,27 @@ class ScreenshotPlugin extends FlxBasic
 
 	public static var SCREENSHOT_DELAY_TIME_SECONDS:Float = 5;
 
+	var lastDate:Date;
+	var currentDate:Date;
+
 	function performScreenshot()
 	{
 		// Wanted format:
 		// Screenshot 2026-04-28 162426
 
-        var currentDate:Date = Date.now();
-        var formatText:String = 'Screenshot ${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()} ${Math.round(currentDate.getTime() / 1000)}';
+		currentDate = Date.now();
+
+		var timeDifference:Float = currentDate.getTime() - lastDate.getTime();
+
+		if (timeDifference < SCREENSHOT_DELAY_TIME_SECONDS * 1000)
+		{
+			// trace('timeDifference: $timeDifference');
+			return;
+		}
+
+		lastDate = currentDate;
+
+		var formatText:String = 'Screenshot ${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()} ${Math.round(currentDate.getTime() / 1000)}';
 
 		var path:String = '$SCREENSHOT_DIRECTORY/$formatText.png';
 
