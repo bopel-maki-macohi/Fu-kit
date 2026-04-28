@@ -31,6 +31,13 @@ class Paths
 			if (OpenFlAssets.exists(levelPath, type))
 				return levelPath;
 		}
+		else
+		{
+			var levelPath = getLibraryPathForce(file, 'shared');
+			
+			if (OpenFlAssets.exists(levelPath, type))
+				return levelPath;
+		}
 
 		return getPreloadPath(file);
 	}
@@ -55,7 +62,7 @@ class Paths
 		return getPath(file, type, library);
 	}
 
-	inline static public function lua(key:String,?library:String)
+	inline static public function lua(key:String, ?library:String)
 	{
 		return getPath('data/$key.lua', TEXT, library);
 	}
