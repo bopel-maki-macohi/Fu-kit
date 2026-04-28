@@ -778,7 +778,7 @@ class ChartingState extends MusicBeatState
 
 		super.update(elapsed);
 
-		hitSounds();
+		// hitSounds();
 	}
 
 	function changeNoteSustain(value:Float):Void

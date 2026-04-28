@@ -11,4 +11,7 @@ This mod is me just saying fuck it and going WILD.
 
 Base Engine: Kade Engine 1.4.2
 
+Important (IMO) Engine Changes:
+    - Added in the Kade Engine 1.5 dropped input fixes
+
 Developer(s): Maki
