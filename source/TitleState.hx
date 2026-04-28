@@ -106,6 +106,8 @@ class TitleState extends MusicBeatState
 				StoryMenuState.weekUnlocked[0] = true;
 		}
 
+		FlxSprite.defaultAntialiasing = true;
+
 		#if FREEPLAY
 		FlxG.switchState(() -> new FreeplayState());
 		#elseif CHARTING
