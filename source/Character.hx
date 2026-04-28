@@ -32,7 +32,7 @@ class Character extends FlxSprite
 		{
 			case 'arpe':
 				// DAD ANIMATION LOADING CODE
-				frames = Paths.getSparrowAtlas(curCharacter, 'fu-kit');
+				frames = Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit');
 				animation.addByPrefix('idle', '$curCharacter anim idle', 24);
 				animation.addByPrefix('singLEFT', '$curCharacter anim left', 24);
 				animation.addByPrefix('singDOWN', '$curCharacter anim down', 24);
