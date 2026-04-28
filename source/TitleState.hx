@@ -308,7 +308,7 @@ class TitleState extends MusicBeatState
 
 				// Get current version of Kade Engine
 
-				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
+				var http = new haxe.Http("https://raw.githubusercontent.com/bopel-maki-macohi/Fu-kit/main/version.downloadMe");
 
 				http.onData = function (data:String) {
 				  
@@ -316,8 +316,9 @@ class TitleState extends MusicBeatState
 					{
 						trace('outdated lmao! ' + data.trim() + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = data;
-						// FlxG.switchState(() -> new OutdatedSubState());
-						FlxG.switchState(() -> new MainMenuState());
+						
+						FlxG.switchState(() -> new OutdatedSubState());
+						// FlxG.switchState(() -> new MainMenuState());
 					}
 					else
 					{

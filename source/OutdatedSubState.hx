@@ -33,7 +33,7 @@ class OutdatedSubState extends MusicBeatState
 	{
 		if (controls.ACCEPT)
 		{
-			FlxG.openURL("https://github.com/KadeDev/Kade-Engine/releases/latest");
+			FlxG.openURL("https://github.com/bopel-maki-macohi/Fu-kit/releases/latest");
 		}
 		if (controls.BACK)
 		{
