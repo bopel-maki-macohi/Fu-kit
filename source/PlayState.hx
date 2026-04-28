@@ -74,51 +74,51 @@ class PlayState extends MusicBeatState
 	var detailsPausedText:String = "";
 	#end
 
-	private var vocals:FlxSound;
+	public var vocals:FlxSound;
 
-	private var dad:Character;
-	private var gf:Character;
-	private var boyfriend:Boyfriend;
+	public var dad:Character;
+	public var gf:Character;
+	public var boyfriend:Boyfriend;
 
-	private var notes:FlxTypedGroup<Note>;
-	private var unspawnNotes:Array<Note> = [];
+	public var notes:FlxTypedGroup<Note>;
+	public var unspawnNotes:Array<Note> = [];
 
-	private var strumLine:FlxSprite;
+	public var strumLine:FlxSprite;
 
-	private var camFollow:FlxObject;
+	public var camFollow:FlxObject;
 
-	private static var prevCamFollow:FlxObject;
+	public static var prevCamFollow:FlxObject;
 
-	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
-	private var playerStrums:FlxTypedGroup<FlxSprite>;
+	public var strumLineNotes:FlxTypedGroup<FlxSprite>;
+	public var playerStrums:FlxTypedGroup<FlxSprite>;
 
-	private var camZooming:Bool = false;
-	private var curSong:String = "";
+	public var camZooming:Bool = false;
+	public var curSong:String = "";
 
-	private var gfSpeed:Int = 1;
-	private var health:Float = 1;
-	private var combo:Int = 0;
+	public var gfSpeed:Int = 1;
+	public var health:Float = 1;
+	public var combo:Int = 0;
 
 	public static var misses:Int = 0;
 
-	private var accuracy:Float = 0.00;
-	private var accuracyDefault:Float = 0.00;
-	private var totalNotesHit:Float = 0;
-	private var totalNotesHitDefault:Float = 0;
-	private var totalPlayed:Int = 0;
-	private var ss:Bool = false;
+	public var accuracy:Float = 0.00;
+	public var accuracyDefault:Float = 0.00;
+	public var totalNotesHit:Float = 0;
+	public var totalNotesHitDefault:Float = 0;
+	public var totalPlayed:Int = 0;
+	public var ss:Bool = false;
 
-	private var healthBarBG:FlxSprite;
-	private var healthBar:FlxBar;
-	private var songPositionBar:Float = 0;
+	public var healthBarBG:FlxSprite;
+	public var healthBar:FlxBar;
+	public var songPositionBar:Float = 0;
 
-	private var generatedMusic:Bool = false;
-	private var startingSong:Bool = false;
+	public var generatedMusic:Bool = false;
+	public var startingSong:Bool = false;
 
-	private var iconP1:HealthIcon;
-	private var iconP2:HealthIcon;
-	private var camHUD:FlxCamera;
-	private var camGame:FlxCamera;
+	public var iconP1:HealthIcon;
+	public var iconP2:HealthIcon;
+	public var camHUD:FlxCamera;
+	public var camGame:FlxCamera;
 
 	public static var offsetTesting:Bool = false;
 
@@ -153,18 +153,18 @@ class PlayState extends MusicBeatState
 	public static var timeCurrentlyR:Float = 0;
 
 	// Will fire once to prevent debug spam messages and broken animations
-	private var triggeredAlready:Bool = false;
+	public var triggeredAlready:Bool = false;
 
 	// Will decide if she's even allowed to headbang at all depending on the song
-	private var allowedToHeadbang:Bool = false;
+	public var allowedToHeadbang:Bool = false;
 
 	// Per song additive offset
 	public static var songOffset:Float = 0;
 
 	// Replay shit
-	private var saveNotes:Array<Float> = [];
+	public var saveNotes:Array<Float> = [];
 
-	private var executeModchart = false;
+	public var executeModchart = false;
 
 	public static var onCreate:FlxSignal = new FlxSignal();
 	public static var onUpdate:FlxTypedSignal<Float->Void> = new FlxTypedSignal<Float->Void>();
@@ -704,7 +704,7 @@ class PlayState extends MusicBeatState
 
 	var debugNum:Int = 0;
 
-	private function generateSong(dataPath:String):Void
+	public function generateSong(dataPath:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
 
@@ -826,7 +826,7 @@ class PlayState extends MusicBeatState
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
 	}
 
-	private function generateStaticArrows(player:Int):Void
+	public function generateStaticArrows(player:Int):Void
 	{
 		for (i in 0...4)
 		{
@@ -999,7 +999,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	private var paused:Bool = false;
+	public var paused:Bool = false;
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
@@ -1280,7 +1280,7 @@ class PlayState extends MusicBeatState
 		{
 			// Conductor.songPosition = FlxG.sound.music.time;
 			Conductor.songPosition += FlxG.elapsed * 1000;
-			/*@:privateAccess
+			/*@:publicAccess
 				{
 					FlxG.sound.music._channel.
 			}*/
@@ -1661,7 +1661,7 @@ class PlayState extends MusicBeatState
 	var timeShown = 0;
 	var currentTimingShown:FlxText = null;
 
-	private function popUpScore(daNote:Note):Void
+	public function popUpScore(daNote:Note):Void
 	{
 		var noteDiff:Float = Math.abs(Conductor.songPosition - daNote.strumTime);
 		var wife:Float = EtternaFunctions.wife3(noteDiff, Conductor.timeScale);
@@ -1730,7 +1730,7 @@ class PlayState extends MusicBeatState
 	var rightHold:Bool = false;
 	var leftHold:Bool = false;
 
-	private function keyShit():Void // I've invested in emma stocks
+	public function keyShit():Void // I've invested in emma stocks
 	{
 		// control arrays, order L D R U
 		var holdArray:Array<Bool> = [controls.LEFT, controls.DOWN, controls.UP, controls.RIGHT];
@@ -2344,7 +2344,7 @@ class PlayState extends MusicBeatState
 		return v;
 	}
 
-	private function convert(v:Any, type:String):Dynamic
+	public function convert(v:Any, type:String):Dynamic
 	{ // I didn't write this lol
 		if (Std.isOfType(v, String) && type != null)
 		{
