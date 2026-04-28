@@ -4,7 +4,7 @@ haxelib git openfl https://github.com/openfl/openfl 0d93f1d46016f2beea37c48c5682
 haxelib run lime setup flixel
 haxelib run lime setup
 haxelib install flixel-tools
-haxelib install flixel-addons
+haxelib git flixel-addons https://github.com/FunkinCrew/flixel-addons de7dee9e54f550fadf7cb15c62ead01f889c3802
 haxelib install flixel-ui
 haxelib install hscript
 haxelib install newgrounds
