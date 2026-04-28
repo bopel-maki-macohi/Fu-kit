@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxSprite;
+import flixel.util.FlxColor;
 
 class HealthIcon extends FlxSprite
 {
