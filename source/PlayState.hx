@@ -575,11 +575,14 @@ class PlayState extends MusicBeatState
 				sky.screenCenter();
 				sky.active = false;
 
-				ground.scrollFactor.set(.9, .9);
+				ground.scale.set(1.2, 1.2);
+				ground.updateHitbox();
+
+				ground.scrollFactor.set(.75, .75);
 				ground.screenCenter();
 				ground.active = false;
 
-				ground.y += ground.height * 1.5;
+				ground.y += ground.height * 0.75;
 
 				add(sky);
 				add(ground);
@@ -926,9 +929,7 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-car';
 			case 'mall' | 'mallEvil':
 				gfVersion = 'gf-christmas';
-			case 'school':
-				gfVersion = 'gf-pixel';
-			case 'schoolEvil':
+			case 'school', 'schoolEvil':
 				gfVersion = 'gf-pixel';
 		}
 

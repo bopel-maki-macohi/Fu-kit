@@ -3,7 +3,7 @@
 - 1.1 - Remove Week 1 - Week 6
 - 1.1 - Remove Unused Assets
 
-- 1.1 - put this in characters once in KE 1.4.2
+- 1.1 - put this in characters
 ```haxe
 	function loadTextures(textures:Array<FlxAtlasFrames>)
 		frames = animate.FlxAnimateFrames.combineAtlas(textures);
@@ -14,3 +14,5 @@
 - ?.? - Customizable Keybinds
 
 - 2.0 - Custom Menus
+
+- ?.? - Hashlink compiling support
