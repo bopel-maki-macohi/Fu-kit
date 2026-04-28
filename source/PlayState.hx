@@ -978,6 +978,9 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'arpe':
+				dad.y += 120;
+				camPos.set(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
@@ -1016,9 +1019,6 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
-
-			case 'grassworld':
-				dad.y += 120;
 		}
 
 		if (curStage != 'grassworld')
