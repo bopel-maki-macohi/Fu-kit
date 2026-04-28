@@ -1,5 +1,7 @@
 package fukit.plugins;
 
+import flixel.util.FlxColor;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import openfl.display.Sprite;
 import openfl.display.PNGEncoderOptions;
@@ -18,45 +20,68 @@ class ScreenshotPlugin extends FlxBasic
 		FlxG.plugins.addIfUniqueType(new ScreenshotPlugin());
 	}
 
-    public static var SCREENSHOT_KEY:FlxKey = F3;
+	public static var SCREENSHOT_KEY:FlxKey = F3;
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-        if (FlxG.keys.anyPressed([SCREENSHOT_KEY]))
-            performScreenshot();
+		if (FlxG.keys.anyPressed([SCREENSHOT_KEY]))
+			performScreenshot();
 	}
 
-    public static var SCREENSHOT_DIRECTORY:String = 'screenshots';
+	public static var SCREENSHOT_DIRECTORY:String = 'screenshots';
 
-    function performScreenshot()
-    {
-        var path:String = '$SCREENSHOT_DIRECTORY/${Date.now().getTime()}';
+	function performScreenshot()
+	{
+		var path:String = '$SCREENSHOT_DIRECTORY/${Date.now().getTime()}.png';
 
-        if (!FileSystem.exists(SCREENSHOT_DIRECTORY))
-            FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
+		if (!FileSystem.exists(SCREENSHOT_DIRECTORY))
+			FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
 
-        var data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
-        File.saveBytes(path, data.encode(data.rect, new PNGEncoderOptions()));
+		var data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
+		File.saveBytes(path, data.encode(data.rect, new PNGEncoderOptions()));
 
-        FlxG.camera.flash();
+		showFancyPreview(data);
 
-        showFancyPreview(data);
-    }
+		FlxG.sound.play(Paths.sound('CLAP', 'shared'));
+	}
 
-    function showFancyPreview(data:BitmapData)
-    {
-        var sprite:Bitmap = new Bitmap(data);
+	function showFancyPreview(data:BitmapData)
+	{
+		var previewSprite:Bitmap = new Bitmap(data);
+		FlxG.stage.addChild(previewSprite);
 
-        FlxG.stage.addChild(sprite);
+		var flashSprite:Sprite = new Sprite();
+		var flashBitmap = new Bitmap(new BitmapData(FlxG.width * 2, FlxG.height * 2, true, FlxG.save.data.flashing ? FlxColor.WHITE : FlxColor.TRANSPARENT));
 
-        FlxTween.tween(sprite, {alpha: 0}, 1, {
-            startDelay: 1, 
-            onComplete: t -> {
-                FlxG.stage.removeChild(sprite);
-                sprite.bitmapData.dispose();
-            }
-        });
-    }
+		flashSprite.mouseEnabled = false;
+		flashSprite.addChild(flashBitmap);
+
+		FlxG.stage.addChild(flashSprite);
+
+		FlxTween.tween(flashSprite, {
+			alpha: 0
+		}, 1, {
+			ease: FlxEase.sineInOut
+		});
+
+		FlxTween.tween(previewSprite, {
+			scaleX: 0.2,
+			scaleY: 0.2,
+			x: 0,
+			y: 0
+		}, 1, {
+			ease: FlxEase.sineInOut
+		});
+
+		FlxTween.tween(previewSprite, {alpha: 0, y: -previewSprite.height}, 1, {
+			startDelay: 1,
+			onComplete: t ->
+			{
+				FlxG.stage.removeChild(previewSprite);
+				previewSprite.bitmapData.dispose();
+			}
+		});
+	}
 }
