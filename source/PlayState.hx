@@ -262,7 +262,7 @@ class PlayState extends MusicBeatState
 
 	private function convert(v:Any, type:String):Dynamic
 	{ // I didn't write this lol
-		if (Std.is(v, String) && type != null)
+		if (Std.isOfType(v, String) && type != null)
 		{
 			var v:String = v;
 			if (type.substr(0, 4) == 'array')
