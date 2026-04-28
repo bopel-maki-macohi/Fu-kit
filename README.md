@@ -11,9 +11,4 @@ This mod is me just saying fuck it and going WILD.
 
 Base Engine: Kade Engine 1.4.2
 
-Important (IMO) Engine Changes:
-    - Added in the Kade Engine 1.5 dropped input fixes
-    - `ANIMDEBUG` compiler flag (u can change the char it sends u to)
-    - `SONG` compiler flag (u can change the song it sends u to)
-
 Developer(s): Maki
