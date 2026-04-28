@@ -534,6 +534,7 @@ class PlayState extends MusicBeatState
 
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale);
 
+		// dialogue
 		switch (SONG.song.toLowerCase())
 		{
 			case 'tutorial':
@@ -561,6 +562,7 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 		}
 
+		// stage
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
