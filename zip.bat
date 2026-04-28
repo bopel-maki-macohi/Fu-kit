@@ -1,4 +1,4 @@
-@echo clean
+@echo off
 
 lime build windows -clean
 
