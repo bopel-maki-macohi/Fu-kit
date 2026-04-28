@@ -1119,10 +1119,12 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(stepperBPMLabel);
 		tab_group_song.add(stepperSpeed);
 		tab_group_song.add(stepperSpeedLabel);
-		tab_group_song.add(stepperVocalVol);
-		tab_group_song.add(stepperVocalVolLabel);
-		tab_group_song.add(stepperSongVol);
-		tab_group_song.add(stepperSongVolLabel);
+
+		// tab_group_song.add(stepperVocalVol);
+		// tab_group_song.add(stepperVocalVolLabel);
+		// tab_group_song.add(stepperSongVol);
+		// tab_group_song.add(stepperSongVolLabel);
+
 		tab_group_song.add(shiftNoteDialLabel);
 		tab_group_song.add(stepperShiftNoteDial);
 		tab_group_song.add(shiftNoteDialLabel2);
@@ -1693,17 +1695,6 @@ class ChartingState extends MusicBeatState
 						nums.value = 0.1;
 					getSectionByTime(Conductor.songPosition).bpm = Std.int(nums.value);
 					updateGrid();
-
-				case 'song_vocalvol':
-					if (nums.value <= 0.1)
-						nums.value = 0.1;
-					if (!PlayState.isSM)
-						vocals.volume = nums.value;
-
-				case 'song_instvol':
-					if (nums.value <= 0.1)
-						nums.value = 0.1;
-					FlxG.sound.music.volume = nums.value;
 
 				case 'divisions':
 					subDivisions = nums.value;
