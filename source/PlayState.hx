@@ -1089,7 +1089,7 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y + 50, 0, "", 20);
+		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y + 25, 0, "", 20);
 		if (!FlxG.save.data.accuracyDisplay)
 			scoreTxt.x = healthBarBG.x + healthBarBG.width / 2;
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -2327,27 +2327,28 @@ class PlayState extends MusicBeatState
 
 		if (!offsetTesting)
 		{
+			scoreTxt.text = '';
+			if (FlxG.save.data.npsDisplay)
+				scoreTxt.text += "NPS: " + nps + " | ";
+
+			scoreTxt.text += "Score: ";
+			if (FlxG.save.data.accuracyDisplay && Conductor.safeFrames != 10)
+				scoreTxt.text += '$songScore ($songScoreDef)';
+			else
+				scoreTxt.text += '$songScore';
+
 			if (FlxG.save.data.accuracyDisplay)
 			{
-				scoreTxt.text = (FlxG.save.data.npsDisplay ? "NPS: " + nps + " | " : "")
-					+ "Score:"
-					+ (Conductor.safeFrames != 10 ? songScore + " (" + songScoreDef + ")" : "" + songScore)
-					+ " | Combo Breaks:"
-					+ misses
-					+ " | Accuracy:"
-					+ truncateFloat(accuracy, 2)
-					+ "% | "
-					+ generateRanking();
-			}
-			else
-			{
-				scoreTxt.text = (FlxG.save.data.npsDisplay ? "NPS: " + nps + " | " : "") + "Score:" + songScore;
+				scoreTxt.text += ' | Combo Breaks: $misses';
+				scoreTxt.text += ' | Accuracy: ${truncateFloat(accuracy, 2)}%';
+				scoreTxt.text += ' | ${generateRanking()}';
 			}
 		}
 		else
 		{
 			scoreTxt.text = "Suggested Offset: " + offsetTest;
 		}
+
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
@@ -2954,7 +2955,7 @@ class PlayState extends MusicBeatState
 	{
 		var noteDiff:Float = Math.abs(Conductor.songPosition - daNote.strumTime);
 		var wife:Float = EtternaFunctions.wife3(noteDiff, Conductor.timeScale);
-		
+
 		vocals.volume = 1;
 
 		var score:Float = 350;
@@ -3097,7 +3098,7 @@ class PlayState extends MusicBeatState
 			pressArray = [false, false, false, false];
 			releaseArray = [false, false, false, false];
 		}
-		
+
 		// HOLDS, check for sustain notes
 		if (holdArray.contains(true) && /*!boyfriend.stunned && */ generatedMusic)
 		{
