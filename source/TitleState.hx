@@ -316,7 +316,8 @@ class TitleState extends MusicBeatState
 					{
 						trace('outdated lmao! ' + data.trim() + ' != ' + MainMenuState.kadeEngineVer);
 						OutdatedSubState.needVer = data;
-						FlxG.switchState(() -> new OutdatedSubState());
+						// FlxG.switchState(() -> new OutdatedSubState());
+						FlxG.switchState(() -> new MainMenuState());
 					}
 					else
 					{
