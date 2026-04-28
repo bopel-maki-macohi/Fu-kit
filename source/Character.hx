@@ -30,6 +30,28 @@ class Character extends FlxSprite
 
 		switch (curCharacter)
 		{
+			case 'arpe':
+				// DAD ANIMATION LOADING CODE
+				frames = Paths.getSparrowAtlas(curCharacter, 'fu-kit');
+				animation.addByPrefix('idle', '$curCharacter anim idle', 24);
+				animation.addByPrefix('singLEFT', '$curCharacter anim left', 24);
+				animation.addByPrefix('singDOWN', '$curCharacter anim down', 24);
+				animation.addByPrefix('singUP', '$curCharacter anim up', 24);
+				animation.addByPrefix('singRIGHT', '$curCharacter anim right', 24);
+
+				var offsets = [
+					'idle' => [0, 0],
+					'singLEFT' => [0, 0],
+					'singDOWN' => [0, 0],
+					'singUP' => [0, 0],
+					'singRIGHT' => [0, 0],
+				];
+
+				for (anim => set in offsets)
+					addOffset(anim, set[0], set[1]);
+
+				playAnim('idle');
+
 			case 'gf':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('GF_assets');
@@ -124,7 +146,7 @@ class Character extends FlxSprite
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared');
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -267,7 +289,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('BOYFRIEND','shared');
+				var tex = Paths.getSparrowAtlas('BOYFRIEND', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
