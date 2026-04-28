@@ -13,6 +13,6 @@ Base Engine: Kade Engine 1.4.2
 
 Important (IMO) Engine Changes:
     - Added in the Kade Engine 1.5 dropped input fixes
-    
+    - `ANIMDEBUG` compiler flag
 
 Developer(s): Maki
