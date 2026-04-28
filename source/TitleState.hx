@@ -238,6 +238,8 @@ class TitleState extends MusicBeatState
 
 	var transitioning:Bool = false;
 
+	var mylastbeat:Int = 0;
+
 	override function update(elapsed:Float)
 	{
 		if (FlxG.sound.music != null)
@@ -367,65 +369,70 @@ class TitleState extends MusicBeatState
 		else
 			gfDance.animation.play('danceLeft');
 
-		FlxG.log.add(curBeat);
-
-		switch (curBeat)
+		if (mylastbeat < curBeat)
 		{
-			case 1:
-				createCoolText(['maki', 'and', 'maki', 'only']);
-			// credTextShit.visible = true;
-			case 3:
-				addMoreText('presents');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
-			case 4:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
-			case 5:
-				if (Main.watermarks)
-					createCoolText(['Kade Engine', 'by']);
-				else
-					createCoolText(['In No Partnership', 'with']);
-			case 7:
-				if (Main.watermarks)
-					addMoreText('KadeDeveloper');
-				else
-				{
-					addMoreText('Newgrounds');
-					ngSpr.visible = true;
-				}
-			// credTextShit.text += '\nNewgrounds';
-			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
-			// credTextShit.visible = false;
+			FlxG.log.add(mylastbeat);
 
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
-			case 9:
-				createCoolText([curWacky[0]]);
-			// credTextShit.visible = true;
-			case 11:
-				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
-			case 12:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
-			case 13:
-				addMoreText('THE');
-			// credTextShit.visible = true;
-			case 14:
-				addMoreText('FU-KIT');
-			// credTextShit.text += '\nNight';
-			case 15:
-				addMoreText('MOD'); // credTextShit.text += '\nFunkin';
+			switch (mylastbeat)
+			{
+				case 1:
+					createCoolText(['maki', 'and', 'maki', 'only']);
+				// credTextShit.visible = true;
+				case 3:
+					addMoreText('presents');
+				// credTextShit.text += '\npresent...';
+				// credTextShit.addText();
+				case 4:
+					deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = 'In association \nwith';
+				// credTextShit.screenCenter();
+				case 5:
+					if (Main.watermarks)
+						createCoolText(['Kade Engine', 'by']);
+					else
+						createCoolText(['In No Partnership', 'with']);
+				case 7:
+					if (Main.watermarks)
+						addMoreText('KadeDeveloper');
+					else
+					{
+						addMoreText('Newgrounds');
+						ngSpr.visible = true;
+					}
+				// credTextShit.text += '\nNewgrounds';
+				case 8:
+					deleteCoolText();
+					ngSpr.visible = false;
+				// credTextShit.visible = false;
 
-			case 16:
-				skipIntro();
+				// credTextShit.text = 'Shoutouts Tom Fulp';
+				// credTextShit.screenCenter();
+				case 9:
+					createCoolText([curWacky[0]]);
+				// credTextShit.visible = true;
+				case 11:
+					addMoreText(curWacky[1]);
+				// credTextShit.text += '\nlmao';
+				case 12:
+					deleteCoolText();
+				// credTextShit.visible = false;
+				// credTextShit.text = "Friday";
+				// credTextShit.screenCenter();
+				case 13:
+					addMoreText('THE');
+				// credTextShit.visible = true;
+				case 14:
+					addMoreText('FU-KIT');
+				// credTextShit.text += '\nNight';
+				case 15:
+					addMoreText('MOD'); // credTextShit.text += '\nFunkin';
+
+				case 16:
+					skipIntro();
+			}
+
+			mylastbeat++;
 		}
 	}
 
