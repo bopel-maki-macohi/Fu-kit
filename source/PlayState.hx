@@ -563,6 +563,23 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
+			case 'new world':
+				curStage = 'grassworld';
+
+				var sky = new FlxSprite(0, 0, Paths.image('stages/grassworld/sky', 'fu-kit'));
+				var ground = new FlxSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
+
+				sky.scrollFactor.set();
+				sky.screenCenter();
+				sky.active = false;
+
+				ground.scrollFactor.set(.9, .9);
+				ground.screenCenter();
+				ground.active = false;
+
+				add(sky);
+				add(ground);
+
 			case 'spookeez' | 'monster' | 'south':
 				{
 					curStage = 'spooky';
@@ -994,9 +1011,13 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+
+			case 'grassworld':
+				dad.y += 120;
 		}
 
-		add(gf);
+		if (curStage != 'grassworld')
+			add(gf);
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
