@@ -1,5 +1,7 @@
 package;
 
+import animate.FlxAnimate;
+import animate.FlxAnimateFrames;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
@@ -7,7 +9,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 using StringTools;
 
-class Character extends FlxSprite
+class Character extends FlxAnimate
 {
 	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var debugMode:Bool = false;
@@ -31,9 +33,14 @@ class Character extends FlxSprite
 		switch (curCharacter)
 		{
 			case 'arpe':
-				// DAD ANIMATION LOADING CODE
-				frames = Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit');
+				switch (curCharacter)
+				{
+					default:
+						loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
+				}
+
 				animation.addByPrefix('idle', '$curCharacter anim idle', 24);
+				
 				animation.addByPrefix('singLEFT', '$curCharacter anim left', 24);
 				animation.addByPrefix('singDOWN', '$curCharacter anim down', 24);
 				animation.addByPrefix('singUP', '$curCharacter anim up', 24);
@@ -62,8 +69,8 @@ class Character extends FlxSprite
 
 			case 'gf':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('GF_assets');
-				frames = tex;
+				loadTexture(Paths.getSparrowAtlas('characters/GF_assets', 'shared'));
+
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
 				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
@@ -93,9 +100,8 @@ class Character extends FlxSprite
 				playAnim('danceRight');
 
 			case 'dad':
-				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('DADDY_DEAREST', 'shared');
-				frames = tex;
+				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared'));
+
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
 				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
@@ -109,10 +115,10 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
-			
+
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('BOYFRIEND', 'shared');
-				frames = tex;
+				loadTexture(Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared'));
+
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
@@ -148,7 +154,6 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				flipX = true;
-
 		}
 
 		dance();
@@ -175,6 +180,12 @@ class Character extends FlxSprite
 			}
 		}
 	}
+
+	function loadTexture(texture:FlxAtlasFrames)
+		loadTextures([texture]);
+
+	function loadTextures(textures:Array<FlxAtlasFrames>)
+		frames = FlxAnimateFrames.combineAtlas(textures);
 
 	override function update(elapsed:Float)
 	{

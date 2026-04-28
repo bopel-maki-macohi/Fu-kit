@@ -1,12 +1,3 @@
-- 1.1 - Remove Week 1 - Week 6
-- 1.1 - Remove Unused Assets
-
-- 1.1 - put this in characters
-```haxe
-	function loadTextures(textures:Array<FlxAtlasFrames>)
-		frames = animate.FlxAnimateFrames.combineAtlas(textures);
-```
-
 - 1.1 - Do the FNF fix for title state beat stuff getting out of sync
 
 - ?.? - Customizable Keybinds

@@ -40,7 +40,6 @@
 
 	<classpath name="source" />
 
-	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 	
 	<!-- <define name="PRELOAD_ALL" /> -->
@@ -59,11 +58,8 @@
 		<library name="shared"   preload="false" />
 	</section>
 	
-	<assets path="assets/fu-kit"    library="fu-kit"    exclude="*.ogg" if="web"/>
 	<assets path="assets/fu-kit"    library="fu-kit"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/songs"    library="songs"    exclude="*.ogg" if="web"/>
 	<assets path="assets/songs"    library="songs"    exclude="*.mp3" unless="web"/>
-	<assets path="assets/shared"   library="shared"   exclude="*.ogg" if="web"/>
 	<assets path="assets/shared"   library="shared"   exclude="*.mp3" unless="web"/>
 
 	<assets path='example_mods' rename='mods' embed='false'/>
@@ -81,6 +77,7 @@
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
+	<haxelib name="flixel-animate" />
 	<haxedev set='webgl' />
 
 	<!--In case you want to use the addons package-->
