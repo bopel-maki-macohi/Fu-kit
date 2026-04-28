@@ -1,5 +1,3 @@
-- New World Chart
-
 - New World BG
 
 - Remove Tutorial - Week 6
@@ -11,3 +9,7 @@
 ```
 
 - Do the FNF fix for title state beat stuff getting out of sync
+
+- Customizable Keybinds
+
+- Custom Menus
