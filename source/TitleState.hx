@@ -59,7 +59,17 @@ class TitleState extends MusicBeatState
 
 		@:privateAccess
 		{
-			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
+			for (id => library in lime.utils.Assets.libraries)
+			{
+				var libraryAssets = [];
+
+				for (asset in library.list('BINARY'))
+					if (StringTools.startsWith(asset, 'assets/'))
+						libraryAssets.push(asset);
+
+				trace('${id.toUpperCase()} : ${libraryAssets.length} asset(s)');
+				// trace(' - ' + libraryAssets);
+			}
 		}
 
 		PlayerSettings.init();
