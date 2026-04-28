@@ -1,6 +1,5 @@
 package;
 
-import animate.FlxAnimateFrames;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -123,7 +122,7 @@ class Character extends FlxSprite
 	}
 
 	function loadTextures(textures:Array<FlxAtlasFrames>)
-		frames = FlxAnimateFrames.combineAtlas(textures);
+		frames = animate.FlxAnimateFrames.combineAtlas(textures);
 
 	function parseDataFile()
 	{
