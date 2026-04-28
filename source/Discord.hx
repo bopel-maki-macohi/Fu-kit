@@ -56,11 +56,11 @@ class DiscordClient
 
 	public static function initialize()
 	{
-		var DiscordDaemon = sys.thread.Thread.create(() ->
-		{
-			new DiscordClient();
-		});
-		trace("Discord Client initialized");
+		// var DiscordDaemon = sys.thread.Thread.create(() ->
+		// {
+			// new DiscordClient();
+		// });
+		// trace("Discord Client initialized");
 	}
 
 	public static function changePresence(details:String, state:Null<String>, ?smallImageKey : String, ?hasStartTimestamp : Bool, ?endTimestamp: Float)
