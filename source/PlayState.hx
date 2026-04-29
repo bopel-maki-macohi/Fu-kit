@@ -409,7 +409,7 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 30, 0, "", 20);
+		scoreTxt = new FlxText(0a, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
@@ -1883,7 +1883,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 
-		boyfriend.playSingAnim(daNote, 'miss');
+		boyfriend.playSingAnim((daNote == null) ? new Note(0, direction, null, false) : daNote, 'miss');
 
 		updateAccuracy();
 	}
