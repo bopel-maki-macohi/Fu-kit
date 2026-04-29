@@ -1,5 +1,7 @@
 package fukit.play.songs;
 
+import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
 import fukit.play.stages.GrassWorld;
 import fukit.shaders.HSVShader;
 import fukit.objects.RainEmitter;
@@ -70,6 +72,15 @@ class World1Song extends SongComponent
 
 		if (rainEnd > 0)
 			game.add(rainEmitter);
+	}
+
+	override function onCountdownEnd() {
+		super.onCountdownEnd();
+
+		if (game == null) return;
+
+		FlxTween.tween(bgShader, {hue: 1, saturation: 1, value: 1});
+		FlxTween.tween(charShader, {hue: 1, saturation: 1, value: 1});
 	}
 
 	override function onUpdate(elapsed:Float)
