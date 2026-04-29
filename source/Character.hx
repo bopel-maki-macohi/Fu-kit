@@ -61,47 +61,25 @@ class Character extends FlxAnimate
 		switch (curCharacter)
 		{
 			case 'arpe', 'arpe-worried':
-				var animPrefix = curCharacter;
+				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
-				switch (curCharacter)
-				{
-					default:
-						loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
-				}
+				animation.addByPrefix('idle', 'arpe anim idle', 24);
 
-				if (curCharacter == 'arpe-worried' || curCharacter == 'arpe-wither')
-					animPrefix = 'arpe';
+				animation.addByPrefix('singLEFT', 'arpe anim left', 24);
+				animation.addByPrefix('singDOWN', 'arpe anim down', 24);
+				animation.addByPrefix('singUP', 'arpe anim up', 24);
+				animation.addByPrefix('singRIGHT', 'arpe anim right', 24);
 
-				animation.addByPrefix('idle', '$animPrefix anim idle', 24);
+				addOffset('idle', 0, 0);
+				addOffset('singDOWN', -5, -190);
+				addOffset('singRIGHT', 20, -30);
+				addOffset('singUP', 80, 40);
+				addOffset('singLEFT', 60, -30);
 
-				animation.addByPrefix('singLEFT', '$animPrefix anim left', 24);
-				animation.addByPrefix('singDOWN', '$animPrefix anim down', 24);
-				animation.addByPrefix('singUP', '$animPrefix anim up', 24);
-				animation.addByPrefix('singRIGHT', '$animPrefix anim right', 24);
-
-				var offsets = [
-					'idle' => [0, 0],
-					'singLEFT' => [0, 0],
-					'singDOWN' => [0, 0],
-					'singUP' => [0, 0],
-					'singRIGHT' => [0, 0],
-				];
-
-				if (curCharacter == 'arpe' || curCharacter == 'arpe-worried')
-				{
-					offsets.set('singDOWN', [-5, -190]);
-					offsets.set('singRIGHT', [20, -30]);
-					offsets.set('singUP', [80, 40]);
-					offsets.set('singLEFT', [60, -30]);
-
-					dadStartingCamPosOffsets.set(202, 60);
-				}
-
-				for (anim => set in offsets)
-					addOffset(anim, set[0], set[1]);
+				dadStartingCamPosOffsets.set(202, 60);
 
 				playAnim('idle');
-
+				
 			case 'gf':
 				// GIRLFRIEND CODE
 				loadTexture(Paths.getSparrowAtlas('characters/GF_assets', 'shared'));
