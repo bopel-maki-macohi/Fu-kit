@@ -97,9 +97,6 @@ class Character extends FlxAnimate
 					dadStartingCamPosOffsets.set(202, 60);
 				}
 
-				if (curCharacter == 'arpe-worried')
-					dadVar = 7;
-
 				for (anim => set in offsets)
 					addOffset(anim, set[0], set[1]);
 
