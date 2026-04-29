@@ -23,8 +23,12 @@ class PlayComponent
 
 		PlayState.onCreate.add(onCreate);
 		PlayState.onUpdate.add(onUpdate);
+
 		PlayState.onStepHit.add(onStepHit);
 		PlayState.onBeatHit.add(onBeatHit);
+		
+		PlayState.onCountdownStep.add(onCountdownStep);
+		PlayState.onCountdownEnd.add(onCountdownEnd);
 	}
 
 	public function onCreate() {}
