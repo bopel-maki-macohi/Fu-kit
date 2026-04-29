@@ -1,5 +1,7 @@
 package fukit.plugins;
 
+import openfl.desktop.Clipboard;
+import openfl.utils.ByteArray;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -74,7 +76,9 @@ class ScreenshotPlugin extends FlxBasic
 			FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
 
 		var data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
-		File.saveBytes(path, data.encode(data.rect, new PNGEncoderOptions()));
+		var bytes:ByteArray = data.encode(data.rect, new PNGEncoderOptions());
+
+		File.saveBytes(path, bytes);
 
 		showFancyPreview(data);
 
