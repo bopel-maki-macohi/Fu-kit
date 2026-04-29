@@ -71,9 +71,21 @@ class World1Song extends SongComponent
 				rainStart = 0.2;
 				rainEnd = 0.5;
 
+				@:privateAccess
+				{
+					rainEmitter._quantity = 32;
+					rainEmitter.explode();
+				}
+
 			case 'rust':
 				rainStart = 0.5;
 				rainEnd = 0.9;
+
+				@:privateAccess
+				{
+					rainEmitter._quantity = 128;
+					rainEmitter.explode();
+				}
 		}
 
 		stage.sky.shader = bgShader;
