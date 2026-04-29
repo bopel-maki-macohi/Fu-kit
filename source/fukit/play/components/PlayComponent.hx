@@ -1,5 +1,6 @@
 package fukit.play.components;
 
+import flixel.math.FlxMath;
 import flixel.FlxG;
 
 class PlayComponent
@@ -9,6 +10,14 @@ class PlayComponent
 	function get_game():PlayState
 	{
 		return cast FlxG.state;
+	}
+
+	function remapToRangeDependentOnSong(start:Float, end:Float)
+	{
+		if (FlxG.sound.music == null)
+			return start;
+
+		return FlxMath.remapToRange(Conductor.songPosition, 0, FlxG.sound.music.length, start, end);
 	}
 
 	public function new()
@@ -26,7 +35,7 @@ class PlayComponent
 
 		PlayState.onStepHit.add(onStepHit);
 		PlayState.onBeatHit.add(onBeatHit);
-		
+
 		PlayState.onCountdownStep.add(onCountdownStep);
 		PlayState.onCountdownEnd.add(onCountdownEnd);
 	}

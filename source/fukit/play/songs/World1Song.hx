@@ -78,13 +78,13 @@ class World1Song extends SongComponent
 	{
 		super.onUpdate(elapsed);
 
-		if (FlxG.sound.music != null)
-		{
-			var remappedIntensityValue:Float = FlxMath.remapToRange(Conductor.songPosition, 0, FlxG.sound.music.length, rainStart, rainEnd);
+		rainAlpha = remapToRangeDependentOnSong(rainStart, rainEnd);
 
-			rainAlpha = remappedIntensityValue;
+		if (game.curSong == 'new world')
+		{
+			bgShader.hue = remapToRangeDependentOnSong(0, 30);
+			bgShader.saturation = remapToRangeDependentOnSong(0, -15);
+			bgShader.value = remapToRangeDependentOnSong(0, -5);
 		}
-		else
-			rainAlpha = rainStart;
 	}
 }
