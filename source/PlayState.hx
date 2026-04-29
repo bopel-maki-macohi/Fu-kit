@@ -294,9 +294,9 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
-				new World1Song();
+				new World1Song().init();
 
-			default:
+			case 'tutorial':
 				defaultCamZoom = 0.9;
 				curStage = 'stage';
 				var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
@@ -353,7 +353,11 @@ class PlayState extends MusicBeatState
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 
-		// REPOSITIONING PER STAGE
+		switch (SONG.song.toLowerCase())
+		{
+			case 'new world':
+				// new World1Song().init();
+		}
 
 		add(backShit);
 
