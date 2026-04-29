@@ -1469,7 +1469,7 @@
 			}
 		],
 		"player1": "bf",
-		"player2": "arpe",
+		"player2": "arpe-withered",
 		"song": "Rust",
 		"validScore": true,
 		"speed": 3.2

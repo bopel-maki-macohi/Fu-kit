@@ -79,7 +79,41 @@ class Character extends FlxAnimate
 				dadStartingCamPosOffsets.set(202, 60);
 
 				playAnim('idle');
+
+			case 'arpe-withered':
+				loadTextures([
+					Paths.getSparrowAtlas('characters/arpe-withered', 'fu-kit'),
+					Paths.getSparrowAtlas('characters/arpe-withered-alt', 'fu-kit')
+				]);
+
+				animation.addByPrefix('idle', 'arpe anim idle', 24);
+
+				animation.addByPrefix('singLEFT', 'arpe anim left', 24);
+				animation.addByPrefix('singDOWN', 'arpe anim down', 24);
+				animation.addByPrefix('singUP', 'arpe anim up', 24);
+				animation.addByPrefix('singRIGHT', 'arpe anim right', 24);
+
+				animation.addByPrefix('singLEFT-alt', 'arpe anim alt left', 24);
+				animation.addByPrefix('singDOWN-alt', 'arpe anim alt down', 24);
+				animation.addByPrefix('singUP-alt', 'arpe anim alt up', 24);
+				animation.addByPrefix('singRIGHT-alt', 'arpe anim alt right', 24);
+
+				addOffset('idle', 0, 0);
 				
+				addOffset('singDOWN', -5, -190);
+				addOffset('singRIGHT', 20, -30);
+				addOffset('singUP', 80, 40);
+				addOffset('singLEFT', 60, -30);
+
+				addOffset('singDOWN-alt', -5, -190);
+				addOffset('singRIGHT-alt', 20, -30);
+				addOffset('singUP-alt', 80, 40);
+				addOffset('singLEFT-alt', 60, -30);
+
+				dadStartingCamPosOffsets.set(202, 60);
+
+				playAnim('idle');
+
 			case 'gf':
 				// GIRLFRIEND CODE
 				loadTexture(Paths.getSparrowAtlas('characters/GF_assets', 'shared'));

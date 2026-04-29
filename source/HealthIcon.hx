@@ -13,7 +13,7 @@ class HealthIcon extends FlxSprite
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
-		
+
 		switch (char)
 		{
 			case 'arpe', 'arpe-worried', 'arpe-withered':
@@ -43,7 +43,10 @@ class HealthIcon extends FlxSprite
 
 		color = switch (char)
 		{
-			case 'arpe', 'arpe-worried', 'arpe-withered':
+			case 'arpe-withered':
+				0x6B597D;
+
+			case 'arpe', 'arpe-worried':
 				0x786D8E;
 
 			default:
