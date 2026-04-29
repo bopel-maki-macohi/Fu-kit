@@ -1,1 +1,22 @@
-{"song":{"bpm":90,"needsVoices":true,"notes":[{"altAnim":false,"bpm":150,"changeBPM":false,"lengthInSteps":16,"mustHitSection":true,"sectionNotes":[],"typeOfSection":0}],"player1":"bf","player2":"arpe","song":"Wetway","speed":1,"validScore":false}}
+{
+    "song": {
+        "bpm": 90,
+        "needsVoices": true,
+        "notes": [
+            {
+                "altAnim": false,
+                "bpm": 150,
+                "changeBPM": false,
+                "lengthInSteps": 16,
+                "mustHitSection": true,
+                "sectionNotes": [],
+                "typeOfSection": 0
+            }
+        ],
+        "player1": "bf",
+        "player2": "arpe",
+        "song": "Wetway",
+        "speed": 1,
+        "validScore": false
+    }
+}
