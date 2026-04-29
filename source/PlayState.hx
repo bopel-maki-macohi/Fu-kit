@@ -283,8 +283,6 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
-				new World1Song();
-
 				curStage = 'grassworld';
 
 				var sky = new FlxSprite(0, 0, Paths.image('stages/grassworld/sky', 'fu-kit'));
@@ -305,6 +303,8 @@ class PlayState extends MusicBeatState
 
 				add(sky);
 				add(ground);
+				
+				new World1Song();
 
 			default:
 				defaultCamZoom = 0.9;
