@@ -1,8 +1,9 @@
 package fukit.objects;
 
-import flixel.FlxSprite;
+import flixel.effects.particles.FlxParticle;
+import flixel.FlxG;
 
-class RainParticle extends FlxSprite
+class RainParticle extends FlxParticle
 {
 	override public function new()
 	{
