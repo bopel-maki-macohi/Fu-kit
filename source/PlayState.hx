@@ -409,7 +409,7 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x, healthBarBG.y + 30, FlxG.width, "", 20);
+		scoreTxt = new FlxText(0, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
@@ -1135,6 +1135,8 @@ class PlayState extends MusicBeatState
 		{
 			scoreTxt.text = "Suggested Offset: " + offsetTest;
 		}
+
+		scoreTxt.screenCenter(X);
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
