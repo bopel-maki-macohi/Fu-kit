@@ -16,7 +16,7 @@ class RainEmitter extends CustomEmitter
 		particleClass = RainParticle;
         
 		launchAngle.set(60, 100);
-		lifespan.set(16); // fuck it
+		lifespan.set(8); // fuck it
 
 		speed.set(1000, 1600);
 

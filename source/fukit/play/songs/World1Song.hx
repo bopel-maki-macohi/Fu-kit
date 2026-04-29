@@ -118,7 +118,7 @@ class World1Song extends SongComponent
 		}
 		else if (game?.curSong == 'rust')
 		{
-			rainEmitter.frequency = remapToRangeDependentOnSong(0.01, 0.00001);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.01, 0.005);
 		}
 	}
 
