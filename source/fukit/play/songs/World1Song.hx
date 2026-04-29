@@ -60,18 +60,18 @@ class World1Song extends SongComponent
 				rainStart = -1;
 				rainEnd = 0.2;
 
-				bgShader.set(0, 0, 0);
-				charShader.set(0, 0, 0);
+				// bgShader.set(0, 0, 0);
+				// charShader.set(0, 0, 0);
 
-				stage.sky.shader = bgShader;
-				stage.ground.shader = bgShader;
+				// stage.sky.shader = bgShader;
+				// stage.ground.shader = bgShader;
 
-				game.dad.shader = charShader;
-				game.boyfriend.shader = charShader;
+				// game.dad.shader = charShader;
+				// game.boyfriend.shader = charShader;
 		}
 
 		if (rainEnd > 0)
-			game.add(rainEmitter);
+			game.frontShit.add(rainEmitter);
 	}
 
 	override function onUpdate(elapsed:Float)
@@ -85,9 +85,9 @@ class World1Song extends SongComponent
 
 		if (game.curSong == 'new world')
 		{
-			bgShader.hue = remapToRangeDependentOnSong(0, 30);
-			bgShader.saturation = remapToRangeDependentOnSong(0, -15);
-			bgShader.value = remapToRangeDependentOnSong(0, -5);
+			// bgShader.hue = remapToRangeDependentOnSong(1, 1.3);
+			// bgShader.saturation = remapToRangeDependentOnSong(1, 0.85);
+			// bgShader.value = remapToRangeDependentOnSong(1, 0.95);
 		}
 	}
 }

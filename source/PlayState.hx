@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxContainer;
 import flixel.group.FlxSpriteGroup;
 import fukit.play.songs.World1Song;
 import flixel.util.FlxSignal;
@@ -176,8 +177,8 @@ class PlayState extends MusicBeatState
 	public static var onCountdownStep:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 	public static var onCountdownEnd:FlxSignal = new FlxSignal();
 
-	public var backSprites:FlxSpriteGroup;
-	public var frontSprites:FlxSpriteGroup;
+	public var backShit:FlxContainer;
+	public var frontShit:FlxContainer;
 
 	override public function create()
 	{
@@ -284,8 +285,8 @@ class PlayState extends MusicBeatState
 
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale);
 
-		backSprites = new FlxSpriteGroup();
-		frontSprites = new FlxSpriteGroup();
+		backShit = new FlxContainer();
+		frontShit = new FlxContainer();
 
 		// dialogue
 
@@ -354,7 +355,7 @@ class PlayState extends MusicBeatState
 
 		// REPOSITIONING PER STAGE
 
-		add(backSprites);
+		add(backShit);
 
 		if (curStage != 'grassworld')
 			add(gf);
@@ -362,7 +363,7 @@ class PlayState extends MusicBeatState
 		add(dad);
 		add(boyfriend);
 
-		add(frontSprites);
+		add(frontShit);
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;

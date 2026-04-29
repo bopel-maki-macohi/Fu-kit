@@ -30,7 +30,7 @@ class GrassWorld extends StageComponent
 
 		ground.y += ground.height * 0.75;
 
-		game.backSprites.add(sky);
-		game.backSprites.add(ground);
+		game.backShit.add(sky);
+		game.backShit.add(ground);
 	}
 }
