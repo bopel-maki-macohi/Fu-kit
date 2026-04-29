@@ -1,5 +1,7 @@
 package fukit.shaders;
 
+import openfl.display.ShaderParameter;
+import lime.math.Vector2;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxFrame;
@@ -102,6 +104,14 @@ class RuntimePostEffectShader extends FlxRuntimeShader
 	public function new(fragmentSource:String = null, glVersion:String = null)
 	{
 		super(fragmentSource, null);
+
+		if (uScreenResolution == null)
+			uScreenResolution = new ShaderParameter<Float>();
+		if (uCameraBounds == null)
+			uCameraBounds = new ShaderParameter<Float>();
+		if (uFrameBounds == null)
+			uFrameBounds = new ShaderParameter<Float>();
+
 		uScreenResolution.value = [FlxG.width, FlxG.height];
 		uCameraBounds.value = [0, 0, FlxG.width, FlxG.height];
 		uFrameBounds.value = [0, 0, FlxG.width, FlxG.height];
