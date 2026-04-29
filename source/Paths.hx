@@ -127,6 +127,11 @@ class Paths
 		return getPreloadPath('shaders/$key.frag');
 	}
 
+	inline static public function vert(key:String)
+	{
+		return getPreloadPath('shaders/$key.vert');
+	}
+
 	inline static public function getSparrowAtlas(key:String, ?library:String)
 	{
 		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));

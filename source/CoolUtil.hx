@@ -47,4 +47,23 @@ class CoolUtil
 		}
 		return dumbArray;
 	}
+
+	// ty nightmare vision
+
+	function makeShader(fragFile:String = null, vertFile:String = null)
+	{ // returns a FlxRuntimeShader but with file names lol
+		var runtime:flixel.addons.display.FlxRuntimeShader = null;
+
+		try
+		{
+			runtime = new flixel.addons.display.FlxRuntimeShader(fragFile == null ? null : Assets.getText(Paths.frag(fragFile)),
+				vertFile == null ? null : Assets.getText(Paths.vert(vertFile)));
+		}
+		catch (e:Dynamic)
+		{
+			trace("Shader compilation error:" + e.message);
+		}
+
+		return runtime ?? new flixel.addons.display.FlxRuntimeShader();
+	}
 }
