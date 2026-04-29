@@ -293,9 +293,6 @@ class PlayState extends MusicBeatState
 		// stage
 		switch (SONG.song.toLowerCase())
 		{
-			case 'new world':
-				new World1Song().init();
-
 			case 'tutorial':
 				defaultCamZoom = 0.9;
 				curStage = 'stage';
@@ -356,7 +353,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
-				// new World1Song().init();
+				new World1Song().init();
 		}
 
 		add(backShit);
