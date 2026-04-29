@@ -31,8 +31,7 @@ class World1Song extends SongComponent
 		rainEmitter = new RainEmitter(0, -64, FlxG.width);
 		rainEmitter.start(false, 0.05);
 
-		rainEmitter.scrollFactor.x.set(1, 1.5);
-		rainEmitter.scrollFactor.y.set(1, 1.5);
+		rainEmitter.scrollFactor.destroy();
 
 		rainEmitter.alpha.active = false;
 		rainEmitter.onEmit.add((particle) -> particle.alpha = rainAlpha);
