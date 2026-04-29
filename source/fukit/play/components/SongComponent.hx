@@ -9,6 +9,6 @@ class SongComponent extends PlayComponent
 		doof.finishThing = game.startCountdown;
 
         game.inCutscene = true;
-		game.add(doof);
+		game.frontUIShit.add(doof);
 	}
 }

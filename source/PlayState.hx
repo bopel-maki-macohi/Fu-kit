@@ -183,6 +183,8 @@ class PlayState extends MusicBeatState
 	public var backShit:FlxContainer;
 	public var frontShit:FlxContainer;
 
+	public var frontUIShit:FlxContainer;
+
 	override public function create()
 	{
 		var signals:Array<FlxTypedSignal<Any>> = [
@@ -300,6 +302,7 @@ class PlayState extends MusicBeatState
 
 		backShit = new FlxContainer();
 		frontShit = new FlxContainer();
+		frontUIShit = new FlxContainer();
 
 		// dialogue
 
@@ -374,20 +377,17 @@ class PlayState extends MusicBeatState
 				songPosBG.y = FlxG.height * 0.9 + 45;
 			songPosBG.screenCenter(X);
 			songPosBG.scrollFactor.set();
-			add(songPosBG);
 
 			songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
 				'songPositionBar', 0, 90000);
 			songPosBar.scrollFactor.set();
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
-			add(songPosBar);
 
 			var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20, songPosBG.y, 0, SONG.song, 16);
 			if (FlxG.save.data.downscroll)
 				songName.y -= 3;
 			songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			songName.scrollFactor.set();
-			add(songName);
 			songName.cameras = [camHUD];
 		}
 
@@ -396,27 +396,37 @@ class PlayState extends MusicBeatState
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
-		add(healthBarBG);
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		// healthBar
-		add(healthBar);
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		add(scoreTxt);
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
-		add(iconP1);
 
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
+
+		if (FlxG.save.data.songPosition)
+		{
+			add(songPosBG);
+			add(songPosBar);
+			add(songName);
+		}
+
+		add(healthBarBG);
+		add(healthBar);
+
+		add(iconP1);
 		add(iconP2);
+
+		add(scoreTxt);
 
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -433,6 +443,8 @@ class PlayState extends MusicBeatState
 		}
 
 		startingSong = true;
+
+		add(frontUIShit);
 
 		switch (SONG.song.toLowerCase())
 		{
@@ -1245,6 +1257,8 @@ class PlayState extends MusicBeatState
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
 		}
+
+		generatedMusic = FlxG.sound.music?.playing;
 
 		// if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 		// {
