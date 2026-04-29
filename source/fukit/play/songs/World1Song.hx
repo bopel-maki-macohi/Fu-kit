@@ -115,11 +115,11 @@ class World1Song extends SongComponent
 		}
 		else if (game?.curSong == 'wetway')
 		{
-			rainEmitter.frequency = remapToRangeDependentOnSong(0.75, 0.25);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.75, 0.25 / 8);
 		}
 		else if (game?.curSong == 'rust')
 		{
-			rainEmitter.frequency = remapToRangeDependentOnSong(0.25, 0.175 / 16);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.25 / 8, 0.175 / 16);
 		}
 	}
 
