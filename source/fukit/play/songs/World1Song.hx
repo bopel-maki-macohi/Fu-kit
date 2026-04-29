@@ -57,7 +57,7 @@ class World1Song extends SongComponent
 		rainShader.setFloatArray('uScreenResolution', [FlxG.width, FlxG.height]);
 		rainShader.uTime = 0;
 		rainShader.setFloat('uScale', FlxG.height / 200);
-		rainShader.setFloat('uIntensity', rainIntensity);
+		rainShader.uIntensity = rainIntensity;
 
 		game.camGame.filters = [new ShaderFilter(rainShader)];
 	}
@@ -155,8 +155,8 @@ class World1Song extends SongComponent
 			game.camGame.scroll.x + game.camGame.viewMarginX + game.camGame.width,
 			game.camGame.scroll.y + game.camGame.viewMarginY + game.camGame.height
 		]);
-		rainShader.setFloat('uTime', heartRad);
-		rainShader.setFloat('uIntensity', rainIntensity);
+		rainShader.uTime = heartRad;
+		rainShader.uIntensity = rainIntensity;
 	}
 
 	override function onStepHit(step:Int)
