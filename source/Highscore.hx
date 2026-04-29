@@ -46,7 +46,6 @@ class Highscore
 		// Reminder that I don't need to format this song, it should come formatted!
 		songScores.set(song, score);
 		FlxG.save.data.songScores = songScores;
-		FlxG.save.flush();
 	}
 
 	public static function formatSong(song:String, diff:Int):String

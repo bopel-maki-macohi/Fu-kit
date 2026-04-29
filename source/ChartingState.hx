@@ -1168,7 +1168,6 @@ class ChartingState extends MusicBeatState
 		FlxG.save.data.autosave = Json.stringify({
 			"song": _song
 		});
-		FlxG.save.flush();
 	}
 
 	private function saveLevel()

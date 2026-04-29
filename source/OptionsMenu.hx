@@ -210,7 +210,6 @@ class OptionsMenu extends MusicBeatState
 					curSelected = 0;
 				}
 			}
-		FlxG.save.flush();
 	}
 
 	var isSettingControl:Bool = false;

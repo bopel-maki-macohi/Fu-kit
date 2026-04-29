@@ -92,6 +92,14 @@ class TitleState extends MusicBeatState
 
 		FlxG.save.bind('fu-kit', 'Maki');
 
+		function onTheExit(i)
+		{
+			FlxG.save.flush();
+		}
+
+		if (!Application.current.onExit.has(onTheExit))
+			Application.current.onExit.add(onTheExit);
+
 		KadeEngineData.initSave();
 
 		Highscore.load();
