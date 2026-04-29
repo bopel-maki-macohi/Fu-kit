@@ -34,4 +34,8 @@ class PlayComponent
 	public function onStepHit(step:Int) {}
 
 	public function onBeatHit(beat:Int) {}
+
+	public function onCountdownStep(step:Int) {}
+
+	public function onCountdownEnd() {}
 }

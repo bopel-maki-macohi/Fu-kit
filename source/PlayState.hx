@@ -173,12 +173,15 @@ class PlayState extends MusicBeatState
 	public static var onStepHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 	public static var onBeatHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 
+	public static var onCountdownStep:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
+	public static var onCountdownEnd:FlxSignal = new FlxSignal();
+
 	public var backSprites:FlxSpriteGroup;
 	public var frontSprites:FlxSpriteGroup;
 
 	override public function create()
 	{
-		var signals:Array<FlxTypedSignal<Any>> = [onCreate, onUpdate, onStepHit, onBeatHit];
+		var signals:Array<FlxTypedSignal<Any>> = [onCreate, onUpdate, onStepHit, onBeatHit, onCountdownStep, onCountdownEnd];
 
 		for (signal in signals)
 			signal.removeAll();
@@ -526,8 +529,6 @@ class PlayState extends MusicBeatState
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			introAssets.set('default', ['ready', "set", "go"]);
-			introAssets.set('school', ['weeb/pixelUI/ready-pixel', 'weeb/pixelUI/set-pixel', 'weeb/pixelUI/date-pixel']);
-			introAssets.set('schoolEvil', ['weeb/pixelUI/ready-pixel', 'weeb/pixelUI/set-pixel', 'weeb/pixelUI/date-pixel']);
 
 			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
@@ -535,10 +536,7 @@ class PlayState extends MusicBeatState
 			for (value in introAssets.keys())
 			{
 				if (value == curStage)
-				{
 					introAlts = introAssets.get(value);
-					altSuffix = '-pixel';
-				}
 			}
 
 			switch (swagCounter)
@@ -601,7 +599,11 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
 				case 4:
+					onCountdownEnd.dispatch();
 			}
+
+			if (swagCounter != 4)
+				onCountdownStep.dispatch(swagCounter);
 
 			swagCounter += 1;
 			// generateSong('fresh');
@@ -990,6 +992,7 @@ class PlayState extends MusicBeatState
 	}
 
 	public var paused:Bool = false;
+
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
