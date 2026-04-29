@@ -1340,19 +1340,7 @@ class PlayState extends MusicBeatState
 
 					onOpponentNote.dispatch(daNote);
 
-					switch (Math.abs(daNote.noteData))
-					{
-						case 2:
-							dad.playAnim('singUP' + altAnim, true);
-						case 3:
-							dad.playAnim('singRIGHT' + altAnim, true);
-						case 1:
-							dad.playAnim('singDOWN' + altAnim, true);
-						case 0:
-							dad.playAnim('singLEFT' + altAnim, true);
-					}
-
-					dad.holdTimer = 0;
+					dad.playSingAnim(daNote, altAnim);
 
 					if (SONG.needsVoices)
 						vocals.volume = 1;
@@ -1872,64 +1860,32 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
-		if (!boyfriend.stunned)
-		{
-			health -= 0.04;
-			if (combo > 5 && gf.animOffsets.exists('sad'))
-			{
-				gf.playAnim('sad');
-			}
-			combo = 0;
-			misses++;
+		if (boyfriend.stunned)
+			return;
 
-			var noteDiff:Float = Math.abs(daNote?.strumTime ?? 0 - Conductor.songPosition);
-			var wife:Float = EtternaFunctions.wife3(noteDiff, FlxG.save.data.etternaMode ? 1 : 1.7);
+		health -= 0.04;
 
-			if (FlxG.save.data.accuracyMod == 1)
-				totalNotesHit += wife;
+		if (combo > 5 && gf.animOffsets.exists('sad'))
+			gf.playAnim('sad');
+		
+		combo = 0;
+		misses++;
 
-			songScore -= 10;
+		var noteDiff:Float = Math.abs(daNote?.strumTime ?? 0 - Conductor.songPosition);
+		var wife:Float = EtternaFunctions.wife3(noteDiff, FlxG.save.data.etternaMode ? 1 : 1.7);
 
-			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
-			// FlxG.log.add('played imss note');
+		if (FlxG.save.data.accuracyMod == 1)
+			totalNotesHit += wife;
 
-			switch (direction)
-			{
-				case 0:
-					boyfriend.playAnim('singLEFTmiss', true);
-				case 1:
-					boyfriend.playAnim('singDOWNmiss', true);
-				case 2:
-					boyfriend.playAnim('singUPmiss', true);
-				case 3:
-					boyfriend.playAnim('singRIGHTmiss', true);
-			}
+		songScore -= 10;
 
-			updateAccuracy();
-		}
+		FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+
+		boyfriend.playSingAnim(daNote, 'miss');
+
+		updateAccuracy();
 	}
 
-	/*function badNoteCheck()
-		{
-			// just double pasting this shit cuz fuk u
-			// REDO THIS SYSTEM!
-			var upP = controls.UP_P;
-			var rightP = controls.RIGHT_P;
-			var downP = controls.DOWN_P;
-			var leftP = controls.LEFT_P;
-
-			if (leftP)
-				noteMiss(0);
-			if (upP)
-				noteMiss(2);
-			if (rightP)
-				noteMiss(3);
-			if (downP)
-				noteMiss(1);
-			updateAccuracy();
-		}
-	 */
 	function updateAccuracy()
 	{
 		totalPlayed += 1;
@@ -2043,17 +1999,7 @@ class PlayState extends MusicBeatState
 
 		onPlayerNote.dispatch(note);
 
-		switch (note.noteData)
-		{
-			case 2:
-				boyfriend.playAnim('singUP', true);
-			case 3:
-				boyfriend.playAnim('singRIGHT', true);
-			case 1:
-				boyfriend.playAnim('singDOWN', true);
-			case 0:
-				boyfriend.playAnim('singLEFT', true);
-		}
+		boyfriend.playSingAnim(note);
 
 		if (!loadRep)
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2069,7 +2015,7 @@ class PlayState extends MusicBeatState
 
 		note.wasGoodHit = true;
 		vocals.volume = 1;
-		
+
 		killNote(note);
 
 		updateAccuracy();

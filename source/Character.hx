@@ -27,10 +27,28 @@ class Character extends FlxAnimate
 		setCharacter(character, isPlayer);
 	}
 
+	public function playSingAnim(note:Note, suffix:String = '')
+	{
+		switch (note.noteData)
+		{
+			case 2:
+				playAnim('singUP' + suffix, true);
+			case 3:
+				playAnim('singRIGHT' + suffix, true);
+			case 1:
+				playAnim('singDOWN' + suffix, true);
+			case 0:
+				playAnim('singLEFT' + suffix, true);
+		}
+
+		if (!isPlayer)
+			holdTimer = 0;
+	}
+
 	public var dadStartingCamPosOffsets:FlxPoint;
 	public var camFocusPosOffsets:FlxPoint;
 
-	function setCharacter(character:String = 'bf', isPlayer:Bool = false)
+	public function setCharacter(character:String = 'bf', isPlayer:Bool = false)
 	{
 		curCharacter = character;
 		this.isPlayer = isPlayer;
@@ -113,7 +131,7 @@ class Character extends FlxAnimate
 
 				if (PlayState.isStoryMode)
 					dadStartingCamPosOffsets.x += 600;
-				
+
 			case 'dad':
 				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared'));
 
