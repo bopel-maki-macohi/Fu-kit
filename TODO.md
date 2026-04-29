@@ -2,8 +2,6 @@
 
 - ?.? - Customizable Keybinds
 
+- ?.? - World 1 Dialogue
+
 - 2.0 - Custom Menus
-
-- 1.5 - World 1 Dialogue
-
-- 1.5 - Rust Arpe Assets

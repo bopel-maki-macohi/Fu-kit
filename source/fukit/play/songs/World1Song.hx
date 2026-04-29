@@ -39,14 +39,14 @@ class World1Song extends SongComponent
 		bgShader = new DropShadowShader();
 		charShader = new DropShadowShader();
 
-		game.dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/${game.curSong}', 'fu-kit'));
-		trace(game.dialogue);
+		// game.dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/${game.curSong}', 'fu-kit'));
+		// trace(game.dialogue);
 
-		if (game.dialogue.length > 0 && PlayState.isStoryMode)
-		{
-			game.startingSong = false;
-			startDialogue(game.dialogue);
-		}
+		// if (game.dialogue.length > 0 && PlayState.isStoryMode)
+		// {
+		// 	game.startingSong = false;
+		// 	startDialogue(game.dialogue);
+		// }
 	}
 
 	var stage:GrassWorld;
