@@ -71,7 +71,7 @@ class Character extends FlxAnimate
 					offsets.set('singUP', [80, 40]);
 					offsets.set('singLEFT', [60, -30]);
 
-					dadStartingCamPosOffsets.set(202, -120);
+					dadStartingCamPosOffsets.set(202, 60);
 				}
 
 				for (anim => set in offsets)
@@ -113,6 +113,7 @@ class Character extends FlxAnimate
 
 				if (PlayState.isStoryMode)
 					dadStartingCamPosOffsets.x += 600;
+				
 			case 'dad':
 				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared'));
 
@@ -131,6 +132,7 @@ class Character extends FlxAnimate
 				playAnim('idle');
 
 				dadStartingCamPosOffsets.x += 400;
+
 			case 'bf':
 				loadTexture(Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared'));
 
