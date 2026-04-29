@@ -4,6 +4,7 @@ Hi
 
 ## 1.5 - 4/30/2026
 
+- Your save now only saves when exiting
 - Added the ability to screenshot (F3)
     - You cannot spam screenshots, there is a 5 seconds delay until you can do the next one
 
