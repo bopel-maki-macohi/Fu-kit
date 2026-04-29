@@ -70,8 +70,8 @@ class World1Song extends SongComponent
 				// game.boyfriend.shader = charShader;
 		}
 
-		if (rainEnd > 0)
-			game.frontShit.add(rainEmitter);
+		// if (rainEnd > 0)
+			// game.frontShit.add(rainEmitter);
 	}
 
 	override function onUpdate(elapsed:Float)
