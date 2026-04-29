@@ -38,6 +38,13 @@ class World1Song extends SongComponent
 
 		bgShader = new DropShadowShader();
 		charShader = new DropShadowShader();
+
+		game.dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/${game.curSong}', 'fu-kit'));
+
+		trace(game.dialogue);
+
+		// if (game.dialogue.length > 0)
+			// game.startingSong = false;
 	}
 
 	var stage:GrassWorld;
@@ -69,7 +76,7 @@ class World1Song extends SongComponent
 			case 'wetway':
 				rainStart = 0.2;
 				rainEnd = 0.5;
-				
+
 			case 'rust':
 				rainStart = 0.5;
 				rainEnd = 0.9;

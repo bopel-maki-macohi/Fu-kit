@@ -130,6 +130,8 @@ class TitleState extends MusicBeatState
 		FlxG.switchState(() -> new AnimationDebug('arpe'));
 		#elseif SONG
 		fukit.Global.goIntoSong('Wetway', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
+		#elseif STORYMENU
+		FlxG.switchState(() -> new StoryMenuState());
 		#else
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
