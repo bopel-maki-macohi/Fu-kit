@@ -4,6 +4,9 @@ Hi
 
 ## 1.5 - 4/30/2026
 
+- Customize Gameplay is now gone as it shouldve been
+- Offset menu is back
+
 - New World Song Changes
     - The Colors change around the end of the song now
     - Rain now appears around the end of the song now
