@@ -15,10 +15,7 @@ class KadeEngineData
 			FlxG.save.data.dfjk = false;
 			
 		if (FlxG.save.data.accuracyDisplay == null)
-			FlxG.save.data.accuracyDisplay = true;
-
-		if (FlxG.save.data.offset == null)
-			FlxG.save.data.offset = 0;
+			FlxG.save.data.accuracyDisplay = false;
 
 		if (FlxG.save.data.offset == null)
 			FlxG.save.data.offset = 0;
@@ -29,12 +26,12 @@ class KadeEngineData
 		if (FlxG.save.data.fps == null)
 			FlxG.save.data.fps = false;
 
-		if (FlxG.save.data.changedHit == null)
-		{
-			FlxG.save.data.changedHitX = -1;
-			FlxG.save.data.changedHitY = -1;
-			FlxG.save.data.changedHit = false;
-		}
+		// if (FlxG.save.data.changedHit == null)
+		// {
+		// 	FlxG.save.data.changedHitX = -1;
+		// 	FlxG.save.data.changedHitY = -1;
+		// 	FlxG.save.data.changedHit = false;
+		// }
 
 		if (FlxG.save.data.fpsRain == null)
 			FlxG.save.data.fpsRain = false;
@@ -55,7 +52,7 @@ class KadeEngineData
 			FlxG.save.data.frames = 10;
 
 		if (FlxG.save.data.accuracyMod == null)
-			FlxG.save.data.accuracyMod = 1;
+			FlxG.save.data.accuracyMod = 0;
 
 		if (FlxG.save.data.watermark == null)
 			FlxG.save.data.watermark = true;
