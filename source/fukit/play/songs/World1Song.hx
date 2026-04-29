@@ -8,6 +8,7 @@ import fukit.play.components.SongComponent;
 class World1Song extends SongComponent
 {
 	var rainAlpha:Float = 0;
+	var rainEmitter:RainEmitter;
 
 	override function init()
 	{
@@ -16,13 +17,11 @@ class World1Song extends SongComponent
 		if (game == null)
 			return;
 
-		var rainEmitter = new RainEmitter(0, -64, FlxG.width);
+		rainEmitter = new RainEmitter(0, -64, FlxG.width);
 		rainEmitter.start(false, 0.05);
 
 		rainEmitter.scrollFactor.x.set(1, 1.5);
 		rainEmitter.scrollFactor.y.set(1, 1.5);
-
-		game.add(rainEmitter);
 
 		rainEmitter.alpha.active = false;
 		rainEmitter.onEmit.add((particle) -> particle.alpha = rainAlpha);
@@ -36,11 +35,15 @@ class World1Song extends SongComponent
 		{
 			trace(game.curSong);
 
-			switch(game.curSong.toLowerCase())
+			switch (game.curSong)
 			{
 				case 'new world':
+					rainStart = -1;
 					rainEnd = 0.2;
 			}
+
+			if (rainEnd > 0)
+				game.add(rainEmitter);
 		}
 	}
 

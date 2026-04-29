@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxSpriteGroup;
 import fukit.play.songs.World1Song;
 import flixel.util.FlxSignal;
 import openfl.geom.Matrix;
@@ -172,6 +173,8 @@ class PlayState extends MusicBeatState
 	public static var onStepHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 	public static var onBeatHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 
+	public var frontSprites:FlxSpriteGroup;
+
 	override public function create()
 	{
 		var signals:Array<FlxTypedSignal<Any>> = [onCreate, onUpdate, onStepHit, onBeatHit];
@@ -277,6 +280,8 @@ class PlayState extends MusicBeatState
 
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale);
 
+		frontSprites = new FlxSpriteGroup();
+
 		// dialogue
 
 		// stage
@@ -303,7 +308,7 @@ class PlayState extends MusicBeatState
 
 				add(sky);
 				add(ground);
-				
+
 				new World1Song();
 
 			default:
@@ -370,6 +375,8 @@ class PlayState extends MusicBeatState
 
 		add(dad);
 		add(boyfriend);
+
+		add(frontSprites);
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
@@ -711,7 +718,7 @@ class PlayState extends MusicBeatState
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
 
-		curSong = songData.song;
+		curSong = songData.song.toLowerCase();
 
 		if (SONG.needsVoices)
 			vocals = new FlxSound().loadEmbedded(Paths.voices(PlayState.SONG.song));
