@@ -38,9 +38,16 @@ class TutorialSong extends SongComponent
 		if (game == null)
 			return;
 
-        new MainStage().makeStage();
+		new MainStage().makeStage();
 
 		if (PlayState.isStoryMode)
 			FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
+	}
+
+	override function onOpponentNote(note:Note)
+	{
+		super.onOpponentNote(note);
+
+		game.camZooming = true;
 	}
 }

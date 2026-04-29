@@ -177,6 +177,9 @@ class PlayState extends MusicBeatState
 
 	public static var onCamMove:FlxTypedSignal<Bool->Void> = new FlxTypedSignal<Bool->Void>();
 
+	public static var onOpponentNote:FlxTypedSignal<Note->Void> = new FlxTypedSignal<Note->Void>();
+	public static var onPlayerNote:FlxTypedSignal<Note->Void> = new FlxTypedSignal<Note->Void>();
+
 	public var backShit:FlxContainer;
 	public var frontShit:FlxContainer;
 
@@ -189,7 +192,9 @@ class PlayState extends MusicBeatState
 			onBeatHit,
 			onCountdownStep,
 			onCountdownEnd,
-			onCamMove
+			onCamMove,
+			onOpponentNote,
+			onPlayerNote,
 		];
 
 		for (signal in signals)
@@ -1319,21 +1324,12 @@ class PlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note)
 			{
 				if (daNote.y > FlxG.height)
-				{
-					daNote.active = false;
-					daNote.visible = false;
-				}
+					daNote.visible = daNote.active = false;
 				else
-				{
-					daNote.visible = true;
-					daNote.active = true;
-				}
+					daNote.visible = daNote.active = true;
 
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
-					if (SONG.song != 'Tutorial')
-						camZooming = true;
-
 					var altAnim:String = "";
 
 					if (SONG.notes[Math.floor(curStep / 16)] != null)
@@ -1341,6 +1337,8 @@ class PlayState extends MusicBeatState
 						if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 							altAnim = '-alt';
 					}
+
+					onOpponentNote.dispatch(daNote);
 
 					switch (Math.abs(daNote.noteData))
 					{
@@ -1359,11 +1357,7 @@ class PlayState extends MusicBeatState
 					if (SONG.needsVoices)
 						vocals.volume = 1;
 
-					daNote.active = false;
-
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
+					killNote(daNote);
 				}
 
 				if (FlxG.save.data.downscroll)
@@ -1404,9 +1398,7 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
+						killNote(daNote);
 					}
 					else
 					{
@@ -1416,12 +1408,7 @@ class PlayState extends MusicBeatState
 							noteMiss(daNote.noteData, daNote);
 					}
 
-					daNote.active = false;
-					daNote.visible = false;
-
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
+					killNote(daNote);
 				}
 			});
 		}
@@ -1435,6 +1422,15 @@ class PlayState extends MusicBeatState
 		#end
 
 		onUpdate.dispatch(elapsed);
+	}
+
+	function killNote(note:Note)
+	{
+		note.active = false;
+
+		note.kill();
+		notes.remove(note, true);
+		note.destroy();
 	}
 
 	public var defaultCamMove:Bool = true;
@@ -1769,9 +1765,7 @@ class PlayState extends MusicBeatState
 			for (note in dumbNotes)
 			{
 				FlxG.log.add("killing dumb ass note at " + note.strumTime);
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
+				killNote(note);
 			}
 
 			possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
@@ -2036,49 +2030,49 @@ class PlayState extends MusicBeatState
 		if (resetMashViolation)
 			mashViolations--;
 
-		if (!note.wasGoodHit)
+		if (note.wasGoodHit)
+			return;
+
+		if (!note.isSustainNote)
 		{
-			if (!note.isSustainNote)
-			{
-				popUpScore(note);
-				combo += 1;
-			}
-			else
-				totalNotesHit += 1;
-
-			switch (note.noteData)
-			{
-				case 2:
-					boyfriend.playAnim('singUP', true);
-				case 3:
-					boyfriend.playAnim('singRIGHT', true);
-				case 1:
-					boyfriend.playAnim('singDOWN', true);
-				case 0:
-					boyfriend.playAnim('singLEFT', true);
-			}
-
-			if (!loadRep)
-				playerStrums.forEach(function(spr:FlxSprite)
-				{
-					if (Math.abs(note.noteData) == spr.ID)
-					{
-						spr.animation.play('confirm', true);
-					}
-				});
-
-			if (!loadRep && note.mustPress)
-				saveNotes.push(CoolUtil.truncateFloat(note.strumTime, 2));
-
-			note.wasGoodHit = true;
-			vocals.volume = 1;
-
-			note.kill();
-			notes.remove(note, true);
-			note.destroy();
-
-			updateAccuracy();
+			popUpScore(note);
+			combo += 1;
 		}
+		else
+			totalNotesHit += 1;
+
+		onPlayerNote.dispatch(note);
+
+		switch (note.noteData)
+		{
+			case 2:
+				boyfriend.playAnim('singUP', true);
+			case 3:
+				boyfriend.playAnim('singRIGHT', true);
+			case 1:
+				boyfriend.playAnim('singDOWN', true);
+			case 0:
+				boyfriend.playAnim('singLEFT', true);
+		}
+
+		if (!loadRep)
+			playerStrums.forEach(function(spr:FlxSprite)
+			{
+				if (Math.abs(note.noteData) == spr.ID)
+				{
+					spr.animation.play('confirm', true);
+				}
+			});
+
+		if (!loadRep && note.mustPress)
+			saveNotes.push(CoolUtil.truncateFloat(note.strumTime, 2));
+
+		note.wasGoodHit = true;
+		vocals.volume = 1;
+		
+		killNote(note);
+
+		updateAccuracy();
 	}
 
 	override function stepHit()

@@ -38,6 +38,9 @@ class PlayComponent
 
 		PlayState.onCountdownStep.add(onCountdownStep);
 		PlayState.onCountdownEnd.add(onCountdownEnd);
+
+		PlayState.onOpponentNote.add(onOpponentNote);
+		PlayState.onPlayerNote.add(onPlayerNote);
 	}
 
 	public function onCreate() {}
@@ -53,4 +56,8 @@ class PlayComponent
 	public function onCountdownEnd() {}
 
 	public function onCamMove(playerCam:Bool) {}
+
+	public function onOpponentNote(note:Note) {}
+
+	public function onPlayerNote(note:Note) {}
 }
