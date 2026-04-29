@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxPoint;
 import animate.FlxAnimate;
 import animate.FlxAnimateFrames;
 import flixel.FlxG;
@@ -23,12 +24,21 @@ class Character extends FlxAnimate
 	{
 		super(x, y);
 
-		animOffsets = new Map<String, Array<Dynamic>>();
+		setCharacter(character, isPlayer);
+	}
+
+	public var dadStartingCamPosOffsets:FlxPoint;
+	public var camFocusPosOffsets:FlxPoint;
+
+	function setCharacter(character:String = 'bf', isPlayer:Bool = false)
+	{
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		var tex:FlxAtlasFrames;
-		antialiasing = true;
+		animOffsets = new Map<String, Array<Dynamic>>();
+
+		camFocusPosOffsets = FlxPoint.weak(0, 0);
+		dadStartingCamPosOffsets = FlxPoint.weak(0, 0);
 
 		switch (curCharacter)
 		{
@@ -40,7 +50,7 @@ class Character extends FlxAnimate
 				}
 
 				animation.addByPrefix('idle', '$curCharacter anim idle', 24);
-				
+
 				animation.addByPrefix('singLEFT', '$curCharacter anim left', 24);
 				animation.addByPrefix('singDOWN', '$curCharacter anim down', 24);
 				animation.addByPrefix('singUP', '$curCharacter anim up', 24);
@@ -60,6 +70,8 @@ class Character extends FlxAnimate
 					offsets.set('singRIGHT', [20, -30]);
 					offsets.set('singUP', [80, 40]);
 					offsets.set('singLEFT', [60, -30]);
+
+					dadStartingCamPosOffsets.set(202, -120);
 				}
 
 				for (anim => set in offsets)
@@ -99,6 +111,8 @@ class Character extends FlxAnimate
 
 				playAnim('danceRight');
 
+				if (PlayState.isStoryMode)
+					dadStartingCamPosOffsets.x += 600;
 			case 'dad':
 				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared'));
 
@@ -116,6 +130,7 @@ class Character extends FlxAnimate
 
 				playAnim('idle');
 
+				dadStartingCamPosOffsets.x += 400;
 			case 'bf':
 				loadTexture(Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared'));
 

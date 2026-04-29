@@ -51,4 +51,6 @@ class PlayComponent
 	public function onCountdownStep(step:Int) {}
 
 	public function onCountdownEnd() {}
+
+	public function onCamMove(playerCam:Bool) {}
 }

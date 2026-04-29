@@ -4,6 +4,10 @@ Hi
 
 ## 1.5 - 4/30/2026
 
+- New World Song Changes
+    - The Colors change around the end of the song now
+    - Rain now appears around the end of the song now
+
 - Your save now only saves when exiting
 - Added the ability to screenshot (F3)
     - You cannot spam screenshots, there is a 5 seconds delay until you can do the next one

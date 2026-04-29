@@ -34,5 +34,7 @@ class GrassWorld extends StageComponent
 		game.backShit.add(ground);
 
 		game.remove(game.gf);
+
+		game.dad.y += 120;
 	}
 }
