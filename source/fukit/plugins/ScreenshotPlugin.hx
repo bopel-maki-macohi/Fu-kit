@@ -37,7 +37,12 @@ class ScreenshotPlugin extends FlxBasic
 			performScreenshot();
 	}
 
-	public static var SCREENSHOT_DIRECTORY:String = 'screenshots';
+	public static var SCREENSHOT_DIRECTORY:String =
+	#if debug
+	'../../../../dump/screenshots';
+	#else
+	'screenshots';
+	#end
 
 	public static var SCREENSHOT_DELAY_TIME_SECONDS:Float = 5;
 
