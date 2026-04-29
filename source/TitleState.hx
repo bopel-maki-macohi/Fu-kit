@@ -129,7 +129,7 @@ class TitleState extends MusicBeatState
 		#elseif ANIMDEBUG
 		FlxG.switchState(() -> new AnimationDebug('arpe'));
 		#elseif SONG
-		fukit.Global.goIntoSong('New World', 2, 0);
+		fukit.Global.goIntoSong('Wetway', 2, 0);
 		#else
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
