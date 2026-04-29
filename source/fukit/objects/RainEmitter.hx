@@ -1,5 +1,6 @@
 package fukit.objects;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 
 class RainEmitter extends CustomEmitter
@@ -14,11 +15,14 @@ class RainEmitter extends CustomEmitter
 
 		particleClass = RainParticle;
         
-		launchAngle.set(-160, 160);
+		launchAngle.set(60, 100);
 		lifespan.set(16); // fuck it
 
-		speed.set(800, 1600);
+		speed.set(1000, 1600);
 
 		alpha.set(1, null, 0, 1);
+
+		color.set(FlxColor.BLUE, FlxColor.CYAN);
+		blend = HARDLIGHT;
 	}
 }

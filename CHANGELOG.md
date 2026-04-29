@@ -5,8 +5,8 @@ Hi
 ## 1.5 - 4/30/2026
 
 - New World Song Changes
-    - The Colors change around the end of the song now
-    - Rain now appears around the end of the song now
+    - The Colors change during the song now
+    - Rain now appears during the song now
 
 - Default Options have been changed
 

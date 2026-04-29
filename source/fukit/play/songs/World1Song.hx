@@ -28,7 +28,7 @@ class World1Song extends SongComponent
 		stage = new GrassWorld();
 		stage.makeStage();
 
-		rainEmitter = new RainEmitter(0, -64, FlxG.width);
+		rainEmitter = new RainEmitter(-320, -160, FlxG.width * 2);
 		rainEmitter.start(false, 0.05);
 
 		rainEmitter.scrollFactor.destroy();
@@ -60,7 +60,7 @@ class World1Song extends SongComponent
 		switch (game.curSong)
 		{
 			case 'new world':
-				rainStart = -1;
+				rainStart = 0;
 				rainEnd = 0.2;
 
 				bgShader.setAdjustColor(0, 0, 0, 0);
@@ -110,15 +110,15 @@ class World1Song extends SongComponent
 			bgShader.setAdjustColor(bgVals[0], bgVals[1], bgVals[2], bgVals[3]);
 			charShader.setAdjustColor(charVals[0], charVals[1], charVals[2], charVals[3]);
 
-			rainEmitter.frequency = remapToRangeDependentOnSong(1, 0.75);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.5, 0.2);
 		}
 		else if (game?.curSong == 'wetway')
 		{
-			rainEmitter.frequency = remapToRangeDependentOnSong(0.75, 0.25 / 8);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.2, 0.01);
 		}
 		else if (game?.curSong == 'rust')
 		{
-			rainEmitter.frequency = remapToRangeDependentOnSong(0.25 / 8, 0.175 / 16);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.01, 0.00001);
 		}
 	}
 
