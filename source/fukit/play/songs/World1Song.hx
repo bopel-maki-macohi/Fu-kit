@@ -67,12 +67,6 @@ class World1Song extends SongComponent
 				bgShader.setAdjustColor(0, 0, 0, 0);
 				charShader.setAdjustColor(0, 0, 0, 0);
 
-				stage.sky.shader = bgShader;
-				stage.ground.shader = bgShader;
-
-				game.dad.shader = charShader;
-				game.boyfriend.shader = charShader;
-
 			case 'wetway':
 				rainStart = 0.2;
 				rainEnd = 0.5;
@@ -81,6 +75,12 @@ class World1Song extends SongComponent
 				rainStart = 0.5;
 				rainEnd = 0.9;
 		}
+
+		stage.sky.shader = bgShader;
+		stage.ground.shader = bgShader;
+
+		game.dad.shader = charShader;
+		game.boyfriend.shader = charShader;
 
 		if (rainEnd > 0)
 			game.frontShit.add(rainEmitter);
