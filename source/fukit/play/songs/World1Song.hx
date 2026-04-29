@@ -130,6 +130,12 @@ class World1Song extends SongComponent
 		if (step == 183 && game?.curSong == 'rust')
 		{
 			game.camMove(false);
+			game.defaultCamMove = false;
+		}
+
+		if (step == 195 && game?.curSong == 'rust')
+		{
+			game.defaultCamMove = true;
 		}
 	}
 }
