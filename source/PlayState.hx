@@ -173,6 +173,7 @@ class PlayState extends MusicBeatState
 	public static var onStepHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 	public static var onBeatHit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 
+	public var backSprites:FlxSpriteGroup;
 	public var frontSprites:FlxSpriteGroup;
 
 	override public function create()
@@ -280,6 +281,7 @@ class PlayState extends MusicBeatState
 
 		trace('INFORMATION ABOUT WHAT U PLAYIN WIT:\nFRAMES: ' + Conductor.safeFrames + '\nZONE: ' + Conductor.safeZoneOffset + '\nTS: ' + Conductor.timeScale);
 
+		backSprites = new FlxSpriteGroup();
 		frontSprites = new FlxSpriteGroup();
 
 		// dialogue
@@ -288,27 +290,6 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'new world':
-				curStage = 'grassworld';
-
-				var sky = new FlxSprite(0, 0, Paths.image('stages/grassworld/sky', 'fu-kit'));
-				var ground = new FlxSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
-
-				sky.scrollFactor.set();
-				sky.screenCenter();
-				sky.active = false;
-
-				ground.scale.set(1.2, 1.2);
-				ground.updateHitbox();
-
-				ground.scrollFactor.set(.75, .75);
-				ground.screenCenter();
-				ground.active = false;
-
-				ground.y += ground.height * 0.75;
-
-				add(sky);
-				add(ground);
-
 				new World1Song();
 
 			default:
@@ -369,6 +350,8 @@ class PlayState extends MusicBeatState
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 
 		// REPOSITIONING PER STAGE
+
+		add(backSprites);
 
 		if (curStage != 'grassworld')
 			add(gf);

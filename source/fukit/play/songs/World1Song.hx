@@ -1,5 +1,7 @@
 package fukit.play.songs;
 
+import fukit.play.stages.GrassWorld;
+import fukit.shaders.HSVShader;
 import fukit.objects.RainEmitter;
 import flixel.math.FlxMath;
 import flixel.FlxG;
@@ -25,26 +27,46 @@ class World1Song extends SongComponent
 
 		rainEmitter.alpha.active = false;
 		rainEmitter.onEmit.add((particle) -> particle.alpha = rainAlpha);
+
+		bgShader = new HSVShader();
+		charShader = new HSVShader();
+
+		stage = new GrassWorld();
+		stage.makeStage();
 	}
+
+	var stage:GrassWorld;
+
+	var bgShader:HSVShader;
+	var charShader:HSVShader;
 
 	override function onCreate()
 	{
 		super.onCreate();
 
-		if (game != null)
+		if (game == null)
+			return;
+
+		trace(game.curSong);
+
+		switch (game.curSong)
 		{
-			trace(game.curSong);
+			case 'new world':
+				rainStart = -1;
+				rainEnd = 0.2;
 
-			switch (game.curSong)
-			{
-				case 'new world':
-					rainStart = -1;
-					rainEnd = 0.2;
-			}
+				bgShader.set(0, 0, 0);
+				charShader.set(0, 0, 0);
 
-			if (rainEnd > 0)
-				game.add(rainEmitter);
+				stage.sky.shader = bgShader;
+				stage.ground.shader = bgShader;
+
+				game.dad.shader = charShader;
+				game.boyfriend.shader = charShader;
 		}
+
+		if (rainEnd > 0)
+			game.add(rainEmitter);
 	}
 
 	var rainStart:Float = 0.0;
@@ -60,5 +82,7 @@ class World1Song extends SongComponent
 
 			rainAlpha = remappedIntensityValue;
 		}
+		else
+			rainAlpha = rainStart;
 	}
 }
