@@ -12,6 +12,9 @@ class World1Song extends SongComponent
 	var rainAlpha:Float = 0;
 	var rainEmitter:RainEmitter;
 
+	var rainStart:Float = 0.0;
+	var rainEnd:Float = 0.0;
+
 	override function init()
 	{
 		super.init();
@@ -68,9 +71,6 @@ class World1Song extends SongComponent
 		if (rainEnd > 0)
 			game.add(rainEmitter);
 	}
-
-	var rainStart:Float = 0.0;
-	var rainEnd:Float = 0.0;
 
 	override function onUpdate(elapsed:Float)
 	{
