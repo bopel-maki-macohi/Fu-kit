@@ -4,6 +4,7 @@ Hi
 
 ## 1.5 - 4/30/2026
 
+- World 1 is now complete with 2 new songs to the world! Wetway & Rust!
 - New World Song Changes
     - The Colors change during the song now
     - Rain now appears during the song now
