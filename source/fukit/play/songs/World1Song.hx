@@ -24,6 +24,9 @@ class World1Song extends SongComponent
 		if (game == null)
 			return;
 
+		stage = new GrassWorld();
+		stage.makeStage();
+
 		rainEmitter = new RainEmitter(0, -64, FlxG.width);
 		rainEmitter.start(false, 0.05);
 
@@ -35,9 +38,6 @@ class World1Song extends SongComponent
 
 		bgShader = new HSVShader();
 		charShader = new HSVShader();
-
-		stage = new GrassWorld();
-		stage.makeStage();
 	}
 
 	var stage:GrassWorld;
@@ -79,6 +79,9 @@ class World1Song extends SongComponent
 		super.onUpdate(elapsed);
 
 		rainAlpha = remapToRangeDependentOnSong(rainStart, rainEnd);
+
+		if (game == null)
+			return;
 
 		if (game.curSong == 'new world')
 		{
