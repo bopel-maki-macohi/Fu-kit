@@ -60,19 +60,24 @@ class Character extends FlxAnimate
 
 		switch (curCharacter)
 		{
-			case 'arpe':
+			case 'arpe', 'arpe-worried':
+				var animPrefix = curCharacter;
+
 				switch (curCharacter)
 				{
 					default:
 						loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 				}
 
-				animation.addByPrefix('idle', '$curCharacter anim idle', 24);
+				if (curCharacter == 'arpe-worried' || curCharacter == 'arpe-wither')
+					animPrefix = 'arpe';
 
-				animation.addByPrefix('singLEFT', '$curCharacter anim left', 24);
-				animation.addByPrefix('singDOWN', '$curCharacter anim down', 24);
-				animation.addByPrefix('singUP', '$curCharacter anim up', 24);
-				animation.addByPrefix('singRIGHT', '$curCharacter anim right', 24);
+				animation.addByPrefix('idle', '$animPrefix anim idle', 24);
+
+				animation.addByPrefix('singLEFT', '$animPrefix anim left', 24);
+				animation.addByPrefix('singDOWN', '$animPrefix anim down', 24);
+				animation.addByPrefix('singUP', '$animPrefix anim up', 24);
+				animation.addByPrefix('singRIGHT', '$animPrefix anim right', 24);
 
 				var offsets = [
 					'idle' => [0, 0],
@@ -82,7 +87,7 @@ class Character extends FlxAnimate
 					'singRIGHT' => [0, 0],
 				];
 
-				if (curCharacter == 'arpe')
+				if (curCharacter == 'arpe' || curCharacter == 'arpe-worried')
 				{
 					offsets.set('singDOWN', [-5, -190]);
 					offsets.set('singRIGHT', [20, -30]);
@@ -91,6 +96,9 @@ class Character extends FlxAnimate
 
 					dadStartingCamPosOffsets.set(202, 60);
 				}
+
+				if (curCharacter == 'arpe-worried')
+					dadVar = 7;
 
 				for (anim => set in offsets)
 					addOffset(anim, set[0], set[1]);
@@ -150,6 +158,8 @@ class Character extends FlxAnimate
 				playAnim('idle');
 
 				dadStartingCamPosOffsets.x += 400;
+
+				dadVar = 6.1;
 
 			case 'bf':
 				loadTexture(Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared'));
@@ -222,6 +232,8 @@ class Character extends FlxAnimate
 	function loadTextures(textures:Array<FlxAtlasFrames>)
 		frames = FlxAnimateFrames.combineAtlas(textures);
 
+	var dadVar:Float = 4;
+
 	override function update(elapsed:Float)
 	{
 		if (!curCharacter.startsWith('bf'))
@@ -231,10 +243,6 @@ class Character extends FlxAnimate
 				holdTimer += elapsed;
 			}
 
-			var dadVar:Float = 4;
-
-			if (curCharacter == 'dad')
-				dadVar = 6.1;
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
 			{
 				dance();

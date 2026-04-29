@@ -16,7 +16,7 @@ class HealthIcon extends FlxSprite
 		
 		switch (char)
 		{
-			case 'arpe':
+			case 'arpe', 'arpe-worried', 'arpe-withered':
 				makeBaseFuKitIcon(char, isPlayer);
 
 			default:
@@ -43,7 +43,7 @@ class HealthIcon extends FlxSprite
 
 		color = switch (char)
 		{
-			case 'arpe':
+			case 'arpe', 'arpe-worried', 'arpe-withered':
 				0x786D8E;
 
 			default:
