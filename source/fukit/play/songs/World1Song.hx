@@ -119,7 +119,17 @@ class World1Song extends SongComponent
 		}
 		else if (game?.curSong == 'rust')
 		{
-			rainEmitter.frequency = remapToRangeDependentOnSong(0.25, 0.175);
+			rainEmitter.frequency = remapToRangeDependentOnSong(0.25, 0.175 / 16);
+		}
+	}
+
+	override function onStepHit(step:Int)
+	{
+		super.onStepHit(step);
+
+		if (step == 183 && game?.curSong == 'rust')
+		{
+			game.camMove(false);
 		}
 	}
 }
