@@ -9,6 +9,7 @@ Hi
     - The Colors change during the song now
     - Rain now appears during the song now
 
+- Removed NINE keybind in gameplay
 - Default Options have been changed
 
 - Fixed score text overflowing when the accuracy mode is complex

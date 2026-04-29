@@ -331,10 +331,6 @@ class PlayState extends MusicBeatState
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + dad.dadStartingCamPosOffsets.x,
 			dad.getGraphicMidpoint().y + dad.dadStartingCamPosOffsets.y);
 
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
-		doof.scrollFactor.set();
-		doof.finishThing = startCountdown;
-
 		Conductor.songPosition = -5000;
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
@@ -429,7 +425,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		doof.cameras = [camHUD];
+
 		if (FlxG.save.data.songPosition)
 		{
 			songPosBG.cameras = [camHUD];
@@ -447,7 +443,7 @@ class PlayState extends MusicBeatState
 				new World1Song();
 		}
 
-		if (startingSong)
+		if (startingSong && !inCutscene)
 			startCountdown();
 
 		if (!loadRep)
@@ -461,7 +457,7 @@ class PlayState extends MusicBeatState
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
 
-	function startCountdown():Void
+	public function startCountdown():Void
 	{
 		inCutscene = false;
 
@@ -1096,13 +1092,13 @@ class PlayState extends MusicBeatState
 		else
 			currentFrames++;
 
-		if (FlxG.keys.justPressed.NINE)
-		{
-			if (iconP1.animation?.curAnim?.name == 'bf-old')
-				iconP1.animation.play(SONG.player1);
-			else
-				iconP1.animation.play('bf-old');
-		}
+		// if (FlxG.keys.justPressed.NINE)
+		// {
+		// 	if (iconP1.animation?.curAnim?.name == 'bf-old')
+		// 		iconP1.animation.play(SONG.player1);
+		// 	else
+		// 		iconP1.animation.play('bf-old');
+		// }
 
 		super.update(elapsed);
 
@@ -1869,7 +1865,7 @@ class PlayState extends MusicBeatState
 
 		if (combo > 5 && gf.animOffsets.exists('sad'))
 			gf.playAnim('sad');
-		
+
 		combo = 0;
 		misses++;
 
@@ -2026,10 +2022,12 @@ class PlayState extends MusicBeatState
 	override function stepHit()
 	{
 		super.stepHit();
-		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
-		{
+
+		if (FlxG.sound.music == null || !FlxG.sound.music?.playing)
+			return;
+
+		if (FlxG.sound.music?.time > Conductor.songPosition + 20 || FlxG.sound.music?.time < Conductor.songPosition - 20)
 			resyncVocals();
-		}
 
 		if (executeModchart && lua != null)
 		{
