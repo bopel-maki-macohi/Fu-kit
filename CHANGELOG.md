@@ -10,7 +10,7 @@ Hi
 
 - Your save now only saves when exiting
 - Added the ability to screenshot (F3)
-    - You cannot spam screenshots, there is a 5 seconds delay until you can do the next one
+    - You cannot spam screenshots, there is a 5 second delay until you can do the next one
 
 ## 1.1 - 4/28/2026
 
