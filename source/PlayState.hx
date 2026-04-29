@@ -1888,7 +1888,7 @@ class PlayState extends MusicBeatState
 			combo = 0;
 			misses++;
 
-			var noteDiff:Float = Math.abs(daNote.strumTime - Conductor.songPosition);
+			var noteDiff:Float = Math.abs(daNote?.strumTime ?? 0 - Conductor.songPosition);
 			var wife:Float = EtternaFunctions.wife3(noteDiff, FlxG.save.data.etternaMode ? 1 : 1.7);
 
 			if (FlxG.save.data.accuracyMod == 1)
