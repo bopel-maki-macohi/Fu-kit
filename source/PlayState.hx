@@ -350,16 +350,9 @@ class PlayState extends MusicBeatState
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 
-		switch (SONG.song.toLowerCase())
-		{
-			case 'new world':
-				new World1Song().init();
-		}
-
 		add(backShit);
 
-		if (curStage != 'grassworld')
-			add(gf);
+		add(gf);
 
 		add(dad);
 		add(boyfriend);
@@ -484,14 +477,14 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		if (isStoryMode)
+		switch (SONG.song.toLowerCase())
 		{
-			startCountdown();
+			case 'new world', 'wetway', 'rust':
+				new World1Song().init();
 		}
-		else
-		{
+
+		if (startingSong)
 			startCountdown();
-		}
 
 		if (!loadRep)
 			rep = new Replay("na");
