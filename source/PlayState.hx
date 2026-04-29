@@ -306,20 +306,25 @@ class PlayState extends MusicBeatState
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = new Character(100, 100, SONG.player2);
-
-		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + dad.dadStartingCamPosOffsets.x,
-			dad.getGraphicMidpoint().y + dad.dadStartingCamPosOffsets.y);
-
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
 
 		add(backShit);
 
-		add(gf);
+		if (dad.curCharacter == gf.curCharacter)
+		{
+			dad.x = gf.x;
+			dad.y = gf.y;
+		}
+		else
+			add(gf);
 
 		add(dad);
 		add(boyfriend);
 
 		add(frontShit);
+
+		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + dad.dadStartingCamPosOffsets.x,
+			dad.getGraphicMidpoint().y + dad.dadStartingCamPosOffsets.y);
 
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		doof.scrollFactor.set();
