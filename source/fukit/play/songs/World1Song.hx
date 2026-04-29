@@ -26,7 +26,7 @@ class World1Song extends SongComponent
 			return;
 
 		stage = new GrassWorld();
-		stage.makeStage();
+		stage.makeStage;
 
 		rainEmitter = new RainEmitter(-320, -160, FlxG.width * 2);
 		rainEmitter.start(false, 0.05);
