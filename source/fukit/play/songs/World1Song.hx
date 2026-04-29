@@ -74,15 +74,6 @@ class World1Song extends SongComponent
 			game.add(rainEmitter);
 	}
 
-	override function onCountdownEnd() {
-		super.onCountdownEnd();
-
-		if (game == null) return;
-
-		FlxTween.tween(bgShader, {hue: 1, saturation: 1, value: 1});
-		FlxTween.tween(charShader, {hue: 1, saturation: 1, value: 1});
-	}
-
 	override function onUpdate(elapsed:Float)
 	{
 		super.onUpdate(elapsed);
