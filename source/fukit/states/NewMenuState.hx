@@ -85,6 +85,17 @@ class NewMenuState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+
+		for (basic in menuList.members)
+		{
+			var text:FlxText = cast(basic, FlxText);
+
+			if (text != null)
+				if (menuList.type == Vertical)
+					text.y = (text.ID * 60) + 60 + blackBox.y;
+				else
+					text.x = (text.ID * 120) + 60 + blackBox.x;
+		}
 	}
 
 	function addItem(item:String)
@@ -92,10 +103,6 @@ class NewMenuState extends MusicBeatState
 		var text:FlxText = new FlxText(0, 0, 0, item, 16);
 
 		text.screenCenter();
-		if (menuList.type == Vertical)
-			text.y = (menuList.members.length * 60) + 60 + blackBox.y;
-		else
-			text.x = (menuList.members.length * 120) + 60 + blackBox.x;
 		text.ID = menuList.members.length;
 
 		menuList.add(text);
