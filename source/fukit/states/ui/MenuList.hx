@@ -1,5 +1,6 @@
 package fukit.states.ui;
 
+import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.util.FlxSignal;
 import flixel.FlxSprite;
 import flixel.FlxBasic;
@@ -11,7 +12,7 @@ enum MenuListType
 	Horizontal;
 }
 
-class MenuList extends FlxTypedGroup<FlxBasic>
+class MenuList extends FlxTypedSpriteGroup<FlxSprite>
 {
 	public var items:Map<String, Void->Void>;
 	public var itemKeys:Array<String>;

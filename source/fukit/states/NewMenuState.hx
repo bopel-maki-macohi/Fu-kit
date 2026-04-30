@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.states.options.NewOptionsMenu;
 import fukit.objects.Logo;
 import flixel.FlxG;
 import flixel.util.FlxColor;
@@ -69,7 +70,13 @@ class NewMenuState extends MusicBeatState
 
 	function optionsOption()
 	{
-		FlxG.switchState(() -> new OptionsMenu());
+		menuList.canSelect = false;
+
+		FlxTween.tween(menuList, {x: FlxG.width}, 1, {
+			ease: FlxEase.expoOut
+		});
+
+		openSubState(new NewOptionsMenu());
 	}
 
 	function exitOption()
@@ -85,17 +92,6 @@ class NewMenuState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-
-		for (basic in menuList.members)
-		{
-			var text:FlxText = cast(basic, FlxText);
-
-			if (text != null)
-				if (menuList.type == Vertical)
-					text.y = (text.ID * 60) + 60 + blackBox.y;
-				else
-					text.x = (text.ID * 120) + 60 + blackBox.x;
-		}
 	}
 
 	function addItem(item:String)
@@ -104,6 +100,11 @@ class NewMenuState extends MusicBeatState
 
 		text.screenCenter();
 		text.ID = menuList.members.length;
+
+		if (menuList.type == Vertical)
+			text.y = (text.ID * 60) + 60 + blackBox.y;
+		else
+			text.x = (text.ID * 120) + 60 + blackBox.x;
 
 		menuList.add(text);
 	}
