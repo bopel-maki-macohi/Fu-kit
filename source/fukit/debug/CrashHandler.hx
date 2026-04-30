@@ -46,11 +46,11 @@ class CrashHandler
 		if (!FileSystem.exists(CRASH_DIRECTORY))
 			FileSystem.createDirectory(CRASH_DIRECTORY);
 
-		var errorMessage:String = 'Uncaught Error: ${event.toString()}\n\n';
+		var errorMessage:String = 'Uncaught Error: ${event.error.toString()}\n\n';
 
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
 
-		errorMessage += 'Callstack: ';
+		errorMessage += 'Callstack:\n';
 		for (item in callStack)
 		{
 			switch (item)
@@ -64,11 +64,11 @@ class CrashHandler
 		}
 
 		errorMessage += '\n';
-		errorMessage += 'Crash log saved to $path\n';
+		errorMessage += 'Crash log saved to "$path"\n';
 		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
 
-		Application.current.window.alert(errorMessage, 'Uncaught Error: ${event.toString()}');
 		File.saveContent(path, errorMessage);
+		Application.current.window.alert(errorMessage, 'Uncaught Error: ${event.error.toString()}');
 
 		Sys.println(errorMessage);
 		Sys.exit(0);
