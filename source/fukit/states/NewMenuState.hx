@@ -18,10 +18,5 @@ class NewMenuState extends MusicBeatState
 		backdrop.velocity.set(32, 32);
         
         backdrop.antialiasing = false;
-
-        FlxTween.tween(backdrop.velocity, {x: -32, y: -32}, 1, {
-            ease: FlxEase.sineInOut,
-            type: PINGPONG
-        });
 	}
 }
