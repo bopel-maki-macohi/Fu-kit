@@ -128,4 +128,10 @@ class MenuList extends FlxTypedSpriteGroup<FlxSprite>
 
 		add(sprite);
 	}
+
+	public function clearList()
+	{
+		items.clear();
+		itemKeys = [];
+	}
 }

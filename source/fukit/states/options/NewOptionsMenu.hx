@@ -52,19 +52,18 @@ class NewOptionsMenu extends MusicBeatSubstate
 		if (!optionsMenus.exists(menu))
 			return;
 
-		trace(optionsMenus.get(menu));
+		// trace(optionsMenus.get(menu));
 
 		if (optionsMenus.get(menu).length < 1)
 			return;
 
-		for (key => item in optionsMenuList.items)
-		{
-			optionsMenuList.items.remove(key);
-		};
+        optionsMenuList.clearList();
 
 		currentMenu = menu;
 		for (item in optionsMenus.get(menu))
 			optionsMenuList.addEntry(item, () -> onItem(item.toLowerCase()));
+
+		// trace(optionsMenuList.itemKeys);
 
 		optionsMenuList.regenItems();
 	}
@@ -144,7 +143,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 	function getItem(s:String):String
 	{
-		trace('get(${currentMenu} : ${s})');
+		// trace('get(${currentMenu} : ${s})');
 
 		switch (s.toLowerCase()) {}
 
@@ -153,7 +152,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 	function onItem(s:String)
 	{
-		trace('on(${currentMenu} : ${s})');
+		// trace('on(${currentMenu} : ${s})');
 
 		switch (s)
 		{
