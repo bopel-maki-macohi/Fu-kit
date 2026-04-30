@@ -17,11 +17,6 @@ class CrashHandler
 		if (FlxG.signals.postUpdate.has(errorKeybind))
 			return;
 
-		#if debug
-		if (FileSystem.exists(SCREENSHOT_DIRECTORY))
-			FileSystem.deleteDirectory(SCREENSHOT_DIRECTORY);
-		#end
-
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 
 		FlxG.signals.postUpdate.add(errorKeybind);

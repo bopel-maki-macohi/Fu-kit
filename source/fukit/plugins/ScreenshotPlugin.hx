@@ -20,11 +20,6 @@ class ScreenshotPlugin extends FlxBasic
 {
 	public static function init()
 	{
-		#if debug
-		if (FileSystem.exists(SCREENSHOT_DIRECTORY))
-			FileSystem.deleteDirectory(SCREENSHOT_DIRECTORY);
-		#end
-
 		FlxG.plugins.addIfUniqueType(new ScreenshotPlugin());
 	}
 
