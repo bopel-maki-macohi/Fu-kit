@@ -1,5 +1,6 @@
 package fukit.states.options;
 
+import fukit.states.options.components.*;
 import flixel.math.FlxMath;
 import openfl.Lib;
 import Controls.KeyboardScheme;
@@ -15,31 +16,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 {
 	public var optionsMenuList:MenuList;
 
-	public var optionsMenus:Map<String, Array<String>> = [
-		'categories' => ['Gameplay', 'Appearence', 'Misc',],
-		'gameplay' => [
-			'Back',
-			'DFJK Keybinds',
-			'Hit Timings / Safe Frames',
-			#if desktop
-			'FPS Cap',
-			#end
-			'Custom Scroll Speed',
-			'Accuracy Calculation',
-			'Offset Changing',
-		],
-		'appearence' => [
-			'Back',
-			'Song Position Bar',
-			'Downscroll Layout',
-			#if desktop
-			'Rainbow FPS',
-			#end
-			'Accuracy Information Display',
-			'NPS Display',
-		],
-		'misc' => ['Back', #if desktop 'FPS Counter', #end 'Watermarks'],
-	];
+	public var optionsMenus:Map<String, Array<OptionComponent>> = [];
 
 	public var currentMenu:String = '';
 
@@ -50,6 +27,42 @@ class NewOptionsMenu extends MusicBeatSubstate
 		super();
 
 		closeCallback = drawOnLeave;
+
+		optionsMenus = [
+			'categories' => [
+				new OptionComponent('Gameplay', () -> loadMenu('Gameplay')),
+				new OptionComponent('Appearence', () -> loadMenu('Appearence')),
+				new OptionComponent('Misc', () -> loadMenu('Misc')),
+			],
+			'gameplay' => [
+				new OptionComponent('Back', () -> loadMenu('Categories')),
+				new DFJKOption(),
+				new HitTimingsOption(),
+				#if desktop
+				new FPSCapOption(),
+				#end
+				new CustomScrollSpeedOption(),
+				new AccuracyCalculationOption(),
+				new OffsetChangingOption(),
+			],
+			'appearence' => [
+				new OptionComponent('Back', () -> loadMenu('Categories')),
+				new SongPositionOption(),
+				new DownscrollOption(),
+				#if desktop
+				new RainbowFPSOption(),
+				#end
+				new AccuracyInformationDisplayOption(),
+				new NPSDisplayOption(),
+			],
+			'misc' => [
+				new OptionComponent('Back', () -> loadMenu('Categories')),
+				#if desktop
+				new FPSCounterOption(),
+				#end
+				new WatermarksOption(),
+			],
+		];
 	}
 
 	function loadMenu(menu:String)
@@ -69,12 +82,35 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		optionsMenuList.clearList();
 
-		currentMenu = menu;
 		for (item in optionsMenus.get(menu))
-			optionsMenuList.addEntry(item, () -> onItem(item.toLowerCase()));
+		{
+			item.updateDisplay();
+
+			optionsMenuList.addEntry(item.display, () ->
+			{
+				final lastMenu = currentMenu;
+
+				item.method();
+
+				if (FlxG.save.data.dfjk)
+					controls.setKeyboardScheme(KeyboardScheme.Solo, true);
+				else
+					controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
+
+				if (currentMenu == lastMenu)
+				{
+					savedCurSelect = optionsMenuList.curSelect;
+					loadMenu(currentMenu);
+
+					optionsMenuList.curSelect = savedCurSelect;
+					optionsMenuList.onSelectionChange.dispatch();
+				}
+			});
+		}
 
 		// trace(optionsMenuList.itemKeys);
 
+		currentMenu = menu;
 		optionsMenuList.regenItems();
 	}
 
@@ -124,14 +160,12 @@ class NewOptionsMenu extends MusicBeatSubstate
 		blackBox.x = optionsMenuList.members[0].getGraphicMidpoint().x - (blackBox.width / 2);
 
 		if (controls.BACK && optionsMenuList.canSelect)
-		{
 			leave();
-		}
 	}
 
 	function addItem(item:String)
 	{
-		var text:FlxText = new FlxText(0, 0, 0, getItem(item), 16);
+		var text:FlxText = new FlxText(0, 0, 0, item, 16);
 
 		text.screenCenter();
 		text.ID = optionsMenuList.members.length;
@@ -155,152 +189,6 @@ class NewOptionsMenu extends MusicBeatSubstate
 		}
 
 		FlxG.sound.play(Paths.sound('scrollMenu'));
-	}
-
-	function getItem(s:String):String
-	{
-		// trace('get(${currentMenu} : ${s})');
-
-		switch (s.toLowerCase())
-		{
-			case 'dfjk keybinds':
-				return '${(FlxG.save.data.dfjk) ? 'DFJK' : 'WASD'} Keybinds';
-
-			case 'hit timings / safe frames':
-				return '$s : ${Conductor.safeFrames} / 20';
-
-			case 'fps cap':
-				return 'FPS Cap: ${FlxG.save.data.fpsCap} / 290';
-
-			case 'custom scroll speed':
-				if (FlxG.save.data.scrollSpeed == 1)
-					return 'Default Song Scroll Speed';
-
-				return 'Custom Song Scroll Speed: ${FlxG.save.data.scrollSpeed} / 10.0';
-
-			case 'accuracy calculation':
-				return '$s : ${(FlxG.save.data.accuracyMod == 1) ? 'Complex' : 'Accurate'}';
-
-			case 'song position bar':
-				return '$s : ${(FlxG.save.data.songPosition) ? 'Enabled' : 'Disabled'}';
-
-			case 'downscroll layout':
-				return '${(FlxG.save.data.downscroll) ? 'Downscroll' : 'Upscroll'} Layout';
-
-			case 'rainbow fps':
-				return '$s : ${(FlxG.save.data.fpsRain) ? 'Enabled' : 'Disabled'}';
-
-			case 'accuracy information display':
-				return '$s : ${(FlxG.save.data.fpsRain) ? 'Enabled' : 'Disabled'}';
-
-			case 'nps display':
-				return '$s : ${(FlxG.save.data.npsDisplay) ? 'Enabled' : 'Disabled'}';
-
-			case 'fps counter':
-				return '$s : ${(FlxG.save.data.fps) ? 'Enabled' : 'Disabled'}';
-
-			case 'watermarks':
-				return '$s : ${(Main.watermarks) ? 'Enabled' : 'Disabled'}';
-		}
-
-		return s;
-	}
-
-	function onItem(s:String)
-	{
-		// trace('on(${currentMenu} : ${s})');
-
-		var refresh:Bool = true;
-
-		switch (s)
-		{
-			case 'gameplay', 'appearence', 'misc':
-				refresh = false;
-
-				if (currentMenu == 'categories')
-					loadMenu(s);
-
-			case 'back':
-				refresh = false;
-
-				if (currentMenu != 'categories')
-					loadMenu('categories');
-				else
-					leave();
-
-			case 'dfjk keybinds':
-				FlxG.save.data.dfjk = !FlxG.save.data.dfjk;
-
-				if (FlxG.save.data.dfjk)
-					controls.setKeyboardScheme(KeyboardScheme.Solo, true);
-				else
-					controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
-
-			case 'hit timings / safe frames':
-				if (Conductor.safeFrames == 1)
-					Conductor.safeFrames = 20;
-				else
-					Conductor.safeFrames -= 1;
-
-				FlxG.save.data.frames = Conductor.safeFrames;
-
-				Conductor.recalculateTimings();
-
-			case 'fps cap':
-				if (FlxG.save.data.fpsCap > 290)
-					FlxG.save.data.fpsCap = 60;
-				else
-					FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
-				(cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
-
-			case 'custom scroll speed':
-				FlxG.save.data.scrollSpeed += 0.1;
-
-				if (FlxG.save.data.scrollSpeed < 1)
-					FlxG.save.data.scrollSpeed = 1;
-
-				if (FlxG.save.data.scrollSpeed > 10)
-					FlxG.save.data.scrollSpeed = 10;
-
-			case 'accuracy calculation':
-				FlxG.save.data.accuracyMod = FlxG.save.data.accuracyMod == 1 ? 0 : 1;
-
-			case 'offset changing':
-				Global.goIntoSong('Tutorial', 2, 0, false, true);
-
-			case 'song position bar':
-				FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
-
-			case 'downscroll layout':
-				FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
-
-			case 'rainbow fps':
-				FlxG.save.data.fpsRain = !FlxG.save.data.fpsRain;
-				(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(FlxColor.WHITE);
-
-			case 'accuracy information display':
-				FlxG.save.data.accuracyDisplay = !FlxG.save.data.accuracyDisplay;
-
-			case 'nps display':
-				FlxG.save.data.npsDisplay = !FlxG.save.data.npsDisplay;
-
-			case 'fps counter':
-				FlxG.save.data.fps = !FlxG.save.data.fps;
-				(cast(Lib.current.getChildAt(0), Main)).toggleFPS(FlxG.save.data.fps);
-
-			case 'watermarks':
-				Main.watermarks = !Main.watermarks;
-				FlxG.save.data.watermark = Main.watermarks;
-		}
-
-		if (refresh)
-		{
-			savedCurSelect = optionsMenuList.curSelect;
-			optionsMenuList.regenItems();
-
-			optionsMenuList.curSelect = savedCurSelect;
-			optionsMenuList.onSelectionChange.dispatch();
-		}
 	}
 
 	function leave()

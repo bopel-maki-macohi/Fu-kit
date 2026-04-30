@@ -274,7 +274,7 @@ class PlayState extends MusicBeatState
 			+ ") "
 			+ generateRanking(),
 			"\nAcc: "
-			+ truncateFloat(accuracy, 2)
+			+ CoolUtil.truncateFloat(accuracy, 2)
 			+ "% | Score: "
 			+ songScore
 			+ " | Misses: "
@@ -653,7 +653,7 @@ class PlayState extends MusicBeatState
 			+ ") "
 			+ generateRanking(),
 			"\nAcc: "
-			+ truncateFloat(accuracy, 2)
+			+ CoolUtil.truncateFloat(accuracy, 2)
 			+ "% | Score: "
 			+ songScore
 			+ " | Misses: "
@@ -872,7 +872,7 @@ class PlayState extends MusicBeatState
 				+ ") "
 				+ generateRanking(),
 				"Acc: "
-				+ truncateFloat(accuracy, 2)
+				+ CoolUtil.truncateFloat(accuracy, 2)
 				+ "% | Score: "
 				+ songScore
 				+ " | Misses: "
@@ -909,7 +909,7 @@ class PlayState extends MusicBeatState
 					+ ") "
 					+ generateRanking(),
 					"\nAcc: "
-					+ truncateFloat(accuracy, 2)
+					+ CoolUtil.truncateFloat(accuracy, 2)
 					+ "% | Score: "
 					+ songScore
 					+ " | Misses: "
@@ -945,7 +945,7 @@ class PlayState extends MusicBeatState
 			+ ") "
 			+ generateRanking(),
 			"\nAcc: "
-			+ truncateFloat(accuracy, 2)
+			+ CoolUtil.truncateFloat(accuracy, 2)
 			+ "% | Score: "
 			+ songScore
 			+ " | Misses: "
@@ -957,14 +957,6 @@ class PlayState extends MusicBeatState
 
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
-
-	function truncateFloat(number:Float, precision:Int):Float
-	{
-		var num = number;
-		num = num * Math.pow(10, precision);
-		num = Math.round(num) / Math.pow(10, precision);
-		return num;
-	}
 
 	function generateRanking():String
 	{
@@ -1138,7 +1130,7 @@ class PlayState extends MusicBeatState
 
 			if (FlxG.save.data.accuracyDisplay)
 			{
-				scoreTxt.text += ' | Accuracy: ${truncateFloat(accuracy, 2)}%';
+				scoreTxt.text += ' | Accuracy: ${CoolUtil.truncateFloat(accuracy, 2)}%';
 				scoreTxt.text += ' | ${generateRanking()}';
 			}
 		}
@@ -1312,7 +1304,7 @@ class PlayState extends MusicBeatState
 				+ ") "
 				+ generateRanking(),
 				"\nAcc: "
-				+ truncateFloat(accuracy, 2)
+				+ CoolUtil.truncateFloat(accuracy, 2)
 				+ "% | Score: "
 				+ songScore
 				+ " | Misses: "
@@ -2053,7 +2045,7 @@ class PlayState extends MusicBeatState
 			+ ") "
 			+ generateRanking(),
 			"Acc: "
-			+ truncateFloat(accuracy, 2)
+			+ CoolUtil.truncateFloat(accuracy, 2)
 			+ "% | Score: "
 			+ songScore
 			+ " | Misses: "
