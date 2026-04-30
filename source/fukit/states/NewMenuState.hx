@@ -1,5 +1,7 @@
 package fukit.states;
 
+import flixel.util.FlxColor;
+import flixel.FlxSprite;
 import flixel.text.FlxText;
 import fukit.states.ui.MenuList;
 import flixel.tweens.FlxEase;
@@ -9,6 +11,8 @@ import flixel.addons.display.FlxBackdrop;
 class NewMenuState extends MusicBeatState
 {
 	public var backdrop:FlxBackdrop;
+
+	public var blackBox:FlxSprite;
 
 	public var menuList:MenuList;
 
@@ -22,6 +26,10 @@ class NewMenuState extends MusicBeatState
 		backdrop.velocity.set(32, 32);
 
 		backdrop.antialiasing = false;
+
+		blackBox = new FlxSprite().makeGraphic(160, 320, FlxColor.BLACK);
+		blackBox.screenCenter();
+		add(blackBox);
 
 		menuList = new MenuList(Vertical);
 		add(menuList);
@@ -37,9 +45,9 @@ class NewMenuState extends MusicBeatState
 
 			text.screenCenter();
 			if (menuList.type == Vertical)
-				text.y = (menuList.members.length * 60) + 200;
+				text.y = (menuList.members.length * 60) + blackBox.y;
 			else
-				text.x = (menuList.members.length * 120) + 200;
+				text.x = (menuList.members.length * 120) + blackBox.x;
 
 			menuList.add(text);
 		}
