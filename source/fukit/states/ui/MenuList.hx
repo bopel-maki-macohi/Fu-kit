@@ -1,0 +1,103 @@
+package fukit.states.ui;
+
+import flixel.util.FlxSignal;
+import flixel.FlxSprite;
+import flixel.FlxBasic;
+import flixel.group.FlxGroup.FlxTypedGroup;
+
+enum MenuListType
+{
+	Vertical;
+	Horizontal;
+}
+
+class MenuList extends FlxTypedGroup<FlxBasic>
+{
+	public var items:Map<String, Void->Void>;
+
+	public var itemKeys(get, never):Array<String>;
+
+	function get_itemKeys():Array<String>
+	{
+		return [for (item => method in items) item];
+	}
+
+	private var controls(get, never):Controls;
+
+	inline function get_controls():Controls
+		return PlayerSettings.player1.controls;
+
+	public var type:MenuListType;
+
+	override public function new(type:MenuListType)
+	{
+		super();
+
+		this.type = type;
+	}
+
+	public var curSelect:Int = 0;
+
+	public var onRegenItems:FlxSignal = new FlxSignal();
+	public var onSelectionChange:FlxSignal = new FlxSignal();
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		var prevSelect:Int = curSelect;
+
+		if (type == Vertical)
+		{
+			if (controls.UP_P)
+				curSelect--;
+			if (controls.DOWN_P)
+				curSelect++;
+		}
+
+		if (type == Horizontal)
+		{
+			if (controls.LEFT_P)
+				curSelect--;
+			if (controls.RIGHT_P)
+				curSelect++;
+		}
+
+		if (curSelect < 0)
+			curSelect = itemKeys.length - 1;
+		if (curSelect > itemKeys.length - 1)
+			curSelect = 0;
+
+		if (curSelect != prevSelect)
+			onSelectionChange.dispatch();
+	}
+
+	public function regenItems()
+	{
+		clear();
+
+		for (item in itemKeys)
+			addItem(item);
+
+		onRegenItems.dispatch();
+	}
+
+	/**
+	 * Add your sprites
+	 */
+	public dynamic function addItem(item:String)
+	{
+		var sprite:FlxSprite = new FlxSprite().makeGraphic(64, 64);
+
+		sprite.screenCenter();
+
+		if (type == Vertical)
+			sprite.y = (members.length * 60);
+        else
+			sprite.x = (members.length * 120);
+
+		sprite.ID = members.length;
+
+		add(sprite);
+	}
+}
