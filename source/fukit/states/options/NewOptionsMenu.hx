@@ -1,5 +1,6 @@
 package fukit.states.options;
 
+import flixel.math.FlxMath;
 import openfl.Lib;
 import Controls.KeyboardScheme;
 import flixel.util.FlxColor;
@@ -114,7 +115,8 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		optionsMenuList.screenCenter(Y);
 
-		blackBox.scale.set(optionsMenuList.width * 1.5, FlxG.height);
+		blackBox.scale.x = FlxMath.lerp(blackBox.scale.x, optionsMenuList.width * 1.5, .1);
+		blackBox.scale.y = FlxMath.lerp(blackBox.scale.y, FlxG.height, .1);
 		blackBox.updateHitbox();
 
 		blackBox.x = optionsMenuList.members[0].getGraphicMidpoint().x - (blackBox.width / 2);
