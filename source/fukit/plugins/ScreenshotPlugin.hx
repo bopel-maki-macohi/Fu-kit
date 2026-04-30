@@ -1,5 +1,6 @@
 package fukit.plugins;
 
+import fukit.util.DateUtil;
 import openfl.desktop.Clipboard;
 import openfl.utils.ByteArray;
 import flixel.util.FlxColor;
@@ -73,7 +74,7 @@ class ScreenshotPlugin extends FlxBasic
 
 		lastDate = currentDate;
 
-		var formatText:String = 'Screenshot ${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()} ${Math.round(currentDate.getTime() / 1000)}';
+		var formatText:String = 'Screenshot ${DateUtil.generateFileTimestamp(currentDate)}';
 
 		var path:String = '$SCREENSHOT_DIRECTORY/$formatText.png';
 
