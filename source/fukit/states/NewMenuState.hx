@@ -67,7 +67,10 @@ class NewMenuState extends MusicBeatState
 
 	function freeplayOption() {}
 
-	function optionsOption() {}
+	function optionsOption()
+	{
+		FlxG.switchState(() -> new OptionsMenu());
+	}
 
 	function exitOption()
 	{
