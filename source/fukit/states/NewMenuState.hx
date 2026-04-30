@@ -1,5 +1,6 @@
 package fukit.states;
 
+import flixel.util.FlxTimer;
 import flixel.FlxSubState;
 import fukit.states.options.NewOptionsMenu;
 import fukit.objects.Logo;
@@ -74,7 +75,11 @@ class NewMenuState extends MusicBeatState
 
 		if (startingEntry != null)
 		{
-			menuList.accept(startingEntry);
+			startingEntry = null;
+			FlxTimer.wait(transIn?.duration ?? 1, () ->
+			{
+				menuList.accept(startingEntry);
+			});
 		}
 	}
 
