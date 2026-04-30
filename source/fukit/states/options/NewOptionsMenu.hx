@@ -44,6 +44,13 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 	public var blackBox:FlxSprite;
 
+	override public function new()
+	{
+		super();
+
+		closeCallback = drawOnLeave;
+	}
+
 	function loadMenu(menu:String)
 	{
 		if (optionsMenuList == null)
