@@ -1,6 +1,6 @@
 @echo off
 
-lime build windows -clean
+lime build windows
 
 cd export/release/windows/bin
 
