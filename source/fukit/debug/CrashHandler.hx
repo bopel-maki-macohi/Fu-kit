@@ -42,6 +42,7 @@ class CrashHandler
 	static function onUncaughtError(event:UncaughtErrorEvent)
 	{
 		var path:String = '$CRASH_DIRECTORY/Crash Log ${DateUtil.generateCurrentFileTimestamp()}.log';
+		final spacing:String = '--------------------------------\n';
 
 		if (!FileSystem.exists(CRASH_DIRECTORY))
 			FileSystem.createDirectory(CRASH_DIRECTORY);
@@ -74,7 +75,12 @@ class CrashHandler
 			}
 		}
 
-		errorMessage += '\n';
+		errorMessage += '\n$spacing\n';
+		
+		errorMessage += 'Mod version: ${Global.watermarkText}\n';
+		
+		errorMessage += '\n$spacing\n';
+
 		errorMessage += 'Crash log saved to "$path"\n';
 		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
 
