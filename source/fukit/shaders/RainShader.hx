@@ -43,4 +43,46 @@ class RainShader extends FlxRuntimeShader
 
 		return uIntensity;
 	}
+	
+	public var uCameraBounds(get, set):Array<Float>;
+
+	function get_uCameraBounds():Array<Float>
+	{
+		return getFloatArray('uCameraBounds');
+	}
+
+	function set_uCameraBounds(uCameraBounds:Array<Float>):Array<Float>
+	{
+        setFloatArray('uCameraBounds', uCameraBounds);
+
+		return uCameraBounds;
+	}
+
+	public var uScale(get, set):Float;
+
+	function get_uScale():Float
+	{
+		return getFloat('uScale');
+	}
+
+	function set_uScale(uScale:Float):Float
+	{
+        setFloat('uScale', uScale);
+
+		return uScale;
+	}
+	
+	public var uScreenResolution(get, set):Array<Float>;
+
+	function get_uScreenResolution():Array<Float>
+	{
+		return getFloatArray('uScreenResolution');
+	}
+
+	function set_uScreenResolution(uScreenResolution:Array<Float>):Array<Float>
+	{
+        setFloatArray('uScreenResolution', uScreenResolution);
+
+		return uScreenResolution;
+	}
 }

@@ -54,9 +54,9 @@ class World1Song extends SongComponent
 		// }
 
 		rainShader = new RainShader();
-		rainShader.setFloatArray('uScreenResolution', [FlxG.width, FlxG.height]);
+		rainShader.uScreenResolution = [FlxG.width, FlxG.height];
 		rainShader.uTime = 0;
-		rainShader.setFloat('uScale', FlxG.height / 200);
+		rainShader.uScale = FlxG.height / 200;
 		rainShader.uIntensity = rainIntensity;
 
 		game.camGame.filters = [new ShaderFilter(rainShader)];
@@ -149,12 +149,12 @@ class World1Song extends SongComponent
 		}
 
 		heartRad += elapsed;
-		rainShader.setFloatArray('uCameraBounds', [
+		rainShader.uCameraBounds = [
 			game.camGame.scroll.x + game.camGame.viewMarginX,
 			game.camGame.scroll.y + game.camGame.viewMarginY,
 			game.camGame.scroll.x + game.camGame.viewMarginX + game.camGame.width,
 			game.camGame.scroll.y + game.camGame.viewMarginY + game.camGame.height
-		]);
+		];
 		rainShader.uTime = heartRad;
 		rainShader.uIntensity = rainIntensity;
 	}
