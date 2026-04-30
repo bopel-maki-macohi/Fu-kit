@@ -2,7 +2,7 @@ package fukit.states;
 
 import flixel.util.FlxTimer;
 import flixel.FlxSubState;
-import fukit.states.options.NewOptionsMenu;
+import fukit.states.NewOptionsMenu;
 import fukit.objects.Logo;
 import flixel.FlxG;
 import flixel.util.FlxColor;

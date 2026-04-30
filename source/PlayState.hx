@@ -1,6 +1,6 @@
 package;
 
-import fukit.states.options.NewOptionsMenu;
+import fukit.states.NewOptionsMenu;
 import fukit.states.NewMenuState;
 import fukit.Global;
 import flixel.group.FlxContainer;
