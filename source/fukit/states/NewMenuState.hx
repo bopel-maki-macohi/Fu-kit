@@ -10,7 +10,7 @@ class NewMenuState extends MusicBeatState
 	{
 		super.create();
 
-        backdrop = new FlxBackdrop(null);
+        backdrop = new FlxBackdrop(Paths.image('tile', 'fu-kit'));
         add(backdrop);
         backdrop.velocity.set(32, 32);
 	}
