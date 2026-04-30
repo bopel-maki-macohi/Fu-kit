@@ -55,6 +55,8 @@ class NewMenuState extends MusicBeatState
 
 		logo.screenCenter();
 		logo.y = -32;
+
+		persistentUpdate = true;
 	}
 
 	override function beatHit()
@@ -70,10 +72,17 @@ class NewMenuState extends MusicBeatState
 
 	function optionsOption()
 	{
+		FlxG.sound.play(Paths.sound('confirmMenu'));
 		menuList.canSelect = false;
 
-		FlxTween.tween(menuList, {x: FlxG.width}, 1, {
-			ease: FlxEase.expoOut
+		FlxTween.tween(logo, {x: logo.x + FlxG.width}, 4, {
+			ease: FlxEase.sineInOut
+		});
+		FlxTween.tween(blackBox, {x: blackBox.x + FlxG.width}, 4, {
+			ease: FlxEase.sineInOut
+		});
+		FlxTween.tween(menuList, {x: menuList.x + FlxG.width}, 4, {
+			ease: FlxEase.sineInOut
 		});
 
 		openSubState(new NewOptionsMenu());
@@ -81,6 +90,8 @@ class NewMenuState extends MusicBeatState
 
 	function exitOption()
 	{
+		FlxG.sound.play(Paths.sound('cancelMenu'));
+		Sys.sleep(1);
 		Sys.exit(0);
 	}
 
