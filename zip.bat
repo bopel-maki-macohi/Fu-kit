@@ -1,4 +1,4 @@
-lime build windows
+lime build windows -clean
 
 cd export/release/windows/bin
 
