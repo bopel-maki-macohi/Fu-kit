@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Fu-Kit" file="Fukit" package="com.maki.fukit" main="Main" version="1.5" company="Maki" />
+	<app title="Fu-Kit" file="Fukit" package="com.maki.fukit" main="Main" version="1.5.1" company="Maki" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
