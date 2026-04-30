@@ -11,12 +11,13 @@ class SplashTextState extends MusicBeatState
 		super.create();
 
 		var wackyStr = FlxG.random.getObject(CoolUtil.coolTextFile(Paths.txt('introText')));
-        wackyList = wackyStr.split('--');
-        trace('wackyList: $wackyList');
+		wackyList = wackyStr.split('--');
+		trace('wackyList: $wackyList');
 
 		Conductor.changeBPM(75);
 
 		FlxG.sound.playMusic(Paths.music('StartupJingle', 'fu-kit'), 1.0, false);
+		FlxG.sound.music.onComplete = onEnd;
 	}
 
 	override function update(elapsed:Float)
@@ -25,5 +26,10 @@ class SplashTextState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+	}
+
+	function onEnd()
+	{
+		FlxG.switchState(() -> new MainMenuState());
 	}
 }
