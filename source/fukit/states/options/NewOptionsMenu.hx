@@ -1,5 +1,9 @@
 package fukit.states.options;
 
+import flixel.util.FlxColor;
+import flixel.FlxSprite;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
 import fukit.states.ui.MenuList;
 import flixel.FlxG;
@@ -32,21 +36,29 @@ class NewOptionsMenu extends MusicBeatSubstate
 		'misc' => [#if desktop 'FPS Counter', #end 'Watermarks'],
 	];
 
-	var currentMenu:String = '';
+	public var currentMenu:String = '';
+
+	public var blackBox:FlxSprite;
 
 	function loadMenu(menu:String)
 	{
-		if (!optionsMenus.exists(menu.toLowerCase()))
+		if (optionsMenuList == null)
 			return;
-		if (optionsMenus.get(menu.toLowerCase()).length > 0)
+
+		menu = menu.toLowerCase();
+
+		if (!optionsMenus.exists(menu))
 			return;
-		if (optionsMenuList != null)
+
+		trace(optionsMenus.get(menu));
+
+		if (optionsMenus.get(menu).length < 1)
 			return;
 
 		optionsMenuList.items.clear();
 
 		currentMenu = menu;
-		for (item in optionsMenus.get(menu.toLowerCase()))
+		for (item in optionsMenus.get(menu))
 			optionsMenuList.addEntry(item, () -> onItem(item.toLowerCase()));
 
 		optionsMenuList.regenItems();
@@ -56,19 +68,44 @@ class NewOptionsMenu extends MusicBeatSubstate
 	{
 		super.create();
 
+		blackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+		add(blackBox);
+
 		optionsMenuList = new MenuList(Vertical);
 		add(optionsMenuList);
+		optionsMenuList.addItem = addItem;
+
+		optionsMenuList.x = -FlxG.width;
 
 		loadMenu('categories');
+		optionsMenuList.canSelect = false;
+
+		FlxTween.tween(optionsMenuList, {x: 0}, 4, {
+			ease: FlxEase.expoOut,
+			onComplete: t ->
+			{
+				optionsMenuList.canSelect = true;
+			}
+		});
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
+		blackBox.scale.set(optionsMenuList.width, optionsMenuList.height);
+		blackBox.screenCenter();
+
 		if (controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'));
+
+			FlxTween.cancelTweensOf(optionsMenuList);
+			optionsMenuList.canSelect = false;
+			FlxTween.tween(optionsMenuList, {x: -FlxG.width}, 2, {
+				ease: FlxEase.expoOut,
+			});
+
 			close();
 		}
 	}
