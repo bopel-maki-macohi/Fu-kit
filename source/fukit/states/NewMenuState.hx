@@ -37,39 +37,26 @@ class NewMenuState extends MusicBeatState
 		menuList = new MenuList(Vertical);
 		add(menuList);
 
-		menuList.addEntry('Story Mode', null);
-		menuList.addEntry('Freeplay', null);
-		menuList.addEntry('Options', null);
-		menuList.addEntry('Exit', () -> Sys.exit(0));
+		menuList.addEntry('Story Mode', storymodeOption);
+		menuList.addEntry('Freeplay', freeplayOption);
+		menuList.addEntry('Options', optionsOption);
+		menuList.addEntry('Exit', exitOption);
 
-		menuList.addItem = function(item:String)
-		{
-			var text:FlxText = new FlxText(0, 0, 0, item, 16);
-
-			text.screenCenter();
-			if (menuList.type == Vertical)
-				text.y = (menuList.members.length * 60) + 60 + blackBox.y;
-			else
-				text.x = (menuList.members.length * 120) + 60 + blackBox.x;
-			text.ID = menuList.members.length;
-
-			menuList.add(text);
-		}
-
-		menuList.onSelectionChange.add(function()
-		{
-			for (basic in menuList.members)
-			{
-				var text:FlxText = cast(basic, FlxText);
-
-				if (text != null)
-					text.color = (menuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
-			}
-
-			FlxG.sound.play(Paths.sound('scrollMenu'));
-		});
+		menuList.addItem = addItem;
+		menuList.onSelectionChange.add(onSelectionChange);
 
 		menuList.regenItems();
+	}
+
+	function storymodeOption() {}
+
+	function freeplayOption() {}
+
+	function optionsOption() {}
+
+	function exitOption()
+	{
+		Sys.exit(0);
 	}
 
 	override function update(elapsed:Float)
@@ -77,5 +64,32 @@ class NewMenuState extends MusicBeatState
 		super.update(elapsed);
 
 		Global.playMainTheme();
+	}
+
+	function addItem(item:String)
+	{
+		var text:FlxText = new FlxText(0, 0, 0, item, 16);
+
+		text.screenCenter();
+		if (menuList.type == Vertical)
+			text.y = (menuList.members.length * 60) + 60 + blackBox.y;
+		else
+			text.x = (menuList.members.length * 120) + 60 + blackBox.x;
+		text.ID = menuList.members.length;
+
+		menuList.add(text);
+	}
+
+	function onSelectionChange()
+	{
+		for (basic in menuList.members)
+		{
+			var text:FlxText = cast(basic, FlxText);
+
+			if (text != null)
+				text.color = (menuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
+		}
+
+		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
