@@ -91,8 +91,6 @@ class ScreenshotPlugin extends FlxBasic
 		FlxG.sound.play(Paths.sound('screenshot', 'shared'));
 	}
 
-	public var fancyPreviewTween:FlxTween;
-
 	function showFancyPreview(data:BitmapData)
 	{
 		var previewSprite:Bitmap = new Bitmap(data);
@@ -106,10 +104,18 @@ class ScreenshotPlugin extends FlxBasic
 
 		FlxG.stage.addChild(flashSprite);
 
-		FlxTween.tween(flashSprite, {
+		var fancyPreviewTween:FlxTween;
+		var fancyPreviewFlashTween:FlxTween;
+
+		fancyPreviewFlashTween = FlxTween.tween(flashSprite, {
 			alpha: 0
 		}, 1, {
-			ease: FlxEase.sineInOut
+			ease: FlxEase.sineInOut,
+			onComplete: t ->
+			{
+				FlxG.stage.removeChild(flashSprite);
+				fancyPreviewFlashTween.destroy();
+			}
 		});
 
 		fancyPreviewTween = FlxTween.tween(previewSprite, {
@@ -129,5 +135,21 @@ class ScreenshotPlugin extends FlxBasic
 				fancyPreviewTween.destroy();
 			}
 		}));
+
+		function stateTransition()
+		{
+			fancyPreviewTween.cancel();
+			fancyPreviewFlashTween.cancel();
+
+			FlxG.stage.removeChild(previewSprite);
+			previewSprite.bitmapData.dispose();
+
+			fancyPreviewTween.destroy();
+			fancyPreviewFlashTween.destroy();
+
+			FlxG.signals.postStateSwitch.remove(stateTransition);
+		}
+
+		FlxG.signals.postStateSwitch.add(stateTransition);
 	}
 }
