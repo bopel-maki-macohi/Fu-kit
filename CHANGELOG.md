@@ -4,6 +4,7 @@ Hi
 
 ## Unreleased
 
+- The screenshot fancy preview is now disabled during gameplay
 - Fixed screenshot tweens being cancelled when the menu switches
 
 ## 1.5 - 4/29/2026

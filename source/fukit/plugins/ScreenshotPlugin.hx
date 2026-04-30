@@ -80,7 +80,13 @@ class ScreenshotPlugin extends FlxBasic
 
 		File.saveBytes(path, bytes);
 
-		showFancyPreview(data);
+		var fancyPreviewEnabled:Bool = true;
+
+		if (Std.isOfType(FlxG.state, PlayState))
+			fancyPreviewEnabled = false;
+
+		if (fancyPreviewEnabled)
+			showFancyPreview(data);
 
 		FlxG.sound.play(Paths.sound('screenshot', 'shared'));
 	}
