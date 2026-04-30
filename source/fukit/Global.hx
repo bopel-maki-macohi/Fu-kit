@@ -37,7 +37,7 @@ class Global
 
 	public static function playMainTheme()
 	{
-		if (FlxG.sound.music != null) return;
+		if (FlxG.sound.music != null && FlxG.sound.music?.playing) return;
 
 		Conductor.changeBPM(120);
 		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'));
