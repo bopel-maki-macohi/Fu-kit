@@ -93,6 +93,12 @@ class MenuList extends FlxTypedSpriteGroup<FlxSprite>
 
 	public function regenItems()
 	{
+		for (item in members)
+		{
+			members.remove(item);
+			item.destroy();
+		}
+
 		clear();
 
 		for (item in itemKeys)

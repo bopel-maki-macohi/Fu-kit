@@ -15,6 +15,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 	public var optionsMenus:Map<String, Array<String>> = [
 		'categories' => ['Gameplay', 'Appearence', 'Misc',],
 		'gameplay' => [
+			'Back',
 			'DFJK Keybinds',
 			'Hit Timings / Safe Frames',
 			#if desktop
@@ -25,6 +26,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 			'Offset Changing',
 		],
 		'appearence' => [
+			'Back',
 			'Song Position Bar',
 			'Downscroll Layout',
 			#if desktop
@@ -33,7 +35,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 			'Accuracy Information Display',
 			'NPS Display',
 		],
-		'misc' => [#if desktop 'FPS Counter', #end 'Watermarks'],
+		'misc' => ['Back', #if desktop 'FPS Counter', #end 'Watermarks'],
 	];
 
 	public var currentMenu:String = '';
@@ -55,7 +57,10 @@ class NewOptionsMenu extends MusicBeatSubstate
 		if (optionsMenus.get(menu).length < 1)
 			return;
 
-		optionsMenuList.items.clear();
+		for (key => item in optionsMenuList.items)
+		{
+			optionsMenuList.items.remove(key);
+		};
 
 		currentMenu = menu;
 		for (item in optionsMenus.get(menu))
@@ -74,14 +79,15 @@ class NewOptionsMenu extends MusicBeatSubstate
 		optionsMenuList = new MenuList(Vertical);
 		add(optionsMenuList);
 		optionsMenuList.addItem = addItem;
+		optionsMenuList.onSelectionChange.add(onSelectionChange);
 
 		optionsMenuList.x = -FlxG.width;
 
 		loadMenu('categories');
 		optionsMenuList.canSelect = false;
 
-		FlxTween.tween(optionsMenuList, {x: 0}, 4, {
-			ease: FlxEase.expoOut,
+		FlxTween.tween(optionsMenuList, {x: 0}, 2.2, {
+			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
 				optionsMenuList.canSelect = true;
@@ -93,20 +99,18 @@ class NewOptionsMenu extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
-		blackBox.scale.set(optionsMenuList.width, optionsMenuList.height);
-		blackBox.screenCenter();
+		optionsMenuList.screenCenter(Y);
 
-		if (controls.BACK)
+		blackBox.scale.set(optionsMenuList.width * 1.1, optionsMenuList.height * 1.1);
+		blackBox.updateHitbox();
+
+		blackBox.screenCenter(Y);
+
+		blackBox.x = optionsMenuList.members[0].getGraphicMidpoint().x - (blackBox.width / 2);
+
+		if (controls.BACK && optionsMenuList.canSelect)
 		{
-			FlxG.sound.play(Paths.sound('cancelMenu'));
-
-			FlxTween.cancelTweensOf(optionsMenuList);
-			optionsMenuList.canSelect = false;
-			FlxTween.tween(optionsMenuList, {x: -FlxG.width}, 2, {
-				ease: FlxEase.expoOut,
-			});
-
-			close();
+			leave();
 		}
 	}
 
@@ -125,9 +129,22 @@ class NewOptionsMenu extends MusicBeatSubstate
 		optionsMenuList.add(text);
 	}
 
+	function onSelectionChange()
+	{
+		for (basic in optionsMenuList.members)
+		{
+			var text:FlxText = cast(basic, FlxText);
+
+			if (text != null)
+				text.color = (optionsMenuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
+		}
+
+		FlxG.sound.play(Paths.sound('scrollMenu'));
+	}
+
 	function getItem(s:String):String
 	{
-		trace('get(${currentMenu}_${s.toLowerCase()})');
+		trace('get(${currentMenu} : ${s})');
 
 		switch (s.toLowerCase()) {}
 
@@ -136,8 +153,35 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 	function onItem(s:String)
 	{
-		trace('on(${currentMenu}_${s})');
+		trace('on(${currentMenu} : ${s})');
 
-		switch (s) {}
+		switch (s)
+		{
+			case 'gameplay', 'appearence', 'misc':
+				if (currentMenu == 'categories')
+					loadMenu(s);
+			case 'back':
+				if (currentMenu != 'categories')
+					loadMenu('categories');
+				else
+					leave();
+		}
+	}
+
+	function leave()
+	{
+		FlxG.sound.play(Paths.sound('cancelMenu'));
+
+		FlxTween.cancelTweensOf(optionsMenuList);
+
+		optionsMenuList.canSelect = false;
+
+		FlxTween.tween(optionsMenuList, {x: -FlxG.width}, 2.2, {
+			ease: FlxEase.expoInOut,
+			onComplete: t ->
+			{
+				close();
+			}
+		});
 	}
 }
