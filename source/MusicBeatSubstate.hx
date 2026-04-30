@@ -9,6 +9,8 @@ class MusicBeatSubstate extends FlxSubState
 	public function new()
 	{
 		super();
+
+		closeCallback = onClose;
 	}
 
 	private var lastBeat:Float = 0;
@@ -64,16 +66,13 @@ class MusicBeatSubstate extends FlxSubState
 
 	function onClose()
 	{
-		if (this._parentState != null)
-		{
-			@:privateAccess
-			if (this._parentState._requestedSubState == null)
-				return;
+		if (this._parentState == null)
+			return;
+		@:privateAccess
+		if (this._parentState._requestedSubState == null)
+			return;
 
-			for (basic in members)
-			{
-				FlxG.state.add(basic);
-			}
-		}
+		for (basic in members)
+			FlxG.state.add(basic);
 	}
 }
