@@ -50,96 +50,12 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-		#end
-
-		#if sys
-		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
-			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
-		#end
-
-		@:privateAccess
-		{
-			for (id => library in lime.utils.Assets.libraries)
-			{
-				var libraryAssets = [];
-
-				for (asset in library.list('BINARY'))
-					if (StringTools.startsWith(asset, 'assets/'))
-						libraryAssets.push(asset);
-
-				trace('${id.toUpperCase()} : ${libraryAssets.length} asset(s)');
-				// trace(' - ' + libraryAssets);
-			}
-		}
-
-		PlayerSettings.init();
-
-		#if windows
-		DiscordClient.initialize();
-
-		Application.current.onExit.add(function(exitCode)
-		{
-			DiscordClient.shutdown();
-		});
-		#end
-
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		// DEBUG BULLSHIT
-
-		super.create();
-
-		FlxG.save.bind('fu-kit', 'Maki');
-
-		function onTheExit(i)
-		{
-			FlxG.save.flush();
-		}
-
-		if (!Application.current.onExit.has(onTheExit))
-			Application.current.onExit.add(onTheExit);
-
-		KadeEngineData.initSave();
-
-		Highscore.load();
-
-		if (FlxG.save.data.weekUnlocked != null)
-		{
-			// FIX LATER!!!
-			// WEEK UNLOCK PROGRESSION!!
-			// StoryMenuState.weekUnlocked = FlxG.save.data.weekUnlocked;
-
-			if (StoryMenuState.weekUnlocked.length < 4)
-				StoryMenuState.weekUnlocked.insert(0, true);
-
-			// QUICK PATCH OOPS!
-			if (!StoryMenuState.weekUnlocked[0])
-				StoryMenuState.weekUnlocked[0] = true;
-		}
-
-		FlxSprite.defaultAntialiasing = true;
-
-		ScreenshotPlugin.init();
-		CrashHandler.init();
-
-		#if FREEPLAY
-		FlxG.switchState(() -> new FreeplayState());
-		#elseif CHARTING
-		FlxG.switchState(() -> new ChartingState());
-		#elseif ANIMDEBUG
-		FlxG.switchState(() -> new AnimationDebug('arpe'));
-		#elseif SONG
-		fukit.Global.goIntoSong('Wetway', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
-		#elseif STORYMENU
-		FlxG.switchState(() -> new StoryMenuState());
-		#else
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
 		});
-		#end
 	}
 
 	var logoBl:FlxSprite;
@@ -151,26 +67,6 @@ class TitleState extends MusicBeatState
 	{
 		if (!initialized)
 		{
-			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
-			diamond.persist = true;
-			diamond.destroyOnNoUse = false;
-
-			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), {asset: diamond, width: 32, height: 32},
-				new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
-			FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1),
-				{asset: diamond, width: 32, height: 32}, new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
-
-			transIn = FlxTransitionableState.defaultTransIn;
-			transOut = FlxTransitionableState.defaultTransOut;
-
-			// HAD TO MODIFY SOME BACKEND SHIT
-			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
-			// https://github.com/HaxeFlixel/flixel-addons/pull/348
-
-			// var music:FlxSound = new FlxSound();
-			// music.loadStream(Paths.music('freakyMenu'));
-			// FlxG.sound.list.add(music);
-			// music.play();
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);

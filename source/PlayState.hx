@@ -1,5 +1,6 @@
 package;
 
+import fukit.Global;
 import flixel.group.FlxContainer;
 import flixel.group.FlxSpriteGroup;
 import fukit.play.songs.*;
@@ -1479,6 +1480,7 @@ class PlayState extends MusicBeatState
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
+		
 		if (SONG.validScore)
 		{
 			#if !switch
@@ -1492,68 +1494,48 @@ class PlayState extends MusicBeatState
 			offsetTesting = false;
 			LoadingState.loadAndSwitchState(new OptionsMenu());
 			FlxG.save.data.offset = offsetTest;
+
+			return;
+		}
+
+		if (!isStoryMode)
+		{
+			trace('WENT BACK TO FREEPLAY??');
+			FlxG.switchState(() -> new FreeplayState());
+
+			return;
+		}
+
+		campaignScore += Math.round(songScore);
+
+		storyPlaylist.remove(storyPlaylist[0]);
+
+		if (storyPlaylist.length <= 0)
+		{
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+
+			if (lua != null)
+			{
+				#if LUA_ALLOWED
+				Lua.close(lua);
+				#end
+				lua = null;
+			}
+
+			if (SONG.validScore)
+				Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+
+			FlxG.switchState(() -> new StoryMenuState());
 		}
 		else
 		{
-			if (isStoryMode)
-			{
-				campaignScore += Math.round(songScore);
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
 
-				storyPlaylist.remove(storyPlaylist[0]);
+			prevCamFollow = camFollow;
 
-				if (storyPlaylist.length <= 0)
-				{
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-
-					transIn = FlxTransitionableState.defaultTransIn;
-					transOut = FlxTransitionableState.defaultTransOut;
-
-					FlxG.switchState(() -> new StoryMenuState());
-
-					if (lua != null)
-					{
-						#if LUA_ALLOWED
-						Lua.close(lua);
-						#end
-						lua = null;
-					}
-
-					// if ()
-					StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
-
-					if (SONG.validScore)
-						Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
-
-					FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
-				}
-				else
-				{
-					var difficulty:String = "";
-
-					if (storyDifficulty == 0)
-						difficulty = '-easy';
-
-					if (storyDifficulty == 2)
-						difficulty = '-hard';
-
-					trace('LOADING NEXT SONG');
-					trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
-
-					FlxTransitionableState.skipNextTransIn = true;
-					FlxTransitionableState.skipNextTransOut = true;
-					prevCamFollow = camFollow;
-
-					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
-					FlxG.sound.music.stop();
-
-					LoadingState.loadAndSwitchState(new PlayState());
-				}
-			}
-			else
-			{
-				trace('WENT BACK TO FREEPLAY??');
-				FlxG.switchState(() -> new FreeplayState());
-			}
+			FlxG.sound.music.stop();
+			Global.goIntoSong(PlayState.storyPlaylist[0].toLowerCase(), storyDifficulty, storyWeek);
 		}
 	}
 

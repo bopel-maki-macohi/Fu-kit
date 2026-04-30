@@ -58,9 +58,6 @@ class StoryMenuState extends MusicBeatState
 		DiscordClient.changePresence("In the Story Mode Menu", null);
 		#end
 
-		transIn = FlxTransitionableState.defaultTransIn;
-		transOut = FlxTransitionableState.defaultTransOut;
-
 		if (FlxG.sound.music != null)
 		{
 			if (!FlxG.sound.music.playing)
