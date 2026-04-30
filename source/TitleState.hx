@@ -1,5 +1,6 @@
 package;
 
+import fukit.debug.CrashHandler;
 import fukit.plugins.ScreenshotPlugin;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -121,6 +122,7 @@ class TitleState extends MusicBeatState
 		FlxSprite.defaultAntialiasing = true;
 
 		ScreenshotPlugin.init();
+		CrashHandler.init();
 
 		#if FREEPLAY
 		FlxG.switchState(() -> new FreeplayState());
