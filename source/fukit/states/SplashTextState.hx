@@ -39,34 +39,20 @@ class SplashTextState extends MusicBeatState
 		FlxG.switchState(() -> new MainMenuState());
 	}
 
-	var mylastbeat:Int = 0;
+	var mylaststep:Int = 0;
 
-	override function beatHit()
+	override function stepHit()
 	{
-		super.beatHit();
+		super.stepHit();
 
-		if (mylastbeat < curBeat)
+		if (mylaststep < curStep)
 		{
-			trace(mylastbeat);
+			trace(mylaststep);
 
-			function addTextsForLengthAtBeats(len:Int, beats:Array<Int>)
-			{
-				if (wackyList.length == len)
-					for (i => beat in beats)
-					{
-						if (mylastbeat == beat)
-							addText(wackyList[i]);
-					}
-			}
+			if (wackyList.length - 1 >= mylaststep)
+				addText(wackyList[mylaststep]);
 
-			addTextsForLengthAtBeats(1, [3]);
-			addTextsForLengthAtBeats(2, [0, 3]);
-			addTextsForLengthAtBeats(3, [0, 2, 4]);
-			addTextsForLengthAtBeats(4, [0, 1, 3, 4]);
-			addTextsForLengthAtBeats(5, [0, 1, 2, 3, 5]);
-			addTextsForLengthAtBeats(6, [0, 1, 2, 3, 4, 5]);
-
-			mylastbeat++;
+			mylaststep++;
 		}
 	}
 
