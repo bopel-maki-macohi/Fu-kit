@@ -32,6 +32,12 @@ class SplashTextState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+
+		if (controls.ACCEPT)
+		{
+			FlxG.sound.music.stop();
+			onEnd();
+		}
 	}
 
 	function onEnd()
