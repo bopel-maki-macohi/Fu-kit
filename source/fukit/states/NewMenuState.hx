@@ -38,6 +38,7 @@ class NewMenuState extends MusicBeatState
 		blackBox = new FlxSprite().makeGraphic(240, 320, FlxColor.BLACK);
 		blackBox.screenCenter();
 		add(blackBox);
+		blackBox.alpha = .3;
 
 		blackBox.y += 160;
 
@@ -105,7 +106,7 @@ class NewMenuState extends MusicBeatState
 		FlxTween.tween(logo, {x: logo.x + translationOffsets}, 2, {
 			ease: FlxEase.expoInOut
 		});
-		FlxTween.tween(blackBox, {x: blackBox.x + translationOffsets}, 2.1, {
+		FlxTween.tween(blackBox, {x: blackBox.x + translationOffsets, alpha: (comingBack) ? .3 : .0}, 2.2, {
 			ease: FlxEase.expoInOut
 		});
 		FlxTween.tween(menuList, {x: menuList.x + translationOffsets}, 2.2, {
