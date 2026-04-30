@@ -53,7 +53,7 @@ class NewMenuState extends MusicBeatState
 		add(logo);
 
 		logo.screenCenter();
-		logo.y = 0;
+		logo.y = -32;
 	}
 
 	override function beatHit()
