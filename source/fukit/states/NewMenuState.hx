@@ -78,11 +78,15 @@ class NewMenuState extends MusicBeatState
 		FlxTween.tween(logo, {x: logo.x + FlxG.width}, 4, {
 			ease: FlxEase.sineInOut
 		});
-		FlxTween.tween(blackBox, {x: blackBox.x + FlxG.width}, 4, {
+		FlxTween.tween(blackBox, {x: blackBox.x + FlxG.width}, 2, {
 			ease: FlxEase.sineInOut
 		});
-		FlxTween.tween(menuList, {x: menuList.x + FlxG.width}, 4, {
+		FlxTween.tween(menuList, {x: menuList.x + FlxG.width}, 2, {
 			ease: FlxEase.sineInOut
+		});
+
+		FlxTween.tween(backdrop.velocity, {x: -32}, 3, {
+			ease: FlxEase.backInOut
 		});
 
 		openSubState(new NewOptionsMenu());
