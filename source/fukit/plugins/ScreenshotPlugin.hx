@@ -105,8 +105,8 @@ class ScreenshotPlugin extends FlxBasic
 
 		FlxG.stage.addChild(flashSprite);
 
-		var fancyPreviewTween:FlxTween;
-		var fancyPreviewFlashTween:FlxTween;
+		var fancyPreviewTween:FlxTween = null;
+		var fancyPreviewFlashTween:FlxTween = null;
 
 		fancyPreviewFlashTween = FlxTween.tween(flashSprite, {
 			alpha: 0
