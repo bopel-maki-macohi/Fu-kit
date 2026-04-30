@@ -33,6 +33,8 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 	{
 		super();
 
+		this.items = [];
+
 		this.type = type;
 	}
 
