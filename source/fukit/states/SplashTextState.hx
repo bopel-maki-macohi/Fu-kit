@@ -49,8 +49,29 @@ class SplashTextState extends MusicBeatState
 		{
 			trace(mylaststep);
 
-			if (wackyList.length - 1 >= mylaststep)
-				addText(wackyList[mylaststep]);
+			switch (mylaststep)
+			{
+				case 0, 12:
+					clearTexts();
+
+				case 4:
+					addText('fu');
+
+				case 6:
+					addText('kit');
+
+				case 8:
+					addText('mod');
+
+				case 14:
+					addText(wackyList[0]);
+
+				case 18:
+					addText(wackyList[1]);
+
+				case 22:
+					addText(wackyList[2]);
+			}
 
 			mylaststep++;
 		}
@@ -73,5 +94,10 @@ class SplashTextState extends MusicBeatState
 		alphabet.screenCenter();
 		alphabet.y = (alphabets.length * 60) + 200;
 		alphabets.add(alphabet);
+	}
+
+	function clearTexts()
+	{
+		alphabets.clear();
 	}
 }
