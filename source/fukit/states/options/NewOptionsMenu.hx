@@ -1,4 +1,4 @@
-package fukit.states;
+package fukit.states.options;
 
 import flixel.math.FlxMath;
 import openfl.Lib;
