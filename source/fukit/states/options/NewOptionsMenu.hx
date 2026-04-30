@@ -109,6 +109,8 @@ class NewOptionsMenu extends MusicBeatSubstate
 		});
 	}
 
+	public var savedCurSelect:Int = 0;
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -292,7 +294,13 @@ class NewOptionsMenu extends MusicBeatSubstate
 		}
 
 		if (refresh)
+		{
+			savedCurSelect = optionsMenuList.curSelect;
 			optionsMenuList.regenItems();
+			
+			optionsMenuList.curSelect = savedCurSelect;
+			optionsMenuList.onSelectionChange.dispatch();
+		}
 	}
 
 	function leave()
