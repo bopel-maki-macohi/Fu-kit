@@ -96,6 +96,8 @@ class InitState extends FlxState
 		fukit.Global.goIntoSong('Wetway', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
 		#elseif STORYMENU
 		FlxG.switchState(() -> new StoryMenuState());
+		#elseif MAINMENU
+		FlxG.switchState(() -> new NewMenuState());
 		#else
 		FlxG.switchState(() -> new SplashTextState());
 		#end
