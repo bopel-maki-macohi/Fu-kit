@@ -40,7 +40,7 @@ class CrashHandler
 
 	static function onUncaughtError(event:UncaughtErrorEvent)
 	{
-		var path:String = '$CRASH_DIRECTORY/${DateUtil.generateCurrentFileTimestamp()}.log';
+		var path:String = '$CRASH_DIRECTORY/Crash Log ${DateUtil.generateCurrentFileTimestamp()}.log';
 
 		if (!FileSystem.exists(CRASH_DIRECTORY))
 			FileSystem.createDirectory(CRASH_DIRECTORY);
@@ -59,6 +59,7 @@ class CrashHandler
 			}
 		}
 
+		errorMessage += 'Crash log saved to $path';
 		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
 
 		Application.current.window.alert(errorMessage, 'Uncaught Error: ${event.toString()}');
