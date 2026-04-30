@@ -4,6 +4,9 @@ Hi
 
 ## 2.0 - 5/2026
 
+- New Options Menu
+    - It's a substate now and other then that its basically a main menu for changing options
+
 - New Main Menu
     - Intention was to make it similar to Mario World hehe
 
