@@ -57,7 +57,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 		if (optionsMenus.get(menu).length < 1)
 			return;
 
-        optionsMenuList.clearList();
+		optionsMenuList.clearList();
 
 		currentMenu = menu;
 		for (item in optionsMenus.get(menu))
@@ -74,6 +74,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		blackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
 		add(blackBox);
+		blackBox.alpha = 0;
 
 		optionsMenuList = new MenuList(Vertical);
 		add(optionsMenuList);
@@ -92,6 +93,10 @@ class NewOptionsMenu extends MusicBeatSubstate
 				optionsMenuList.canSelect = true;
 			}
 		});
+
+		FlxTween.tween(blackBox, {alpha: .3}, 2.2, {
+			ease: FlxEase.expoInOut,
+		});
 	}
 
 	override function update(elapsed:Float)
@@ -100,10 +105,8 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		optionsMenuList.screenCenter(Y);
 
-		blackBox.scale.set(optionsMenuList.width * 1.1, optionsMenuList.height * 1.1);
+		blackBox.scale.set(optionsMenuList.width * 1.5, FlxG.height);
 		blackBox.updateHitbox();
-
-		blackBox.screenCenter(Y);
 
 		blackBox.x = optionsMenuList.members[0].getGraphicMidpoint().x - (blackBox.width / 2);
 
@@ -172,6 +175,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 		FlxG.sound.play(Paths.sound('cancelMenu'));
 
 		FlxTween.cancelTweensOf(optionsMenuList);
+		FlxTween.cancelTweensOf(blackBox);
 
 		optionsMenuList.canSelect = false;
 
@@ -181,6 +185,10 @@ class NewOptionsMenu extends MusicBeatSubstate
 			{
 				close();
 			}
+		});
+
+		FlxTween.tween(blackBox, {alpha: 0}, 2.2, {
+			ease: FlxEase.expoInOut,
 		});
 	}
 }
