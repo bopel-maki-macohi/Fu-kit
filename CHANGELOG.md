@@ -9,6 +9,8 @@ Hi
     - The Colors change during the song now
     - Rain now appears during the song now
 
+- You now change offsets via SHIFT + left & SHIFT + right in ze pause menu
+
 - The score text is now above the icons
 - Removed switching from the old bf icon
 - Default Options have been changed
