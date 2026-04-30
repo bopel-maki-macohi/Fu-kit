@@ -1,5 +1,6 @@
 package fukit.states;
 
+import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
@@ -64,6 +65,8 @@ class NewMenuState extends MusicBeatState
 				if (text != null)
 					text.color = (menuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
 			}
+
+			FlxG.sound.play(Paths.sound('scrollMenu'));
 		});
 
 		menuList.regenItems();
