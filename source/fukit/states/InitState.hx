@@ -95,7 +95,7 @@ class InitState extends FlxState
 		#elseif STORYMENU
 		FlxG.switchState(() -> new StoryMenuState());
 		#else
-		FlxG.switchState(() -> new TitleState());
+		FlxG.switchState(() -> new SplashTextState());
 		#end
 	}
 }
