@@ -36,7 +36,7 @@ class SplashTextState extends MusicBeatState
 
 	function onEnd()
 	{
-		FlxG.switchState(() -> new MainMenuState());
+		FlxG.switchState(() -> new NewMenuState());
 	}
 
 	var mylaststep:Int = 0;
