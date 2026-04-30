@@ -1480,7 +1480,7 @@ class PlayState extends MusicBeatState
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
-		
+
 		if (SONG.validScore)
 		{
 			#if !switch
@@ -1490,7 +1490,7 @@ class PlayState extends MusicBeatState
 
 		if (offsetTesting)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			Global.playMainTheme();
 			offsetTesting = false;
 			LoadingState.loadAndSwitchState(new OptionsMenu());
 			FlxG.save.data.offset = offsetTest;
@@ -1512,7 +1512,7 @@ class PlayState extends MusicBeatState
 
 		if (storyPlaylist.length <= 0)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			Global.playMainTheme();
 
 			if (lua != null)
 			{

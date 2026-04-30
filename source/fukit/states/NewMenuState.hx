@@ -19,4 +19,10 @@ class NewMenuState extends MusicBeatState
         
         backdrop.antialiasing = false;
 	}
+
+    override function update(elapsed:Float) {
+        super.update(elapsed);
+
+        Global.playMainTheme();
+    }
 }

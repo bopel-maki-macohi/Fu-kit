@@ -1,5 +1,6 @@
 package fukit;
 
+import flixel.FlxG;
 import flixel.util.FlxTimer;
 
 class Global
@@ -32,5 +33,13 @@ class Global
 		PlayState.campaignScore = 0;
 
 		goIntoSong(PlayState.storyPlaylist[0], difficulty, week, storymode);
+	}
+
+	public static function playMainTheme()
+	{
+		if (FlxG.sound.music != null) return;
+
+		Conductor.changeBPM(120);
+		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'));
 	}
 }
