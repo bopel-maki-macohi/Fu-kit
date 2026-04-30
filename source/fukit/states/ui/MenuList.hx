@@ -14,13 +14,7 @@ enum MenuListType
 class MenuList extends FlxTypedGroup<FlxBasic>
 {
 	public var items:Map<String, Void->Void>;
-
-	public var itemKeys(get, never):Array<String>;
-
-	function get_itemKeys():Array<String>
-	{
-		return [for (item => method in items) item];
-	}
+	public var itemKeys:Array<String>;
 
 	private var controls(get, never):Controls;
 
@@ -34,8 +28,15 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 		super();
 
 		this.items = [];
+		this.itemKeys = [];
 
 		this.type = type;
+	}
+
+	public function addEntry(item:String, method:Void->Void)
+	{
+		items.set(item, method);
+		itemKeys.push(item);
 	}
 
 	public var curSelect:Int = 0;

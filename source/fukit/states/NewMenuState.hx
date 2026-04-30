@@ -26,15 +26,16 @@ class NewMenuState extends MusicBeatState
 		menuList = new MenuList(Vertical);
 		add(menuList);
 
-		menuList.items.set('Story Mode', null);
-		menuList.items.set('Freeplay', null);
-		menuList.items.set('Options', null);
-		menuList.items.set('Exit', () -> Sys.exit(0));
+		menuList.addEntry('Story Mode', null);
+		menuList.addEntry('Freeplay', null);
+		menuList.addEntry('Options', null);
+		menuList.addEntry('Exit', () -> Sys.exit(0));
 
 		menuList.addItem = function(item:String)
 		{
 			var text:FlxText = new FlxText(0, 0, 0, item, 16);
 
+			text.screenCenter();
 			if (menuList.type == Vertical)
 				text.y = (menuList.members.length * 60) + 200;
 			else
