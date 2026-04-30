@@ -4,9 +4,13 @@ Hi
 
 ## 2.0 - 5/2026
 
+- New Main Menu
+    - Intention was to make it similar to Mario World hehe
+
 - New Title State
     - It's a splash text scene now
 
+- More unused assets have been removed
 - Fixed missing Arpe Withered from the Character List
 
 ## 1.5.1 - 4/29/2026
