@@ -27,7 +27,7 @@ class NewMenuState extends MusicBeatState
 
 		backdrop.antialiasing = false;
 
-		blackBox = new FlxSprite().makeGraphic(160, 320, FlxColor.BLACK);
+		blackBox = new FlxSprite().makeGraphic(240, 320, FlxColor.BLACK);
 		blackBox.screenCenter();
 		add(blackBox);
 
@@ -45,9 +45,9 @@ class NewMenuState extends MusicBeatState
 
 			text.screenCenter();
 			if (menuList.type == Vertical)
-				text.y = (menuList.members.length * 60) + blackBox.y;
+				text.y = (menuList.members.length * 60) + 60 + blackBox.y;
 			else
-				text.x = (menuList.members.length * 120) + blackBox.x;
+				text.x = (menuList.members.length * 120) + 60 + blackBox.x;
 
 			menuList.add(text);
 		}
