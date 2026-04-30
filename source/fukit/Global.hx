@@ -1,18 +1,28 @@
 package fukit;
 
+import lime.app.Application;
 import flixel.FlxG;
 import flixel.util.FlxTimer;
 
 class Global
 {
+	public static var modVer(get, never):String;
+
+	static function get_modVer():String
+	{
+		return Application.current.meta.get('version');
+	}
+
+	public static final kadeEngineVer:String = '1.4.2';
+
 	public static var watermarkText(get, never):String;
 
 	static function get_watermarkText():String
 	{
 		if (Main.watermarks)
-			return 'Fu-kit ${MainMenuState.modVer}' + ' (KE ${MainMenuState.kadeEngineVer})';
+			return 'Fu-kit ${modVer}' + ' (KE ${kadeEngineVer})';
 
-		return MainMenuState.modVer;
+		return modVer;
 	}
 
 	public static function goIntoSong(song:String = 'tutorial', difficulty:Int = 2, week:Int = 0, storymode:Bool = false)
@@ -37,7 +47,8 @@ class Global
 
 	public static function playMainTheme()
 	{
-		if (FlxG.sound.music != null && FlxG.sound.music?.playing) return;
+		if (FlxG.sound.music != null && FlxG.sound.music?.playing)
+			return;
 
 		Conductor.changeBPM(120);
 		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'));

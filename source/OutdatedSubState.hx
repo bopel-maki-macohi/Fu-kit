@@ -1,5 +1,7 @@
 package;
 
+import fukit.states.NewMenuState;
+import fukit.Global;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -20,7 +22,7 @@ class OutdatedSubState extends MusicBeatState
 		add(bg);
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
 			"Fu-Kit is Outdated!\n"
-			+ MainMenuState.modVer
+			+ Global.modVer
 			+ " is your current version\nwhile the most recent version is " + needVer
 			+ "!\nPress Space to go to the github or ESCAPE to ignore this!!",
 			32);
@@ -34,11 +36,14 @@ class OutdatedSubState extends MusicBeatState
 		if (controls.ACCEPT)
 		{
 			FlxG.openURL("https://github.com/bopel-maki-macohi/Fu-kit/releases/latest");
+			
+			leftState = true;
+			FlxG.switchState(() -> new NewMenuState());
 		}
 		if (controls.BACK)
 		{
 			leftState = true;
-			FlxG.switchState(() -> new MainMenuState());
+			FlxG.switchState(() -> new NewMenuState());
 		}
 		super.update(elapsed);
 	}

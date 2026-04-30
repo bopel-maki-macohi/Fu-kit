@@ -1,5 +1,6 @@
 package;
 
+import fukit.states.NewMenuState;
 import openfl.Lib;
 import Options;
 import Controls.Control;
@@ -105,7 +106,7 @@ class OptionsMenu extends MusicBeatState
 		super.update(elapsed);
 
 			if (controls.BACK && !isCat)
-				FlxG.switchState(() -> new MainMenuState());
+				FlxG.switchState(() -> new NewMenuState());
 			else if (controls.BACK)
 			{
 				isCat = false;

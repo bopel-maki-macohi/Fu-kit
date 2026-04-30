@@ -1,5 +1,6 @@
 package;
 
+import fukit.states.NewMenuState;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -63,7 +64,7 @@ class GitarooPause extends MusicBeatState
 			}
 			else
 			{
-				FlxG.switchState(() -> new MainMenuState());
+				FlxG.switchState(() -> new NewMenuState());
 			}
 		}
 

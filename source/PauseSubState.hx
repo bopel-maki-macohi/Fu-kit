@@ -1,5 +1,6 @@
 package;
 
+import fukit.states.NewMenuState;
 #if LUA_ALLOWED
 import llua.Lua;
 #end
@@ -183,7 +184,7 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.switchState(() -> new OptionsMenu());
 					}
 					else
-						FlxG.switchState(() -> new MainMenuState());
+						FlxG.switchState(() -> new NewMenuState());
 			}
 		}
 

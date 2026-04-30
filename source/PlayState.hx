@@ -1,5 +1,6 @@
 package;
 
+import fukit.states.NewMenuState;
 import fukit.Global;
 import flixel.group.FlxContainer;
 import flixel.group.FlxSpriteGroup;
@@ -1525,7 +1526,8 @@ class PlayState extends MusicBeatState
 			if (SONG.validScore)
 				Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 
-			FlxG.switchState(() -> new StoryMenuState());
+			// FlxG.switchState(() -> new StoryMenuState());
+			FlxG.switchState(() -> new NewMenuState());
 		}
 		else
 		{
