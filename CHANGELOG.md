@@ -2,6 +2,8 @@
 
 Hi
 
+## 2.0 - 5/2026
+
 ## 1.5.1 - 4/29/2026
 
 - The screenshot fancy preview is now disabled during gameplay
