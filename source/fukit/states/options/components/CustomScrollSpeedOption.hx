@@ -25,7 +25,7 @@ class CustomScrollSpeedOption extends OptionComponent
 	{
 		super.method();
 
-		FlxG.save.data.scrollSpeed += 0.1;
+		FlxG.save.data.scrollSpeed += (FlxG.keys.pressed.SHIFT) ? 0.5 : 0.1;
 
 		if (FlxG.save.data.scrollSpeed > 10)
 			FlxG.save.data.scrollSpeed = 1;

@@ -5,6 +5,10 @@ Hi
 ## 2.0 - 5/2026
 
 - New Options Menu
+    - The following options now allow you to press SHIFT to increment more
+        - Hit Timings : 2x
+        - FPS Cap : 2x
+        - Custom Scroll Speed : 5x
     - It's a substate now and other then that its basically a main menu for changing options
 
 - New Main Menu

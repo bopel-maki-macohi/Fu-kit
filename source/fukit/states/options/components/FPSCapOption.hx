@@ -22,7 +22,7 @@ class FPSCapOption extends OptionComponent
 		if (FlxG.save.data.fpsCap > 290)
 			FlxG.save.data.fpsCap = 60;
 		else
-			FlxG.save.data.fpsCap += 10;
+			FlxG.save.data.fpsCap += (FlxG.keys.pressed.SHIFT) ? 20 : 10;
 		(cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 	}
 }
