@@ -50,9 +50,21 @@ class NewMenuState extends MusicBeatState
 				text.y = (menuList.members.length * 60) + 60 + blackBox.y;
 			else
 				text.x = (menuList.members.length * 120) + 60 + blackBox.x;
+			text.ID = menuList.members.length;
 
 			menuList.add(text);
 		}
+
+		menuList.onSelectionChange.add(function()
+		{
+			for (basic in menuList.members)
+			{
+				var text:FlxText = cast(basic, FlxText);
+
+				if (text != null)
+					text.color = (menuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
+			}
+		});
 
 		menuList.regenItems();
 	}

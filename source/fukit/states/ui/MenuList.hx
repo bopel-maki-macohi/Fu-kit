@@ -93,6 +93,9 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 			addItem(item);
 
 		onRegenItems.dispatch();
+
+		curSelect = 0;
+		onSelectionChange.dispatch();
 	}
 
 	/**
