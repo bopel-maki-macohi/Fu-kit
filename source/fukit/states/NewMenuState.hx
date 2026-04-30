@@ -1,5 +1,6 @@
 package fukit.states;
 
+import flixel.FlxSubState;
 import fukit.states.options.NewOptionsMenu;
 import fukit.objects.Logo;
 import flixel.FlxG;
@@ -19,6 +20,9 @@ class NewMenuState extends MusicBeatState
 	public var menuList:MenuList;
 
 	public var logo:Logo;
+
+	public var inSubState:Bool = false;
+	public var transitionedOut:Bool = false;
 
 	override function create()
 	{
@@ -73,23 +77,60 @@ class NewMenuState extends MusicBeatState
 	function optionsOption()
 	{
 		FlxG.sound.play(Paths.sound('confirmMenu'));
-		menuList.canSelect = false;
 
-		FlxTween.tween(logo, {x: logo.x + FlxG.width}, 4, {
-			ease: FlxEase.sineInOut
-		});
-		FlxTween.tween(blackBox, {x: blackBox.x + FlxG.width}, 2, {
-			ease: FlxEase.sineInOut
-		});
-		FlxTween.tween(menuList, {x: menuList.x + FlxG.width}, 2, {
-			ease: FlxEase.sineInOut
-		});
-
-		FlxTween.tween(backdrop.velocity, {x: -32}, 3, {
-			ease: FlxEase.backInOut
-		});
+		transitionTweens(false);
 
 		openSubState(new NewOptionsMenu());
+	}
+
+	override function openSubState(SubState:FlxSubState)
+	{
+		inSubState = true;
+
+		super.openSubState(SubState);
+	}
+
+	function transitionTweens(comingBack:Bool)
+	{
+		FlxTween.cancelTweensOf(logo);
+		FlxTween.cancelTweensOf(blackBox);
+		FlxTween.cancelTweensOf(menuList);
+		FlxTween.cancelTweensOf(backdrop.velocity);
+
+		var translationOffsets:Float = FlxG.width;
+
+		if (comingBack)
+			translationOffsets = -translationOffsets;
+
+		FlxTween.tween(logo, {x: logo.x + translationOffsets}, 2, {
+			ease: FlxEase.expoInOut
+		});
+		FlxTween.tween(blackBox, {x: blackBox.x + translationOffsets}, 2.1, {
+			ease: FlxEase.expoInOut
+		});
+		FlxTween.tween(menuList, {x: menuList.x + translationOffsets}, 2.2, {
+			ease: FlxEase.expoInOut
+		});
+
+		FlxTween.tween(backdrop.velocity, {x: (comingBack) ? 32 : -32}, 2.3, {
+			ease: FlxEase.expoOut
+		});
+
+		FlxTween.color(backdrop, 2.4, backdrop.color, (comingBack) ? FlxColor.WHITE : FlxColor.PINK, {
+			ease: FlxEase.expoOut
+		});
+
+		transitionedOut = !comingBack;
+	}
+
+	override function closeSubState()
+	{
+		super.closeSubState();
+
+		inSubState = false;
+
+		if (transitionedOut)
+			transitionTweens(true);
 	}
 
 	function exitOption()
@@ -107,6 +148,8 @@ class NewMenuState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+
+		menuList.canSelect = !inSubState;
 	}
 
 	function addItem(item:String)
