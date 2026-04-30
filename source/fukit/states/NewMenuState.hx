@@ -31,6 +31,8 @@ class NewMenuState extends MusicBeatState
 		blackBox.screenCenter();
 		add(blackBox);
 
+		blackBox.y += 160;
+
 		menuList = new MenuList(Vertical);
 		add(menuList);
 
