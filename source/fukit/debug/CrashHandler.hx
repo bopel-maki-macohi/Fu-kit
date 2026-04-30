@@ -50,7 +50,7 @@ class CrashHandler
 
 		try
 		{
-			UE = 'Uncaught Error: ${event?.error ?? 'Unknown'}';
+			UE = 'Uncaught Error: ${Std.string(event?.error) ?? 'Unknown'}';
 		}
 		catch (e)
 		{
