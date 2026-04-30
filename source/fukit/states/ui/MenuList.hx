@@ -70,6 +70,16 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 
 		if (curSelect != prevSelect)
 			onSelectionChange.dispatch();
+
+		if (controls.ACCEPT)
+		{
+			var item = itemKeys[curSelect];
+
+			trace(item);
+
+			if (items.get(item) != null)
+				items.get(item)();
+		}
 	}
 
 	public function regenItems()
@@ -93,7 +103,7 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 
 		if (type == Vertical)
 			sprite.y = (members.length * 60);
-        else
+		else
 			sprite.x = (members.length * 120);
 
 		sprite.ID = members.length;
