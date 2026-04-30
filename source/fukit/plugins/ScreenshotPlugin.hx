@@ -40,11 +40,11 @@ class ScreenshotPlugin extends FlxBasic
 	}
 
 	public static var SCREENSHOT_DIRECTORY:String =
-	#if debug
-	'../../../../dump/screenshots';
-	#else
-	'screenshots';
-	#end
+		#if debug
+		'../../../../dump/screenshots';
+		#else
+		'screenshots';
+		#end
 
 	public static var SCREENSHOT_DELAY_TIME_SECONDS:Float = 5;
 
@@ -85,6 +85,8 @@ class ScreenshotPlugin extends FlxBasic
 		FlxG.sound.play(Paths.sound('screenshot', 'shared'));
 	}
 
+	public var fancyPreviewTween:FlxTween;
+
 	function showFancyPreview(data:BitmapData)
 	{
 		var previewSprite:Bitmap = new Bitmap(data);
@@ -104,22 +106,22 @@ class ScreenshotPlugin extends FlxBasic
 			ease: FlxEase.sineInOut
 		});
 
-		FlxTween.tween(previewSprite, {
+		fancyPreviewTween = FlxTween.tween(previewSprite, {
 			scaleX: 0.2,
 			scaleY: 0.2,
 			x: 0,
 			y: 0
 		}, 1, {
 			ease: FlxEase.sineInOut
-		});
-
-		FlxTween.tween(previewSprite, {alpha: 0, y: -previewSprite.height}, 1, {
+		}).then(FlxTween.tween(previewSprite, {alpha: 0, y: -previewSprite.height}, 1, {
 			startDelay: 1,
 			onComplete: t ->
 			{
 				FlxG.stage.removeChild(previewSprite);
 				previewSprite.bitmapData.dispose();
+
+				fancyPreviewTween.destroy();
 			}
-		});
+		}));
 	}
 }
