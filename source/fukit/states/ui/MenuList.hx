@@ -23,6 +23,8 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 
 	public var type:MenuListType;
 
+	public var canSelect:Bool = true;
+
 	override public function new(type:MenuListType)
 	{
 		super();
@@ -50,21 +52,23 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 
 		var prevSelect:Int = curSelect;
 
-		if (type == Vertical)
-		{
-			if (controls.UP_P)
-				curSelect--;
-			if (controls.DOWN_P)
-				curSelect++;
-		}
+		if (canSelect)
+			if (type == Vertical)
+			{
+				if (controls.UP_P)
+					curSelect--;
+				if (controls.DOWN_P)
+					curSelect++;
+			}
 
-		if (type == Horizontal)
-		{
-			if (controls.LEFT_P)
-				curSelect--;
-			if (controls.RIGHT_P)
-				curSelect++;
-		}
+		if (canSelect)
+			if (type == Horizontal)
+			{
+				if (controls.LEFT_P)
+					curSelect--;
+				if (controls.RIGHT_P)
+					curSelect++;
+			}
 
 		if (curSelect < 0)
 			curSelect = itemKeys.length - 1;
@@ -74,15 +78,16 @@ class MenuList extends FlxTypedGroup<FlxBasic>
 		if (curSelect != prevSelect)
 			onSelectionChange.dispatch();
 
-		if (controls.ACCEPT)
-		{
-			var item = itemKeys[curSelect];
+		if (canSelect)
+			if (controls.ACCEPT)
+			{
+				var item = itemKeys[curSelect];
 
-			trace(item);
+				trace(item);
 
-			if (items.get(item) != null)
-				items.get(item)();
-		}
+				if (items.get(item) != null)
+					items.get(item)();
+			}
 	}
 
 	public function regenItems()
