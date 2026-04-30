@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.objects.Logo;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
@@ -14,8 +15,9 @@ class NewMenuState extends MusicBeatState
 	public var backdrop:FlxBackdrop;
 
 	public var blackBox:FlxSprite;
-
 	public var menuList:MenuList;
+
+	public var logo:Logo;
 
 	override function create()
 	{
@@ -46,6 +48,19 @@ class NewMenuState extends MusicBeatState
 		menuList.onSelectionChange.add(onSelectionChange);
 
 		menuList.regenItems();
+
+		logo = new Logo();
+		add(logo);
+
+		logo.screenCenter();
+		logo.y = 0;
+	}
+
+	override function beatHit()
+	{
+		super.beatHit();
+
+		logo.anim.play('logoBumpin');
 	}
 
 	function storymodeOption() {}
@@ -64,6 +79,9 @@ class NewMenuState extends MusicBeatState
 		super.update(elapsed);
 
 		Global.playMainTheme();
+
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
 	}
 
 	function addItem(item:String)
