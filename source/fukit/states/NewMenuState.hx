@@ -24,6 +24,15 @@ class NewMenuState extends MusicBeatState
 	public var inSubState:Bool = false;
 	public var transitionedOut:Bool = false;
 
+	var startingEntry:String;
+
+	override public function new(?startingEntry:String)
+	{
+		super();
+
+		this.startingEntry = startingEntry;
+	}
+
 	override function create()
 	{
 		super.create();
@@ -62,6 +71,11 @@ class NewMenuState extends MusicBeatState
 		logo.y = -32;
 
 		persistentUpdate = true;
+
+		if (startingEntry != null)
+		{
+			menuList.accept(startingEntry);
+		}
 	}
 
 	override function beatHit()

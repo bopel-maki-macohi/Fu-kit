@@ -1,5 +1,6 @@
 package;
 
+import fukit.states.options.NewOptionsMenu;
 import fukit.states.NewMenuState;
 import fukit.Global;
 import flixel.group.FlxContainer;
@@ -1493,7 +1494,7 @@ class PlayState extends MusicBeatState
 		{
 			Global.playMainTheme();
 			offsetTesting = false;
-			LoadingState.loadAndSwitchState(new OptionsMenu());
+			LoadingState.loadAndSwitchState(new NewMenuState('Options'));
 			FlxG.save.data.offset = offsetTest;
 
 			return;

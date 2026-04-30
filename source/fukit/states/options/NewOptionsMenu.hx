@@ -1,5 +1,7 @@
 package fukit.states.options;
 
+import openfl.Lib;
+import Controls.KeyboardScheme;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
@@ -148,7 +150,47 @@ class NewOptionsMenu extends MusicBeatSubstate
 	{
 		// trace('get(${currentMenu} : ${s})');
 
-		switch (s.toLowerCase()) {}
+		switch (s.toLowerCase())
+		{
+			case 'dfjk keybinds':
+				return '${(FlxG.save.data.dfjk) ? 'DFJK' : 'WASD'} Keybinds';
+
+			case 'hit timings / safe frames':
+				return '$s : ${Conductor.safeFrames}';
+
+			case 'fps cap':
+				return 'FPS Cap: ${FlxG.save.data.fpsCap}';
+
+			case 'custom scroll speed':
+				if (FlxG.save.data.scrollSpeed == 1)
+					return 'Default Song Scroll Speed';
+
+				return 'Custom Song Scroll Speed: ${FlxG.save.data.scrollSpeed}';
+
+			case 'accuracy calculation':
+				return '$s : ${(FlxG.save.data.accuracyMod == 1) ? 'Complex' : 'Accurate'}';
+
+			case 'song position bar':
+				return '$s : ${(FlxG.save.data.songPosition) ? 'Enabled' : 'Disabled'}';
+
+			case 'downscroll layout':
+				return '${(FlxG.save.data.downscroll) ? 'Downscroll' : 'Upscroll'} Layout';
+
+			case 'rainbow fps':
+				return '$s : ${(FlxG.save.data.fpsRain) ? 'Enabled' : 'Disabled'}';
+
+			case 'accuracy information display':
+				return '$s : ${(FlxG.save.data.fpsRain) ? 'Enabled' : 'Disabled'}';
+
+			case 'nps display':
+				return '$s : ${(FlxG.save.data.npsDisplay) ? 'Enabled' : 'Disabled'}';
+
+			case 'fps counter':
+				return '$s : ${(FlxG.save.data.fps) ? 'Enabled' : 'Disabled'}';
+
+			case 'watermarks':
+				return '$s : ${(Main.watermarks) ? 'Enabled' : 'Disabled'}';
+		}
 
 		return s;
 	}
@@ -157,17 +199,91 @@ class NewOptionsMenu extends MusicBeatSubstate
 	{
 		// trace('on(${currentMenu} : ${s})');
 
+		var refresh:Bool = true;
+
 		switch (s)
 		{
 			case 'gameplay', 'appearence', 'misc':
+				refresh = false;
+
 				if (currentMenu == 'categories')
 					loadMenu(s);
+
 			case 'back':
+				refresh = false;
+
 				if (currentMenu != 'categories')
 					loadMenu('categories');
 				else
 					leave();
+
+			case 'dfjk keybinds':
+				FlxG.save.data.dfjk = !FlxG.save.data.dfjk;
+
+				if (FlxG.save.data.dfjk)
+					controls.setKeyboardScheme(KeyboardScheme.Solo, true);
+				else
+					controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
+
+			case 'hit timings / safe frames':
+				if (Conductor.safeFrames == 1)
+					Conductor.safeFrames = 20;
+				else
+					Conductor.safeFrames -= 1;
+
+				FlxG.save.data.frames = Conductor.safeFrames;
+
+				Conductor.recalculateTimings();
+
+			case 'fps cap':
+				if (FlxG.save.data.fpsCap > 290)
+					FlxG.save.data.fpsCap = 60;
+				else
+					FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
+				(cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
+
+			case 'custom scroll speed':
+				FlxG.save.data.scrollSpeed += 0.1;
+
+				if (FlxG.save.data.scrollSpeed < 1)
+					FlxG.save.data.scrollSpeed = 1;
+
+				if (FlxG.save.data.scrollSpeed > 10)
+					FlxG.save.data.scrollSpeed = 10;
+
+			case 'accuracy calculation':
+				FlxG.save.data.accuracyMod = FlxG.save.data.accuracyMod == 1 ? 0 : 1;
+
+			case 'offset changing':
+				Global.goIntoSong('Tutorial', 2, 0, false, true);
+
+			case 'song position bar':
+				FlxG.save.data.songPosition = !FlxG.save.data.songPosition;
+
+			case 'downscroll layout':
+				FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
+
+			case 'rainbow fps':
+				FlxG.save.data.fpsRain = !FlxG.save.data.fpsRain;
+				(cast(Lib.current.getChildAt(0), Main)).changeFPSColor(FlxColor.WHITE);
+
+			case 'accuracy information display':
+				FlxG.save.data.accuracyDisplay = !FlxG.save.data.accuracyDisplay;
+
+			case 'nps display':
+				FlxG.save.data.npsDisplay = !FlxG.save.data.npsDisplay;
+
+			case 'fps counter':
+				FlxG.save.data.fps = !FlxG.save.data.fps;
+				(cast(Lib.current.getChildAt(0), Main)).toggleFPS(FlxG.save.data.fps);
+
+			case 'watermarks':
+				Main.watermarks = !Main.watermarks;
+				FlxG.save.data.watermark = Main.watermarks;
 		}
+
+		if (refresh)
+			optionsMenuList.regenItems();
 	}
 
 	function leave()

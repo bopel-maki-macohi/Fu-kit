@@ -25,7 +25,7 @@ class Global
 		return modVer;
 	}
 
-	public static function goIntoSong(song:String = 'tutorial', difficulty:Int = 2, week:Int = 0, storymode:Bool = false)
+	public static function goIntoSong(song:String = 'tutorial', difficulty:Int = 2, week:Int = 0, storymode:Bool = false, offsetTesting:Bool = false)
 	{
 		var poop:String = Highscore.formatSong(song.toLowerCase(), difficulty);
 
@@ -33,6 +33,7 @@ class Global
 		PlayState.isStoryMode = storymode;
 		PlayState.storyDifficulty = difficulty;
 		PlayState.storyWeek = week;
+		PlayState.offsetTesting = offsetTesting;
 
 		LoadingState.loadAndSwitchState(new PlayState());
 	}

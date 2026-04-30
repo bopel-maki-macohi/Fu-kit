@@ -181,7 +181,7 @@ class PauseSubState extends MusicBeatSubstate
 					if (PlayState.offsetTesting)
 					{
 						PlayState.offsetTesting = false;
-						FlxG.switchState(() -> new OptionsMenu());
+						FlxG.switchState(() -> new NewMenuState('Options'));
 					}
 					else
 						FlxG.switchState(() -> new NewMenuState());

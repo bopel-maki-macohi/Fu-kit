@@ -79,16 +79,14 @@ class MenuList extends FlxTypedSpriteGroup<FlxSprite>
 		if (curSelect != prevSelect)
 			onSelectionChange.dispatch();
 
-		if (canSelect)
-			if (controls.ACCEPT)
-			{
-				var item = itemKeys[curSelect];
+		if (canSelect && controls.ACCEPT)
+			accept(itemKeys[curSelect]);
+	}
 
-				trace(item);
-
-				if (items.get(item) != null)
-					items.get(item)();
-			}
+	public function accept(item:String)
+	{
+		if (items.get(item) != null)
+			items.get(item)();
 	}
 
 	public function regenItems()
