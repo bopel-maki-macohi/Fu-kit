@@ -46,7 +46,18 @@ class CrashHandler
 		if (!FileSystem.exists(CRASH_DIRECTORY))
 			FileSystem.createDirectory(CRASH_DIRECTORY);
 
-		var errorMessage:String = 'Uncaught Error: ${event.error.toString()}\n\n';
+		var UE:String = '';
+
+		try
+		{
+			UE = 'Uncaught Error: ${event?.error?.toString() ?? 'Unknown'}';
+		}
+		catch (e)
+		{
+			UE = 'Uncaught Error: Unknown ($e)';
+		}
+
+		var errorMessage:String = '$UE\n\n';
 
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
 
@@ -68,9 +79,12 @@ class CrashHandler
 		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
 
 		File.saveContent(path, errorMessage);
-		Application.current.window.alert(errorMessage, 'Uncaught Error: ${event.error.toString()}');
+		Application.current.window.alert(errorMessage, UE);
 
 		Sys.println(errorMessage);
+
+		Sys.sleep(2);
+
 		Sys.exit(0);
 	}
 }
