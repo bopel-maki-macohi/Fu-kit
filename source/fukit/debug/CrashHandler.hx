@@ -1,5 +1,6 @@
 package fukit.debug;
 
+import lime.app.Application;
 import sys.io.File;
 import haxe.CallStack;
 import haxe.CallStack.StackItem;
@@ -60,6 +61,10 @@ class CrashHandler
 
 		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
 
+		Application.current.window.alert(errorMessage, 'Uncaught Error: ${event.toString()}');
 		File.saveContent(path, errorMessage);
+
+		Sys.println(errorMessage);
+		Sys.exit(0);
 	}
 }
