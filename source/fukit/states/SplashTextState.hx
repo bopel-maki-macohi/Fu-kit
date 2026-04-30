@@ -36,6 +36,8 @@ class SplashTextState extends MusicBeatState
 		if (controls.ACCEPT)
 		{
 			FlxG.sound.music.stop();
+			FlxG.sound.music.destroy();
+			
 			onEnd();
 		}
 	}
