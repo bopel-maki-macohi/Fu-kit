@@ -167,16 +167,16 @@ class NewOptionsMenu extends MusicBeatSubstate
 				return '${(FlxG.save.data.dfjk) ? 'DFJK' : 'WASD'} Keybinds';
 
 			case 'hit timings / safe frames':
-				return '$s : ${Conductor.safeFrames}';
+				return '$s : ${Conductor.safeFrames} / 20';
 
 			case 'fps cap':
-				return 'FPS Cap: ${FlxG.save.data.fpsCap}';
+				return 'FPS Cap: ${FlxG.save.data.fpsCap} / 290';
 
 			case 'custom scroll speed':
 				if (FlxG.save.data.scrollSpeed == 1)
 					return 'Default Song Scroll Speed';
 
-				return 'Custom Song Scroll Speed: ${FlxG.save.data.scrollSpeed}';
+				return 'Custom Song Scroll Speed: ${FlxG.save.data.scrollSpeed} / 10.0';
 
 			case 'accuracy calculation':
 				return '$s : ${(FlxG.save.data.accuracyMod == 1) ? 'Complex' : 'Accurate'}';
@@ -297,7 +297,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 		{
 			savedCurSelect = optionsMenuList.curSelect;
 			optionsMenuList.regenItems();
-			
+
 			optionsMenuList.curSelect = savedCurSelect;
 			optionsMenuList.onSelectionChange.dispatch();
 		}
