@@ -1,5 +1,6 @@
 package fukit.debug;
 
+import haxe.display.Protocol.Methods;
 import lime.app.Application;
 import sys.io.File;
 import haxe.CallStack;
@@ -54,12 +55,16 @@ class CrashHandler
 		{
 			switch (item)
 			{
+				case FilePos(s, file, line, column):
+					errorMessage += '- ${file}:${line}\n';
+
 				default:
-					errorMessage += '- ${item.getName()}[${item}]\n';
+					errorMessage += '- ${item}\n';
 			}
 		}
 
-		errorMessage += 'Crash log saved to $path';
+		errorMessage += '\n';
+		errorMessage += 'Crash log saved to $path\n';
 		errorMessage += 'Please report to the github: https://github.com/bopel-maki-macohi/Fu-kit/issues';
 
 		Application.current.window.alert(errorMessage, 'Uncaught Error: ${event.toString()}');
