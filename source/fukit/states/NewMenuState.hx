@@ -1,5 +1,7 @@
 package fukit.states;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.addons.display.FlxBackdrop;
 
 class NewMenuState extends MusicBeatState
@@ -16,5 +18,10 @@ class NewMenuState extends MusicBeatState
 		backdrop.velocity.set(32, 32);
         
         backdrop.antialiasing = false;
+
+        FlxTween.tween(backdrop.velocity, {x: -32, y: -32}, 1, {
+            ease: FlxEase.sineInOut,
+            type: PINGPONG
+        });
 	}
 }
