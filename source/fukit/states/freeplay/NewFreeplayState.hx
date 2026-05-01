@@ -48,6 +48,7 @@ class NewFreeplayState extends MusicBeatSubstate
 		}
 		freeplayMenuList.regenItems();
 
+				freeplayMenuList.canSelect = false;
 		FlxTween.tween(freeplayMenuList, {x: 0}, 2.2, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
