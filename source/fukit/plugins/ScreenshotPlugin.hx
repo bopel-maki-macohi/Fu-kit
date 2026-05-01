@@ -1,5 +1,6 @@
 package fukit.plugins;
 
+import fukit.states.freeplay.NewFreeplayState;
 import fukit.util.DateUtil;
 import openfl.desktop.Clipboard;
 import openfl.utils.ByteArray;
@@ -84,6 +85,9 @@ class ScreenshotPlugin extends FlxBasic
 		var fancyPreviewEnabled:Bool = true;
 
 		if (Std.isOfType(FlxG.state, PlayState))
+			fancyPreviewEnabled = false;
+
+		if (Std.isOfType(FlxG.state?.subState, NewFreeplayState))
 			fancyPreviewEnabled = false;
 
 		if (fancyPreviewEnabled)
