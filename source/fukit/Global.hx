@@ -36,7 +36,7 @@ class Global
 		PlayState.storyWeek = week;
 		PlayState.offsetTesting = offsetTesting;
 
-		LoadingState.loadAndSwitchState(PlayStateSwitcher.getPlayStateSwitch(!offsetTesting));
+		LoadingState.loadAndSwitchState(PlayStateSwitcher.getPlayStateSwitch(!offsetTesting && #if FREEPLAY_CUTSCENES true #else storymode #end));
 	}
 
 	public static function goIntoWeek(songs:Array<String>, difficulty:Int = 2, week:Int = 0, storymode:Bool = true)
