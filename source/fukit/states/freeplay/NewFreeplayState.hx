@@ -1,5 +1,6 @@
 package fukit.states.freeplay;
 
+import flixel.text.FlxText;
 import fukit.play.songs.SongList.SongListManager;
 import flixel.math.FlxMath;
 import flixel.FlxG;
@@ -16,6 +17,9 @@ class NewFreeplayState extends MusicBeatSubstate
 
 	public var songBlackBox:FlxSprite;
 	public var difficultyBlackBox:FlxSprite;
+	public var scoreBlackBox:FlxSprite;
+
+	public var scoreText:FlxText;
 
 	override public function new()
 	{
@@ -68,6 +72,19 @@ class NewFreeplayState extends MusicBeatSubstate
 		difficultyMenuList.y = -FlxG.height;
 
 		songMenuList.canSelect = false;
+
+		scoreBlackBox = new FlxSprite();
+		scoreBlackBox.makeGraphic(320, 160, FlxColor.BLACK);
+		add(scoreBlackBox);
+		scoreBlackBox.alpha = 0;
+
+		scoreBlackBox.x = FlxG.width + scoreBlackBox.width;
+		scoreBlackBox.y = FlxG.height - scoreBlackBox.height;
+
+		scoreText = new FlxText(0, 0, scoreBlackBox.width, 'Bob', 32);
+		add(scoreText);
+		scoreText.alignment = RIGHT;
+
 		FlxTween.tween(songMenuList, {x: -(FlxG.width / 4)}, 1, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
@@ -85,6 +102,10 @@ class NewFreeplayState extends MusicBeatSubstate
 		});
 
 		FlxTween.tween(difficultyBlackBox, {alpha: .3}, 1, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(scoreBlackBox, {x: FlxG.width - scoreBlackBox.width, alpha: .6}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 	}
@@ -110,8 +131,24 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		difficultyBlackBox.y = difficultyMenuList.members[0].getGraphicMidpoint().y - (difficultyBlackBox.height / 2);
 
+		scoreText.x = scoreBlackBox.x;
+		scoreText.y = scoreBlackBox.y;
+
+		updateScoreText();
+
 		if (controls.BACK && songMenuList.canSelect)
 			leave();
+	}
+
+	var curSongScore:Float = 0;
+
+	function updateScoreText()
+	{
+		var songScore:Float = Highscore.getScore(songMenuList.itemKeys[songMenuList.curSelect], difficultyMenuList.curSelect);
+
+		curSongScore = FlxMath.lerp(curSongScore, songScore, .2);
+
+		scoreText.text = 'HIGHSCORE:\n${Math.round(curSongScore)}';
 	}
 
 	function leave()
@@ -123,6 +160,9 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		FlxTween.cancelTweensOf(difficultyMenuList);
 		FlxTween.cancelTweensOf(difficultyBlackBox);
+
+		FlxTween.cancelTweensOf(scoreText);
+		FlxTween.cancelTweensOf(scoreBlackBox);
 
 		songMenuList.canSelect = false;
 
@@ -143,6 +183,10 @@ class NewFreeplayState extends MusicBeatSubstate
 		});
 
 		FlxTween.tween(difficultyBlackBox, {alpha: 0}, .5, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(scoreBlackBox, {x: FlxG.width + scoreBlackBox.width, alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}
