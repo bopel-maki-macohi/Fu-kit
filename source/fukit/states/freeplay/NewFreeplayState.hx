@@ -35,6 +35,9 @@ class NewFreeplayState extends MusicBeatSubstate
 		freeplayMenuList = new MenuList(Vertical);
 		add(freeplayMenuList);
 
+		freeplayMenuList.addItem = item -> Global.addTextMenuListItem(freeplayMenuList, item, 0, 0);
+		freeplayMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(freeplayMenuList));
+
 		for (song in SongListManager.songList.songs)
 		{
 			freeplayMenuList.addEntry(song.name, () ->
