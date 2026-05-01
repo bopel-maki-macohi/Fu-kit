@@ -52,6 +52,8 @@ class NewFreeplayState extends MusicBeatSubstate
 		{
 			songMenuList.addEntry(song.name, () ->
 			{
+				FlxG.sound.play(Paths.sound('confirmMenu'));
+
 				songMenuList.canSelect = false;
 				Global.goIntoSong(song.name, difficultyMenuList.curSelect, song.world);
 			});
