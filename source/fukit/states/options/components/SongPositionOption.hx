@@ -6,7 +6,7 @@ class SongPositionOption extends OptionComponent
 {
 	override public function new()
 	{
-		super('Song Position');
+		super('Song Position Bar');
 	}
 
 	override function updateDisplay()

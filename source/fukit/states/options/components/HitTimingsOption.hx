@@ -13,10 +13,9 @@ class HitTimingsOption extends OptionComponent
 	{
 		super.method();
 
-		if (Conductor.safeFrames == 1)
+		Conductor.safeFrames -= (FlxG.keys.pressed.SHIFT) ? 2 : 1;
+		if (Conductor.safeFrames < 0)
 			Conductor.safeFrames = 20;
-		else
-			Conductor.safeFrames -= (FlxG.keys.pressed.SHIFT) ? 2 : 1;
 
 		FlxG.save.data.frames = Conductor.safeFrames;
 

@@ -11,7 +11,7 @@ class AccuracyInformationDisplayOption extends OptionComponent
 
 	override function updateDisplay()
 	{
-		display = '$id ${(FlxG.save.data.accuracyDisplay) ? 'Enabled' : 'Disabled'}';
+		display = '$id : ${(FlxG.save.data.accuracyDisplay) ? 'Enabled' : 'Disabled'}';
 	}
 
 	override function method()
