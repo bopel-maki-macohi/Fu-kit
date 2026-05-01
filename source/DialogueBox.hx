@@ -88,6 +88,8 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.color = 0xFF545B7D;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
+
+		dialogueOpened = true;
 	}
 
 	var dialogueOpened:Bool = false;
