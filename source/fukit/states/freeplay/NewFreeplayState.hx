@@ -1,5 +1,7 @@
 package fukit.states.freeplay;
 
+import flixel.FlxObject;
+import flixel.FlxCamera;
 import flixel.text.FlxText;
 import fukit.play.songs.SongList.SongListManager;
 import flixel.math.FlxMath;
@@ -83,7 +85,7 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		scoreText = new FlxText(0, 0, scoreBlackBox.width, 'Bob', 32);
 		add(scoreText);
-		
+
 		scoreText.alignment = CENTER;
 
 		FlxTween.tween(songMenuList, {x: -(FlxG.width / 4)}, 1, {
@@ -109,7 +111,24 @@ class NewFreeplayState extends MusicBeatSubstate
 		FlxTween.tween(scoreBlackBox, {x: FlxG.width - scoreBlackBox.width, alpha: .6}, 1, {
 			ease: FlxEase.expoInOut,
 		});
+
+		songMenuListCam = new FlxCamera(0, 0);
+		FlxG.cameras.add(songMenuListCam, false);
+		songMenuListCam.bgColor.alpha = 0;
+
+		songBlackBox.camera = songMenuListCam;
+		songMenuList.camera = songMenuListCam;
+
+		songMenuListCamFollowOBJ = new FlxObject(640, 0);
+		add(songMenuListCamFollowOBJ);
+
+		songMenuListCam.follow(songMenuListCamFollowOBJ, LOCKON, 0.5);
+
+		songBlackBox.scrollFactor.set(0, 0);
 	}
+
+	public var songMenuListCam:FlxCamera;
+	public var songMenuListCamFollowOBJ:FlxObject;
 
 	override function update(elapsed:Float)
 	{
@@ -136,6 +155,8 @@ class NewFreeplayState extends MusicBeatSubstate
 		scoreText.y = scoreBlackBox.y + scoreText.height / 2;
 
 		updateScoreText();
+
+		songMenuListCamFollowOBJ.y = 0 + songMenuList.members[songMenuList.curSelect].y;
 
 		if (controls.BACK && songMenuList.canSelect)
 			leave();
