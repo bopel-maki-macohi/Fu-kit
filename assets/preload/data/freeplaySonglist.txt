@@ -1,4 +1,0 @@
-Tutorial:gf:0
-New World:arpe:1
-Wetway:arpe-worried:1
-Rust:arpe-withered:1
