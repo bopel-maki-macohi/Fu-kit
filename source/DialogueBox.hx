@@ -70,12 +70,12 @@ class DialogueBox extends FlxSpriteGroup
 		handSelect.x = box.x + box.width - handSelect.width;
 		handSelect.y = box.y + box.height - handSelect.height;
 
-		dropText = new FlxText(242, 502, Std.int(box.width), "", 32);
+		dropText = new FlxText(242, 502, Std.int(box.width) - 10, "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFF030303;
 		// add(dropText);
 
-		swagDialogue = new FlxTypeText(240, 500, Std.int(box.width), "", dropText.size);
+		swagDialogue = new FlxTypeText(240, 500, Std.int(box.width) - 10, "", dropText.size);
 		swagDialogue.font = dropText.font;
 		swagDialogue.color = 0xFF0A0219;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
