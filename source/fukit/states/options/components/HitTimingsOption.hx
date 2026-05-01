@@ -17,7 +17,7 @@ class HitTimingsOption extends OptionComponent
 		if (Conductor.safeFrames < 0)
 			Conductor.safeFrames = 20;
 
-		FlxG.save.data.frames = Conductor.safeFrames;
+		FlxG.save.data.safeFrames = Conductor.safeFrames;
 
 		Conductor.recalculateTimings();
 	}

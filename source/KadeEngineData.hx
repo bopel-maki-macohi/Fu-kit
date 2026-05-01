@@ -5,9 +5,6 @@ class KadeEngineData
 {
     public static function initSave()
     {
-        if (FlxG.save.data.newInput == null)
-			FlxG.save.data.newInput = true;
-
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
 
@@ -26,13 +23,6 @@ class KadeEngineData
 		if (FlxG.save.data.fps == null)
 			FlxG.save.data.fps = true;
 
-		// if (FlxG.save.data.changedHit == null)
-		// {
-		// 	FlxG.save.data.changedHitX = -1;
-		// 	FlxG.save.data.changedHitY = -1;
-		// 	FlxG.save.data.changedHit = false;
-		// }
-
 		if (FlxG.save.data.fpsRain == null)
 			FlxG.save.data.fpsRain = false;
 
@@ -48,11 +38,23 @@ class KadeEngineData
 		if (FlxG.save.data.npsDisplay == null)
 			FlxG.save.data.npsDisplay = false;
 
-		if (FlxG.save.data.frames == null)
-			FlxG.save.data.frames = 10;
+		if (FlxG.save.data.frames != null)
+		{
+			FlxG.save.data.safeFrames = FlxG.save.data.frames;
+			FlxG.save.data.frames = null;
+		}
 
-		if (FlxG.save.data.accuracyMod == null)
-			FlxG.save.data.accuracyMod = 0;
+		if (FlxG.save.data.safeFrames == null)
+			FlxG.save.data.safeFrames = 10;
+
+		if (FlxG.save.data.accuracyMod != null)
+		{
+			FlxG.save.data.accuracyComplex = FlxG.save.data.accuracyMod == 1;
+			FlxG.save.data.accuracyMod = null;
+		}
+
+		if (FlxG.save.data.accuracyComplex == null)
+			FlxG.save.data.accuracyComplex = false;
 
 		Conductor.recalculateTimings();
 

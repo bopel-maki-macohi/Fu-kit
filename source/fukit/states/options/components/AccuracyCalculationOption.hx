@@ -11,13 +11,13 @@ class AccuracyCalculationOption extends OptionComponent
 
 	override function updateDisplay()
 	{
-		display = '$id : ${(FlxG.save.data.accuracyMod == 1) ? 'Complex' : 'Accurate'}';
+		display = '$id : ${(FlxG.save.data.accuracyComplex) ? 'Complex' : 'Accurate'}';
 	}
 
 	override function method()
 	{
 		super.method();
 
-		FlxG.save.data.accuracyMod = FlxG.save.data.accuracyMod == 1 ? 0 : 1;
+		FlxG.save.data.accuracyComplex = FlxG.save.data.accuracyComplex ? 0 : 1;
 	}
 }
