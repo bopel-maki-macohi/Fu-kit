@@ -59,11 +59,7 @@ class SplashTextState extends MusicBeatState
 
 			switch (mylaststep)
 			{
-				case 3, 12: clearTexts();
-
-				case 0: addText('made');
-				case 1: addText('by');
-				case 2: addText('maki');
+				case 0, 12: clearTexts();
 
 				case 4: addText('fu');
 
