@@ -52,7 +52,7 @@ class NewFreeplayState extends MusicBeatSubstate
 		difficultyMenuList.addItem = item -> Global.addTextMenuListItem(difficultyMenuList, item, 0, 0);
 		difficultyMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(difficultyMenuList));
 
-		for (song in SongListManager.songList.songs)
+		for (song in SongListManager.songList)
 		{
 			songMenuList.addEntry(song.name, () ->
 			{

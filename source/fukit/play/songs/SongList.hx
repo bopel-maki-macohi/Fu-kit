@@ -12,7 +12,6 @@ typedef SongList =
 typedef WorldEntry =
 {
 	header:String,
-	unlocked:Bool,
 }
 
 typedef SongEntry =
@@ -23,11 +22,18 @@ typedef SongEntry =
 
 class SongListManager
 {
-	public static var songList(default, null):SongList;
+	public static var songListData(default, null):SongList;
+
+	public static var songList:Array<SongEntry> = [];
+
+	public static var worldList:Array<WorldEntry> = [];
+	public static var worldSongLists:Array<Array<String>> = [];
 
 	public static function reloadSongList()
 	{
-		songList = {worlds: [], songs: []};
+		songListData = {worlds: [], songs: []};
+		worldSongLists = [];
+		songList = [];
 
 		var songListPath:String = Paths.json('ui/songList', 'fu-kit');
 
@@ -36,17 +42,26 @@ class SongListManager
 
 		try
 		{
-			songList = Json.parse(Assets.getText(songListPath));
+			songListData = Json.parse(Assets.getText(songListPath));
 		}
 		catch (e)
 		{
-			songList = {worlds: [], songs: []};
+			songListData = {worlds: [], songs: []};
 			trace(e);
 		}
 
-		for (song in songList.songs)
+		for (world in songListData.worlds)
 		{
-			trace('${song.name} (${songList.worlds[song.world]?.header ?? 'Unknown'})');
+			worldList.push(world);
+			worldSongLists.push([]);
+		}
+
+		for (song in songListData.songs)
+		{
+			trace('${song.name} (${songListData.worlds[song.world]?.header ?? 'Unknown'})');
+
+			songList.push(song);
+			worldSongLists[song.world].push(song.name);
 		}
 	}
 }

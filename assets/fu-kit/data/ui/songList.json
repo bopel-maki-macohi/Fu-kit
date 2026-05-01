@@ -1,56 +1,13 @@
 {
     "worlds": [
         {
-            "header": "Tutorial",
-            "unlocked": true
+            "header": "Tutorial"
         },
         {
-            "header": "World 1",
-            "unlocked": true
+            "header": "World 1"
         },
         {
-            "header": "World 2",
-            "unlocked": false
-        },
-        {
-            "header": "Chorus Kit 1",
-            "unlocked": false
-        },
-        {
-            "header": "World 3",
-            "unlocked": false
-        },
-        {
-            "header": "Chorus Kit 2",
-            "unlocked": false
-        },
-        {
-            "header": "World 4",
-            "unlocked": false
-        },
-        {
-            "header": "Chorus Kit 3",
-            "unlocked": false
-        },
-        {
-            "header": "World 5",
-            "unlocked": false
-        },
-        {
-            "header": "World 6",
-            "unlocked": false
-        },
-        {
-            "header": "World 7",
-            "unlocked": false
-        },
-        {
-            "header": "Chorus Kit 4",
-            "unlocked": false
-        },
-        {
-            "header": "World 8",
-            "unlocked": false
+            "header": "World 2"
         }
     ],
     "songs": [
