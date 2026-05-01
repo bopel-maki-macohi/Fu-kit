@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.states.freeplay.NewFreeplayState;
 import flixel.util.FlxTimer;
 import flixel.FlxSubState;
 import fukit.states.options.NewOptionsMenu;
@@ -92,14 +93,17 @@ class NewMenuState extends MusicBeatState
 
 	function storymodeOption() {}
 
-	function freeplayOption() {}
+	function freeplayOption()
+	{
+		FlxG.sound.play(Paths.sound('confirmMenu'));
+		transitionTweens(false);
+		openSubState(new NewFreeplayState());
+	}
 
 	function optionsOption()
 	{
 		FlxG.sound.play(Paths.sound('confirmMenu'));
-
 		transitionTweens(false);
-
 		openSubState(new NewOptionsMenu());
 	}
 
