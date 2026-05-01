@@ -59,8 +59,7 @@ class DialogueBox extends FlxSpriteGroup
 		this.dialogueList = dialogueList;
 
 		box = new FlxSprite(0, 0);
-		box.makeGraphic(Math.round(FlxG.width * 0.9), Math.round(FlxG.height * 0.5));
-		add(box);
+		box.makeGraphic(Math.round(FlxG.width * 0.9), Math.round(FlxG.height * 0.4));
 
 		box.screenCenter();
 		box.y = (FlxG.height * 0.9) - box.height;
@@ -73,21 +72,30 @@ class DialogueBox extends FlxSpriteGroup
 		add(portraitRight);
 		portraitRight.visible = false;
 
+		add(box);
+
 		portraitLeft.screenCenter(X);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9).makeGraphic(16, 16, FlxColor.BLACK);
+		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9);
 		add(handSelect);
+		handSelect.loadGraphic(Paths.image('UI/dialogue/continueHand'));
 
-		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
+		handSelect.x = box.x + box.width - handSelect.width;
+		handSelect.y = box.y + box.height - handSelect.height;
+
+		dropText = new FlxText(242, 502, Std.int(box.width), "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
-		dropText.color = 0xFFC0E7F9;
+		dropText.color = 0xFF545B7D;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
-		swagDialogue.color = 0xFF545B7D;
+		swagDialogue = new FlxTypeText(240, 500, Std.int(box.width), "", dropText.size);
+		swagDialogue.font = dropText.font;
+		swagDialogue.color = 0xFFC0E7F9;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
+
+		swagDialogue.x = box.x + 10;
+		swagDialogue.y = box.y + 10;
 
 		dialogueOpened = true;
 	}
@@ -97,6 +105,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	override function update(elapsed:Float)
 	{
+		dropText.x = swagDialogue.x + 2;
+		dropText.y = swagDialogue.y + 2;
 		dropText.text = swagDialogue.text;
 
 		if (dialogueOpened && !dialogueStarted)
@@ -175,11 +185,17 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			portraitLeft.loadGraphic(Paths.image('dialogue/$curCharacter'));
 			portraitLeft.visible = true;
+
+			portraitLeft.y = box.y - (portraitLeft.height * 0.95);
+			portraitLeft.x = (portraitLeft.width * 0.2);
 		}
 		else
 		{
 			portraitRight.loadGraphic(Paths.image('dialogue/$curCharacter'));
 			portraitRight.visible = true;
+
+			portraitRight.y = box.y - (portraitRight.height * 0.95);
+			portraitRight.x = FlxG.width - (portraitRight.width * 1.1);
 		}
 	}
 
