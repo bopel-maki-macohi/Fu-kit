@@ -60,8 +60,8 @@ class NewMenuState extends MusicBeatState
 		menuList.addEntry('Options', optionsOption);
 		menuList.addEntry('Exit', exitOption);
 
-		menuList.addItem = addItem;
-		menuList.onSelectionChange.add(onSelectionChange);
+		menuList.addItem = item -> Global.addTextMenuListItem(menuList, item, blackBox.y, blackBox.x);
+		menuList.onSelectionChange.add(() -> Global.onTextSelectionChange(menuList));
 
 		menuList.regenItems();
 
@@ -170,33 +170,5 @@ class NewMenuState extends MusicBeatState
 			Conductor.songPosition = FlxG.sound.music.time;
 
 		menuList.canSelect = !inSubState;
-	}
-
-	function addItem(item:String)
-	{
-		var text:FlxText = new FlxText(0, 0, 0, item, 16);
-
-		text.screenCenter();
-		text.ID = menuList.members.length;
-
-		if (menuList.type == Vertical)
-			text.y = (text.ID * 60) + 60 + blackBox.y;
-		else
-			text.x = (text.ID * 120) + 60 + blackBox.x;
-
-		menuList.add(text);
-	}
-
-	function onSelectionChange()
-	{
-		for (basic in menuList.members)
-		{
-			var text:FlxText = cast(basic, FlxText);
-
-			if (text != null)
-				text.color = (menuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
-		}
-
-		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }

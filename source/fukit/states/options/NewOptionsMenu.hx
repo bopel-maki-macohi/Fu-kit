@@ -123,8 +123,8 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		optionsMenuList = new MenuList(Vertical);
 		add(optionsMenuList);
-		optionsMenuList.addItem = addItem;
-		optionsMenuList.onSelectionChange.add(onSelectionChange);
+		optionsMenuList.addItem = item -> Global.addTextMenuListItem(optionsMenuList, item);
+		optionsMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(optionsMenuList));
 
 		optionsMenuList.x = -FlxG.width;
 
@@ -160,34 +160,6 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		if (controls.BACK && optionsMenuList.canSelect)
 			leave();
-	}
-
-	function addItem(item:String)
-	{
-		var text:FlxText = new FlxText(0, 0, 0, item, 16);
-
-		text.screenCenter();
-		text.ID = optionsMenuList.members.length;
-
-		if (optionsMenuList.type == Vertical)
-			text.y = (text.ID * 60) + 60;
-		else
-			text.x = (text.ID * 120) + 60;
-
-		optionsMenuList.add(text);
-	}
-
-	function onSelectionChange()
-	{
-		for (basic in optionsMenuList.members)
-		{
-			var text:FlxText = cast(basic, FlxText);
-
-			if (text != null)
-				text.color = (optionsMenuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
-		}
-
-		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 
 	function leave()

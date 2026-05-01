@@ -1,5 +1,8 @@
 package fukit;
 
+import flixel.util.FlxColor;
+import flixel.text.FlxText;
+import fukit.states.ui.MenuList;
 import lime.app.Application;
 import flixel.FlxG;
 import flixel.util.FlxTimer;
@@ -50,5 +53,33 @@ class Global
 
 		Conductor.changeBPM(120);
 		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'));
+	}
+
+	public static function addTextMenuListItem(menuList:MenuList, item:String, ?verticalOffset:Float = 0, ?horizontalOffset:Float = 0)
+	{
+		var text:FlxText = new FlxText(0, 0, 0, item, 16);
+
+		text.screenCenter();
+		text.ID = menuList.members.length;
+
+		if (menuList.type == Vertical)
+			text.y = (text.ID * 60) + 60 + verticalOffset;
+		else
+			text.x = (text.ID * 120) + 60 + horizontalOffset;
+
+		menuList.add(text);
+	}
+
+	public static function onTextSelectionChange(menuList:MenuList)
+	{
+		for (basic in menuList.members)
+		{
+			var text:FlxText = cast(basic, FlxText);
+
+			if (text != null)
+				text.color = (menuList.curSelect == text.ID) ? FlxColor.YELLOW : FlxColor.WHITE;
+		}
+
+		FlxG.sound.play(Paths.sound('scrollMenu'));
 	}
 }
