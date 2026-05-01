@@ -1530,7 +1530,7 @@ class PlayState extends MusicBeatState
 			prevCamFollow = camFollow;
 
 			FlxG.sound.music.stop();
-			Global.goIntoSong(PlayState.storyPlaylist[0].toLowerCase(), storyDifficulty, storyWeek);
+			Global.goIntoSong(PlayState.storyPlaylist[0].toLowerCase(), storyDifficulty, storyWeek, true);
 		}
 	}
 
