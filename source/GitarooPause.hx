@@ -1,5 +1,6 @@
 package;
 
+import fukit.play.PlayStateSwitcher;
 import fukit.states.NewMenuState;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -60,7 +61,7 @@ class GitarooPause extends MusicBeatState
 		{
 			if (replaySelect)
 			{
-				LoadingState.loadAndSwitchState(new PlayState());
+				LoadingState.loadAndSwitchState(PlayStateSwitcher.getPlayStateSwitch());
 			}
 			else
 			{

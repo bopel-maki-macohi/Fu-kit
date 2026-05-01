@@ -1,5 +1,6 @@
 package;
 
+import fukit.play.PlayStateSwitcher;
 import flixel.FlxBasic;
 import flixel.addons.ui.FlxUIText;
 import haxe.zip.Writer;
@@ -637,7 +638,7 @@ class ChartingState extends MusicBeatState
 			PlayState.SONG = _song;
 			FlxG.sound.music.stop();
 			vocals.stop();
-			LoadingState.loadAndSwitchState(new PlayState());
+			LoadingState.loadAndSwitchState(PlayStateSwitcher.getPlayStateSwitch());
 		}
 
 		if (FlxG.keys.justPressed.E)

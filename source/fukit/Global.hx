@@ -1,5 +1,6 @@
 package fukit;
 
+import fukit.play.PlayStateSwitcher;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import fukit.states.ui.MenuList;
@@ -35,7 +36,7 @@ class Global
 		PlayState.storyWeek = week;
 		PlayState.offsetTesting = offsetTesting;
 
-		LoadingState.loadAndSwitchState(new PlayState());
+		LoadingState.loadAndSwitchState(PlayStateSwitcher.getPlayStateSwitch(!offsetTesting));
 	}
 
 	public static function goIntoWeek(songs:Array<String>, difficulty:Int = 2, week:Int = 0, storymode:Bool = true)
