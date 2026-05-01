@@ -184,9 +184,9 @@ class DialogueBox extends FlxSpriteGroup
 
 		// left or right side
 		if (portraitData[0] == '1')
-			portrait.x = FlxG.width - (portrait.width * 1.1);
-		else
 			portrait.x = (portrait.width * 0.2);
+		else
+			portrait.x = FlxG.width - (portrait.width * 1.1);
 		portrait.y = box.y - (portrait.height * 0.95);
 
 		portrait.visible = true;
