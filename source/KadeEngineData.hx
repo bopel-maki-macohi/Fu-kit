@@ -54,9 +54,6 @@ class KadeEngineData
 		if (FlxG.save.data.accuracyMod == null)
 			FlxG.save.data.accuracyMod = 0;
 
-		if (FlxG.save.data.watermark == null)
-			FlxG.save.data.watermark = true;
-
 		Conductor.recalculateTimings();
 
 		Main.watermarks = FlxG.save.data.watermark;

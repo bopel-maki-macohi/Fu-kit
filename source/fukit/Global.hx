@@ -19,10 +19,7 @@ class Global
 
 	static function get_watermarkText():String
 	{
-		if (Main.watermarks)
-			return 'Fu-kit ${modVer}' + ' (KE ${kadeEngineVer})';
-
-		return modVer;
+		return 'Fu-kit ${modVer}' + ' (KE ${kadeEngineVer})';
 	}
 
 	public static function goIntoSong(song:String = 'tutorial', difficulty:Int = 2, week:Int = 0, storymode:Bool = false, offsetTesting:Bool = false)

@@ -60,7 +60,6 @@ class NewOptionsMenu extends MusicBeatSubstate
 				#if desktop
 				new FPSCounterOption(),
 				#end
-				new WatermarksOption(),
 			],
 		];
 	}
