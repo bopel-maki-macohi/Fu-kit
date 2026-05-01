@@ -1,5 +1,6 @@
 package fukit.states.freeplay;
 
+import fukit.play.songs.SongList.SongListManager;
 import flixel.math.FlxMath;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
@@ -21,6 +22,8 @@ class NewFreeplayState extends MusicBeatSubstate
 		closeCallback = drawOnLeave;
 	}
 
+	public var curDifficulty:Int = 2;
+
 	override function create()
 	{
 		super.create();
@@ -31,6 +34,14 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		freeplayMenuList = new MenuList(Vertical);
 		add(freeplayMenuList);
+
+		for (song in SongListManager.songList.songs)
+		{
+			freeplayMenuList.addEntry(song.name, () ->
+			{
+				Global.goIntoSong(song.name, curDifficulty, song.world);
+			});
+		}
 
 		FlxTween.tween(freeplayMenuList, {x: 0}, 2.2, {
 			ease: FlxEase.expoInOut,
