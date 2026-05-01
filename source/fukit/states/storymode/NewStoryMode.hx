@@ -107,7 +107,7 @@ class NewStoryMode extends MusicBeatSubstate
 		FlxTween.cancelTweensOf(worldsMenuList);
 
 		worldsMenuList.canSelect = false;
-		FlxTween.tween(difficultyMenuList, {x: 0}, .3, {ease: FlxEase.expoInOut});
-		FlxTween.tween(worldsMenuList, {y: 0}, .3, {ease: FlxEase.expoInOut});
+		FlxTween.tween(difficultyMenuList, {y: -FlxG.height}, .3, {ease: FlxEase.expoInOut});
+		FlxTween.tween(worldsMenuList, {x: -FlxG.width}, .3, {ease: FlxEase.expoInOut});
 	}
 }
