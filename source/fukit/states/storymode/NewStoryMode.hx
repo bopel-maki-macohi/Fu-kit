@@ -34,6 +34,8 @@ class NewStoryMode extends MusicBeatSubstate
 
 	public function leave()
 	{
+		FlxG.sound.play(Paths.sound('cancelMenu'));
+
 		FlxTween.cancelTweensOf(blackScreen);
 		FlxTween.tween(blackScreen, {alpha: 0}, .3, {
 			ease: FlxEase.expoInOut,
