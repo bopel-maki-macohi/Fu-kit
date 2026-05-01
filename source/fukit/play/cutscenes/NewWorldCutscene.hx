@@ -1,26 +1,13 @@
 package fukit.play.cutscenes;
 
-import fukit.play.components.CutsceneComponent;
+import fukit.play.components.cutscenes.DialogueCutsceneComponent;
 
-class NewWorldCutscene extends CutsceneComponent
+class NewWorldCutscene extends DialogueCutsceneComponent
 {
-    public var dialogueBox:DialogueBox;
-
 	override function create()
 	{
 		super.create();
 
-		var dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/new world', 'fu-kit'));
-
-		if (dialogue.length < 1)
-        {
-            leave();
-            return;
-        }
-
-        dialogueBox = new DialogueBox(true, dialogue);
-        add(dialogueBox);
-
-        dialogueBox.finishThing = leave;
+		loadDialogue('new world');
 	}
 }
