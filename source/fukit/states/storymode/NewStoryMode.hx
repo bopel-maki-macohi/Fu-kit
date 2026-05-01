@@ -83,6 +83,9 @@ class NewStoryMode extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
+		difficultyMenuList.screenCenter(X);
+		worldsMenuList.screenCenter(Y);
+
 		difficultyMenuList.canSelect = worldsMenuList.canSelect;
 
 		if (controls.BACK)
