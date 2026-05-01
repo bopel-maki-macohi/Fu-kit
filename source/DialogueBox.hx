@@ -119,9 +119,6 @@ class DialogueBox extends FlxSpriteGroup
 				if (FlxG.sound.music?.playing)
 					FlxG.sound.music.fadeOut(2.2, 0);
 
-				portraitLeft.visible = false;
-				portraitRight.visible = false;
-
 				FlxTween.tween(box, {alpha: 0}, Conductor.crochet / 1000, {
 					ease: FlxEase.sineInOut,
 				});
@@ -135,6 +132,14 @@ class DialogueBox extends FlxSpriteGroup
 					onUpdate: t ->
 					{
 						dropText.alpha = swagDialogue.alpha;
+					}
+				});
+
+				FlxTween.tween(portraitLeft, {alpha: 0}, Conductor.crochet / 1000, {
+					ease: FlxEase.sineInOut,
+					onUpdate: t ->
+					{
+						portraitRight.alpha = portraitLeft.alpha;
 					}
 				});
 
