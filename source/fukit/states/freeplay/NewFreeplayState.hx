@@ -50,7 +50,7 @@ class NewFreeplayState extends MusicBeatSubstate
 		freeplayMenuList.x = -FlxG.width;
 
 		freeplayMenuList.canSelect = false;
-		FlxTween.tween(freeplayMenuList, {x: -(FlxG.width / 2)}, 2.2, {
+		FlxTween.tween(freeplayMenuList, {x: -(FlxG.width / 4)}, 2.2, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
