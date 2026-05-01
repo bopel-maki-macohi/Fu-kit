@@ -45,6 +45,9 @@ class SongListManager
 			trace(e);
 		}
 
-		trace(songList);
+		for (song in songList.songs)
+		{
+			trace('${song.name} (${songList.worlds[song.world]?.header ?? 'Unknown'})');
+		}
 	}
 }
