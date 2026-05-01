@@ -2,4 +2,6 @@ export/
 .haxelib/
 dump/
 
+art/songsFull/**/**.mp4
+
 RECOVER_**.fla
