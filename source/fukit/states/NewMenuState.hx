@@ -83,7 +83,7 @@ class NewMenuState extends MusicBeatState
 
 		if (startingEntry != null)
 		{
-			FlxTimer.wait((transIn?.duration / 2) ?? 0.5, () ->
+			FlxTimer.wait(transIn?.duration ?? 1, () ->
 			{
 				menuList.accept(startingEntry);
 				startingEntry = null;
