@@ -2,6 +2,6 @@
 
 - ?.? - Customizable Keybinds
 
-- ?.? - World 1 Dialogue
-
 - 2.0 - Custom Menus
+
+- 2.0 - World 1 Dialogue Assets

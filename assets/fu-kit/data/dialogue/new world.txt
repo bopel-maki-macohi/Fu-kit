@@ -1,2 +1,4 @@
-arpe-idle:wassup bitch?
-bf-idle:coolswag cool...
+arpe-idle:Hello there!
+bf-idle:Beep!
+arpe-idle:Wanna rap?
+bf-idle:Bo pee bo!
