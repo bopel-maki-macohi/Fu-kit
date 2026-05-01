@@ -184,10 +184,7 @@ class PauseSubState extends MusicBeatSubstate
 						return;
 					}
 
-					if (PlayState.isStoryMode)
-						FlxG.switchState(() -> new NewMenuState('Story Mode'));
-					else
-						FlxG.switchState(() -> new NewMenuState('Freeplay'));
+					FlxG.switchState(() -> new NewMenuState());
 			}
 		}
 
