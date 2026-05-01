@@ -30,6 +30,8 @@ class SplashTextState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		FlxG.mouse.visible = false;
+
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 

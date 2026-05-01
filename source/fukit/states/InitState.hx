@@ -89,6 +89,8 @@ class InitState extends FlxState
 
 		SongListManager.reloadSongList();
 
+		FlxG.mouse.visible = false;
+
 		#if FREEPLAY
 		FlxG.switchState(() -> new NewMenuState('Freeplay'));
 		#elseif CHARTING
