@@ -11,9 +11,11 @@ import fukit.states.ui.MenuList;
 
 class NewFreeplayState extends MusicBeatSubstate
 {
-	public var freeplayMenuList:MenuList;
+	public var songMenuList:MenuList;
+	public var difficultyMenuList:MenuList;
 
-	public var blackBox:FlxSprite;
+	public var songBlackBox:FlxSprite;
+	public var difficultyBlackBox:FlxSprite;
 
 	override public function new()
 	{
@@ -22,43 +24,65 @@ class NewFreeplayState extends MusicBeatSubstate
 		closeCallback = drawOnLeave;
 	}
 
-	public var curDifficulty:Int = 2;
-
 	override function create()
 	{
 		super.create();
 
-		blackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
-		add(blackBox);
-		blackBox.alpha = 0;
+		songBlackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+		add(songBlackBox);
+		songBlackBox.alpha = 0;
 
-		freeplayMenuList = new MenuList(Vertical);
-		add(freeplayMenuList);
+		songMenuList = new MenuList(Vertical);
+		add(songMenuList);
 
-		freeplayMenuList.addItem = item -> Global.addTextMenuListItem(freeplayMenuList, item, 0, 0);
-		freeplayMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(freeplayMenuList));
+		difficultyBlackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+		add(difficultyBlackBox);
+		difficultyBlackBox.alpha = 0;
+
+		difficultyMenuList = new MenuList(Horizontal);
+		add(difficultyMenuList);
+
+		songMenuList.addItem = item -> Global.addTextMenuListItem(songMenuList, item, 0, 0);
+		songMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(songMenuList));
+
+		difficultyMenuList.addItem = item -> Global.addTextMenuListItem(difficultyMenuList, item, 0, 0);
+		difficultyMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(difficultyMenuList));
 
 		for (song in SongListManager.songList.songs)
 		{
-			freeplayMenuList.addEntry(song.name, () ->
+			songMenuList.addEntry(song.name, () ->
 			{
-				freeplayMenuList.canSelect = false;
-				Global.goIntoSong(song.name, curDifficulty, song.world);
+				songMenuList.canSelect = false;
+				Global.goIntoSong(song.name, difficultyMenuList.curSelect, song.world);
 			});
 		}
-		freeplayMenuList.regenItems();
-		freeplayMenuList.x = -FlxG.width;
+		songMenuList.regenItems();
+		songMenuList.x = -FlxG.width;
 
-		freeplayMenuList.canSelect = false;
-		FlxTween.tween(freeplayMenuList, {x: -(FlxG.width / 4)}, 2.2, {
+		for (diffculty in CoolUtil.difficultyArray)
+			difficultyMenuList.addEntry(diffculty, null);
+
+		difficultyMenuList.regenItems();
+		difficultyMenuList.y = -FlxG.height;
+
+		songMenuList.canSelect = false;
+		FlxTween.tween(songMenuList, {x: -(FlxG.width / 4)}, 1, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
-				freeplayMenuList.canSelect = true;
+				songMenuList.canSelect = true;
 			}
 		});
 
-		FlxTween.tween(blackBox, {alpha: .3}, 2.2, {
+		FlxTween.tween(songBlackBox, {alpha: .3}, 1, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(difficultyMenuList, {y: -(FlxG.height / 4)}, 1, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(difficultyBlackBox, {alpha: .3}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 	}
@@ -67,15 +91,24 @@ class NewFreeplayState extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
-		freeplayMenuList.screenCenter(Y);
+		difficultyMenuList.canSelect = songMenuList.canSelect;
 
-		blackBox.scale.x = FlxMath.lerp(blackBox.scale.x, freeplayMenuList.width * 1.5, .1);
-		blackBox.scale.y = FlxMath.lerp(blackBox.scale.y, FlxG.height, .1);
-		blackBox.updateHitbox();
+		songMenuList.screenCenter(Y);
+		difficultyMenuList.screenCenter(X);
 
-		blackBox.x = freeplayMenuList.members[0].getGraphicMidpoint().x - (blackBox.width / 2);
+		songBlackBox.scale.x = FlxMath.lerp(songBlackBox.scale.x, songMenuList.width * 1.5, .1);
+		songBlackBox.scale.y = FlxMath.lerp(songBlackBox.scale.y, FlxG.height, .1);
+		songBlackBox.updateHitbox();
 
-		if (controls.BACK && freeplayMenuList.canSelect)
+		songBlackBox.x = songMenuList.members[0].getGraphicMidpoint().x - (songBlackBox.width / 2);
+
+		difficultyBlackBox.scale.x = FlxMath.lerp(difficultyBlackBox.scale.x, FlxG.width, .1);
+		difficultyBlackBox.scale.y = FlxMath.lerp(difficultyBlackBox.scale.y, difficultyMenuList.height * 1.5, .1);
+		difficultyBlackBox.updateHitbox();
+
+		difficultyBlackBox.y = difficultyMenuList.members[0].getGraphicMidpoint().y - (difficultyBlackBox.height / 2);
+
+		if (controls.BACK && songMenuList.canSelect)
 			leave();
 	}
 
@@ -83,12 +116,15 @@ class NewFreeplayState extends MusicBeatSubstate
 	{
 		FlxG.sound.play(Paths.sound('cancelMenu'));
 
-		FlxTween.cancelTweensOf(freeplayMenuList);
-		FlxTween.cancelTweensOf(blackBox);
+		FlxTween.cancelTweensOf(songMenuList);
+		FlxTween.cancelTweensOf(songBlackBox);
 
-		freeplayMenuList.canSelect = false;
+		FlxTween.cancelTweensOf(difficultyMenuList);
+		FlxTween.cancelTweensOf(difficultyBlackBox);
 
-		FlxTween.tween(freeplayMenuList, {x: -FlxG.width}, 2.2, {
+		songMenuList.canSelect = false;
+
+		FlxTween.tween(songMenuList, {x: -FlxG.width}, .5, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
@@ -96,7 +132,15 @@ class NewFreeplayState extends MusicBeatSubstate
 			}
 		});
 
-		FlxTween.tween(blackBox, {alpha: 0}, 2.2, {
+		FlxTween.tween(songBlackBox, {alpha: 0}, .5, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(difficultyMenuList, {y: -FlxG.height}, .5, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(difficultyBlackBox, {alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}

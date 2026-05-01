@@ -76,10 +76,10 @@ class NewMenuState extends MusicBeatState
 
 		if (startingEntry != null)
 		{
-			startingEntry = null;
 			FlxTimer.wait(transIn?.duration ?? 1, () ->
 			{
 				menuList.accept(startingEntry);
+				startingEntry = null;
 			});
 		}
 	}
@@ -126,21 +126,21 @@ class NewMenuState extends MusicBeatState
 		if (comingBack)
 			translationOffsets = -translationOffsets;
 
-		FlxTween.tween(logo, {x: logo.x + translationOffsets}, 2, {
+		FlxTween.tween(logo, {x: logo.x + translationOffsets}, 1, {
 			ease: FlxEase.expoInOut
 		});
-		FlxTween.tween(blackBox, {x: blackBox.x + translationOffsets, alpha: (comingBack) ? .3 : .0}, 2.2, {
+		FlxTween.tween(blackBox, {x: blackBox.x + translationOffsets, alpha: (comingBack) ? .3 : .0}, 1, {
 			ease: FlxEase.expoInOut
 		});
-		FlxTween.tween(menuList, {x: menuList.x + translationOffsets}, 2.2, {
+		FlxTween.tween(menuList, {x: menuList.x + translationOffsets}, 1, {
 			ease: FlxEase.expoInOut
 		});
 
-		FlxTween.tween(backdrop.velocity, {x: (comingBack) ? 32 : -32}, 2.3, {
+		FlxTween.tween(backdrop.velocity, {x: (comingBack) ? 32 : -32}, 1, {
 			ease: FlxEase.expoOut
 		});
 
-		FlxTween.color(backdrop, 2.4, backdrop.color, (comingBack) ? FlxColor.WHITE : FlxColor.PINK, {
+		FlxTween.color(backdrop, 1, backdrop.color, (comingBack) ? FlxColor.WHITE : FlxColor.PINK, {
 			ease: FlxEase.expoOut
 		});
 

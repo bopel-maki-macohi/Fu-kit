@@ -131,7 +131,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 		loadMenu('categories');
 		optionsMenuList.canSelect = false;
 
-		FlxTween.tween(optionsMenuList, {x: 0}, 2.2, {
+		FlxTween.tween(optionsMenuList, {x: 0}, 1, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
@@ -139,7 +139,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 			}
 		});
 
-		FlxTween.tween(blackBox, {alpha: .3}, 2.2, {
+		FlxTween.tween(blackBox, {alpha: .3}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 	}
@@ -171,7 +171,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 		optionsMenuList.canSelect = false;
 
-		FlxTween.tween(optionsMenuList, {x: -FlxG.width}, 2.2, {
+		FlxTween.tween(optionsMenuList, {x: -FlxG.width}, .5, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
@@ -179,7 +179,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 			}
 		});
 
-		FlxTween.tween(blackBox, {alpha: 0}, 2.2, {
+		FlxTween.tween(blackBox, {alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}
