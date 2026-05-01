@@ -6,7 +6,7 @@ import fukit.play.cutscenes.*;
 
 class PlayStateSwitcher
 {
-	public static function getPlayStateSwitch(allowCutscenes:Bool):FlxState
+	public static function getPlayStateSwitch(allowCutscenes:Bool = false):FlxState
 	{
 		var target:PlayState = new PlayState();
 
