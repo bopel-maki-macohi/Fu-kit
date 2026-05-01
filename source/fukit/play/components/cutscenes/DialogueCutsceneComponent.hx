@@ -1,5 +1,6 @@
 package fukit.play.components.cutscenes;
 
+import flixel.FlxG;
 import fukit.play.components.CutsceneComponent;
 
 class DialogueCutsceneComponent extends CutsceneComponent
@@ -20,7 +21,16 @@ class DialogueCutsceneComponent extends CutsceneComponent
 		super.create();
 
 		if (targetFile != null)
+		{
+			makeMusic();
 			loadDialogue(targetFile);
+		}
+	}
+
+	public function makeMusic()
+	{
+		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'), 0);
+		FlxG.sound.music.fadeIn(1, 0, 0.8);
 	}
 
 	public function loadDialogue(file:String)
