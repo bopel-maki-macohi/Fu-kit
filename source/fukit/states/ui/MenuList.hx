@@ -113,18 +113,7 @@ class MenuList extends FlxTypedSpriteGroup<FlxSprite>
 	 */
 	public dynamic function addItem(item:String)
 	{
-		var sprite:FlxSprite = new FlxSprite().makeGraphic(64, 64);
-
-		sprite.screenCenter();
-
-		if (type == Vertical)
-			sprite.y = (members.length * 60);
-		else
-			sprite.x = (members.length * 120);
-
-		sprite.ID = members.length;
-
-		add(sprite);
+		trace('No addItem replacement : $item');
 	}
 
 	public function clearList()

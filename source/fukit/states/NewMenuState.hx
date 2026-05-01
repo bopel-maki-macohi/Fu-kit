@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.states.storymode.NewStoryMode;
 import fukit.states.freeplay.NewFreeplayState;
 import flixel.util.FlxTimer;
 import flixel.FlxSubState;
@@ -97,7 +98,12 @@ class NewMenuState extends MusicBeatState
 		logo.anim.play('logoBumpin');
 	}
 
-	function storymodeOption() {}
+	function storymodeOption()
+	{
+		FlxG.sound.play(Paths.sound('confirmMenu'));
+		transitionTweens(false);
+		openSubState(new NewStoryMode());
+	}
 
 	function freeplayOption()
 	{
