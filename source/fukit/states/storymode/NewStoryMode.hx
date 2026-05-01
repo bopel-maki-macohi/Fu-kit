@@ -35,7 +35,7 @@ class NewStoryMode extends MusicBeatSubstate
 	public function leave()
 	{
 		FlxTween.cancelTweensOf(blackScreen);
-		FlxTween.tween(blackScreen, {alpha: 1}, .3, {
+		FlxTween.tween(blackScreen, {alpha: 0}, .3, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
