@@ -83,6 +83,8 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		scoreText = new FlxText(0, 0, scoreBlackBox.width, 'Bob', 32);
 		add(scoreText);
+		scoreText.fieldHeight = scoreBlackBox.height;
+		
 		scoreText.alignment = RIGHT;
 
 		FlxTween.tween(songMenuList, {x: -(FlxG.width / 4)}, 1, {
