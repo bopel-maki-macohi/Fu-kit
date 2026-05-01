@@ -31,7 +31,7 @@ class NewStoryMode extends MusicBeatSubstate
 
 		blackScreen.alpha = 0;
 
-		FlxTween.tween(blackScreen, {alpha: 1}, 1, {
+		FlxTween.tween(blackScreen, {alpha: .6}, 1, {
 			ease: FlxEase.expoInOut
 		});
 
