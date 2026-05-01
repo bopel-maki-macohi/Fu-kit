@@ -12,7 +12,7 @@ class NewWorldCutscene extends CutsceneComponent
 
 		var dialogue = CoolUtil.coolTextFile(Paths.txt('dialogue/new world', 'fu-kit'));
 
-		if (dialogue.length < 1 || !PlayState.isStoryMode)
+		if (dialogue.length < 1)
         {
             leave();
             return;
