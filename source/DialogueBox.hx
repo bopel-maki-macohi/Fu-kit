@@ -67,6 +67,9 @@ class DialogueBox extends FlxSpriteGroup
 		add(handSelect);
 		handSelect.loadGraphic(Paths.image('UI/dialogue/continueHand'));
 
+		handSelect.scale.set(PlayState.daPixelZoom, PlayState.daPixelZoom);
+		handSelect.updateHitbox();
+
 		handSelect.x = box.x + box.width - handSelect.width;
 		handSelect.y = box.y + box.height - handSelect.height;
 
