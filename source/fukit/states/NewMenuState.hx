@@ -28,6 +28,9 @@ class NewMenuState extends MusicBeatState
 
 	var startingEntry:String;
 
+	final backdropXSpeed:Float = 512;
+	final backdropYSpeed:Float = 256;
+
 	override public function new(?startingEntry:String)
 	{
 		super();
@@ -42,7 +45,10 @@ class NewMenuState extends MusicBeatState
 		backdrop = new FlxBackdrop(Paths.image('tile', 'fu-kit'));
 		add(backdrop);
 		backdrop.scale.set(6, 6);
-		backdrop.velocity.set(32, 32);
+		backdrop.velocity.set(backdropXSpeed, backdropYSpeed);
+
+		FlxTween.tween(backdrop.velocity, {y: -backdropYSpeed}, 6, {ease: FlxEase.bounceInOut, type: PINGPONG});
+		FlxTween.tween(backdrop.velocity, {x: -backdropXSpeed}, 3, {ease: FlxEase.bounceInOut, type: PINGPONG});
 
 		backdrop.antialiasing = false;
 
@@ -119,7 +125,6 @@ class NewMenuState extends MusicBeatState
 		FlxTween.cancelTweensOf(logo);
 		FlxTween.cancelTweensOf(blackBox);
 		FlxTween.cancelTweensOf(menuList);
-		FlxTween.cancelTweensOf(backdrop.velocity);
 
 		var translationOffsets:Float = FlxG.width;
 
@@ -134,10 +139,6 @@ class NewMenuState extends MusicBeatState
 		});
 		FlxTween.tween(menuList, {x: menuList.x + translationOffsets}, 1, {
 			ease: FlxEase.expoInOut
-		});
-
-		FlxTween.tween(backdrop.velocity, {x: (comingBack) ? 32 : -32}, 1, {
-			ease: FlxEase.expoOut
 		});
 
 		FlxTween.color(backdrop, 1, backdrop.color, (comingBack) ? FlxColor.WHITE : FlxColor.PINK, {
