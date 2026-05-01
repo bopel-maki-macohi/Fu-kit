@@ -56,6 +56,9 @@ class KadeEngineData
 		if (FlxG.save.data.accuracyComplex == null)
 			FlxG.save.data.accuracyComplex = false;
 
+		if (FlxG.save.data.ghostTapping == null)
+			FlxG.save.data.ghostTapping = false;
+
 		Conductor.recalculateTimings();
 
 		Main.watermarks = FlxG.save.data.watermark;

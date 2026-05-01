@@ -143,7 +143,7 @@ class PauseSubState extends MusicBeatSubstate
 				PlayState.songOffset += 1;
 
 			sys.FileSystem.rename(songPath + oldOffset + '.offset', songPath + PlayState.songOffset + '.offset');
-			
+
 			perSongOffset.text = "Additive Offset (SHIFT + Left, SHIFT + Right): " + PlayState.songOffset + " - Description - "
 				+ 'Adds value to global offset, per song.';
 
@@ -164,10 +164,8 @@ class PauseSubState extends MusicBeatSubstate
 
 			switch (daSelected)
 			{
-				case "Resume":
-					close();
-				case "Restart Song":
-					FlxG.switchState(() -> new PlayState());
+				case "Resume": close();
+				case "Restart Song": FlxG.switchState(() -> new PlayState());
 				case "Exit to menu":
 					PlayState.loadRep = false;
 
@@ -178,13 +176,18 @@ class PauseSubState extends MusicBeatSubstate
 						#end
 						PlayState.lua = null;
 					}
+
 					if (PlayState.offsetTesting)
 					{
 						PlayState.offsetTesting = false;
 						FlxG.switchState(() -> new NewMenuState('Options'));
+						return;
 					}
+
+					if (PlayState.isStoryMode)
+						FlxG.switchState(() -> new NewMenuState('Story Mode'));
 					else
-						FlxG.switchState(() -> new NewMenuState());
+						FlxG.switchState(() -> new NewMenuState('Freeplay'));
 			}
 		}
 

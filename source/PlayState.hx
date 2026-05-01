@@ -1769,7 +1769,7 @@ class PlayState extends MusicBeatState
 				goodNoteHit(possibleNotes[0]);
 			else if (possibleNotes.length > 0 && !dontCheck)
 			{
-				if (!FlxG.save.data.ghost)
+				if (!FlxG.save.data.ghostTapping)
 				{
 					for (shit in 0...pressArray.length)
 					{ // if a direction is hit that shouldn't be
@@ -1788,14 +1788,14 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
-			else if (!FlxG.save.data.ghost)
+			else if (!FlxG.save.data.ghostTapping)
 			{
 				for (shit in 0...pressArray.length)
 					if (pressArray[shit])
 						noteMiss(shit, null);
 			}
 
-			if (dontCheck && possibleNotes.length > 0 && FlxG.save.data.ghost && !FlxG.save.data.botplay)
+			if (dontCheck && possibleNotes.length > 0 && FlxG.save.data.ghostTapping && !FlxG.save.data.botplay)
 			{
 				if (mashViolations > 8)
 				{
