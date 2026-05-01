@@ -102,7 +102,7 @@ class PlayState extends MusicBeatState
 	public var health:Float = 1;
 	public var combo:Int = 0;
 
-	public static var misses:Int = 0;
+	public var misses:Int = 0;
 
 	public var accuracy:Float = 0.00;
 	public var accuracyDefault:Float = 0.00;
@@ -1126,7 +1126,7 @@ class PlayState extends MusicBeatState
 				scoreTxt.text += '$songScore';
 
 			scoreTxt.text += ' | Combo: $combo';
-			scoreTxt.text += ' | Combo Breaks: $misses';
+			scoreTxt.text += ' | Misses: $misses';
 
 			if (FlxG.save.data.accuracyDisplay)
 			{

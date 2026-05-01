@@ -25,6 +25,8 @@ Hi
 - New Title State
     - It's a splash text scene now
 
+- "Combo Breaks" are now "Misses"
+
 - You aren't stuck in the outdated state menu now when moving to update
 - More unused assets have been removed
 - Fixed missing Arpe Withered from the Character List
