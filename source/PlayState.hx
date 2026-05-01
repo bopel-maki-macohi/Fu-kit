@@ -1495,7 +1495,7 @@ class PlayState extends MusicBeatState
 		if (!isStoryMode)
 		{
 			trace('WENT BACK TO FREEPLAY??');
-			FlxG.switchState(() -> new FreeplayState());
+			FlxG.switchState(() -> new NewMenuState('Freeplay'));
 
 			return;
 		}
@@ -1520,7 +1520,7 @@ class PlayState extends MusicBeatState
 				Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 
 			// FlxG.switchState(() -> new StoryMenuState());
-			FlxG.switchState(() -> new NewMenuState());
+			FlxG.switchState(() -> new NewMenuState('Story Mode'));
 		}
 		else
 		{

@@ -1,5 +1,6 @@
 package;
 
+import fukit.states.NewMenuState;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -64,10 +65,10 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			FlxG.sound.music.stop();
 
-			// if (PlayState.isStoryMode)
-				// FlxG.switchState(() -> new StoryMenuState());
-			// else
-				FlxG.switchState(() -> new FreeplayState());
+			if (PlayState.isStoryMode)
+				FlxG.switchState(() -> new NewMenuState('Story Mode'));
+			else
+				FlxG.switchState(() -> new NewMenuState('Freeplay'));
 			PlayState.loadRep = false;
 		}
 
