@@ -182,7 +182,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		portrait.loadGraphic(Paths.image('dialogue/$curCharacter'));
 
-		// left or right side
+		// left side?
 		if (portraitData[0] == '1')
 			portrait.x = (portrait.width * 0.2);
 		else
