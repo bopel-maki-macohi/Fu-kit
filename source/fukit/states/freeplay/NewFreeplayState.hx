@@ -42,9 +42,11 @@ class NewFreeplayState extends MusicBeatSubstate
 		{
 			freeplayMenuList.addEntry(song.name, () ->
 			{
+				freeplayMenuList.canSelect = false;
 				Global.goIntoSong(song.name, curDifficulty, song.world);
 			});
 		}
+		freeplayMenuList.regenItems();
 
 		FlxTween.tween(freeplayMenuList, {x: 0}, 2.2, {
 			ease: FlxEase.expoInOut,
