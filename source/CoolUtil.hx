@@ -35,14 +35,21 @@ class CoolUtil
 
 	public static function coolStringFile(path:String):Array<String>
 	{
-		var daList:Array<String> = path.trim().split('\n');
-
-		for (i in 0...daList.length)
+		try
 		{
-			daList[i] = daList[i].trim();
-		}
+			var daList:Array<String> = path.trim().split('\n');
 
-		return daList;
+			for (i in 0...daList.length)
+			{
+				daList[i] = daList[i].trim();
+			}
+
+			return daList;
+		}
+		catch (e)
+		{
+			return [];
+		}
 	}
 
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
