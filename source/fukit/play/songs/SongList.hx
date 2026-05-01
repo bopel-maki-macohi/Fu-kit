@@ -44,5 +44,7 @@ class SongListManager
 			songList = {worlds: [], songs: []};
 			trace(e);
 		}
+
+		trace(songList);
 	}
 }
