@@ -4,7 +4,12 @@ Hi
 
 ## 2.0 - 5/2026
 
+- New Freeplay Menu
+    - It's stylized now and it's cool
+
 - New Options Menu
+    - Added Ghost Tapping Option in the Gameplay Category, it's toggable now and it's off by default
+
     - The Watermark Option has been removed
 
     - The following options now allow you to press SHIFT to increment more

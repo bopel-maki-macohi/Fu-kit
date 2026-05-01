@@ -37,6 +37,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 			'gameplay' => [
 				new OptionComponent('Back', () -> loadMenu('Categories')),
 				new DFJKOption(),
+				new GhostTappingOption(),
 				new SafeFramesOption(),
 				#if desktop
 				new FPSCapOption(),
