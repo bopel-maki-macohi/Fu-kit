@@ -11,6 +11,7 @@
 		"ifElse": "next",
 		"doWhile": "next",
 		"tryBody": "next",
-		"tryCatch": "next"
+		"tryCatch": "next",
+		"caseBody": "same"
 	}
 }
