@@ -56,23 +56,19 @@
     "songs": [
         {
             "name": "Tutorial",
-            "world": 0,
-            "stage": "mainStage"
+            "world": 0
         },
         {
             "name": "New World",
-            "world": 1,
-            "stage": "grassLand"
+            "world": 1
         },
         {
             "name": "Wetway",
-            "world": 1,
-            "stage": "grassLand"
+            "world": 1
         },
         {
             "name": "Rust",
-            "world": 1,
-            "stage": "grassLand"
+            "world": 1
         }
     ]
 }
