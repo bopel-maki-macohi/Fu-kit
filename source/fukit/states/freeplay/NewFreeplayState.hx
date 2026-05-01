@@ -47,9 +47,10 @@ class NewFreeplayState extends MusicBeatSubstate
 			});
 		}
 		freeplayMenuList.regenItems();
+		freeplayMenuList.x = -FlxG.width;
 
-				freeplayMenuList.canSelect = false;
-		FlxTween.tween(freeplayMenuList, {x: 0}, 2.2, {
+		freeplayMenuList.canSelect = false;
+		FlxTween.tween(freeplayMenuList, {x: FlxG.width / 2}, 2.2, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
