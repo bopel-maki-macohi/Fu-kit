@@ -1,7 +1,7 @@
 package fukit.play;
 
+import fukit.play.cutscenes.*;
 import openfl.Assets;
-import fukit.play.components.cutscenes.DialogueCutsceneComponent;
 import flixel.FlxState;
 import flixel.FlxG;
 
@@ -27,7 +27,12 @@ class PlayStateSwitcher
 		if (allowCutscenes)
 		{
 			if (dialogueComponentSongs.contains(curSong))
-				return new DialogueCutsceneComponent(curSong, () -> FlxG.switchState(() -> target));
+			{
+				if (curSong == 'rust')
+					return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+
+				return new SongMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+			}
 		}
 
 		return target;
