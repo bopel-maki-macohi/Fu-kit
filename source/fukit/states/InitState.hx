@@ -90,7 +90,7 @@ class InitState extends FlxState
 		SongListManager.reloadSongList();
 
 		#if FREEPLAY
-		FlxG.switchState(() -> new FreeplayState());
+		FlxG.switchState(() -> new NewMenuState('Freeplay'));
 		#elseif CHARTING
 		FlxG.switchState(() -> new ChartingState());
 		#elseif ANIMDEBUG
@@ -98,7 +98,9 @@ class InitState extends FlxState
 		#elseif SONG
 		fukit.Global.goIntoSong('Wetway', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
 		#elseif STORYMENU
-		// FlxG.switchState(() -> new StoryMenuState());
+		FlxG.switchState(() -> new NewMenuState('Story Mode'));
+		#elseif OPTIONS
+		FlxG.switchState(() -> new NewMenuState('Options'));
 		#elseif MAINMENU
 		FlxG.switchState(() -> new NewMenuState());
 		#else
