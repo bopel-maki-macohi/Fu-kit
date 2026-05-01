@@ -1,5 +1,6 @@
 package;
 
+import lime.utils.Assets;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxG;
@@ -30,8 +31,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var finishThing:Void->Void;
 
-	var portraitLeft:FlxSprite;
-	var portraitRight:FlxSprite;
+	var portrait:FlxSprite;
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
@@ -64,17 +64,11 @@ class DialogueBox extends FlxSpriteGroup
 		box.screenCenter();
 		box.y = (FlxG.height * 0.9) - box.height;
 
-		portraitLeft = new FlxSprite(-20, 40);
-		add(portraitLeft);
-		portraitLeft.visible = false;
-
-		portraitRight = new FlxSprite(0, 40);
-		add(portraitRight);
-		portraitRight.visible = false;
+		portrait = new FlxSprite(-20, 40);
+		add(portrait);
+		portrait.visible = false;
 
 		add(box);
-
-		portraitLeft.screenCenter(X);
 
 		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9);
 		add(handSelect);
@@ -145,12 +139,8 @@ class DialogueBox extends FlxSpriteGroup
 					}
 				});
 
-				FlxTween.tween(portraitLeft, {alpha: 0}, Conductor.crochet / 1000, {
+				FlxTween.tween(portrait, {alpha: 0}, Conductor.crochet / 1000, {
 					ease: FlxEase.sineInOut,
-					onUpdate: t ->
-					{
-						portraitRight.alpha = portraitLeft.alpha;
-					}
 				});
 
 				new FlxTimer().start(Conductor.crochet / 1000 + .2, function(tmr:FlxTimer)
@@ -178,28 +168,31 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.resetText(dialogueList[0]);
 		swagDialogue.start(0.04, true);
 
-		portraitLeft.visible = false;
-		portraitRight.visible = false;
+		portrait.visible = false;
 
-		if (leftPortraits.contains(curCharacter))
-		{
-			portraitLeft.loadGraphic(Paths.image('dialogue/$curCharacter'));
-			portraitLeft.visible = true;
+		var portraitData:Array<String> = [];
 
-			portraitLeft.y = box.y - (portraitLeft.height * 0.95);
-			portraitLeft.x = (portraitLeft.width * 0.2);
-		}
+		if (portraitDataFiles.exists(curCharacter))
+			portraitData = portraitDataFiles.get(curCharacter);
 		else
 		{
-			portraitRight.loadGraphic(Paths.image('dialogue/$curCharacter'));
-			portraitRight.visible = true;
-
-			portraitRight.y = box.y - (portraitRight.height * 0.95);
-			portraitRight.x = FlxG.width - (portraitRight.width * 1.1);
+			portraitData = CoolUtil.coolTextFile(Paths.file('images/dialogue/$curCharacter.txt'));
+			portraitDataFiles.set(curCharacter, portraitData);
 		}
+
+		portrait.loadGraphic(Paths.image('dialogue/$curCharacter'));
+
+		// left or right side
+		if (portraitData[0] == '1')
+			portrait.x = FlxG.width - (portrait.width * 1.1);
+		else
+			portrait.x = (portrait.width * 0.2);
+		portrait.y = box.y - (portrait.height * 0.95);
+
+		portrait.visible = true;
 	}
 
-	public static var leftPortraits:Array<String> = ['arpe-idle',];
+	public static var portraitDataFiles:Map<String, Array<String>> = [];
 
 	function cleanDialog():Void
 	{
