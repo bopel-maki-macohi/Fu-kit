@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.play.songs.SongList;
 import flixel.math.FlxRect;
 import flixel.util.FlxColor;
 import flixel.math.FlxPoint;
@@ -85,6 +86,8 @@ class InitState extends FlxState
 			new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
 
 		Paths.setCurrentLevel('fu-kit');
+
+		SongListManager.reloadSongList();
 
 		#if FREEPLAY
 		FlxG.switchState(() -> new FreeplayState());
