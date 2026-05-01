@@ -37,7 +37,7 @@ class SplashTextState extends MusicBeatState
 		{
 			FlxG.sound.music.stop();
 			FlxG.sound.music.destroy();
-			
+
 			onEnd();
 		}
 	}
@@ -59,26 +59,23 @@ class SplashTextState extends MusicBeatState
 
 			switch (mylaststep)
 			{
-				case 0, 12:
-					clearTexts();
+				case 3, 12: clearTexts();
 
-				case 4:
-					addText('fu');
+				case 0: addText('made');
+				case 1: addText('by');
+				case 2: addText('maki');
 
-				case 6:
-					addText('kit');
+				case 4: addText('fu');
 
-				case 8:
-					addText('mod');
+				case 6: addText('kit');
 
-				case 14:
-					addText(wackyList[0]);
+				case 8: addText('mod');
 
-				case 18:
-					addText(wackyList[1]);
+				case 14: addText(wackyList[0]);
 
-				case 22:
-					addText(wackyList[2]);
+				case 18: addText(wackyList[1]);
+
+				case 22: addText(wackyList[2]);
 			}
 
 			mylaststep++;
