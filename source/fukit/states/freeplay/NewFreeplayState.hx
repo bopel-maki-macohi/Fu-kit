@@ -83,9 +83,8 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		scoreText = new FlxText(0, 0, scoreBlackBox.width, 'Bob', 32);
 		add(scoreText);
-		scoreText.fieldHeight = scoreBlackBox.height;
 		
-		scoreText.alignment = RIGHT;
+		scoreText.alignment = CENTER;
 
 		FlxTween.tween(songMenuList, {x: -(FlxG.width / 4)}, 1, {
 			ease: FlxEase.expoInOut,
@@ -134,7 +133,7 @@ class NewFreeplayState extends MusicBeatSubstate
 		difficultyBlackBox.y = difficultyMenuList.members[0].getGraphicMidpoint().y - (difficultyBlackBox.height / 2);
 
 		scoreText.x = scoreBlackBox.x;
-		scoreText.y = scoreBlackBox.y;
+		scoreText.y = scoreBlackBox.y + scoreText.height / 2;
 
 		updateScoreText();
 
