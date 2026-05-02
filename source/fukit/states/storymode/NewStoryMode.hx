@@ -44,7 +44,7 @@ class NewStoryMode extends MusicBeatSubstate
 		blackBar.alpha = 0;
 
 		FlxTween.tween(blackBar, {alpha: 1}, 1, {
-			ease: FlxEase.expoInOut
+			ease: FlxEase.sineInOut
 		});
 
 		difficultyMenuList = new MenuList(Vertical);
@@ -161,7 +161,10 @@ class NewStoryMode extends MusicBeatSubstate
 		for (stage => objects in stageObjects)
 		{
 			for (sprite in objects)
+			{
 				sprite.alpha = FlxMath.lerp(sprite.alpha, (curStage == stage) ? 1 : 0, .1);
+				sprite.active = sprite.alpha > 0;
+			}
 		}
 	}
 
@@ -184,7 +187,7 @@ class NewStoryMode extends MusicBeatSubstate
 
 		FlxTween.cancelTweensOf(blackBar);
 		FlxTween.tween(blackBar, {alpha: 0}, .3, {
-			ease: FlxEase.expoInOut,
+			ease: FlxEase.sineInOut,
 			onComplete: t ->
 			{
 				close();
