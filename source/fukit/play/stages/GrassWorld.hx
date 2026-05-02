@@ -3,6 +3,8 @@ package fukit.play.stages;
 import flixel.FlxSprite;
 import fukit.play.components.StageComponent;
 
+using StringTools;
+
 class GrassWorld extends StageComponent
 {
 	public var sky:FlxSprite;
@@ -38,6 +40,9 @@ class GrassWorld extends StageComponent
 
 		game.remove(game.gf);
 
-		game.dad.y += 120;
+		if (game.dad.curCharacter.startsWith('folir'))
+			game.dad.y += 120 + 100;
+		if (game.dad.curCharacter.startsWith('arpe'))
+			game.dad.y += 120;
 	}
 }

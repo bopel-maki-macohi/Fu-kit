@@ -96,9 +96,9 @@ class InitState extends FlxState
 		#elseif CHARTING
 		FlxG.switchState(() -> new ChartingState());
 		#elseif ANIMDEBUG
-		FlxG.switchState(() -> new AnimationDebug('arpe'));
+		FlxG.switchState(() -> new AnimationDebug('folir'));
 		#elseif SONG
-		fukit.Global.goIntoSong('New World', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
+		fukit.Global.goIntoSong('Termination', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
 		#elseif STORYMENU
 		FlxG.switchState(() -> new NewMenuState('Story Mode'));
 		#elseif OPTIONS

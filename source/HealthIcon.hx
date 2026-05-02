@@ -16,11 +16,9 @@ class HealthIcon extends FlxSprite
 
 		switch (char)
 		{
-			case 'arpe', 'arpe-worried', 'arpe-withered':
-				makeBaseFuKitIcon(char, isPlayer);
+			case 'arpe', 'arpe-worried', 'arpe-withered', 'folir': makeBaseFuKitIcon(char, isPlayer);
 
-			default:
-				makeDefaultIcon(char, isPlayer);
+			default: makeDefaultIcon(char, isPlayer);
 		}
 
 		animation.play(char);
@@ -48,6 +46,9 @@ class HealthIcon extends FlxSprite
 
 			case 'arpe', 'arpe-worried':
 				0x786D8E;
+
+			case 'folir':
+				0xCC9999;
 
 			default:
 				FlxColor.WHITE;
@@ -83,8 +84,10 @@ class HealthIcon extends FlxSprite
 
 		switch (char)
 		{
-			case 'bf-pixel', 'senpai', 'senpai-angry', 'spirit', 'gf-pixel':
-				antialiasing = false;
+			case 'bf-pixel', 'senpai', 'senpai-angry', 'spirit', 'gf-pixel': antialiasing = false;
 		}
+
+		if (!animation.getNameList().contains(char))
+			animation.add('$char', [10, 11], 0, false, isPlayer);
 	}
 }

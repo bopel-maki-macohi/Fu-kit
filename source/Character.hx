@@ -56,6 +56,25 @@ class Character extends FlxAnimate
 
 		switch (curCharacter)
 		{
+			case 'folir':
+				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
+
+				addByPrefix('idle', 'folir anim idle', 24);
+				addByPrefix('singLEFT', 'folir anim left', 24);
+				addByPrefix('singDOWN', 'folir anim down', 24);
+				addByPrefix('singUP', 'folir anim up', 24);
+				addByPrefix('singRIGHT', 'folir anim right', 24);
+
+				addOffset('idle', 0, 0);
+				addOffset('singLEFT', 250, 40);
+				addOffset('singDOWN', 170, -60);
+				addOffset('singUP', -40, 200);
+				addOffset('singRIGHT', 10, 180);
+
+				dadStartingCamPosOffsets.set(202, 60);
+
+				playAnim('idle');
+
 			case 'arpe', 'arpe-worried':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
@@ -244,12 +263,10 @@ class Character extends FlxAnimate
 
 	override function update(elapsed:Float)
 	{
-		if (!curCharacter.startsWith('bf'))
+		if (!isPlayer)
 		{
 			if (animation?.curAnim?.name.startsWith('sing'))
-			{
 				holdTimer += elapsed;
-			}
 
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
 			{
@@ -274,62 +291,23 @@ class Character extends FlxAnimate
 	 */
 	public function dance()
 	{
-		if (!debugMode)
+		if (debugMode)
+			return;
+
+		switch (curCharacter)
 		{
-			switch (curCharacter)
-			{
-				case 'gf':
-					if (!animation?.curAnim?.name.startsWith('hair'))
-					{
-						danced = !danced;
+			case 'gf':
+				if (animation?.curAnim?.name.startsWith('hair'))
+					return;
 
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
+				danced = !danced;
 
-				case 'gf-christmas':
-					if (!animation?.curAnim?.name.startsWith('hair'))
-					{
-						danced = !danced;
+				if (danced)
+					playAnim('danceRight');
+				else
+					playAnim('danceLeft');
 
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-
-				case 'gf-car':
-					if (!animation?.curAnim?.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				case 'gf-pixel':
-					if (!animation?.curAnim?.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-
-				case 'spooky':
-					danced = !danced;
-
-					if (danced)
-						playAnim('danceRight');
-					else
-						playAnim('danceLeft');
-				default: playAnim('idle');
-			}
+			default: playAnim('idle');
 		}
 	}
 
@@ -339,27 +317,18 @@ class Character extends FlxAnimate
 
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
-		{
 			offset.set(daOffset[0], daOffset[1]);
-		}
 		else
 			offset.set(0, 0);
 
 		if (curCharacter == 'gf')
 		{
 			if (AnimName == 'singLEFT')
-			{
 				danced = true;
-			}
 			else if (AnimName == 'singRIGHT')
-			{
 				danced = false;
-			}
-
-			if (AnimName == 'singUP' || AnimName == 'singDOWN')
-			{
+			else if (AnimName == 'singUP' || AnimName == 'singDOWN')
 				danced = !danced;
-			}
 		}
 	}
 
