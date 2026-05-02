@@ -1,5 +1,8 @@
 package fukit.states.storymode;
 
+import flixel.math.FlxMath;
+import fukit.states.ui.ScoreBox;
+import flixel.text.FlxText;
 import fukit.play.songs.SongList.SongListManager;
 import fukit.states.ui.MenuList;
 import flixel.tweens.FlxEase;
@@ -14,6 +17,8 @@ class NewStoryMode extends MusicBeatSubstate
 
 	public var worldsMenuList:MenuList;
 	public var difficultyMenuList:MenuList;
+
+	public var scoreBox:ScoreBox;
 
 	override public function new()
 	{
@@ -58,7 +63,7 @@ class NewStoryMode extends MusicBeatSubstate
 			worldsMenuList.addEntry(world.header, function()
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
-				
+
 				worldsMenuList.canSelect = false;
 				Global.goIntoWeek(SongListManager.worldSongLists[index], difficultyMenuList.curSelect, index);
 			});
@@ -77,17 +82,39 @@ class NewStoryMode extends MusicBeatSubstate
 				worldsMenuList.canSelect = true;
 			}
 		});
+
+		scoreBox = new ScoreBox();
+		add(scoreBox);
+
+		scoreBox.x = FlxG.width + scoreBox.width;
+		scoreBox.y = FlxG.height - scoreBox.height;
+
+		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width, alpha: .6}, 1, {
+			ease: FlxEase.expoInOut,
+		});
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-
 		difficultyMenuList.canSelect = worldsMenuList.canSelect;
+
+		updateScoreText();
 
 		if (controls.BACK)
 			leave();
+	}
+
+	var curSongScore:Float = 0;
+
+	function updateScoreText()
+	{
+		var songScore:Float = Highscore.getWeekScore(worldsMenuList.curSelect, difficultyMenuList.curSelect);
+
+		curSongScore = FlxMath.lerp(curSongScore, songScore, .2);
+
+		scoreBox.text = 'HIGHSCORE:\n${Math.round(curSongScore)}';
 	}
 
 	public function leave()
@@ -109,5 +136,11 @@ class NewStoryMode extends MusicBeatSubstate
 		worldsMenuList.canSelect = false;
 		FlxTween.tween(difficultyMenuList, {y: -FlxG.height}, .3, {ease: FlxEase.expoInOut});
 		FlxTween.tween(worldsMenuList, {x: -FlxG.width}, .3, {ease: FlxEase.expoInOut});
+
+		FlxTween.cancelTweensOf(scoreBox);
+
+		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width, alpha: .6}, 1, {
+			ease: FlxEase.expoInOut,
+		});
 	}
 }

@@ -1,5 +1,6 @@
 package fukit.states.freeplay;
 
+import fukit.states.ui.ScoreBox;
 import flixel.FlxObject;
 import flixel.FlxCamera;
 import flixel.text.FlxText;
@@ -19,9 +20,8 @@ class NewFreeplayState extends MusicBeatSubstate
 
 	public var songBlackBox:FlxSprite;
 	public var difficultyBlackBox:FlxSprite;
-	public var scoreBlackBox:FlxSprite;
 
-	public var scoreText:FlxText;
+	public var scoreBox:ScoreBox;
 
 	override public function new()
 	{
@@ -75,18 +75,11 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		songMenuList.canSelect = false;
 
-		scoreBlackBox = new FlxSprite();
-		scoreBlackBox.makeGraphic(320, 160, FlxColor.BLACK);
-		add(scoreBlackBox);
-		scoreBlackBox.alpha = 0;
+		scoreBox = new ScoreBox();
+		add(scoreBox);
 
-		scoreBlackBox.x = FlxG.width + scoreBlackBox.width;
-		scoreBlackBox.y = FlxG.height - scoreBlackBox.height;
-
-		scoreText = new FlxText(0, 0, scoreBlackBox.width, 'Bob', 32);
-		add(scoreText);
-
-		scoreText.alignment = CENTER;
+		scoreBox.x = FlxG.width + scoreBox.width;
+		scoreBox.y = FlxG.height - scoreBox.height;
 
 		FlxTween.tween(songMenuList, {x: -(FlxG.width / 4)}, 1, {
 			ease: FlxEase.expoInOut,
@@ -108,7 +101,7 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
-		FlxTween.tween(scoreBlackBox, {x: FlxG.width - scoreBlackBox.width, alpha: .6}, 1, {
+		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width, alpha: .6}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 
@@ -151,9 +144,6 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		difficultyBlackBox.y = difficultyMenuList.members[0].getGraphicMidpoint().y - (difficultyBlackBox.height / 2);
 
-		scoreText.x = scoreBlackBox.x;
-		scoreText.y = scoreBlackBox.y + scoreText.height / 2;
-
 		updateScoreText();
 
 		songMenuListCamFollowOBJ.y = 0 + songMenuList.members[songMenuList.curSelect].y;
@@ -170,7 +160,7 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		curSongScore = FlxMath.lerp(curSongScore, songScore, .2);
 
-		scoreText.text = 'HIGHSCORE:\n${Math.round(curSongScore)}';
+		scoreBox.text = 'HIGHSCORE:\n${Math.round(curSongScore)}';
 	}
 
 	function leave()
@@ -183,8 +173,7 @@ class NewFreeplayState extends MusicBeatSubstate
 		FlxTween.cancelTweensOf(difficultyMenuList);
 		FlxTween.cancelTweensOf(difficultyBlackBox);
 
-		FlxTween.cancelTweensOf(scoreText);
-		FlxTween.cancelTweensOf(scoreBlackBox);
+		FlxTween.cancelTweensOf(scoreBox);
 
 		songMenuList.canSelect = false;
 
@@ -208,7 +197,7 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
-		FlxTween.tween(scoreBlackBox, {x: FlxG.width + scoreBlackBox.width, alpha: 0}, .5, {
+		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width, alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}
