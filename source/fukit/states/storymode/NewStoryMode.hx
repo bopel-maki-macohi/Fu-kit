@@ -45,12 +45,11 @@ class NewStoryMode extends MusicBeatSubstate
 
 		blackScreen.alpha = 0;
 
-		FlxTween.tween(blackScreen, {alpha: .6}, 1, {
+		FlxTween.tween(blackScreen, {alpha: 1}, 1, {
 			ease: FlxEase.expoInOut
 		});
 
 		difficultyMenuList = new MenuList(Vertical);
-		add(difficultyMenuList);
 
 		difficultyMenuList.addItem = item -> Global.addTextMenuListItem(difficultyMenuList, item, 0, 0);
 		difficultyMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(difficultyMenuList));
@@ -62,7 +61,6 @@ class NewStoryMode extends MusicBeatSubstate
 		difficultyMenuList.x = -FlxG.width;
 
 		worldsMenuList = new MenuList(Horizontal);
-		add(worldsMenuList);
 
 		worldsMenuList.addItem = item -> Global.addTextMenuListItem(worldsMenuList, item, 0, 0);
 		worldsMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(worldsMenuList));
@@ -77,16 +75,28 @@ class NewStoryMode extends MusicBeatSubstate
 
 				if (stageComp != null)
 				{
-					stageComponents.set(world.stage, stageComp);
-					stageObjects.set(world.stage, stageComp.members);
+					if (!stageObjects.exists(world.stage))
+					{
+						stageComp.makeStage();
 
-					for (sprite in stageComp.members)
-						insert(1, sprite);
+						stageComponents.set(world.stage, stageComp);
+						stageObjects.set(world.stage, stageComp.members);
 
+						for (sprite in stageComp.members)
+						{
+							sprite.alpha = 0;
+							add(sprite);
+						}
+					}
+
+					trace('Nonnull stageComp: ${world.stage}');
 					worldStages.push(world.stage);
 				}
 				else
+				{
+					trace('Null stageComp: ${world.stage}');
 					worldStages.push(null);
+				}
 			}
 
 			worldsMenuList.addEntry(world.header, function()
@@ -113,7 +123,6 @@ class NewStoryMode extends MusicBeatSubstate
 		});
 
 		scoreBox = new ScoreBox();
-		add(scoreBox);
 
 		scoreBox.x = FlxG.width + scoreBox.width;
 		scoreBox.y = FlxG.height - scoreBox.height;
@@ -121,6 +130,10 @@ class NewStoryMode extends MusicBeatSubstate
 		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width, alpha: .6}, 1, {
 			ease: FlxEase.expoInOut,
 		});
+
+		add(difficultyMenuList);
+		add(worldsMenuList);
+		add(scoreBox);
 	}
 
 	override function update(elapsed:Float)

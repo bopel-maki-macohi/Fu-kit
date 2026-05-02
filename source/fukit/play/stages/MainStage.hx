@@ -9,7 +9,9 @@ class MainStage extends StageComponent
 	{
 		super.makeStage();
 
-		game.defaultCamZoom = 0.9;
+		if (game != null)
+			game.defaultCamZoom = 0.9;
+		
 		PlayState.curStage = 'stage';
 
 		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));

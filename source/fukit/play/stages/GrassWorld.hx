@@ -33,6 +33,9 @@ class GrassWorld extends StageComponent
 		add(sky, back);
 		add(ground, back);
 
+		if (game == null)
+			return;
+
 		game.remove(game.gf);
 
 		game.dad.y += 120;
