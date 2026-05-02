@@ -8,6 +8,7 @@ import flixel.FlxG;
 class PlayStateSwitcher
 {
 	static var dialogueComponentSongs:Array<String> = ['new world', 'rust', 'wetway'];
+	static var freeplayCutsceneSongs:Array<String> = [];
 
 	public static function getPlayStateSwitch(allowCutscenes:Bool = false):FlxState
 	{
@@ -24,15 +25,16 @@ class PlayStateSwitcher
 		FlxG.sound.cache(Paths.inst(curSong));
 		FlxG.sound.cache(Paths.voices(curSong));
 
-		if (allowCutscenes)
-		{
-			if (dialogueComponentSongs.contains(curSong))
-			{
-				if (curSong == 'rust')
-					return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+		if (!allowCutscenes)
+			return target;
 
-				return new SongMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
-			}
+		if (dialogueComponentSongs.contains(curSong)
+			&& (PlayState.isStoryMode || #if FREEPLAY_CUTSCENES true #else freeplayCutsceneSongs.contains(curSong) #end))
+		{
+			if (curSong == 'rust')
+				return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+
+			return new SongMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
 		}
 
 		return target;
