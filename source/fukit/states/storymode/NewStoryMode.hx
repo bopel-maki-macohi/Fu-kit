@@ -156,7 +156,7 @@ class NewStoryMode extends MusicBeatSubstate
 
 	function updateCurrentStageStuff()
 	{
-		curStage = worldStages[worldsMenuList.curSelect];
+		curStage = worldStages[worldsMenuList.curSelect] ?? null;
 
 		for (stage => objects in stageObjects)
 		{
@@ -179,6 +179,8 @@ class NewStoryMode extends MusicBeatSubstate
 	public function leave()
 	{
 		FlxG.sound.play(Paths.sound('cancelMenu'));
+
+		worldStages = [];
 
 		FlxTween.cancelTweensOf(blackBar);
 		FlxTween.tween(blackBar, {alpha: 0}, .3, {
