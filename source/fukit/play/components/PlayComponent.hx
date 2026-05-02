@@ -9,7 +9,10 @@ class PlayComponent
 
 	function get_game():PlayState
 	{
-		return cast FlxG.state;
+		if (Std.isOfType(FlxG.state, PlayState))
+			return cast FlxG.state;
+
+		return null;
 	}
 
 	function remapToRangeDependentOnSong(start:Float, end:Float)
