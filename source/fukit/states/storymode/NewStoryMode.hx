@@ -161,10 +161,7 @@ class NewStoryMode extends MusicBeatSubstate
 		for (stage => objects in stageObjects)
 		{
 			for (sprite in objects)
-			{
 				sprite.alpha = FlxMath.lerp(sprite.alpha, (curStage == stage) ? 1 : 0, .1);
-				sprite.active = sprite.alpha > 0;
-			}
 		}
 	}
 
