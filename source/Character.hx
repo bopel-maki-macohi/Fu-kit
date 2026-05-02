@@ -31,14 +31,10 @@ class Character extends FlxAnimate
 	{
 		switch (note.noteData)
 		{
-			case 2:
-				playAnim('singUP' + suffix, true);
-			case 3:
-				playAnim('singRIGHT' + suffix, true);
-			case 1:
-				playAnim('singDOWN' + suffix, true);
-			case 0:
-				playAnim('singLEFT' + suffix, true);
+			case 2: playAnim('singUP' + suffix, true);
+			case 3: playAnim('singRIGHT' + suffix, true);
+			case 1: playAnim('singDOWN' + suffix, true);
+			case 0: playAnim('singLEFT' + suffix, true);
 		}
 
 		if (!isPlayer)
@@ -63,12 +59,12 @@ class Character extends FlxAnimate
 			case 'arpe', 'arpe-worried':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
-				animation.addByPrefix('idle', 'arpe anim idle', 24);
+				addByPrefix('idle', 'arpe anim idle', 24);
 
-				animation.addByPrefix('singLEFT', 'arpe anim left', 24);
-				animation.addByPrefix('singDOWN', 'arpe anim down', 24);
-				animation.addByPrefix('singUP', 'arpe anim up', 24);
-				animation.addByPrefix('singRIGHT', 'arpe anim right', 24);
+				addByPrefix('singLEFT', 'arpe anim left', 24);
+				addByPrefix('singDOWN', 'arpe anim down', 24);
+				addByPrefix('singUP', 'arpe anim up', 24);
+				addByPrefix('singRIGHT', 'arpe anim right', 24);
 
 				addOffset('idle', 0, 0);
 				addOffset('singDOWN', -5, -190);
@@ -86,20 +82,20 @@ class Character extends FlxAnimate
 					Paths.getSparrowAtlas('characters/arpe-withered-alt', 'fu-kit')
 				]);
 
-				animation.addByPrefix('idle', 'arpe anim idle', 24);
+				addByPrefix('idle', 'arpe anim idle', 24);
 
-				animation.addByPrefix('singLEFT', 'arpe anim left', 24);
-				animation.addByPrefix('singDOWN', 'arpe anim down', 24);
-				animation.addByPrefix('singUP', 'arpe anim up', 24);
-				animation.addByPrefix('singRIGHT', 'arpe anim right', 24);
+				addByPrefix('singLEFT', 'arpe anim left', 24);
+				addByPrefix('singDOWN', 'arpe anim down', 24);
+				addByPrefix('singUP', 'arpe anim up', 24);
+				addByPrefix('singRIGHT', 'arpe anim right', 24);
 
-				animation.addByPrefix('singLEFT-alt', 'arpe anim alt left', 24);
-				animation.addByPrefix('singDOWN-alt', 'arpe anim alt down', 24);
-				animation.addByPrefix('singUP-alt', 'arpe anim alt up', 24);
-				animation.addByPrefix('singRIGHT-alt', 'arpe anim alt right', 24);
+				addByPrefix('singLEFT-alt', 'arpe anim alt left', 24);
+				addByPrefix('singDOWN-alt', 'arpe anim alt down', 24);
+				addByPrefix('singUP-alt', 'arpe anim alt up', 24);
+				addByPrefix('singRIGHT-alt', 'arpe anim alt right', 24);
 
 				addOffset('idle', 0, 0);
-				
+
 				addOffset('singDOWN', -5, -190);
 				addOffset('singRIGHT', 20, -30);
 				addOffset('singUP', 80, 40);
@@ -118,17 +114,17 @@ class Character extends FlxAnimate
 				// GIRLFRIEND CODE
 				loadTexture(Paths.getSparrowAtlas('characters/GF_assets', 'shared'));
 
-				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
-				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
-				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
-				animation.addByPrefix('singUP', 'GF Up Note', 24, false);
-				animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
-				animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
-				animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				addByPrefix('cheer', 'GF Cheer');
+				addByPrefix('singLEFT', 'GF left note');
+				addByPrefix('singRIGHT', 'GF Right Note');
+				addByPrefix('singUP', 'GF Up Note');
+				addByPrefix('singDOWN', 'GF Down Note');
+				animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "");
+				animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "");
+				animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "");
 				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
-				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
-				animation.addByPrefix('scared', 'GF FEAR', 24);
+				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "");
+				addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
 				addOffset('sad', -2, -2);
@@ -152,11 +148,11 @@ class Character extends FlxAnimate
 			case 'dad':
 				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared'));
 
-				animation.addByPrefix('idle', 'Dad idle dance', 24);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
-				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+				addByPrefix('idle', 'Dad idle dance');
+				addByPrefix('singUP', 'Dad Sing Note UP');
+				addByPrefix('singRIGHT', 'Dad Sing Note RIGHT');
+				addByPrefix('singDOWN', 'Dad Sing Note DOWN');
+				addByPrefix('singLEFT', 'Dad Sing Note LEFT');
 
 				addOffset('idle');
 				addOffset("singUP", -6, 50);
@@ -173,22 +169,22 @@ class Character extends FlxAnimate
 			case 'bf':
 				loadTexture(Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared'));
 
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'BF HEY!!', 24, false);
+				addByPrefix('idle', 'BF idle dance');
+				addByPrefix('singUP', 'BF NOTE UP0');
+				addByPrefix('singLEFT', 'BF NOTE LEFT0');
+				addByPrefix('singRIGHT', 'BF NOTE RIGHT0');
+				addByPrefix('singDOWN', 'BF NOTE DOWN0');
+				addByPrefix('singUPmiss', 'BF NOTE UP MISS');
+				addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS');
+				addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS');
+				addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS');
+				addByPrefix('hey', 'BF HEY!!');
 
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+				addByPrefix('firstDeath', "BF dies");
+				addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				addByPrefix('deathConfirm', "BF Dead confirm");
 
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
+				addByPrefix('scared', 'BF idle shaking', 24);
 
 				addOffset('idle', -5);
 				addOffset("singUP", -29, 27);
@@ -235,6 +231,9 @@ class Character extends FlxAnimate
 		}
 	}
 
+	public function addByPrefix(name:String, prefix:String, frameRate = 24.0, looped = false):Void
+		animation.addByPrefix(name, prefix, frameRate, looped);
+
 	function loadTexture(texture:FlxAtlasFrames)
 		loadTextures([texture]);
 
@@ -261,8 +260,7 @@ class Character extends FlxAnimate
 
 		switch (curCharacter)
 		{
-			case 'gf':
-				if (animation?.curAnim?.name == 'hairFall' && animation?.curAnim?.finished)
+			case 'gf': if (animation?.curAnim?.name == 'hairFall' && animation?.curAnim?.finished)
 					playAnim('danceRight');
 		}
 
@@ -330,8 +328,7 @@ class Character extends FlxAnimate
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
-				default:
-					playAnim('idle');
+				default: playAnim('idle');
 			}
 		}
 	}

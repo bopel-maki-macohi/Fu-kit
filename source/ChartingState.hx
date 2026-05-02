@@ -85,7 +85,7 @@ class ChartingState extends MusicBeatState
 	var vocals:FlxSound;
 
 	var player2:Character = new Character(0, 0, "dad");
-	var player1:Boyfriend = new Boyfriend(0, 0, "bf");
+	var player1:Character = new Character(0, 0, "bf", true);
 
 	var leftIcon:HealthIcon;
 	var rightIcon:HealthIcon;
@@ -179,6 +179,8 @@ class ChartingState extends MusicBeatState
 		add(curRenderedNotes);
 		add(curRenderedSustains);
 
+		updateCharacters();
+
 		super.create();
 	}
 
@@ -250,12 +252,14 @@ class ChartingState extends MusicBeatState
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player1 = characters[Std.parseInt(character)];
+			updateCharacters();
 		});
 		player1DropDown.selectedLabel = _song.player1;
 
 		var player2DropDown = new FlxUIDropDownMenu(140, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player2 = characters[Std.parseInt(character)];
+			updateCharacters();
 		});
 
 		player2DropDown.selectedLabel = _song.player2;
@@ -368,16 +372,34 @@ class ChartingState extends MusicBeatState
 
 		UI_box.addGroup(tab_group_note);
 
-		player2 = new Character(0, gridBG.y, _song.player2);
-		player1 = new Boyfriend(player2.width * 0.2, gridBG.y + player2.height, _song.player1);
+		updateCharacters();
 
-		player1.y = player1.y - player1.height;
+		UI_box.add(player2);
+		UI_box.add(player1);
+	}
+
+	function updateCharacters()
+	{
+		if (player2 == null)
+			player2 = new Character(0, UI_box.height * 1.1, _song.player2);
+
+		if (player1 == null)
+			player1 = new Character(0, UI_box.height * 1.1, _song.player1, true);
+
+		player2.setCharacter(_song.player2);
 
 		player2.setGraphicSize(Std.int(player2.width * 0.2));
-		player1.setGraphicSize(Std.int(player1.width * 0.2));
+		player2.updateHitbox();
 
-		UI_box.add(player1);
-		UI_box.add(player2);
+		player1.setCharacter(_song.player1);
+
+		player1.setGraphicSize(Std.int(player1.width * 0.2));
+		player1.updateHitbox();
+
+		player1.x = (UI_box.x + UI_box.width) - player1.width;
+
+		player1.y = FlxG.height * 0.8 - player1.height;
+		player2.y = FlxG.height * 0.8 - player2.height;
 	}
 
 	function loadSong(daSong:String):Void
@@ -522,7 +544,9 @@ class ChartingState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		curStep = recalculateSteps();
+		Conductor.songPosition = FlxG.sound.music.time;
+
+		super.update(elapsed);
 
 		if (FlxG.keys.justPressed.ALT && UI_box.selected_tab == 0)
 		{
@@ -534,7 +558,6 @@ class ChartingState extends MusicBeatState
 		else
 			writingNotesText.text = "";
 
-		Conductor.songPosition = FlxG.sound.music.time;
 		_song.song = typingShit.text;
 
 		var upP = controls.UP_P;
@@ -705,6 +728,8 @@ class ChartingState extends MusicBeatState
 					vocals.play();
 					FlxG.sound.music.play();
 				}
+
+				updateCharacters();
 			}
 
 			if (FlxG.keys.justPressed.R)
@@ -777,9 +802,9 @@ class ChartingState extends MusicBeatState
 			+ "\nSection: "
 			+ curSection
 			+ "\nCurStep: "
-			+ curStep;
-
-		super.update(elapsed);
+			+ curStep
+			+ "\nCurBeat: "
+			+ curBeat;
 
 		// hitSounds();
 	}
@@ -804,30 +829,18 @@ class ChartingState extends MusicBeatState
 		trace('beat');
 
 		super.beatHit();
-		if (!player2.animation?.curAnim?.name.startsWith("sing"))
-		{
-			player2.playAnim('idle');
-		}
+
+		player2.dance();
 		player1.dance();
+
+		updateCharacters();
 	}
 
-	function recalculateSteps():Int
+	function recalculateSteps()
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: 0
-		}
-		for (i in 0...Conductor.bpmChangeMap.length)
-		{
-			if (FlxG.sound.music.time > Conductor.bpmChangeMap[i].songTime)
-				lastChange = Conductor.bpmChangeMap[i];
-		}
+		Conductor.songPosition = FlxG.sound.music.time;
 
-		curStep = lastChange.stepTime + Math.floor((FlxG.sound.music.time - lastChange.songTime) / Conductor.stepCrochet);
-		updateBeat();
-
-		return curStep;
+		updateCurStep();
 	}
 
 	function resetSection(songBeginning:Bool = false):Void
