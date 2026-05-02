@@ -18,6 +18,7 @@
             "name": "Tutorial",
             "world": 0
         },
+
         {
             "name": "New World",
             "world": 1
@@ -29,6 +30,19 @@
         {
             "name": "Rust",
             "world": 1
+        },
+
+        {
+            "name": "Termination",
+            "world": 2
+        },
+        {
+            "name": "Overheat",
+            "world": 2
+        },
+        {
+            "name": "rm -rf",
+            "world": 2
         }
     ]
 }
