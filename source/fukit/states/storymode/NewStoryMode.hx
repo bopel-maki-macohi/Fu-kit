@@ -17,7 +17,7 @@ import flixel.FlxSprite;
 
 class NewStoryMode extends MusicBeatSubstate
 {
-	public var blackScreen:FlxSprite;
+	public var blackBar:FlxSprite;
 
 	public var worldsMenuList:MenuList;
 	public var worldStages:Array<String> = [];
@@ -40,12 +40,10 @@ class NewStoryMode extends MusicBeatSubstate
 	{
 		super.create();
 
-		blackScreen = new FlxSprite().makeGraphic(Math.round(FlxG.width * 1.5), Math.round(FlxG.height * 1.5), FlxColor.BLACK);
-		add(blackScreen);
+		blackBar = new FlxSprite().makeGraphic(Math.round(FlxG.width * 1.5), Math.round(FlxG.height * 0.5), FlxColor.BLACK);
+		blackBar.alpha = 0;
 
-		blackScreen.alpha = 0;
-
-		FlxTween.tween(blackScreen, {alpha: 1}, 1, {
+		FlxTween.tween(blackBar, {alpha: 1}, 1, {
 			ease: FlxEase.expoInOut
 		});
 
@@ -89,12 +87,12 @@ class NewStoryMode extends MusicBeatSubstate
 						}
 					}
 
-					trace('Nonnull stageComp: ${world.stage}');
+					// trace('Nonnull stageComp: ${world.stage}');
 					worldStages.push(world.stage);
 				}
 				else
 				{
-					trace('Null stageComp: ${world.stage}');
+					// trace('Null stageComp: ${world.stage}');
 					worldStages.push(null);
 				}
 			}
@@ -114,7 +112,7 @@ class NewStoryMode extends MusicBeatSubstate
 		worldsMenuList.regenItems();
 
 		FlxTween.tween(difficultyMenuList, {x: 0}, 1, {ease: FlxEase.expoInOut});
-		FlxTween.tween(worldsMenuList, {y: 0}, 1, {
+		FlxTween.tween(worldsMenuList, {y: -128}, 1, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
@@ -131,6 +129,10 @@ class NewStoryMode extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
+		blackBar.screenCenter();
+		blackBar.y = 0;
+
+		add(blackBar);
 		add(difficultyMenuList);
 		add(worldsMenuList);
 		add(scoreBox);
@@ -178,8 +180,8 @@ class NewStoryMode extends MusicBeatSubstate
 	{
 		FlxG.sound.play(Paths.sound('cancelMenu'));
 
-		FlxTween.cancelTweensOf(blackScreen);
-		FlxTween.tween(blackScreen, {alpha: 0}, .3, {
+		FlxTween.cancelTweensOf(blackBar);
+		FlxTween.tween(blackBar, {alpha: 0}, .3, {
 			ease: FlxEase.expoInOut,
 			onComplete: t ->
 			{
@@ -191,8 +193,8 @@ class NewStoryMode extends MusicBeatSubstate
 		FlxTween.cancelTweensOf(worldsMenuList);
 
 		worldsMenuList.canSelect = false;
-		FlxTween.tween(difficultyMenuList, {y: -FlxG.height}, .3, {ease: FlxEase.expoInOut});
-		FlxTween.tween(worldsMenuList, {x: -FlxG.width}, .3, {ease: FlxEase.expoInOut});
+		FlxTween.tween(worldsMenuList, {y: -FlxG.height}, .3, {ease: FlxEase.expoInOut});
+		FlxTween.tween(difficultyMenuList, {x: -FlxG.width}, .3, {ease: FlxEase.expoInOut});
 
 		FlxTween.cancelTweensOf(scoreBox);
 
