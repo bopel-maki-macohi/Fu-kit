@@ -10,10 +10,8 @@
 - Folir Angry Char Assets
 - RD Char Assets
 
-- Termination Chart
 - Termination Coded Events (The intro sounds awesome, I wanna do a cool cinematic for it, fuck dialogue)
 
-- Overheat Song
 - Overheat Chart
 - Overheat Dialogue
 
