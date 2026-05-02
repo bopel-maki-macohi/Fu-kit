@@ -12,6 +12,7 @@ typedef SongList =
 typedef WorldEntry =
 {
 	header:String,
+	stage:String,
 }
 
 typedef SongEntry =

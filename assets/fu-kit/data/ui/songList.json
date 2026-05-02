@@ -1,13 +1,16 @@
 {
     "worlds": [
         {
-            "header": "Tutorial"
+            "header": "Tutorial",
+            "stage": "stage"
         },
         {
-            "header": "World 1"
+            "header": "World 1",
+            "stage": "grassworld"
         },
         {
-            "header": "World 2"
+            "header": "World 2",
+            "stage": "grassworld"
         }
     ],
     "songs": [

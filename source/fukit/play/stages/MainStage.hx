@@ -16,7 +16,7 @@ class MainStage extends StageComponent
 		bg.antialiasing = true;
 		bg.scrollFactor.set(0.9, 0.9);
 		bg.active = false;
-		game.backShit.add(bg);
+		add(bg, back);
 
 		var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
@@ -24,7 +24,7 @@ class MainStage extends StageComponent
 		stageFront.antialiasing = true;
 		stageFront.scrollFactor.set(0.9, 0.9);
 		stageFront.active = false;
-		game.backShit.add(stageFront);
+		add(stageFront, back);
 
 		var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
 		stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
@@ -33,6 +33,6 @@ class MainStage extends StageComponent
 		stageCurtains.scrollFactor.set(1.3, 1.3);
 		stageCurtains.active = false;
 
-		game.backShit.add(stageCurtains);
+		add(stageCurtains, back);
 	}
 }
