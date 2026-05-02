@@ -1,6 +1,7 @@
 package fukit.play.components;
 
-import flixel.FlxBasic;
+import flixel.FlxSprite;
+import flixel.FlxSprite;
 
 enum StageObjectLayer
 {
@@ -10,7 +11,7 @@ enum StageObjectLayer
 
 class StageComponent extends PlayComponent
 {
-	public var members:Array<FlxBasic> = [];
+	public var members:Array<FlxSprite> = [];
 
 	override function init()
 	{
@@ -22,7 +23,7 @@ class StageComponent extends PlayComponent
 
 	public function makeStage() {}
 
-	public function add(object:FlxBasic, layer:StageObjectLayer = back)
+	public function add(object:FlxSprite, layer:StageObjectLayer = back)
 	{
 		members.push(object);
 
@@ -36,7 +37,7 @@ class StageComponent extends PlayComponent
 		}
 	}
 
-	public function remove(object:FlxBasic)
+	public function remove(object:FlxSprite)
 	{
 		members.remove(object);
 

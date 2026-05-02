@@ -1,5 +1,9 @@
 package fukit.states.storymode;
 
+import fukit.play.StringToStage;
+import fukit.play.songs.SongList.SongEntry;
+import fukit.play.components.StageComponent;
+import flixel.FlxBasic;
 import flixel.math.FlxMath;
 import fukit.states.ui.ScoreBox;
 import flixel.text.FlxText;
@@ -16,9 +20,14 @@ class NewStoryMode extends MusicBeatSubstate
 	public var blackScreen:FlxSprite;
 
 	public var worldsMenuList:MenuList;
+	public var worldStages:Array<String> = [];
+
 	public var difficultyMenuList:MenuList;
 
 	public var scoreBox:ScoreBox;
+
+	public var stageComponents:Map<String, StageComponent> = [];
+	public var stageObjects:Map<String, Array<FlxSprite>> = [];
 
 	override public function new()
 	{
@@ -60,12 +69,32 @@ class NewStoryMode extends MusicBeatSubstate
 
 		for (index => world in SongListManager.worldList)
 		{
+			final songs:Array<String> = SongListManager.worldSongLists[index];
+
+			if (world.stage != null)
+			{
+				var stageComp:StageComponent = StringToStage.convert(world.stage);
+
+				if (stageComp != null)
+				{
+					stageComponents.set(world.stage, stageComp);
+					stageObjects.set(world.stage, stageComp.members);
+
+					for (sprite in stageComp.members)
+						insert(1, sprite);
+
+					worldStages.push(world.stage);
+				}
+				else
+					worldStages.push(null);
+			}
+
 			worldsMenuList.addEntry(world.header, function()
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				worldsMenuList.canSelect = false;
-				Global.goIntoWeek(SongListManager.worldSongLists[index], difficultyMenuList.curSelect, index);
+				Global.goIntoWeek(songs, difficultyMenuList.curSelect, index);
 			});
 		}
 
@@ -102,8 +131,23 @@ class NewStoryMode extends MusicBeatSubstate
 
 		updateScoreText();
 
+		updateCurrentStageStuff();
+
 		if (controls.BACK)
 			leave();
+	}
+
+	var curStage:String;
+
+	function updateCurrentStageStuff()
+	{
+		curStage = worldStages[worldsMenuList.curSelect];
+
+		for (stage => objects in stageObjects)
+		{
+			for (sprite in objects)
+				sprite.alpha = FlxMath.lerp(sprite.alpha, (curStage == stage) ? 1 : 0, .1);
+		}
 	}
 
 	var curSongScore:Float = 0;
