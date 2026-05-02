@@ -31,6 +31,8 @@ Hi
 - New Title State
     - It's a splash text scene now
 
+- Countdown sprites is now in the camHUD camera
+- Characters are no longer forced to bop with the countdown
 - "Combo Breaks" are now "Misses"
 
 - You aren't stuck in the outdated state menu now when moving to update

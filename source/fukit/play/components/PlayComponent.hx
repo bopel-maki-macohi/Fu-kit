@@ -44,6 +44,9 @@ class PlayComponent
 
 		PlayState.onOpponentNote.add(onOpponentNote);
 		PlayState.onPlayerNote.add(onPlayerNote);
+
+		PlayState.onPause.add(onPause);
+		PlayState.onUnpause.add(onUnpause);
 	}
 
 	public function onCreate() {}
@@ -63,4 +66,8 @@ class PlayComponent
 	public function onOpponentNote(note:Note) {}
 
 	public function onPlayerNote(note:Note) {}
+
+	public function onPause() {}
+
+	public function onUnpause() {}
 }
