@@ -1,5 +1,7 @@
 package;
 
+import fukit.play.components.StageComponent;
+import fukit.play.StringToStage;
 import fukit.states.options.NewOptionsMenu;
 import fukit.states.NewMenuState;
 import fukit.Global;
@@ -188,6 +190,8 @@ class PlayState extends MusicBeatState
 
 	public var frontUIShit:FlxContainer;
 
+	public var stage:StageComponent;
+
 	override public function create()
 	{
 		var signals:Array<FlxTypedSignal<Any>> = [
@@ -231,12 +235,9 @@ class PlayState extends MusicBeatState
 		// Making difficulty text for Discord Rich Presence.
 		switch (storyDifficulty)
 		{
-			case 0:
-				storyDifficultyText = "Easy";
-			case 1:
-				storyDifficultyText = "Normal";
-			case 2:
-				storyDifficultyText = "Hard";
+			case 0: storyDifficultyText = "Easy";
+			case 1: storyDifficultyText = "Normal";
+			case 2: storyDifficultyText = "Hard";
 		}
 
 		iconRPC = SONG.player2;
@@ -244,12 +245,9 @@ class PlayState extends MusicBeatState
 		// To avoid having duplicate images in Discord assets
 		switch (iconRPC)
 		{
-			case 'senpai-angry':
-				iconRPC = 'senpai';
-			case 'monster-christmas':
-				iconRPC = 'monster';
-			case 'mom-car':
-				iconRPC = 'mom';
+			case 'senpai-angry': iconRPC = 'senpai';
+			case 'monster-christmas': iconRPC = 'monster';
+			case 'mom-car': iconRPC = 'mom';
 		}
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
@@ -449,13 +447,14 @@ class PlayState extends MusicBeatState
 
 		add(frontUIShit);
 
+		if (SONG.stage != null)
+			stage = StringToStage.convert(SONG.stage);
+
 		switch (SONG.song.toLowerCase())
 		{
-			case 'tutorial':
-				new TutorialSong();
-
-			case 'new world', 'wetway', 'rust':
-				new World1Song();
+			case 'tutorial': new TutorialSong();
+			case 'new world', 'wetway', 'rust': new World1Song();
+			case 'termination', 'overheat': new FolirSong();
 		}
 
 		if (startingSong && !inCutscene)
@@ -509,8 +508,7 @@ class PlayState extends MusicBeatState
 			switch (swagCounter)
 
 			{
-				case 0:
-					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
+				case 0: FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
 				case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
@@ -565,8 +563,7 @@ class PlayState extends MusicBeatState
 						}
 					});
 					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-				case 4:
-					onCountdownEnd.dispatch();
+				case 4: onCountdownEnd.dispatch();
 			}
 
 			if (swagCounter != 4)
@@ -639,8 +636,7 @@ class PlayState extends MusicBeatState
 		// Song check real quick
 		switch (curSong)
 		{
-			default:
-				allowedToHeadbang = false;
+			default: allowedToHeadbang = false;
 		}
 
 		#if windows
@@ -1001,38 +997,22 @@ class PlayState extends MusicBeatState
 			{
 				switch (i)
 				{
-					case 0:
-						ranking += " AAAAA";
-					case 1:
-						ranking += " AAAA:";
-					case 2:
-						ranking += " AAAA.";
-					case 3:
-						ranking += " AAAA";
-					case 4:
-						ranking += " AAA:";
-					case 5:
-						ranking += " AAA.";
-					case 6:
-						ranking += " AAA";
-					case 7:
-						ranking += " AA:";
-					case 8:
-						ranking += " AA.";
-					case 9:
-						ranking += " AA";
-					case 10:
-						ranking += " A:";
-					case 11:
-						ranking += " A.";
-					case 12:
-						ranking += " A";
-					case 13:
-						ranking += " B";
-					case 14:
-						ranking += " C";
-					case 15:
-						ranking += " D";
+					case 0: ranking += " AAAAA";
+					case 1: ranking += " AAAA:";
+					case 2: ranking += " AAAA.";
+					case 3: ranking += " AAAA";
+					case 4: ranking += " AAA:";
+					case 5: ranking += " AAA.";
+					case 6: ranking += " AAA";
+					case 7: ranking += " AA:";
+					case 8: ranking += " AA.";
+					case 9: ranking += " AA";
+					case 10: ranking += " A:";
+					case 11: ranking += " A.";
+					case 12: ranking += " A";
+					case 13: ranking += " B";
+					case 14: ranking += " C";
+					case 15: ranking += " D";
 				}
 				break;
 			}
@@ -1575,7 +1555,7 @@ class PlayState extends MusicBeatState
 				health -= 0.06;
 				ss = false;
 				bads++;
-				
+
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 0.50;
 
@@ -1584,18 +1564,17 @@ class PlayState extends MusicBeatState
 				score = 200;
 				ss = false;
 				goods++;
-				
+
 				if (health < 2)
 					health += 0.04;
-				
+
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 0.75;
 
 			case 'sick':
-				
-			if (health < 2)
+				if (health < 2)
 					health += 0.1;
-				
+
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 1;
 
@@ -2059,7 +2038,8 @@ class PlayState extends MusicBeatState
 			+ "% | Score: "
 			+ songScore
 			+ " | Misses: "
-			+ misses, iconRPC, true, songLength
+			+ misses, iconRPC, true,
+			songLength
 			- Conductor.songPosition);
 		#end
 
@@ -2297,12 +2277,9 @@ class PlayState extends MusicBeatState
 		// pre defined names
 		switch (id)
 		{
-			case 'boyfriend':
-				return boyfriend;
-			case 'girlfriend':
-				return gf;
-			case 'dad':
-				return dad;
+			case 'boyfriend': return boyfriend;
+			case 'girlfriend': return gf;
+			case 'dad': return dad;
 		}
 		// lua objects or what ever
 		if (luaSprites.get(id) == null)

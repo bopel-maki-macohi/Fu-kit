@@ -368,16 +368,16 @@ class ChartingState extends MusicBeatState
 
 		UI_box.addGroup(tab_group_note);
 
-		/*player2 = new Character(0,gridBG.y, _song.player2);
-			player1 = new Boyfriend(player2.width * 0.2,gridBG.y + player2.height, _song.player1);
+		player2 = new Character(0, gridBG.y, _song.player2);
+		player1 = new Boyfriend(player2.width * 0.2, gridBG.y + player2.height, _song.player1);
 
-			player1.y = player1.y - player1.height;
+		player1.y = player1.y - player1.height;
 
-			player2.setGraphicSize(Std.int(player2.width * 0.2));
-			player1.setGraphicSize(Std.int(player1.width * 0.2));
+		player2.setGraphicSize(Std.int(player2.width * 0.2));
+		player1.setGraphicSize(Std.int(player1.width * 0.2));
 
-			UI_box.add(player1);
-			UI_box.add(player2); */
+		UI_box.add(player1);
+		UI_box.add(player2);
 	}
 
 	function loadSong(daSong:String):Void
