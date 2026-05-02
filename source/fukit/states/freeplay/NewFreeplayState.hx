@@ -112,7 +112,7 @@ class NewFreeplayState extends MusicBeatSubstate
 		songBlackBox.camera = songMenuListCam;
 		songMenuList.camera = songMenuListCam;
 
-		songMenuListCamFollowOBJ = new FlxObject(640, 0);
+		songMenuListCamFollowOBJ = new FlxObject(FlxG.width / 2, 0);
 		add(songMenuListCamFollowOBJ);
 
 		songMenuListCam.follow(songMenuListCamFollowOBJ, LOCKON, 0.5);

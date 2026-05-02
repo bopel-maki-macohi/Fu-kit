@@ -1,5 +1,7 @@
 package fukit.states.storymode;
 
+import flixel.FlxObject;
+import flixel.FlxCamera;
 import fukit.play.StringToStage;
 import fukit.play.songs.SongList.SongEntry;
 import fukit.play.components.StageComponent;
@@ -136,7 +138,21 @@ class NewStoryMode extends MusicBeatSubstate
 		add(difficultyMenuList);
 		add(worldsMenuList);
 		add(scoreBox);
+
+		worldsMenuListCam = new FlxCamera(0, 0);
+		FlxG.cameras.add(worldsMenuListCam, false);
+		worldsMenuListCam.bgColor.alpha = 0;
+
+		worldsMenuList.camera = worldsMenuListCam;
+
+		worldsMenuListCamFollowOBJ = new FlxObject(0, FlxG.height / 2);
+		add(worldsMenuListCamFollowOBJ);
+
+		worldsMenuListCam.follow(worldsMenuListCamFollowOBJ, LOCKON, 0.5);
 	}
+
+	public var worldsMenuListCam:FlxCamera;
+	public var worldsMenuListCamFollowOBJ:FlxObject;
 
 	override function update(elapsed:Float)
 	{
@@ -147,6 +163,8 @@ class NewStoryMode extends MusicBeatSubstate
 		updateScoreText();
 
 		updateCurrentStageStuff();
+
+		worldsMenuListCamFollowOBJ.x = 0 + worldsMenuList.members[worldsMenuList.curSelect].getGraphicMidpoint().x;
 
 		if (controls.BACK)
 			leave();
