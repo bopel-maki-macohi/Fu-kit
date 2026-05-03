@@ -1,0 +1,8 @@
+folir:YOU!
+bf-idle:?
+folir:YOU KILLED MY BOYFRIEND.
+bf-shakehead:No.
+folir-pissed:YES YOU DID.
+bf-shakehead:No.
+folir-pissed:WHY IS HE DEAD ON THE FLOOR?
+bf-idle: 

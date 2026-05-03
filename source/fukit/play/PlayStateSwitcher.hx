@@ -7,7 +7,7 @@ import flixel.FlxG;
 
 class PlayStateSwitcher
 {
-	static var dialogueComponentSongs:Array<String> = ['new world', 'rust', 'wetway'];
+	static var dialogueComponentSongs:Array<String> = ['new world', 'rust', 'wetway', 'overheat'];
 	static var freeplayCutsceneSongs:Array<String> = [];
 
 	public static function getPlayStateSwitch(allowCutscenes:Bool = false):FlxState
