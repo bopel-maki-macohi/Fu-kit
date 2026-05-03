@@ -34,6 +34,7 @@ Hi
 - Fixed Opponent not bopping on every beat
 - Grass World sky is now a generated graphic scaled up instead of a texture
 
+- Animation Debug is now availible in release builds
 - Animation Debug now allows you to export character offset text files via F4
 - Animation Debug now allows you to leave (to the main menu) via ESCAPE
 - Character Offset text files are supposed now

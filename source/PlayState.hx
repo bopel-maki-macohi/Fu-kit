@@ -1021,14 +1021,6 @@ class PlayState extends MusicBeatState
 		else
 			currentFrames++;
 
-		// if (FlxG.keys.justPressed.NINE)
-		// {
-		// 	if (iconP1.animation?.curAnim?.name == 'bf-old')
-		// 		iconP1.animation.play(SONG.player1);
-		// 	else
-		// 		iconP1.animation.play('bf-old');
-		// }
-
 		super.update(elapsed);
 
 		if (!offsetTesting)
@@ -1111,20 +1103,9 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
-		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
-		else
-			iconP1.animation.curAnim.curFrame = 0;
+		iconP1.anim.frameIndex = (healthBar.percent < 20) ? 1 : 0;
+		iconP2.anim.frameIndex = (healthBar.percent > 80) ? 1 : 0;
 
-		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
-		else
-			iconP2.animation.curAnim.curFrame = 0;
-
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(() -> new Charting()); */
-
-		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 		{
 			FlxG.switchState(() -> new AnimationDebug(SONG.player2));
@@ -1136,7 +1117,6 @@ class PlayState extends MusicBeatState
 				lua = null;
 			}
 		}
-		#end
 
 		if (startingSong)
 		{
@@ -1176,18 +1156,6 @@ class PlayState extends MusicBeatState
 		}
 
 		generatedMusic = FlxG.sound.music?.playing;
-
-		// if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
-		// {
-		// 	// Make sure Girlfriend cheers only for certain songs
-		// 	if (allowedToHeadbang)
-		// 	{
-		// 		// Don't animate GF if something else is already animating her (eg. train passing)
-		// 		if (gf.animation?.curAnim?.name == 'danceLeft'
-		// 			|| gf.animation?.curAnim?.name == 'danceRight'
-		// 			|| gf.animation?.curAnim?.name == 'idle') {}
-		// 	}
-		// }
 
 		if (camZooming)
 		{
@@ -1790,7 +1758,7 @@ class PlayState extends MusicBeatState
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true) || FlxG.save.data.botplay))
 		{
-			if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+			if (boyfriend.anim.name.startsWith('sing') && !boyfriend.anim.name.endsWith('miss'))
 				boyfriend.dance();
 		}
 
@@ -1906,10 +1874,8 @@ class PlayState extends MusicBeatState
 			else
 			{
 				// this is bad but fuck you
-				playerStrums.members[0].animation.play('static');
-				playerStrums.members[1].animation.play('static');
-				playerStrums.members[2].animation.play('static');
-				playerStrums.members[3].animation.play('static');
+				for (i in 0...4)
+					playerStrums.members[i].playAnim('static');
 				health -= 0.2;
 				trace('mash ' + mashing);
 			}
@@ -1950,9 +1916,7 @@ class PlayState extends MusicBeatState
 			playerStrums.forEach(function(spr:FukitSprite)
 			{
 				if (Math.abs(note.noteData) == spr.ID)
-				{
-					spr.animation.play('confirm', true);
-				}
+					spr.playAnim('confirm', true);
 			});
 
 		if (!loadRep && note.mustPress)
