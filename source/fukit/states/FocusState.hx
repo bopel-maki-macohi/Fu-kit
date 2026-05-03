@@ -16,14 +16,18 @@ class FocusState extends FlxState
 		add(text);
 
 		text.screenCenter();
+
+		FlxG.mouse.visible = true;
 	}
 
-    override function update(elapsed:Float) {
-        super.update(elapsed);
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
 
-        if (FlxG.mouse.justPressed)
-        {
-            InitState.moveStates();
-        }
-    }
+		if (FlxG.mouse.justPressed)
+		{
+			FlxG.mouse.visible = false;
+			InitState.moveStates();
+		}
+	}
 }
