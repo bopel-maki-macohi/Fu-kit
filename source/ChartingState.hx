@@ -559,6 +559,12 @@ class ChartingState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.sound.music.time < 0)
+			FlxG.sound.music.time = 0;
+		
+		if (FlxG.sound.music.time > FlxG.sound.music.length)
+			FlxG.sound.music.time = FlxG.sound.music.length;
+
 		Conductor.songPosition = FlxG.sound.music.time;
 
 		super.update(elapsed);

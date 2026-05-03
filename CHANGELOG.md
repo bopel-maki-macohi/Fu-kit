@@ -12,6 +12,7 @@ Hi
 
 - MENU UPDATES!
     - Chart Editor Changes
+        - Song position is now capped
         - Added Song (Part 2) tab (og song tab is now Song Part 1)
             - Added Stage list dropdown
         - There is a player and opponent character there, they just boppin'
