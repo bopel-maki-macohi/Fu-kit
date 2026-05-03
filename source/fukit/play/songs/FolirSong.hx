@@ -75,6 +75,16 @@ class FolirSong extends SongComponent
 
 				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: .5}, len, {ease: FlxEase.quadInOut});
 			}
+			
+			if (step == 120)
+			{
+				// target: step 255
+
+				var len:Float = (Conductor.stepCrochet / 1000) * (255 - step);
+
+				terminationTween_hudShader = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
+			}
+			
 			if (step == 160)
 			{
 				// target: step 255
@@ -90,8 +100,8 @@ class FolirSong extends SongComponent
 				}, len, {ease: FlxEase.sineInOut});
 
 				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: 1.05}, len, {ease: FlxEase.sineInOut});
-				terminationTween_hudShader = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 			}
+
 			if (step == 256)
 			{
 				FlxG.camera.bgColor = FlxColor.BLACK;
