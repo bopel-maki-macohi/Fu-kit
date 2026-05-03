@@ -11,7 +11,7 @@ class HealthIcon extends FukitSprite
 
 		switch (char)
 		{
-			case 'arpe', 'arpe-worried', 'arpe-withered', 'folir', 'folir-pissed': makeBaseFuKitIcon(char, isPlayer);
+			case 'arpe', 'arpe-worried', 'arpe-withered', 'folir', 'folir-pissed', 'rd': makeBaseFuKitIcon(char, isPlayer);
 
 			default: makeDefaultIcon(char, isPlayer);
 		}
@@ -36,6 +36,9 @@ class HealthIcon extends FukitSprite
 
 			case 'folir', 'folir-pissed':
 				0xCC9999;
+
+			case 'rd':
+				0x412E3E;
 
 			default:
 				FlxColor.WHITE;
