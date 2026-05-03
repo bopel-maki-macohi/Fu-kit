@@ -15,30 +15,11 @@ class OverheatDialogueCutscene extends SongMusicDialogueCutscene
 		super('overheat', endCallback);
 	}
 
-	var sprite:FukitSprite;
-
 	override function onLine(line:Int)
 	{
 		super.onLine(line);
 
 		if (line == 7)
-		{
-			dialogueBox.swagDialogue.skip();
-
 			FlxG.sound.music.stop();
-
-			FlxTimer.wait(.1, () ->
-			{
-				Main.fpsCounter.visible = false;
-
-				ScreenshotPlugin.instance.encoder = new JPEGEncoderOptions(0);
-				var screenshot:BitmapData = ScreenshotPlugin.instance.takeScreenshot(false, true);
-
-				sprite = new FukitSprite(0, 0, screenshot);
-				dialogueBox.add(sprite);
-
-				Main.fpsCounter.visible = true;
-			});
-		}
 	}
 }
