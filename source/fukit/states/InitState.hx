@@ -92,10 +92,10 @@ class InitState extends FlxState
 
 		FlxG.mouse.visible = false;
 
-		moveStates();
+		FlxG.switchState(() -> new FocusState());
 	}
 
-	public function moveStates()
+	public static function moveStates()
 	{
 		var MAINMENU:String = DefineMacro.definedValue('MAINMENU')?.toLowerCase();
 		var CHARTING:String = DefineMacro.definedValue('CHARTING');

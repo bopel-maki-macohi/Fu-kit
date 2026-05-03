@@ -4,6 +4,8 @@ Hi
 
 ## 2.0 - 5/2026
 
+- Added Focus State before you startup the game, this fixes some things related to focus at a specific time
+
 - GAMEPLAY!
     - WORLD 2 WITH 3 NEW SONGS! TERMINATION, OVERHEAT, AND rm -rf!!!!!!
     - World 1 now has dialogue!
