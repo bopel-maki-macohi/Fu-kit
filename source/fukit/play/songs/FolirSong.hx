@@ -184,9 +184,11 @@ class FolirSong extends SongComponent
 
 				FlxG.camera.focusOn(game.camFollow.getPosition());
 
-				game.dad.dance();
+				game.dad.visible = false;
 				game.boyfriend.dance();
 				game.gf.dance();
+
+				FlxG.camera.flash(FlxColor.RED, Conductor.crochet / 1000);
 			}
 		}
 
