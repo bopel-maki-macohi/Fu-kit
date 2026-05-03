@@ -19,9 +19,11 @@ import flixel.FlxBasic;
 
 class ScreenshotPlugin extends FlxBasic
 {
+	public static var instance:ScreenshotPlugin;
+
 	public static function init()
 	{
-		FlxG.plugins.addIfUniqueType(new ScreenshotPlugin());
+		FlxG.plugins.addIfUniqueType(instance = new ScreenshotPlugin());
 	}
 
 	override public function new()
@@ -53,20 +55,14 @@ class ScreenshotPlugin extends FlxBasic
 	var lastDate:Date;
 	var currentDate:Date;
 
-	function performScreenshot()
+	public function takeScreenshot()
 	{
-		// Wanted format:
-		// Screenshot 2026-04-28 162426
-
 		currentDate = Date.now();
 
 		var timeDifference:Float = currentDate.getTime() - lastDate.getTime();
 
 		if (timeDifference < SCREENSHOT_DELAY_TIME_SECONDS * 1000)
-		{
-			// trace('timeDifference: $timeDifference');
-			return;
-		}
+			return null;
 
 		lastDate = currentDate;
 
@@ -82,7 +78,14 @@ class ScreenshotPlugin extends FlxBasic
 
 		File.saveBytes(path, bytes);
 
-		var fancyPreviewEnabled:Bool = true;
+		return data;
+	}
+
+	function performScreenshot()
+	{
+		var data:BitmapData = takeScreenshot();
+
+		var fancyPreviewEnabled:Bool = data != null;
 
 		if (Std.isOfType(FlxG.state, PlayState))
 			fancyPreviewEnabled = false;
@@ -96,7 +99,7 @@ class ScreenshotPlugin extends FlxBasic
 		FlxG.sound.play(Paths.sound('screenshot', 'shared'));
 	}
 
-	function showFancyPreview(data:BitmapData)
+	public function showFancyPreview(data:BitmapData)
 	{
 		var previewSprite:Bitmap = new Bitmap(data);
 		FlxG.stage.addChild(previewSprite);
