@@ -2,7 +2,7 @@ package fukit.util.macros;
 
 class VariableMacro
 {
-	macro static function nameof(e:haxe.macro.Expr):haxe.macro.Expr
+	public macro static function nameof(e:haxe.macro.Expr):haxe.macro.Expr
 	{
 		return switch e.expr
 		{
