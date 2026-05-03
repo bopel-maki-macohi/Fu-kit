@@ -1,5 +1,6 @@
 package;
 
+import CoolUtil;
 import fukit.play.components.StageComponent;
 import fukit.play.StringToStage;
 import fukit.states.options.NewOptionsMenu;
