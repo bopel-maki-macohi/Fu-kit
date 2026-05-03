@@ -171,6 +171,12 @@ class FolirSong extends SongComponent
 
 				game.camFollow.screenCenter();
 				game.camFollow.y += 200;
+
+				FlxG.camera.focusOn(game.camFollow.getPosition());
+
+				game.dad.dance();
+				game.boyfriend.dance();
+				game.gf.dance();
 			}
 		}
 
