@@ -18,12 +18,13 @@ class Global
 	}
 
 	public static final kadeEngineVer:String = '1.4.2';
+	public static final fukitEngineVer:String = '2.0';
 
 	public static var watermarkText(get, never):String;
 
 	static function get_watermarkText():String
 	{
-		return 'Fu-kit ${modVer}' + ' (KE ${kadeEngineVer})';
+		return 'Fu-kit ${modVer} / Fu-kit Engine ${fukitEngineVer} (KE ${kadeEngineVer})';
 	}
 
 	public static function goIntoSong(song:String = 'tutorial', difficulty:Int = 2, week:Int = 0, storymode:Bool = false, offsetTesting:Bool = false)
