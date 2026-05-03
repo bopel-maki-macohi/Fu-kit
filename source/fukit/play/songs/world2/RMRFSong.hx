@@ -2,7 +2,7 @@ package fukit.play.songs.world2;
 
 import fukit.play.stages.RDZone;
 
-class RMRF extends RDSong
+class RMRFSong extends RDSong
 {
 	public var stage:RDZone;
 
