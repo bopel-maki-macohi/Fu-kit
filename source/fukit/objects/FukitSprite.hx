@@ -1,5 +1,6 @@
 package fukit.objects;
 
+import flixel.FlxG;
 import animate.internal.Timeline;
 import lime.utils.Assets;
 import animate.FlxAnimateFrames;
@@ -13,6 +14,9 @@ class FukitSprite extends FlxAnimate
 
 	public function addByFrameLabel(name:String, label:String, ?frameRate:Float = 24.0, ?looped:Bool = false, ?timeline:Timeline):Void
 		anim.addByFrameLabel(name, label, frameRate, looped, false, false, timeline);
+
+	public static inline function getStaticTexture(texturePath:String)
+		return FlxG.bitmap.add(texturePath);
 
 	public function loadTexture(texture:FlxAtlasFrames)
 		loadTextures([texture]);
