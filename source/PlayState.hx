@@ -122,6 +122,7 @@ class PlayState extends MusicBeatState
 
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
+	public var camTopHUD:FlxCamera;
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 
@@ -285,12 +286,18 @@ class PlayState extends MusicBeatState
 		#end
 
 		// var gameCam:FlxCamera = FlxG.camera;
+		
 		camGame = new FlxCamera();
+
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
+		
+		camTopHUD = new FlxCamera();
+		camTopHUD.bgColor.alpha = 0;
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
+		FlxG.cameras.add(camTopHUD);
 
 		@:privateAccess
 		FlxCamera._defaultCameras = [camGame];
@@ -537,7 +544,7 @@ class PlayState extends MusicBeatState
 			countdownSprite.screenCenter();
 			add(countdownSprite);
 
-			countdownSprite.camera = camHUD;
+			countdownSprite.camera = camTopHUD;
 
 			FlxTween.tween(countdownSprite, {y: countdownSprite.y += 100, alpha: 0}, Conductor.crochet / 1000, {
 				ease: FlxEase.cubeInOut,

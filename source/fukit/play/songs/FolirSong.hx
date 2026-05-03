@@ -45,6 +45,8 @@ class FolirSong extends SongComponent
 
 				game.camFollow.screenCenter();
 				game.camFollow.y += 160;
+
+				game.camHUD.alpha = 0;
 		}
 
 		stage.sky.shader = bgShader;
@@ -57,6 +59,7 @@ class FolirSong extends SongComponent
 	var terminationTween_bgShader:FlxTween;
 	var terminationTween_charShader:FlxTween;
 	var terminationTween_camShader:FlxTween;
+	var terminationTween_hudShader:FlxTween;
 
 	override function onStepHit(step:Int)
 	{
@@ -87,6 +90,7 @@ class FolirSong extends SongComponent
 				}, len, {ease: FlxEase.sineInOut});
 
 				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: 1.05}, len, {ease: FlxEase.sineInOut});
+				terminationTween_hudShader = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 			}
 			if (step == 256)
 			{
@@ -99,7 +103,12 @@ class FolirSong extends SongComponent
 	{
 		super.onPause();
 
-		for (tween in [terminationTween_bgShader, terminationTween_charShader, terminationTween_camShader])
+		for (tween in [
+			terminationTween_bgShader,
+			terminationTween_charShader,
+			terminationTween_camShader,
+			terminationTween_hudShader
+		])
 			if (tween != null)
 				tween.active = false;
 	}
@@ -108,7 +117,12 @@ class FolirSong extends SongComponent
 	{
 		super.onUnpause();
 
-		for (tween in [terminationTween_bgShader, terminationTween_charShader, terminationTween_camShader])
+		for (tween in [
+			terminationTween_bgShader,
+			terminationTween_charShader,
+			terminationTween_camShader,
+			terminationTween_hudShader
+		])
 			if (tween != null)
 				tween.active = true;
 	}
