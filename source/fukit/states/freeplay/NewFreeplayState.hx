@@ -23,6 +23,8 @@ class NewFreeplayState extends MusicBeatSubstate
 
 	public var scoreBox:ScoreBox;
 
+	public var albumSprite:FreeplayAlbum;
+
 	override public function new()
 	{
 		super();
@@ -52,6 +54,7 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		songMenuList.addItem = item -> Global.addTextMenuListItem(songMenuList, item, 0, 0);
 		songMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(songMenuList));
+		songMenuList.onSelectionChange.add(onSongSelectionChange);
 
 		difficultyMenuList.addItem = item -> Global.addTextMenuListItem(difficultyMenuList, item, 0, 0);
 		difficultyMenuList.onSelectionChange.add(() -> Global.onTextSelectionChange(difficultyMenuList));
@@ -66,19 +69,25 @@ class NewFreeplayState extends MusicBeatSubstate
 				Global.goIntoSong(song.name, difficultyMenuList.curSelect, song.world);
 			});
 		}
-		songMenuList.regenItems();
 		songMenuList.x = -FlxG.width;
 
 		for (diffculty in CoolUtil.difficultyArray)
 			difficultyMenuList.addEntry(diffculty, null);
-
-		difficultyMenuList.regenItems();
 		difficultyMenuList.y = -FlxG.height;
 
 		songMenuList.canSelect = false;
 
+		albumSprite = new FreeplayAlbum();
+		add(albumSprite);
+
+		albumSprite.screenCenter();
+		albumSprite.x += albumSprite.width;
+
 		scoreBox = new ScoreBox();
 		add(scoreBox);
+
+		songMenuList.regenItems();
+		difficultyMenuList.regenItems();
 
 		scoreBox.x = FlxG.width + scoreBox.width;
 		scoreBox.y = FlxG.height - scoreBox.height;
@@ -120,6 +129,12 @@ class NewFreeplayState extends MusicBeatSubstate
 		songMenuListCam.follow(songMenuListCamFollowOBJ, LOCKON, 0.5);
 
 		songBlackBox.scrollFactor.set(0, 0);
+	}
+
+	function onSongSelectionChange()
+	{
+		if (albumSprite != null)
+			albumSprite.setAlbum(FreeplayAlbum?.albums[songMenuList?.curSelect ?? 0] ?? null);
 	}
 
 	public var songMenuListCam:FlxCamera;

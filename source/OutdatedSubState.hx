@@ -56,6 +56,10 @@ class OutdatedSubState extends MusicBeatState
 
 		var outdated:Bool = false;
 
+		#if hl
+		return false;
+		#end
+
 		http.onData = (str) ->
 		{
 			outdated = str.trim() != Global.modVer;

@@ -1,5 +1,6 @@
 package fukit.play.songs;
 
+import fukit.states.freeplay.FreeplayAlbum;
 import haxe.Json;
 import lime.utils.Assets;
 
@@ -36,8 +37,10 @@ class SongListManager
 		songListData = {worlds: [], songs: []};
 		worldSongLists = [];
 		songList = [];
+		FreeplayAlbum.albums = [];
 
-		var songListPath:String = Paths.json('UI/songList', 'fu-kit');
+		var songListPath:String = Paths.json('songs/songList', 'fu-kit');
+		trace(songListPath);
 
 		if (!Assets.exists(songListPath))
 			return;
@@ -66,6 +69,8 @@ class SongListManager
 
 			if (song?.world != null)
 				worldSongLists[song.world].push(song.name);
+
+			FreeplayAlbum.albums.push(song?.album ?? null);
 		}
 	}
 }
