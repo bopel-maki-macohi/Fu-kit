@@ -59,7 +59,7 @@ class SongListManager
 
 		for (song in songListData.songs)
 		{
-			trace('${song.name} (${songListData.worlds[song?.world]?.header ?? 'Unknown'})');
+			trace('${song.name} (${songListData.worlds[song?.world]?.header ?? 'None'})');
 
 			songList.push(song);
 
