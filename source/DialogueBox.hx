@@ -191,14 +191,14 @@ class DialogueBox extends FlxSpriteGroup
 		switch (portraitType)
 		{
 			case 'animateatlas', 'textureatlas', 'animate atlas', 'texture atlas':
-				portrait.frames = Paths.getAnimateAtlas('dialogue/$curCharacter');
+				portrait.frames = Paths.getAnimateAtlas('dialogue/$curCharacter', Paths.currentLevel);
 				animated = true;
 
 			case 'sparrow', 'sparrowatlas', 'sparrow atlas':
-				portrait.frames = Paths.getSparrowAtlas('dialogue/$curCharacter');
+				portrait.frames = Paths.getSparrowAtlas('dialogue/$curCharacter', Paths.currentLevel);
 				animated = true;
 
-			default: portrait.loadGraphic(Paths.image('dialogue/$curCharacter'));
+			default: portrait.loadGraphic(Paths.image('dialogue/$curCharacter', Paths.currentLevel));
 		}
 
 		if (animated)
@@ -208,6 +208,7 @@ class DialogueBox extends FlxSpriteGroup
 				case 'prefix': portrait.anim.addByPrefix('anim', animationName, 24, false);
 				case 'framelabel': portrait.anim.addByFrameLabel('anim', animationName, 24, false);
 			}
+			portrait.anim.play('anim');
 		}
 
 		if (leftSide)
