@@ -2,24 +2,25 @@ package fukit.play.objects.ui;
 
 import fukit.objects.FukitSprite;
 
+enum abstract Rating(String) from String to String
+{
+	var shit = 'shit';
+	var bad = 'bad';
+	var good = 'good';
+	var sick = 'sick';
+}
+
 class RatingSprite extends FukitSprite
 {
 	override public function new()
 	{
 		super();
 
-		loadTextures([
-			FukitSprite.getStaticTexture(Paths.image('UI/popups/shit')),
-			FukitSprite.getStaticTexture(Paths.image('UI/popups/bad')),
-			FukitSprite.getStaticTexture(Paths.image('UI/popups/good')),
-			FukitSprite.getStaticTexture(Paths.image('UI/popups/sick')),
-		]);
+		setRating(sick);
+	}
 
-		anim.add('shit', [0]);
-		anim.add('bad', [1]);
-		anim.add('good', [2]);
-		anim.add('sick', [3]);
-
-        playAnim('sick');
+	public function setRating(rating:Rating)
+	{
+		loadGraphic(Paths.image('UI/popup/$rating'));
 	}
 }

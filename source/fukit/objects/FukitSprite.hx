@@ -1,5 +1,9 @@
 package fukit.objects;
 
+import flixel.graphics.frames.FlxImageFrame;
+import flixel.graphics.frames.FlxFramesCollection;
+import flixel.graphics.frames.FlxFramesCollection.FlxFrameCollectionType;
+import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import animate.internal.Timeline;
 import lime.utils.Assets;
