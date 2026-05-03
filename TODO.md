@@ -8,6 +8,5 @@
 
 - RD Char Assets
 
-- rm -rf Song
 - rm -rf Stage
 - rm -rf Chart
