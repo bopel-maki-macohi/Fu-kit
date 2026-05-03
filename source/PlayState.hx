@@ -466,7 +466,7 @@ class PlayState extends MusicBeatState
 			case 'tutorial': new TutorialSong();
 			case 'new world', 'wetway', 'rust': new World1Song();
 			case 'termination', 'overheat': new FolirWorld2Songs();
-			case 'rm -rf': new RDSong();
+			case 'rm -rf': new RMRFSong();
 		}
 
 		FlxG.camera.follow(camFollow, LOCKON, 0.04);
