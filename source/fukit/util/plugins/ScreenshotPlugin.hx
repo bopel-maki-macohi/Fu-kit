@@ -56,23 +56,19 @@ class ScreenshotPlugin extends FlxBasic
 	var lastDate:Date;
 	var currentDate:Date;
 
-	public function takeScreenshot()
+	public function takeScreenshot(save:Bool = true, forced:Bool = false)
 	{
-		currentDate = Date.now();
+		if (!forced)
+		{
+			currentDate = Date.now();
 
-		var timeDifference:Float = currentDate.getTime() - lastDate.getTime();
+			var timeDifference:Float = currentDate.getTime() - lastDate.getTime();
 
-		if (timeDifference < SCREENSHOT_DELAY_TIME_SECONDS * 1000)
-			return null;
+			if (timeDifference < SCREENSHOT_DELAY_TIME_SECONDS * 1000)
+				return null;
 
-		lastDate = currentDate;
-
-		var formatText:String = 'Screenshot ${DateUtil.generateFileTimestamp(currentDate)}';
-
-		var path:String = '$SCREENSHOT_DIRECTORY/$formatText.png';
-
-		if (!FileSystem.exists(SCREENSHOT_DIRECTORY))
-			FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
+			lastDate = currentDate;
+		}
 
 		var data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
 
@@ -81,7 +77,17 @@ class ScreenshotPlugin extends FlxBasic
 
 		var bytes:ByteArray = data.encode(data.rect, encoder);
 
-		File.saveBytes(path, bytes);
+		if (save)
+		{
+			var formatText:String = 'Screenshot ${DateUtil.generateFileTimestamp(currentDate)}';
+
+			var path:String = '$SCREENSHOT_DIRECTORY/$formatText.png';
+
+			if (!FileSystem.exists(SCREENSHOT_DIRECTORY))
+				FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
+
+			File.saveBytes(path, bytes);
+		}
 
 		return data;
 	}

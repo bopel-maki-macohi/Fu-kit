@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.play.PlayStateSwitcher;
 import fukit.play.songs.SongList;
 import flixel.math.FlxRect;
 import flixel.util.FlxColor;
@@ -145,7 +146,11 @@ class InitState extends FlxState
 		else if (ANIMDEBUG != null)
 			FlxG.switchState(() -> new AnimationDebug(ANIMDEBUG ?? 'bf'));
 		else if (SONG != null && SONG != '1')
-			fukit.Global.goIntoSong(SONG, diff, 0);
+		{
+			PlayState.SONG = Song.loadFromJson(Highscore.formatSong(SONG, diff), SONG) ?? null;
+
+			FlxG.switchState(() -> PlayStateSwitcher.getPlayStateSwitch(true));
+		}
 		else
 			FlxG.switchState(() -> new SplashTextState());
 	}

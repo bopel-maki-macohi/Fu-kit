@@ -19,24 +19,19 @@ using StringTools;
 
 class DialogueBox extends FlxSpriteGroup
 {
-	var box:FukitSprite;
+	public var box:FukitSprite;
 
-	var curCharacter:String = '';
+	public var curCharacter:String = '';
 
-	var dialogue:Alphabet;
-	var dialogueList:Array<String> = [];
-
-	// SECOND DIALOGUE FOR THE PIXEL SHIT INSTEAD???
-	var swagDialogue:FlxTypeText;
-
-	var dropText:FlxText;
+	public var dialogueList:Array<String> = [];
+	public var swagDialogue:FlxTypeText;
 
 	public var finishThing:Void->Void;
 
-	var portrait:FukitSprite;
+	public var portrait:FukitSprite;
 
-	var handSelect:FukitSprite;
-	var bgFade:FukitSprite;
+	public var handSelect:FukitSprite;
+	public var bgFade:FukitSprite;
 
 	public var onLine:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 	public var onEnd:FlxSignal = new FlxSignal();
@@ -80,13 +75,8 @@ class DialogueBox extends FlxSpriteGroup
 		handSelect.x = box.x + box.width - handSelect.width;
 		handSelect.y = box.y + box.height - handSelect.height;
 
-		dropText = new FlxText(242, 502, Std.int(box.width) - 10, "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
-		dropText.color = 0xFF030303;
-		// add(dropText);
-
-		swagDialogue = new FlxTypeText(240, 500, Std.int(box.width) - 10, "", dropText.size);
-		swagDialogue.font = dropText.font;
+		swagDialogue = new FlxTypeText(240, 500, Std.int(box.width) - 10, "", 32);
+		swagDialogue.font = 'Pixel Arial 11 Bold';
 		swagDialogue.color = 0xFF0A0219;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		add(swagDialogue);
@@ -102,10 +92,6 @@ class DialogueBox extends FlxSpriteGroup
 
 	override function update(elapsed:Float)
 	{
-		dropText.x = swagDialogue.x + 2;
-		dropText.y = swagDialogue.y + 2;
-		dropText.text = swagDialogue.text;
-
 		if (dialogueOpened && !dialogueStarted)
 		{
 			startDialogue();
@@ -135,11 +121,7 @@ class DialogueBox extends FlxSpriteGroup
 				});
 
 				FlxTween.tween(swagDialogue, {alpha: 0}, Conductor.crochet / 1000, {
-					ease: FlxEase.sineInOut,
-					onUpdate: t ->
-					{
-						dropText.alpha = swagDialogue.alpha;
-					}
+					ease: FlxEase.sineInOut
 				});
 
 				FlxTween.tween(portrait, {alpha: 0}, Conductor.crochet / 1000, {
@@ -147,7 +129,7 @@ class DialogueBox extends FlxSpriteGroup
 				});
 
 				onEnd.dispatch();
-				
+
 				new FlxTimer().start(Conductor.crochet / 1000 + .2, function(tmr:FlxTimer)
 				{
 					finishThing();
@@ -197,7 +179,7 @@ class DialogueBox extends FlxSpriteGroup
 		var animationName:String = portraitData[3]?.toLowerCase() ?? null;
 
 		// portrait type
-		
+
 		switch (portraitType)
 		{
 			case 'animateatlas', 'textureatlas', 'animate atlas', 'texture atlas':
@@ -227,7 +209,8 @@ class DialogueBox extends FlxSpriteGroup
 			portrait.x = FlxG.width - (portrait.width * 1.1);
 		portrait.y = box.y - (portrait.height * 0.95);
 
-		portrait.visible = true;
+		if (portrait.graphic != null)
+			portrait.visible = true;
 
 		onLine.dispatch(line);
 	}
