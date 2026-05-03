@@ -64,12 +64,14 @@ class CrashHandler
 		errorMessage += 'Exception Stack:\n';
 		errorMessage += StackItemListParser.parse(CallStack.exceptionStack(true));
 
-		errorMessage += 'Call Stack:\n';
+		errorMessage += '\nCall Stack:\n';
 		errorMessage += StackItemListParser.parse(CallStack.callStack());
 
 		errorMessage += '\n$spacing\n';
 
-		errorMessage += 'Mod version: ${Global.watermarkText}\n';
+		errorMessage += 'Mod version: ${Global.watermarkText}\n\n';
+		errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state)) ?? 'None (how tf)'}\n';
+		errorMessage += 'Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState)) ?? 'None'}\n';
 
 		errorMessage += '\n$spacing\n';
 
