@@ -98,12 +98,12 @@ class InitState extends FlxState
 	public function moveStates()
 	{
 		var MAINMENU:String = DefineMacro.definedValue('MAINMENU')?.toLowerCase();
-		var CHARTING:String = DefineMacro.definedValue('CHARTING')?.toLowerCase();
-		var ANIMDEBUG:String = DefineMacro.definedValue('ANIMDEBUG')?.toLowerCase();
-		var SONG:String = DefineMacro.definedValue('SONG')?.toLowerCase();
-		var SONG_DIFFICULTY:String = DefineMacro.definedValue('SONG_DIFFICULTY')?.toLowerCase();
+		var CHARTING:String = DefineMacro.definedValue('CHARTING');
+		var ANIMDEBUG:String = DefineMacro.definedValue('ANIMDEBUG');
+		var SONG:String = DefineMacro.definedValue('SONG');
+		var SONG_DIFFICULTY:String = DefineMacro.definedValue('SONG_DIFFICULTY')?.toUpperCase();
 
-		var diff:Int = CoolUtil.difficultyArray.indexOf(SONG_DIFFICULTY?.toUpperCase() ?? 'NORMAL');
+		var diff:Int = CoolUtil.difficultyArray.indexOf(SONG_DIFFICULTY ?? 'NORMAL');
 
 		if (diff == -1)
 			diff = 1;
@@ -121,11 +121,24 @@ class InitState extends FlxState
 		}
 		else if (CHARTING != null)
 		{
+			PlayState.SONG = Song.testSong;
+
 			if (CHARTING != '1')
 				PlayState.SONG = Song.loadFromJson(Highscore.formatSong(CHARTING, diff), CHARTING) ?? null;
 
 			if (SONG != '1')
 				PlayState.SONG = Song.loadFromJson(Highscore.formatSong(SONG, diff), SONG) ?? null;
+
+			if (PlayState.SONG == null)
+			{
+				PlayState.SONG = Song.testSong;
+
+				if (CHARTING != '1')
+					PlayState.SONG.song = CHARTING;
+
+				if (SONG != '1')
+					PlayState.SONG.song = SONG;
+			}
 
 			FlxG.switchState(() -> new ChartingState());
 		}

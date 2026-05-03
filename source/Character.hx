@@ -69,6 +69,19 @@ class Character extends FlxAnimate
 
 				playAnim('idle');
 
+			case 'folir-pissed':
+				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
+
+				addByPrefix('idle', 'folir anim idle', 24);
+				addByPrefix('singLEFT', 'folir anim left', 24);
+				addByPrefix('singDOWN', 'folir anim down', 24);
+				addByPrefix('singUP', 'folir anim up', 24);
+				addByPrefix('singRIGHT', 'folir anim right', 24);
+
+				dadStartingCamPosOffsets.set(202, 60);
+
+				playAnim('idle');
+
 			case 'arpe', 'arpe-worried':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 

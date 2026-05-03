@@ -67,4 +67,15 @@ class Song
 			return null;
 		}
 	}
+
+	public static var testSong:SwagSong = {
+		song: 'Test',
+		notes: [],
+		bpm: 150,
+		needsVoices: true,
+		player1: 'bf',
+		player2: 'dad',
+		speed: 1,
+		validScore: false
+	};
 }
