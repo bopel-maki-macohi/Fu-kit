@@ -1,5 +1,6 @@
 package fukit.states.freeplay;
 
+import fukit.play.songs.SongList;
 import fukit.objects.FukitSprite;
 import fukit.states.ui.ScoreBox;
 import flixel.FlxObject;
@@ -145,14 +146,18 @@ class NewFreeplayState extends MusicBeatSubstate
 	{
 		if (albumSprite != null)
 		{
-			albumSprite.setAlbum(FreeplayAlbum?.albums[songMenuList?.curSelect ?? 0] ?? null);
+			var album:String = FreeplayAlbum?.albums[songMenuList?.curSelect ?? 0] ?? null;
+
+			albumSprite.setAlbum(album);
 
 			albumSprite.screenCenter();
 			albumSprite.x += albumSprite.width * .25;
 
-			albumText.text = ('album: ' + albumSprite.album).toUpperCase();
+			albumText.text = ('album: ' + SongListManager.albumMap.get(album)?.name ?? 'None').toUpperCase();
 			albumText.x = albumSprite.x;
 			albumText.y = albumSprite.y + albumSprite.height + 16;
+
+			albumText.visible = album != null;
 		}
 	}
 

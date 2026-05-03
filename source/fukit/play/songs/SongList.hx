@@ -8,6 +8,7 @@ typedef SongList =
 {
 	worlds:Array<WorldEntry>,
 	songs:Array<SongEntry>,
+	albums:Dynamic,
 }
 
 typedef WorldEntry =
@@ -23,6 +24,11 @@ typedef SongEntry =
 	album:String,
 }
 
+typedef AlbumEntry =
+{
+	name:String,
+}
+
 class SongListManager
 {
 	public static var songListData(default, null):SongList;
@@ -32,9 +38,11 @@ class SongListManager
 	public static var worldList:Array<WorldEntry> = [];
 	public static var worldSongLists:Array<Array<String>> = [];
 
+	public static var albumMap:Map<String, AlbumEntry> = [];
+
 	public static function reloadSongList()
 	{
-		songListData = {worlds: [], songs: []};
+		songListData = {worlds: [], songs: [], albums: {}};
 		worldSongLists = [];
 		songList = [];
 		FreeplayAlbum.albums = [];
@@ -51,7 +59,6 @@ class SongListManager
 		}
 		catch (e)
 		{
-			songListData = {worlds: [], songs: []};
 			trace(e);
 		}
 
@@ -71,6 +78,16 @@ class SongListManager
 				worldSongLists[song.world].push(song.name);
 
 			FreeplayAlbum.albums.push(song?.album ?? null);
+		}
+
+		if (songListData.albums != null)
+		{
+			var albums:Dynamic = songListData.albums;
+			var albumFields:Array<String> = Reflect.fields(albums);
+
+			for (field in albumFields)
+				if (Reflect.field(albums, field) != null)
+					albumMap.set(field, Reflect.field(albums, field));
 		}
 	}
 }

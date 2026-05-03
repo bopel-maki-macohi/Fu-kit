@@ -13,13 +13,20 @@
             "stage": "grassworld_arpebody"
         }
     ],
+    "albums": {
+        "funkinalbum": {
+            "name": "Funkin' Album"
+        },
+        "fukitvolume1": {
+            "name": "Fu-kit' Album 1"
+        }
+    },
     "songs": [
         {
             "name": "Tutorial",
             "world": 0,
             "album": "funkinalbum"
         },
-
         {
             "name": "New World",
             "world": 1,
@@ -35,7 +42,6 @@
             "world": 1,
             "album": "fukitvolume1"
         },
-
         {
             "name": "Termination",
             "world": 2,
