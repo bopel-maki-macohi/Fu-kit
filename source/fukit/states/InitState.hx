@@ -93,6 +93,8 @@ class InitState extends FlxState
 
 		FlxG.mouse.visible = false;
 
+		FlxG.stage.window.title = Global.modVer;
+
 		FlxG.switchState(() -> new FocusState());
 	}
 
