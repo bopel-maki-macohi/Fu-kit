@@ -108,6 +108,7 @@ class InitState extends FlxState
 
 		if (diff == -1)
 			diff = 1;
+		PlayState.storyDifficulty = diff;
 
 		if (MAINMENU != null)
 		{
