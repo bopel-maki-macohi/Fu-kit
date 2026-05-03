@@ -5,7 +5,7 @@ import flixel.util.FlxColor;
 
 class HealthIcon extends FukitSprite
 {
-	public function new(char:String = 'bf', isPlayer:Bool = false)
+	public function new(char:String, isPlayer:Bool = false)
 	{
 		super();
 
@@ -16,15 +16,15 @@ class HealthIcon extends FukitSprite
 			default: makeDefaultIcon(char, isPlayer);
 		}
 
-		animation.play(char);
+		playAnim(char);
 
 		scrollFactor.set();
 	}
 
-	function makeBaseFuKitIcon(char:String = 'bf', isPlayer:Bool = false)
+	function makeBaseFuKitIcon(char:String, isPlayer:Bool = false)
 	{
 		loadGraphic(Paths.image('UI/icons/fu-kit_baseIcon', 'fu-kit'), true, 150, 150);
-		animation.add(char, [0, 1], 0, false, isPlayer);
+		anim.add(char, [0, 1], 0, false, isPlayer);
 
 		color = switch (char)
 		{
@@ -45,39 +45,9 @@ class HealthIcon extends FukitSprite
 		}
 	}
 
-	function makeDefaultIcon(char:String = 'bf', isPlayer:Bool = false)
+	function makeDefaultIcon(char:String, isPlayer:Bool = false)
 	{
-		loadGraphic(Paths.image('UI/icons/iconGrid'), true, 150, 150);
-
-		animation.add('bf', [0, 1], 0, false, isPlayer);
-		animation.add('bf-car', [0, 1], 0, false, isPlayer);
-		animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
-		animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
-		animation.add('spooky', [2, 3], 0, false, isPlayer);
-		animation.add('pico', [4, 5], 0, false, isPlayer);
-		animation.add('mom', [6, 7], 0, false, isPlayer);
-		animation.add('mom-car', [6, 7], 0, false, isPlayer);
-		animation.add('tankman', [8, 9], 0, false, isPlayer);
-		animation.add('face', [10, 11], 0, false, isPlayer);
-		animation.add('dad', [12, 13], 0, false, isPlayer);
-		animation.add('senpai', [22, 22], 0, false, isPlayer);
-		animation.add('senpai-angry', [22, 22], 0, false, isPlayer);
-		animation.add('spirit', [23, 23], 0, false, isPlayer);
-		animation.add('bf-old', [14, 15], 0, false, isPlayer);
-		animation.add('gf', [16], 0, false, isPlayer);
-		animation.add('gf-christmas', [16], 0, false, isPlayer);
-		animation.add('gf-pixel', [16], 0, false, isPlayer);
-		animation.add('parents-christmas', [17, 18], 0, false, isPlayer);
-		animation.add('monster', [19, 20], 0, false, isPlayer);
-		animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
-		antialiasing = true;
-
-		switch (char)
-		{
-			case 'bf-pixel', 'senpai', 'senpai-angry', 'spirit', 'gf-pixel': antialiasing = false;
-		}
-
-		if (!animation.getNameList().contains(char))
-			animation.add('$char', [10, 11], 0, false, isPlayer);
+		loadGraphic(Paths.image('UI/icons/icon-$char'), true, 150, 150);
+		anim.add(char, (char == 'gf' || char == 'dad') ? [0, 0] : [0, 1], 0, false, isPlayer);
 	}
 }

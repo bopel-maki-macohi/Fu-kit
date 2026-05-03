@@ -28,13 +28,14 @@ Hi
     - New Main Menu : Intention was to make it similar to Mario World title
     - New Title State : It's a splash text scene now
 
+- Now using the latest FNF icons instead of the icon grid
+- Animation Debug is now availible in release builds
 - Note assets have been re-exported using the latest FLA
 
 - Rating popups are back in the bottom right corner of the screen
 - Fixed Opponent not bopping on every beat
 - Grass World sky is now a generated graphic scaled up instead of a texture
 
-- Animation Debug is now availible in release builds
 - Animation Debug now allows you to export character offset text files via F4
 - Animation Debug now allows you to leave (to the main menu) via ESCAPE
 - Character Offset text files are supposed now
