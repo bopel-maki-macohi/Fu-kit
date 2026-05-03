@@ -38,4 +38,15 @@ class RDSong extends SongComponent
 		game.scoreTxt.text = game.scoreTxt.text.replace(' | Misses: ${game.misses}', ' | No Missing' + (FlxG.save.data.ghostTapping ? ', Cheater' : ''));
 		game.scoreTxt.screenCenter(X);
 	}
+
+	override function onOpponentNote(note:Note)
+	{
+		super.onOpponentNote(note);
+
+		if (game == null)
+			return;
+
+		if (game.health > 0.1)
+			game.health -= 0.05 * (note.isSustainNote ? 0.25 : 1);
+	}
 }

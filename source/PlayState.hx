@@ -112,7 +112,6 @@ class PlayState extends MusicBeatState
 	public var totalNotesHit:Float = 0;
 	public var totalNotesHitDefault:Float = 0;
 	public var totalPlayed:Int = 0;
-	public var ss:Bool = false;
 
 	public var healthBarBG:FukitSprite;
 	public var healthBar:FlxBar;
@@ -1482,51 +1481,47 @@ class PlayState extends MusicBeatState
 		switch (daRating)
 		{
 			case 'shit':
+				shits++;
 				score = -300;
+
+				health -= 0.2;
+
 				combo = 0;
 				misses++;
-				health -= 0.2;
-				ss = false;
-				shits++;
 
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 0.25;
 
 			case 'bad':
-				daRating = 'bad';
-				score = 0;
-				health -= 0.06;
-				ss = false;
 				bads++;
+				score = 0;
+
+				health -= 0.06;
 
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 0.50;
 
 			case 'good':
-				daRating = 'good';
-				score = 200;
-				ss = false;
 				goods++;
+				score = 200;
 
-				if (health < 2)
-					health += 0.04;
+				health += 0.04;
 
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 0.75;
 
 			case 'sick':
-				if (health < 2)
-					health += 0.1;
+				sicks++;
+				health += 0.1;
 
 				if (!FlxG.save.data.accuracyComplex)
 					totalNotesHit += 1;
-
-				sicks++;
 		}
 
-		// trace('Wife accuracy loss: ' + wife + ' | Rating: ' + daRating + ' | Score: ' + score + ' | Weight: ' + (1 - wife));
+		if (health > 2)
+			health = 2;
 
-		if (daRating != 'shit' || daRating != 'bad')
+		if (score > 0)
 		{
 			songScore += Math.round(score);
 			songScoreDef += Math.round(ConvertScore.convertScore(noteDiff));
@@ -1958,8 +1953,6 @@ class PlayState extends MusicBeatState
 		else
 			totalNotesHit += 1;
 
-		onPlayerNote.dispatch(note);
-
 		boyfriend.playSingAnim(note);
 
 		if (!loadRep)
@@ -1980,6 +1973,8 @@ class PlayState extends MusicBeatState
 		killNote(note);
 
 		updateAccuracy();
+
+		onPlayerNote.dispatch(note);
 	}
 
 	override function stepHit()
