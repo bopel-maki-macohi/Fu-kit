@@ -1768,6 +1768,15 @@ class PlayState extends MusicBeatState
 				spr.playAnim('pressed');
 			if (!holdArray[spr.ID])
 				spr.playAnim('static');
+
+			if (spr.anim.name == 'confirm' && !curStage.startsWith('school'))
+			{
+				spr.centerOffsets();
+				spr.offset.x -= 13;
+				spr.offset.y -= 13;
+			}
+			else
+				spr.centerOffsets();
 		});
 	}
 

@@ -29,10 +29,6 @@ class StaticNote extends FukitSprite
 		addByPrefix('pressed', '${dir[ID].toLowerCase()} press');
 		addByPrefix('confirm', '${dir[ID].toLowerCase()} confirm');
 
-		addOffset('static', 0, 0);
-		addOffset('pressed', 0, 0);
-		addOffset('confirm', 0, 0);
-
 		this.x += Note.swagWidth * ID;
 	}
 }
