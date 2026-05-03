@@ -286,12 +286,12 @@ class PlayState extends MusicBeatState
 		#end
 
 		// var gameCam:FlxCamera = FlxG.camera;
-		
+
 		camGame = new FlxCamera();
 
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
-		
+
 		camTopHUD = new FlxCamera();
 		camTopHUD.bgColor.alpha = 0;
 
@@ -2057,9 +2057,6 @@ class PlayState extends MusicBeatState
 				Conductor.changeBPM(SONG.notes[Math.floor(curStep / 16)].bpm);
 				FlxG.log.add('CHANGED BPM!');
 			}
-
-			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
-				dad.dance();
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
@@ -2077,8 +2074,11 @@ class PlayState extends MusicBeatState
 		if (curBeat % gfSpeed == 0)
 			gf.dance();
 
-		if (!boyfriend.animation?.curAnim?.name.startsWith("sing"))
-			boyfriend.playAnim('idle');
+		if (!boyfriend.anim?.name?.startsWith("sing"))
+			boyfriend.dance();
+
+		if (!dad.anim?.name?.startsWith("sing") || dad?.anim?.finished)
+			dad.dance();
 
 		onBeatHit.dispatch(curBeat);
 	}
