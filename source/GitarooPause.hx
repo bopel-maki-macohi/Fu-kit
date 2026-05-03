@@ -23,7 +23,8 @@ class GitarooPause extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		var bg:FukitSprite = new FukitSprite().loadGraphic(Paths.image('pauseAlt/pauseBG'));
+		var bg:FukitSprite = new FukitSprite();
+		bg.loadGraphic(Paths.image('pauseAlt/pauseBG'));
 		add(bg);
 
 		var bf:FukitSprite = new FukitSprite(0, 30);

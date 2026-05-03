@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.objects.FukitSprite;
 import fukit.states.storymode.NewStoryMode;
 import fukit.states.freeplay.NewFreeplayState;
 import flixel.util.FlxTimer;

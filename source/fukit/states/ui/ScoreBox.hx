@@ -1,12 +1,13 @@
 package fukit.states.ui;
 
+import flixel.FlxSprite;
 import fukit.objects.FukitSprite;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
-class ScoreBox extends FlxTypedGroup<FukitSprite>
+class ScoreBox extends FlxTypedGroup<FlxSprite>
 {
 	public var box:FukitSprite;
 	public var textField:FlxText;

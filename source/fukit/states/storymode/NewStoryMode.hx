@@ -43,7 +43,8 @@ class NewStoryMode extends MusicBeatSubstate
 	{
 		super.create();
 
-		blackBar = new FukitSprite().makeGraphic(Math.round(FlxG.width * 1.5), Math.round(FlxG.height * 0.5), FlxColor.BLACK);
+		blackBar = new FukitSprite();
+		blackBar.makeGraphic(Math.round(FlxG.width * 1.5), Math.round(FlxG.height * 0.5), FlxColor.BLACK);
 		blackBar.alpha = 0;
 
 		FlxTween.tween(blackBar, {alpha: 1}, 1, {

@@ -1,5 +1,6 @@
 package fukit.play;
 
+import fukit.play.objects.*;
 import fukit.play.cutscenes.*;
 import openfl.Assets;
 import flixel.FlxState;
