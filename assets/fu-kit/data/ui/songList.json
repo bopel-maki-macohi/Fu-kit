@@ -16,33 +16,40 @@
     "songs": [
         {
             "name": "Tutorial",
-            "world": 0
+            "world": 0,
+            "album": "funkinvolume1"
         },
 
         {
             "name": "New World",
-            "world": 1
+            "world": 1,
+            "album": "fukitvolume1"
         },
         {
             "name": "Wetway",
-            "world": 1
+            "world": 1,
+            "album": "fukitvolume1"
         },
         {
             "name": "Rust",
-            "world": 1
+            "world": 1,
+            "album": "fukitvolume1"
         },
 
         {
             "name": "Termination",
-            "world": 2
+            "world": 2,
+            "album": "fukitvolume1"
         },
         {
             "name": "Overheat",
-            "world": 2
+            "world": 2,
+            "album": "fukitvolume1"
         },
         {
             "name": "rm -rf",
-            "world": 2
+            "world": 2,
+            "album": "fukitvolume1"
         }
     ]
 }

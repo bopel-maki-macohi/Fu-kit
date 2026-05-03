@@ -19,6 +19,7 @@ typedef SongEntry =
 {
 	name:String,
 	world:Int,
+	album:String,
 }
 
 class SongListManager
