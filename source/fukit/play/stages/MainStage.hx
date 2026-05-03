@@ -14,19 +14,19 @@ class MainStage extends StageComponent
 
 		PlayState.curStage = 'stage';
 
-		var bg:FukitSprite = new FukitSprite(-600, -200, Paths.image('stageback'));
+		var bg:FukitSprite = new FukitSprite(-600, -200, Paths.image('stages/stage/stageback'));
 		bg.scrollFactor.set(0.9, 0.9);
 		bg.active = false;
 		add(bg, back);
 
-		var stageFront:FukitSprite = new FukitSprite(-650, 600, Paths.image('stagefront'));
+		var stageFront:FukitSprite = new FukitSprite(-650, 600, Paths.image('stages/stage/stagefront'));
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 		stageFront.updateHitbox();
 		stageFront.scrollFactor.set(0.9, 0.9);
 		stageFront.active = false;
 		add(stageFront, back);
 
-		var stageCurtains:FukitSprite = new FukitSprite(-500, -300, Paths.image('stagecurtains'));
+		var stageCurtains:FukitSprite = new FukitSprite(-500, -300, Paths.image('stages/stage/stagecurtains'));
 		stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 		stageCurtains.updateHitbox();
 		stageCurtains.scrollFactor.set(1.3, 1.3);
