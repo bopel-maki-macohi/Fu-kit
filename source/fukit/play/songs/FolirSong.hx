@@ -160,7 +160,7 @@ class FolirSong extends SongComponent
 				game.camMove(false);
 			}
 
-			if (step == 672)
+			if (step == 752)
 			{
 				game.defaultCamMove = false;
 
