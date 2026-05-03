@@ -61,22 +61,11 @@ class CrashHandler
 
 		var errorMessage:String = '$UE\n\n';
 
-		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
+		errorMessage += 'Exception Stack:\n';
+		errorMessage += StackItemListParser.parse(CallStack.exceptionStack(true));
 
-		for (item in CallStack.callStack()) {
-			callStack.push(item);
-		}
-
-		errorMessage += 'Exception + Call stack:\n';
-		for (item in callStack)
-		{
-			switch (item)
-			{
-				case FilePos(s, file, line, column): errorMessage += '- ${file}:${line}\n';
-
-				default: errorMessage += '- ${item}\n';
-			}
-		}
+		errorMessage += 'Call Stack:\n';
+		errorMessage += StackItemListParser.parse(CallStack.callStack());
 
 		errorMessage += '\n$spacing\n';
 
