@@ -76,10 +76,12 @@ class RMRFSong extends RDSong
 
 				
 			case 608:
-				game.camHUD.alpha = 0;
+				final duration = (Conductor.crochet / 1000) * (640 / step);
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, duration);
+
 				stage.charShader.baseBrightness = -10000;
 
-				FlxG.camera.flash(FlxColor.RED, (Conductor.crochet / 1000) * (640 / step));
+				FlxG.camera.flash(FlxColor.RED, duration);
 		}
 	}
 
