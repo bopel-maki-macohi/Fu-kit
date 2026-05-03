@@ -70,9 +70,9 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue.color = FlxColor.BLACK;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 		
-		swagYoudontfuckingknowAnything = new FlxText(0, 0, 0, 'ENTER to continue', 32);
+		swagYoudontfuckingknowAnything = new FlxText(0, 0, 0, 'ENTER to continue', 16);
 		swagYoudontfuckingknowAnything.font = swagDialogue.font;
-		swagYoudontfuckingknowAnything.color = FlxColor.BLACK;
+		swagYoudontfuckingknowAnything.color = FlxColor.WHITE;
 
 		swagYoudontfuckingknowAnything.x = 10;
 		swagYoudontfuckingknowAnything.y = FlxG.height - swagYoudontfuckingknowAnything.height - 10;
