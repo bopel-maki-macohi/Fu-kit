@@ -90,4 +90,14 @@ class FukitSprite extends FlxAnimate
 
 		return file;
 	}
+
+	public function getAnimList():Array<String>
+	{
+		var anims:Array<String> = [];
+
+		for (name in anim.getNameList())
+			anims.push(name);
+
+		return anims;
+	}
 }

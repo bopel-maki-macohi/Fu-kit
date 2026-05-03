@@ -55,14 +55,27 @@ class Character extends FukitSprite
 
 		switch (curCharacter)
 		{
+			case 'rd':
+				loadTexture(Paths.getAnimateAtlas('characters/$curCharacter', 'fu-kit'));
+
+				addByFrameLabel('idle', 'idle');
+				addByFrameLabel('singLEFT', 'singLEFT');
+				addByFrameLabel('singDOWN', 'singDOWN');
+				addByFrameLabel('singUP', 'singUP');
+				addByFrameLabel('singRIGHT', 'singRIGHT');
+
+				dadStartingCamPosOffsets.set(202, 60);
+
+				playAnim('idle');
+
 			case 'folir':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
-				addByPrefix('idle', 'folir anim idle', 24);
-				addByPrefix('singLEFT', 'folir anim left', 24);
-				addByPrefix('singDOWN', 'folir anim down', 24);
-				addByPrefix('singUP', 'folir anim up', 24);
-				addByPrefix('singRIGHT', 'folir anim right', 24);
+				addByPrefix('idle', 'folir anim idle');
+				addByPrefix('singLEFT', 'folir anim left');
+				addByPrefix('singDOWN', 'folir anim down');
+				addByPrefix('singUP', 'folir anim up');
+				addByPrefix('singRIGHT', 'folir anim right');
 
 				dadStartingCamPosOffsets.set(202, 60);
 
@@ -71,11 +84,11 @@ class Character extends FukitSprite
 			case 'folir-pissed':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
-				addByPrefix('idle', 'folir pissed anim idle', 24);
-				addByPrefix('singLEFT', 'folir pissed anim left', 24);
-				addByPrefix('singDOWN', 'folir pissed anim down', 24);
-				addByPrefix('singUP', 'folir pissed anim up', 24);
-				addByPrefix('singRIGHT', 'folir pissed anim right', 24);
+				addByPrefix('idle', 'folir pissed anim idle');
+				addByPrefix('singLEFT', 'folir pissed anim left');
+				addByPrefix('singDOWN', 'folir pissed anim down');
+				addByPrefix('singUP', 'folir pissed anim up');
+				addByPrefix('singRIGHT', 'folir pissed anim right');
 
 				dadStartingCamPosOffsets.set(202, 60);
 
@@ -84,12 +97,12 @@ class Character extends FukitSprite
 			case 'arpe', 'arpe-worried':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
-				addByPrefix('idle', 'arpe anim idle', 24);
+				addByPrefix('idle', 'arpe anim idle');
 
-				addByPrefix('singLEFT', 'arpe anim left', 24);
-				addByPrefix('singDOWN', 'arpe anim down', 24);
-				addByPrefix('singUP', 'arpe anim up', 24);
-				addByPrefix('singRIGHT', 'arpe anim right', 24);
+				addByPrefix('singLEFT', 'arpe anim left');
+				addByPrefix('singDOWN', 'arpe anim down');
+				addByPrefix('singUP', 'arpe anim up');
+				addByPrefix('singRIGHT', 'arpe anim right');
 
 				parseOffsets('arpe');
 
@@ -103,17 +116,17 @@ class Character extends FukitSprite
 					Paths.getSparrowAtlas('characters/arpe-withered-alt', 'fu-kit')
 				]);
 
-				addByPrefix('idle', 'arpe anim idle', 24);
+				addByPrefix('idle', 'arpe anim idle');
 
-				addByPrefix('singLEFT', 'arpe anim left', 24);
-				addByPrefix('singDOWN', 'arpe anim down', 24);
-				addByPrefix('singUP', 'arpe anim up', 24);
-				addByPrefix('singRIGHT', 'arpe anim right', 24);
+				addByPrefix('singLEFT', 'arpe anim left');
+				addByPrefix('singDOWN', 'arpe anim down');
+				addByPrefix('singUP', 'arpe anim up');
+				addByPrefix('singRIGHT', 'arpe anim right');
 
-				addByPrefix('singLEFT-alt', 'arpe anim alt left', 24);
-				addByPrefix('singDOWN-alt', 'arpe anim alt down', 24);
-				addByPrefix('singUP-alt', 'arpe anim alt up', 24);
-				addByPrefix('singRIGHT-alt', 'arpe anim alt right', 24);
+				addByPrefix('singLEFT-alt', 'arpe anim alt left');
+				addByPrefix('singDOWN-alt', 'arpe anim alt down');
+				addByPrefix('singUP-alt', 'arpe anim alt up');
+				addByPrefix('singRIGHT-alt', 'arpe anim alt right');
 
 				dadStartingCamPosOffsets.set(202, 60);
 
@@ -128,12 +141,12 @@ class Character extends FukitSprite
 				addByPrefix('singRIGHT', 'GF Right Note');
 				addByPrefix('singUP', 'GF Up Note');
 				addByPrefix('singDOWN', 'GF Down Note');
-				anim.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "");
-				anim.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "");
-				anim.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "");
-				anim.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
-				anim.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "");
-				addByPrefix('scared', 'GF FEAR', 24);
+				anim.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], '', 24);
+				anim.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], '', 24);
+				anim.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29], '', 24);
+				anim.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], '', 24);
+				anim.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], '', 24);
+				addByPrefix('scared', 'GF FEAR');
 
 				playAnim('danceRight');
 
@@ -170,10 +183,10 @@ class Character extends FukitSprite
 				addByPrefix('hey', 'BF HEY!!');
 
 				addByPrefix('firstDeath', "BF dies");
-				addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+				addByPrefix('deathLoop', "BF Dead Loop", true);
 				addByPrefix('deathConfirm', "BF Dead confirm");
 
-				addByPrefix('scared', 'BF idle shaking', 24);
+				addByPrefix('scared', 'BF idle shaking');
 
 				playAnim('idle');
 
@@ -182,7 +195,7 @@ class Character extends FukitSprite
 
 		parseOffsets(character);
 
-		for (animName in anim.getNameList())
+		for (animName in getAnimList())
 			if (animOffsets[animName] == null)
 				addOffset(animName);
 

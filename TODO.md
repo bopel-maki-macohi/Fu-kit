@@ -6,7 +6,4 @@
 
 # 2.0
 
-- RD Char Assets
-
-- rm -rf Stage
 - rm -rf Chart
