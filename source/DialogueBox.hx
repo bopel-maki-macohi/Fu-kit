@@ -1,5 +1,6 @@
 package;
 
+import animate.FlxAnimate;
 import lime.utils.Assets;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -31,7 +32,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var finishThing:Void->Void;
 
-	var portrait:FlxSprite;
+	var portrait:FlxAnimate;
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
@@ -57,7 +58,7 @@ class DialogueBox extends FlxSpriteGroup
 		box.screenCenter();
 		box.y = (FlxG.height * 0.9) - box.height;
 
-		portrait = new FlxSprite(-20, 40);
+		portrait = new FlxAnimate(-20, 40);
 		add(portrait);
 		portrait.visible = false;
 
@@ -176,10 +177,39 @@ class DialogueBox extends FlxSpriteGroup
 			portraitDataFiles.set(curCharacter, portraitData);
 		}
 
-		portrait.loadGraphic(Paths.image('dialogue/$curCharacter'));
+		var leftSide:Bool = portraitData[0] == '1';
 
-		// left side?
-		if (portraitData[0] == '1')
+		var portraitType:String = portraitData[1]?.toLowerCase() ?? 'static';
+
+		var animated:Bool = false;
+		var animationType:String = portraitData[2]?.toLowerCase() ?? null;
+		var animationName:String = portraitData[3]?.toLowerCase() ?? null;
+
+		// portrait type
+
+		switch (portraitType)
+		{
+			case 'animateatlas', 'textureatlas', 'animate atlas', 'texture atlas':
+				portrait.frames = Paths.getAnimateAtlas('dialogue/$curCharacter');
+				animated = true;
+
+			case 'sparrow', 'sparrowatlas', 'sparrow atlas':
+				portrait.frames = Paths.getSparrowAtlas('dialogue/$curCharacter');
+				animated = true;
+
+			default: portrait.loadGraphic(Paths.image('dialogue/$curCharacter'));
+		}
+
+		if (animated)
+		{
+			switch (animationType)
+			{
+				case 'prefix': portrait.anim.addByPrefix('anim', animationName, 24, false);
+				case 'framelabel': portrait.anim.addByFrameLabel('anim', animationName, 24, false);
+			}
+		}
+
+		if (leftSide)
 			portrait.x = (portrait.width * 0.2);
 		else
 			portrait.x = FlxG.width - (portrait.width * 1.1);

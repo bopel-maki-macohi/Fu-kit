@@ -1,6 +1,6 @@
-folir:YOU!
+folir-idle:YOU!
 bf-idle:?
-folir:YOU KILLED MY BOYFRIEND.
+folir-idle:YOU KILLED MY BOYFRIEND.
 bf-shakehead:No.
 folir-pissed:YES YOU DID.
 bf-shakehead:No.

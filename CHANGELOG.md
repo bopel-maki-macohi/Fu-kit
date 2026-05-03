@@ -4,6 +4,10 @@ Hi
 
 ## 2.0 - 5/2026
 
+- GAMEPLAY!
+    - WORLD 2 WITH 3 NEW SONGS! TERMINATION, OVERHEAT, AND rm -rf!!!!!!
+    - World 1 now has dialogue!
+
 - MENU UPDATES!
     - Chart Editor Changes : There is a player and opponent character there, they just boppin'
     - New Story Mode Menu : Stylized and world stages are there now
