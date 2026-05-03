@@ -1416,7 +1416,7 @@ class PlayState extends MusicBeatState
 				+ (lua != null ? getVar("followYOffset", "float") : 0));
 		}
 
-		if (playerCam && camFollow.x != boyfriend.getMidpoint().x - 100)
+		if (playerCam)
 		{
 			camFollow.setPosition(boyfriend.getMidpoint().x
 				- 100

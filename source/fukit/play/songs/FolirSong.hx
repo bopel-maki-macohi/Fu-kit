@@ -83,8 +83,8 @@ class FolirSong extends SongComponent
 				var len:Float = (Conductor.stepCrochet / 1000) * (174 - step);
 
 				camTween = FlxTween.tween(game.camFollow, {
-					x: game.dad.getGraphicMidpoint().x - 150,
-					y: game.dad.getGraphicMidpoint().y - 140,
+					x: game.dad.getMidpoint().x + 150,
+					y: game.dad.getMidpoint().y - 100,
 				}, len, {ease: FlxEase.sineInOut});
 
 				camZoomTween = FlxTween.tween(FlxG.camera, {
