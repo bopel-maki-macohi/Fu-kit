@@ -22,13 +22,14 @@ class FreeplayAlbum extends FukitSprite
 
 		this.album = album;
 
-        this.visible = false;
+		this.visible = false;
 		if (this.album == null)
 			return;
 
-        this.visible = true;
+		this.visible = true;
 		this.loadGraphic(Paths.image('UI/freeplay/albums/$album'));
 
-        setGraphicSize(320, 180);
+		scale.set(.25, .25);
+		updateHitbox();
 	}
 }
