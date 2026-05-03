@@ -13,6 +13,8 @@ import flixel.FlxG;
 import openfl.events.UncaughtErrorEvent;
 import openfl.Lib;
 
+using StringTools;
+
 class CrashHandler
 {
 	public static function init()
@@ -70,8 +72,8 @@ class CrashHandler
 		errorMessage += '\n$spacing\n';
 
 		errorMessage += 'Mod version: ${Global.watermarkText}\n\n';
-		errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state)) ?? 'None (how tf)'}\n';
-		errorMessage += 'Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState)) ?? 'None'}\n';
+		errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state)).replace('.', '/') + '.hx' ?? 'None (how tf)'}\n';
+		errorMessage += 'Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState)).replace('.', '/') + '.hx' ?? 'None'}\n';
 
 		errorMessage += '\n$spacing\n';
 
