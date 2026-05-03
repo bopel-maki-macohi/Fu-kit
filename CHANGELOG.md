@@ -4,32 +4,22 @@ Hi
 
 ## 2.0 - 5/2026
 
-- Chart Editor Changes
-    - There is a player and opponent character there, they just boppin'
+- MENU UPDATES!
+    - Chart Editor Changes : There is a player and opponent character there, they just boppin'
+    - New Story Mode Menu : Stylized and world stages are there now
+    - New Freeplay Menu : It's stylized now and it's cool
+    - New Options Menu
+        - Added Ghost Tapping Option in the Gameplay Category, it's toggable now and it's off by default
+        - The Watermark Option has been removed
+        - The following options now allow you to press SHIFT to increment more
+            - Hit Timings : 2x
+            - FPS Cap : 2x
+            - Custom Scroll Speed : 5x
+        - It's a substate now and other then that its basically a main menu for changing options
+    - New Main Menu : Intention was to make it similar to Mario World title
+    - New Title State : It's a splash text scene now
 
-- New Story Mode Menu
-    - Stylized and world stages are there now
-
-- New Freeplay Menu
-    - It's stylized now and it's cool
-
-- New Options Menu
-    - Added Ghost Tapping Option in the Gameplay Category, it's toggable now and it's off by default
-
-    - The Watermark Option has been removed
-
-    - The following options now allow you to press SHIFT to increment more
-        - Hit Timings : 2x
-        - FPS Cap : 2x
-        - Custom Scroll Speed : 5x
-
-    - It's a substate now and other then that its basically a main menu for changing options
-
-- New Main Menu
-    - Intention was to make it similar to Mario World hehe
-
-- New Title State
-    - It's a splash text scene now
+- Character Offset text files are supposed now
 
 - Countdown sprites is now in the camHUD camera
 - Characters are no longer forced to bop with the countdown

@@ -1,5 +1,7 @@
 package;
 
+import sys.io.File;
+import fukit.states.NewMenuState;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -14,9 +16,9 @@ import flixel.util.FlxColor;
  */
 class AnimationDebug extends FlxState
 {
-	var bf:Boyfriend;
-	var dad:Character;
 	var char:Character;
+	var charGhost:Character;
+
 	var textAnim:FlxText;
 	var dumbTexts:FlxTypedGroup<FlxText>;
 	var animList:Array<String> = [];
@@ -34,35 +36,27 @@ class AnimationDebug extends FlxState
 	override function create()
 	{
 		if (FlxG.sound.music != null)
-		FlxG.sound.music.stop();
+			FlxG.sound.music.stop();
 
 		var gridBG:FlxSprite = FlxGridOverlay.create(10, 10);
 		gridBG.scrollFactor.set(0.5, 0.5);
 		add(gridBG);
 
-		if (daAnim == 'bf')
-			isDad = false;
+		char = new Character(0, 0, daAnim);
+		char.screenCenter();
+		char.debugMode = true;
 
-		if (isDad)
-		{
-			dad = new Character(0, 0, daAnim);
-			dad.screenCenter();
-			dad.debugMode = true;
-			add(dad);
+		char.flipX = false;
 
-			char = dad;
-			dad.flipX = false;
-		}
-		else
-		{
-			bf = new Boyfriend(0, 0);
-			bf.screenCenter();
-			bf.debugMode = true;
-			add(bf);
+		charGhost = new Character(0, 0, daAnim);
+		charGhost.screenCenter();
+		charGhost.debugMode = true;
+		charGhost.flipX = false;
 
-			char = bf;
-			bf.flipX = false;
-		}
+		charGhost.alpha = .3;
+
+		add(charGhost);
+		add(char);
 
 		dumbTexts = new FlxTypedGroup<FlxText>();
 		add(dumbTexts);
@@ -141,14 +135,10 @@ class AnimationDebug extends FlxState
 		}
 
 		if (FlxG.keys.justPressed.W)
-		{
 			curAnim -= 1;
-		}
 
 		if (FlxG.keys.justPressed.S)
-		{
 			curAnim += 1;
-		}
 
 		if (curAnim < 0)
 			curAnim = animList.length - 1;
@@ -158,6 +148,7 @@ class AnimationDebug extends FlxState
 
 		if (FlxG.keys.justPressed.S || FlxG.keys.justPressed.W || FlxG.keys.justPressed.SPACE)
 		{
+			charGhost.playAnim(char.anim.name);
 			char.playAnim(animList[curAnim]);
 
 			updateTexts();
@@ -189,6 +180,15 @@ class AnimationDebug extends FlxState
 			updateTexts();
 			genBoyOffsets(false);
 			char.playAnim(animList[curAnim]);
+		}
+
+		if (FlxG.keys.justPressed.ESCAPE)
+			FlxG.switchState(() -> new NewMenuState());
+
+		if (FlxG.keys.justPressed.F4)
+		{
+			var offsets:String = char.createOffsetsFile();
+			File.saveContent(Paths.txt('characters/' + char.curCharacter), offsets);
 		}
 
 		super.update(elapsed);

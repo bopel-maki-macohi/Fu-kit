@@ -1,5 +1,6 @@
 package;
 
+import lime.utils.Assets;
 import flixel.math.FlxPoint;
 import animate.FlxAnimate;
 import animate.FlxAnimateFrames;
@@ -85,11 +86,7 @@ class Character extends FlxAnimate
 				addByPrefix('singUP', 'arpe anim up', 24);
 				addByPrefix('singRIGHT', 'arpe anim right', 24);
 
-				addOffset('idle', 0, 0);
-				addOffset('singDOWN', -5, -190);
-				addOffset('singRIGHT', 20, -30);
-				addOffset('singUP', 80, 40);
-				addOffset('singLEFT', 60, -30);
+				parseOffsets('arpe');
 
 				dadStartingCamPosOffsets.set(202, 60);
 
@@ -225,6 +222,8 @@ class Character extends FlxAnimate
 				flipX = true;
 		}
 
+		parseOffsets(character);
+
 		dance();
 
 		if (isPlayer)
@@ -335,5 +334,44 @@ class Character extends FlxAnimate
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
 	{
 		animOffsets[name] = [x, y];
+	}
+
+	public function parseOffsets(offsetFile:String)
+	{
+		final path:String = Paths.txt('characters/$offsetFile');
+
+		if (!Assets.exists(path))
+			return;
+
+		var parsed:Array<String> = CoolUtil.coolTextFile(path);
+
+		for (line in parsed)
+		{
+			var spaceSplit:Array<String> = line.split(' ');
+
+			var anim:String = spaceSplit[0];
+
+			var x:Float = Std.parseFloat(spaceSplit[1] ?? '0');
+			var y:Float = Std.parseFloat(spaceSplit[2] ?? '0');
+
+			addOffset(anim, x, y);
+		}
+	}
+
+	public function createOffsetsFile():String
+	{
+		var file:String = '';
+
+		for (anim in animation.getNameList())
+		{
+			var line:String = '$anim';
+
+			if (animOffsets.exists(anim) != null)
+				line += ' ${animOffsets[anim][0]} ${animOffsets[anim][1]}';
+			else
+				line += ' 0 0';
+		}
+
+		return file;
 	}
 }
