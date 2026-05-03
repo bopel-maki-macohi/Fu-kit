@@ -103,7 +103,11 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
-		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width, alpha: .6}, 1, {
+		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width}, 1, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(scoreBox.box, {alpha: .6}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 
@@ -199,7 +203,11 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
-		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width, alpha: 0}, .5, {
+		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width}, .5, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(scoreBox.box, {alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}
