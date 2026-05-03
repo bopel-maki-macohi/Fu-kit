@@ -19,6 +19,8 @@ Hi
     - New Main Menu : Intention was to make it similar to Mario World title
     - New Title State : It's a splash text scene now
 
+- Animation Debug now allows you to export character offset text files via F4
+- Animation Debug now allows you to leave (to the main menu) via ESCAPE
 - Character Offset text files are supposed now
 
 - Countdown sprites is now in the camHUD camera

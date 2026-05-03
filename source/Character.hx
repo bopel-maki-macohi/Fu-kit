@@ -6,7 +6,6 @@ import animate.FlxAnimate;
 import animate.FlxAnimateFrames;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 using StringTools;
@@ -135,11 +134,11 @@ class Character extends FlxAnimate
 				addByPrefix('singRIGHT', 'GF Right Note');
 				addByPrefix('singUP', 'GF Up Note');
 				addByPrefix('singDOWN', 'GF Down Note');
-				animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "");
-				animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "");
-				animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "");
-				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
-				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "");
+				anim.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "");
+				anim.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "");
+				anim.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "");
+				anim.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
+				anim.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "");
 				addByPrefix('scared', 'GF FEAR', 24);
 
 				addOffset('cheer');
@@ -224,6 +223,10 @@ class Character extends FlxAnimate
 
 		parseOffsets(character);
 
+		for (animName in anim.getNameList())
+			if (animOffsets[animName] == null)
+				addOffset(animName);
+
 		dance();
 
 		if (isPlayer)
@@ -234,23 +237,23 @@ class Character extends FlxAnimate
 			if (!curCharacter.startsWith('bf'))
 			{
 				// var animArray
-				var oldRight = animation.getByName('singRIGHT').frames;
-				animation.getByName('singRIGHT').frames = animation.getByName('singLEFT').frames;
-				animation.getByName('singLEFT').frames = oldRight;
+				var oldRight = anim.getByName('singRIGHT').frames;
+				anim.getByName('singRIGHT').frames = anim.getByName('singLEFT').frames;
+				anim.getByName('singLEFT').frames = oldRight;
 
 				// IF THEY HAVE MISS ANIMATIONS??
-				if (animation.getByName('singRIGHTmiss') != null)
+				if (anim.getByName('singRIGHTmiss') != null)
 				{
-					var oldMiss = animation.getByName('singRIGHTmiss').frames;
-					animation.getByName('singRIGHTmiss').frames = animation.getByName('singLEFTmiss').frames;
-					animation.getByName('singLEFTmiss').frames = oldMiss;
+					var oldMiss = anim.getByName('singRIGHTmiss').frames;
+					anim.getByName('singRIGHTmiss').frames = anim.getByName('singLEFTmiss').frames;
+					anim.getByName('singLEFTmiss').frames = oldMiss;
 				}
 			}
 		}
 	}
 
 	public function addByPrefix(name:String, prefix:String, frameRate = 24.0, looped = false):Void
-		animation.addByPrefix(name, prefix, frameRate, looped);
+		anim.addByPrefix(name, prefix, frameRate, looped);
 
 	function loadTexture(texture:FlxAtlasFrames)
 		loadTextures([texture]);
@@ -264,7 +267,7 @@ class Character extends FlxAnimate
 	{
 		if (!isPlayer)
 		{
-			if (animation?.curAnim?.name.startsWith('sing'))
+			if (anim?.name.startsWith('sing'))
 				holdTimer += elapsed;
 
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
@@ -276,7 +279,7 @@ class Character extends FlxAnimate
 
 		switch (curCharacter)
 		{
-			case 'gf': if (animation?.curAnim?.name == 'hairFall' && animation?.curAnim?.finished)
+			case 'gf': if (anim?.name == 'hairFall' && anim?.finished)
 					playAnim('danceRight');
 		}
 
@@ -296,7 +299,7 @@ class Character extends FlxAnimate
 		switch (curCharacter)
 		{
 			case 'gf':
-				if (animation?.curAnim?.name.startsWith('hair'))
+				if (anim?.name.startsWith('hair'))
 					return;
 
 				danced = !danced;
@@ -312,7 +315,7 @@ class Character extends FlxAnimate
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		animation.play(AnimName, Force, Reversed, Frame);
+		anim.play(AnimName, Force, Reversed, Frame);
 
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
@@ -362,14 +365,18 @@ class Character extends FlxAnimate
 	{
 		var file:String = '';
 
-		for (anim in animation.getNameList())
-		{
-			var line:String = '$anim';
+		// trace(anim.getNameList());
 
-			if (animOffsets.exists(anim) != null)
-				line += ' ${animOffsets[anim][0]} ${animOffsets[anim][1]}';
+		for (animName in anim.getNameList())
+		{
+			var line:String = '$animName';
+
+			if (animOffsets.exists(animName))
+				line += ' ${animOffsets[animName][0]} ${animOffsets[animName][1]}';
 			else
 				line += ' 0 0';
+
+			file += '$line\n';
 		}
 
 		return file;

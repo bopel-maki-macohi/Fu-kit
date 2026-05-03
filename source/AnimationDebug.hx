@@ -1,5 +1,7 @@
 package;
 
+import openfl.net.FileReference;
+import sys.FileSystem;
 import sys.io.File;
 import fukit.states.NewMenuState;
 import flixel.FlxG;
@@ -48,6 +50,8 @@ class AnimationDebug extends FlxState
 
 		char.flipX = false;
 
+		curAnim = char.anim.getNameList().indexOf(char.anim.name);
+
 		charGhost = new Character(0, 0, daAnim);
 		charGhost.screenCenter();
 		charGhost.debugMode = true;
@@ -85,7 +89,7 @@ class AnimationDebug extends FlxState
 		{
 			var text:FlxText = new FlxText(10, 20 + (18 * daLoop), 0, anim + ": " + offsets, 15);
 			text.scrollFactor.set();
-			text.color = FlxColor.BLUE;
+			text.ID = daLoop;
 			dumbTexts.add(text);
 
 			if (pushList)
@@ -130,9 +134,7 @@ class AnimationDebug extends FlxState
 				camFollow.velocity.x = 0;
 		}
 		else
-		{
 			camFollow.velocity.set();
-		}
 
 		if (FlxG.keys.justPressed.W)
 			curAnim -= 1;
@@ -154,6 +156,9 @@ class AnimationDebug extends FlxState
 			updateTexts();
 			genBoyOffsets(false);
 		}
+
+		for (text in dumbTexts)
+			text.color = (curAnim == text.ID) ? FlxColor.GREEN : FlxColor.BLACK;
 
 		var upP = FlxG.keys.anyJustPressed([UP]);
 		var rightP = FlxG.keys.anyJustPressed([RIGHT]);
@@ -177,9 +182,13 @@ class AnimationDebug extends FlxState
 			if (rightP)
 				char.animOffsets.get(animList[curAnim])[0] -= 1 * multiplier;
 
+			charGhost.animOffsets = char.animOffsets;
+
 			updateTexts();
 			genBoyOffsets(false);
+
 			char.playAnim(animList[curAnim]);
+			charGhost.playAnim(char.anim.name);
 		}
 
 		if (FlxG.keys.justPressed.ESCAPE)
@@ -188,7 +197,12 @@ class AnimationDebug extends FlxState
 		if (FlxG.keys.justPressed.F4)
 		{
 			var offsets:String = char.createOffsetsFile();
-			File.saveContent(Paths.txt('characters/' + char.curCharacter), offsets);
+			var directory:String = Paths.file('data/characters');
+
+			if (!FileSystem.exists(directory))
+				FileSystem.createDirectory(directory);
+
+			new FileReference().save(offsets, '${directory}/${char.curCharacter}.txt');
 		}
 
 		super.update(elapsed);

@@ -97,11 +97,11 @@ class InitState extends FlxState
 
 	public function moveStates()
 	{
-		var MAINMENU:String = DefineMacro.definedValue('MAINMENU').toLowerCase();
-		var CHARTING:String = DefineMacro.definedValue('CHARTING').toLowerCase();
-		var ANIMDEBUG:String = DefineMacro.definedValue('ANIMDEBUG').toLowerCase();
-		var SONG:String = DefineMacro.definedValue('SONG').toLowerCase();
-		var SONG_DIFFICULTY:String = DefineMacro.definedValue('SONG_DIFFICULTY').toLowerCase();
+		var MAINMENU:String = DefineMacro.definedValue('MAINMENU')?.toLowerCase();
+		var CHARTING:String = DefineMacro.definedValue('CHARTING')?.toLowerCase();
+		var ANIMDEBUG:String = DefineMacro.definedValue('ANIMDEBUG')?.toLowerCase();
+		var SONG:String = DefineMacro.definedValue('SONG')?.toLowerCase();
+		var SONG_DIFFICULTY:String = DefineMacro.definedValue('SONG_DIFFICULTY')?.toLowerCase();
 
 		var diff:Int = CoolUtil.difficultyArray.indexOf(SONG_DIFFICULTY?.toUpperCase() ?? 'NORMAL');
 
