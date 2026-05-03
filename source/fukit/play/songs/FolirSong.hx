@@ -127,7 +127,7 @@ class FolirSong extends SongComponent
 					zoom: game.defaultCamZoom,
 				}, len, {ease: FlxEase.sineInOut});
 
-				hudTween = FlxTween.tween(game.camHUD, {alpha: 0}, len, {ease: FlxEase.sineInOut});
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 480)
