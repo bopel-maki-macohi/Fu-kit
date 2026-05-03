@@ -36,5 +36,6 @@ class RDSong extends SongComponent
 			return;
 
 		game.scoreTxt.text = game.scoreTxt.text.replace(' | Misses: ${game.misses}', ' | No Missing' + (FlxG.save.data.ghostTapping ? ', Cheater' : ''));
+		game.scoreTxt.screenCenter(X);
 	}
 }
