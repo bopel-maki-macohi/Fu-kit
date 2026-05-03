@@ -97,8 +97,8 @@ class PlayState extends MusicBeatState
 
 	public static var prevCamFollow:FlxObject;
 
-	public var strumLineNotes:FlxTypedGroup<FukitSprite>;
-	public var playerStrums:FlxTypedGroup<FukitSprite>;
+	public var strumLineNotes:FlxTypedGroup<StaticNote>;
+	public var playerStrums:FlxTypedGroup<StaticNote>;
 
 	public var camZooming:Bool = false;
 	public var curSong:String = "";
@@ -354,10 +354,10 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.downscroll)
 			strumLine.y = FlxG.height - 165;
 
-		strumLineNotes = new FlxTypedGroup<FukitSprite>();
+		strumLineNotes = new FlxTypedGroup<StaticNote>();
 		add(strumLineNotes);
 
-		playerStrums = new FlxTypedGroup<FukitSprite>();
+		playerStrums = new FlxTypedGroup<StaticNote>();
 
 		generateSong(SONG.song);
 
@@ -486,6 +486,22 @@ class PlayState extends MusicBeatState
 		onCreate.dispatch();
 
 		super.create();
+	}
+
+	public function applyMiddleScroll()
+	{
+		for (staticNote in strumLineNotes)
+		{
+			if (!playerStrums.members.contains(staticNote))
+				staticNote.visible = false;
+		}
+
+		for (staticNote in playerStrums)
+		{
+			staticNote.screenCenter(X);
+			staticNote.x += Note.swagWidth * (staticNote.ID - 2);
+			staticNote.x += 50;
+		}
 	}
 
 	var startTimer:FlxTimer;

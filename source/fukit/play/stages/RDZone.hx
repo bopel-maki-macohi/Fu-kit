@@ -16,10 +16,10 @@ class RDZone extends StageComponent
 
 		PlayState.curStage = 'rdzone';
 
-		omonus = new FukitSprite(0,0,Paths.image('stages/rdzone/omonus'));
+		omonus = new FukitSprite(0, 0, Paths.image('stages/rdzone/omonus'));
 		add(omonus);
 
-		omonus.scale.set(2,2);
+		omonus.scale.set(2, 2);
 		omonus.updateHitbox();
 
 		omonus.screenCenter();
@@ -28,9 +28,10 @@ class RDZone extends StageComponent
 		charShader = new DropShadowShader();
 		charShader.setAdjustColor(-48, -20, -12, -32);
 
-        if (game == null) return;
+		if (game == null)
+			return;
 
-        game.defaultCamZoom = .5;
+		game.defaultCamZoom = .5;
 
 		game.remove(game.gf);
 
@@ -45,5 +46,12 @@ class RDZone extends StageComponent
 		game.dad.x -= 360;
 
 		game.boyfriend.x += 360;
+	}
+
+	override function onCreate()
+	{
+		super.onCreate();
+
+		game.applyMiddleScroll();
 	}
 }
