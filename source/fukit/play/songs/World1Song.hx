@@ -96,7 +96,7 @@ class World1Song extends SongComponent
 				rainEndAlpha = 0.9;
 		}
 
-		stage.sky.shader = stage.ground.shader = bgShader;
+		stage.applyShader(bgShader);
 
 		game.dad.shader = game.boyfriend.shader = charShader;
 

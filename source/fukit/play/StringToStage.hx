@@ -10,6 +10,7 @@ class StringToStage
 		switch (str)
 		{
 			case 'grassworld': return new GrassWorld();
+			case 'grassworld_arpebody': return new GrassWorldArpeBody();
 
 			case 'stage': return new MainStage();
 		}

@@ -1,22 +1,22 @@
 package fukit.play.songs;
 
+import fukit.play.stages.GrassWorldArpeBody;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import fukit.shaders.DropShadowShader;
-import fukit.play.stages.GrassWorld;
 import fukit.play.components.SongComponent;
 
 class FolirSong extends SongComponent
 {
-	public var stage:GrassWorld;
+	public var stage:GrassWorldArpeBody;
 
 	override function init()
 	{
 		super.init();
 
-		stage = new GrassWorld();
+		stage = new GrassWorldArpeBody();
 
 		bgShader = new DropShadowShader();
 		charShader = new DropShadowShader();
@@ -52,7 +52,7 @@ class FolirSong extends SongComponent
 			case 'overheat': FlxG.camera.zoom = .9;
 		}
 
-		stage.sky.shader = stage.ground.shader = bgShader;
+		stage.applyShader(bgShader);
 
 		game.dad.shader = game.boyfriend.shader = charShader;
 	}

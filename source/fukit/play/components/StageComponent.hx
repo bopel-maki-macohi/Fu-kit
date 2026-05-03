@@ -1,5 +1,6 @@
 package fukit.play.components;
 
+import flixel.system.FlxAssets.FlxShader;
 import flixel.FlxSprite;
 
 enum StageObjectLayer
@@ -11,6 +12,14 @@ enum StageObjectLayer
 class StageComponent extends PlayComponent
 {
 	public var members:Array<FlxSprite> = [];
+
+	public function applyShader(shader:FlxShader)
+	{
+		for (sprite in members)
+		{
+			sprite.shader = shader;
+		}
+	}
 
 	override function init()
 	{
