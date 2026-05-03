@@ -24,7 +24,7 @@ class Global
 
 	static function get_watermarkText():String
 	{
-		return 'Fu-kit ${modVer} / Fu-kit Engine ${fukitEngineVer} (KE ${kadeEngineVer})';
+		return '${Application.current.meta.get('title')} ${modVer} / Fu-kit Engine ${fukitEngineVer} (KE ${kadeEngineVer})';
 	}
 
 	public static function goIntoSong(song:String = 'tutorial', difficulty:Int = 2, week:Int = 0, storymode:Bool = false, offsetTesting:Bool = false)

@@ -18,6 +18,8 @@ import Discord.DiscordClient;
 import flixel.FlxState;
 import fukit.util.macros.DefineMacro;
 
+using StringTools;
+
 class InitState extends FlxState
 {
 	override function create()
@@ -93,7 +95,7 @@ class InitState extends FlxState
 
 		FlxG.mouse.visible = false;
 
-		FlxG.stage.window.title = Global.watermarkText;
+		FlxG.stage.window.title += Global.watermarkText.split('/')[0].trim();
 
 		FlxG.switchState(() -> new FocusState());
 	}

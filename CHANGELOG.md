@@ -28,6 +28,8 @@ Hi
     - New Main Menu : Intention was to make it similar to Mario World title
     - New Title State : It's a splash text scene now
 
+- The window title is now the mod name and the version
+
 - Now using the latest FNF icons instead of the icon grid
 - Animation Debug is now availible in release builds
 - Note assets have been re-exported using the latest FLA
