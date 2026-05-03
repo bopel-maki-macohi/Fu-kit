@@ -1,4 +1,4 @@
-package fukit.play.songs;
+package fukit.play.songs.world2;
 
 import fukit.play.stages.GrassWorldArpeBody;
 import flixel.tweens.FlxEase;
