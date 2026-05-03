@@ -20,7 +20,9 @@ class RMRFSong extends RDSong
 		stage = cast(game.stage, RDZone);
 	}
 
-	public var omonusColorTween:FlxTween;
+	public var omonusTween:FlxTween;
+
+	public var charShaderTween:FlxTween;
 
 	override function onStepHit(step:Int)
 	{
@@ -31,7 +33,13 @@ class RMRFSong extends RDSong
 
 		switch (step)
 		{
-			case 96: omonusColorTween = FlxTween.color(stage.omonus, (Conductor.crochet / 1000) * (144 / step), 0xFFFFFF, 0x444444);
+			case 96:
+				final duration = (Conductor.crochet / 1000) * (144 / step);
+
+				omonusTween = FlxTween.tween(stage.omonus, {alpha: .25}, duration);
+				charShaderTween = FlxTween.tween(stage.charShader, {
+					baseBrightness: -64
+				}, duration);
 		}
 	}
 
@@ -39,15 +47,17 @@ class RMRFSong extends RDSong
 	{
 		super.onPause();
 
-		if (omonusColorTween != null)
-			omonusColorTween.active = false;
+		for (tween in [omonusTween, charShaderTween])
+			if (tween != null)
+				tween.active = false;
 	}
 
 	override function onUnpause()
 	{
 		super.onUnpause();
 
-		if (omonusColorTween != null)
-			omonusColorTween.active = true;
+		for (tween in [omonusTween, charShaderTween])
+			if (tween != null)
+				tween.active = true;
 	}
 }
