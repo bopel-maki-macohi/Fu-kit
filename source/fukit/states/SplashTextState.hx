@@ -63,11 +63,11 @@ class SplashTextState extends MusicBeatState
 			{
 				case 0, 12: clearTexts();
 
-				case 4: addText('fu');
+				case 1: addText('fu');
 
-				case 6: addText('kit');
+				case 2: addText('kit');
 
-				case 8: addText('mod');
+				case 3: addText('mod');
 
 				case 14: addText(wackyList[0]);
 
