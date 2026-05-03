@@ -66,8 +66,8 @@ class CrashHandler
 		errorMessage += 'Exception Stack:\n';
 		errorMessage += StackItemListParser.parse(CallStack.exceptionStack(true));
 
-		errorMessage += '\nCall Stack:\n';
-		errorMessage += StackItemListParser.parse(CallStack.callStack());
+		// errorMessage += '\nCall Stack:\n';
+		// errorMessage += StackItemListParser.parse(CallStack.callStack());
 
 		errorMessage += '\n$spacing\n';
 
