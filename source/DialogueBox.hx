@@ -171,11 +171,13 @@ class DialogueBox extends FlxSpriteGroup
 
 		var portraitData:Array<String> = [];
 
+		var path:String = 'UI/dialogue/portraits/$curCharacter';
+
 		if (portraitDataFiles.exists(curCharacter))
 			portraitData = portraitDataFiles.get(curCharacter);
 		else
 		{
-			portraitData = CoolUtil.coolTextFile(Paths.file('images/dialogue/$curCharacter.txt'));
+			portraitData = CoolUtil.coolTextFile(Paths.file('images/$path.txt'));
 			portraitDataFiles.set(curCharacter, portraitData);
 		}
 
@@ -188,8 +190,6 @@ class DialogueBox extends FlxSpriteGroup
 		var animationName:String = portraitData[3]?.toLowerCase() ?? null;
 
 		// portrait type
-
-		var path:String = 'UI/dialogue/portraits/$curCharacter';
 		
 		switch (portraitType)
 		{
