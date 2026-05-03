@@ -32,37 +32,29 @@ class FolirSong extends SongComponent
 		if (game == null)
 			return;
 
+		FlxG.camera.bgColor = FlxColor.WHITE;
+
+		game.defaultCamMove = false;
+
+		game.camFollow.screenCenter();
+		game.camFollow.y += 200;
+
+		game.camHUD.alpha = 0;
+
 		switch (game.curSong)
 		{
 			case 'termination':
 				bgShader.baseBrightness = 500;
 				charShader.setAdjustColor(0, -23, 30, -12);
 
-				FlxG.camera.bgColor = FlxColor.WHITE;
-
-				game.defaultCamMove = false;
 				FlxG.camera.zoom = 10;
 
-				game.camFollow.screenCenter();
-				game.camFollow.y += 160;
-
-				game.camHUD.alpha = 0;
-
-			case 'overheat':
-				game.defaultCamMove = false;
-				FlxG.camera.zoom = .9;
-
-				game.camFollow.screenCenter();
-				game.camFollow.y += 170;
-
-				game.camHUD.alpha = 0;
+			case 'overheat': FlxG.camera.zoom = .9;
 		}
 
-		stage.sky.shader = bgShader;
-		stage.ground.shader = bgShader;
-
-		game.dad.shader = charShader;
-		game.boyfriend.shader = charShader;
+		stage.sky.shader = stage.ground.shader = bgShader;
+		
+		game.dad.shader = game.boyfriend.shader = charShader;
 	}
 
 	var bgShaderTween:FlxTween;
@@ -111,7 +103,7 @@ class FolirSong extends SongComponent
 				var len:Float = (Conductor.stepCrochet / 1000) * (304 - step);
 
 				game.camFollow.screenCenter();
-				game.camFollow.y += 170;
+				game.camFollow.y += 200;
 
 				camZoomTween = FlxTween.tween(FlxG.camera, {
 					zoom: .8,
@@ -133,6 +125,52 @@ class FolirSong extends SongComponent
 			if (step == 480)
 			{
 				game.defaultCamMove = true;
+			}
+
+			if (step == 544)
+			{
+				game.defaultCamMove = false;
+
+				game.camFollow.screenCenter();
+				game.camFollow.y += 200;
+
+				var lenCamZoom:Float = (Conductor.stepCrochet / 1000) * (640 - step);
+				var lenShaders:Float = (Conductor.stepCrochet / 1000) * (560 - step);
+
+				camZoomTween = FlxTween.tween(FlxG.camera, {
+					zoom: .5,
+				}, lenCamZoom, {ease: FlxEase.sineInOut});
+
+				bgShaderTween = FlxTween.tween(bgShader, {baseBrightness: 500}, lenShaders, {ease: FlxEase.sineInOut});
+
+				charTween = FlxTween.tween(charShader, {
+					baseBrightness: -500,
+				}, lenShaders, {ease: FlxEase.sineInOut});
+			}
+
+			if (step == 672)
+			{
+				game.defaultCamMove = true;
+
+				FlxG.camera.zoom = game.defaultCamZoom;
+
+				bgShader.setAdjustColor(0, 0, 0, 0);
+				charShader.setAdjustColor(0, 0, 0, 0);
+
+				game.camMove(false);
+			}
+
+			if (step == 672)
+			{
+				game.defaultCamMove = false;
+
+				FlxG.camera.zoom = .5;
+
+				bgShader.setAdjustColor(500, 0, 0, 0);
+				charShader.setAdjustColor(-500, 0, 0, 0);
+
+				game.camFollow.screenCenter();
+				game.camFollow.y += 200;
 			}
 		}
 
