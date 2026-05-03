@@ -32,8 +32,11 @@ class PlayStateSwitcher
 		if (dialogueComponentSongs.contains(curSong)
 			&& (PlayState.isStoryMode || #if FREEPLAY_CUTSCENES true #else freeplayCutsceneSongs.contains(curSong) #end))
 		{
-			if (curSong == 'rust')
-				return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+			switch (curSong)
+			{
+				case 'rust': return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+				case 'overheat': return new OverheatDialogueCutscene(() -> FlxG.switchState(() -> target));
+			}
 
 			return new SongMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
 		}

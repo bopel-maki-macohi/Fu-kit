@@ -47,5 +47,12 @@ class DialogueCutsceneComponent extends CutsceneComponent
 		add(dialogueBox);
 
 		dialogueBox.finishThing = leave;
+
+		dialogueBox.onLine.add(onLine);
+		dialogueBox.onEnd.add(onEnd);
 	}
+
+	public function onLine(line:Int) {}
+
+	public function onEnd() {}
 }

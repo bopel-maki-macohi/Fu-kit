@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxSignal;
 import fukit.objects.FukitSprite;
 import animate.FlxAnimate;
 import lime.utils.Assets;
@@ -36,6 +37,9 @@ class DialogueBox extends FlxSpriteGroup
 
 	var handSelect:FukitSprite;
 	var bgFade:FukitSprite;
+
+	public var onLine:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
+	public var onEnd:FlxSignal = new FlxSignal();
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
@@ -142,6 +146,8 @@ class DialogueBox extends FlxSpriteGroup
 					ease: FlxEase.sineInOut,
 				});
 
+				onEnd.dispatch();
+				
 				new FlxTimer().start(Conductor.crochet / 1000 + .2, function(tmr:FlxTimer)
 				{
 					finishThing();
@@ -151,6 +157,7 @@ class DialogueBox extends FlxSpriteGroup
 			else
 			{
 				dialogueList.remove(dialogueList[0]);
+				line++;
 				startDialogue();
 			}
 		}
@@ -221,7 +228,11 @@ class DialogueBox extends FlxSpriteGroup
 		portrait.y = box.y - (portrait.height * 0.95);
 
 		portrait.visible = true;
+
+		onLine.dispatch(line);
 	}
+
+	public var line:Int = 0;
 
 	public static var portraitDataFiles:Map<String, Array<String>> = [];
 
