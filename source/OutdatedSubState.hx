@@ -1,5 +1,7 @@
 package;
 
+import fukit.states.SplashTextState;
+import haxe.Http;
 import fukit.objects.FukitSprite;
 import fukit.states.NewMenuState;
 import fukit.Global;
@@ -8,6 +10,8 @@ import flixel.FlxSubState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.app.Application;
+
+using StringTools;
 
 class OutdatedSubState extends MusicBeatState
 {
@@ -40,13 +44,35 @@ class OutdatedSubState extends MusicBeatState
 			FlxG.openURL("https://github.com/bopel-maki-macohi/Fu-kit/releases/latest");
 
 			leftState = true;
-			FlxG.switchState(() -> new NewMenuState());
+			FlxG.switchState(() -> new SplashTextState());
 		}
 		if (controls.BACK)
 		{
 			leftState = true;
-			FlxG.switchState(() -> new NewMenuState());
+			FlxG.switchState(() -> new SplashTextState());
 		}
 		super.update(elapsed);
+	}
+
+	public static function getOutdated():Bool
+	{
+		var http:Http = new Http('https://raw.githubusercontent.com/bopel-maki-macohi/Fu-kit/refs/heads/main/version.downloadMe');
+
+		var outdated:Bool = false;
+
+		http.onData = (str) ->
+		{
+			outdated = str.trim() != Global.modVer;
+		}
+
+		http.onError = (err) ->
+		{
+			trace('http error: $err');
+			outdated = false;
+		}
+
+		http.request();
+
+		return outdated;
 	}
 }

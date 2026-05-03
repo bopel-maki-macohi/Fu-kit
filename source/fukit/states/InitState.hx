@@ -157,6 +157,11 @@ class InitState extends FlxState
 			FlxG.switchState(() -> PlayStateSwitcher.getPlayStateSwitch(true));
 		}
 		else
-			FlxG.switchState(() -> new SplashTextState());
+		{
+			if (OutdatedSubState.getOutdated())
+				FlxG.switchState(() -> new OutdatedSubState());
+			else
+				FlxG.switchState(() -> new SplashTextState());
+		}
 	}
 }
