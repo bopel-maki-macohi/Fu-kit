@@ -8,7 +8,7 @@ import flixel.FlxG;
 
 class PlayStateSwitcher
 {
-	static var dialogueComponentSongs:Array<String> = ['new world', 'rust', 'wetway', 'overheat'];
+	static var dialogueComponentSongs:Array<String> = ['new world', 'rust', 'wetway', 'overheat', 'rm -rf'];
 	static var freeplayCutsceneSongs:Array<String> = [];
 
 	public static function getPlayStateSwitch(allowCutscenes:Bool = false):FlxState
@@ -34,7 +34,7 @@ class PlayStateSwitcher
 		{
 			switch (curSong)
 			{
-				case 'rust': return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
+				case 'rust', 'rm -rf': return new NoMusicDialogueCutscene(curSong, () -> FlxG.switchState(() -> target));
 				case 'overheat': return new OverheatDialogueCutscene(() -> FlxG.switchState(() -> target));
 			}
 
