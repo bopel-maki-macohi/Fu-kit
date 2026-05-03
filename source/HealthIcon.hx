@@ -47,7 +47,7 @@ class HealthIcon extends FlxSprite
 			case 'arpe', 'arpe-worried':
 				0x786D8E;
 
-			case 'folir':
+			case 'folir', 'folir-pissed':
 				0xCC9999;
 
 			default:
