@@ -8,7 +8,7 @@ import flixel.FlxG;
 import fukit.shaders.DropShadowShader;
 import fukit.play.components.SongComponent;
 
-class FolirSong extends SongComponent
+class FolirWorld2Songs extends SongComponent
 {
 	public var stage:GrassWorldArpeBody;
 

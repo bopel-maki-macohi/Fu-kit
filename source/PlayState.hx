@@ -6,12 +6,12 @@ import fukit.play.components.StageComponent;
 import fukit.play.StringToStage;
 import fukit.play.objects.*;
 import fukit.play.objects.ui.*;
-import fukit.states.options.NewOptionsMenu;
 import fukit.states.NewMenuState;
 import fukit.Global;
 import flixel.group.FlxContainer;
 import flixel.group.FlxSpriteGroup;
 import fukit.play.songs.*;
+import fukit.play.songs.world2.*;
 import flixel.util.FlxSignal;
 import openfl.geom.Matrix;
 import openfl.display.BitmapData;
@@ -465,7 +465,7 @@ class PlayState extends MusicBeatState
 		{
 			case 'tutorial': new TutorialSong();
 			case 'new world', 'wetway', 'rust': new World1Song();
-			case 'termination', 'overheat': new FolirSong();
+			case 'termination', 'overheat': new FolirWorld2Songs();
 			case 'rm -rf': new RDSong();
 		}
 
