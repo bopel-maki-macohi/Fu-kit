@@ -1,4 +1,4 @@
-package;
+package fukit.play.objects;
 
 import flixel.FlxG;
 import flixel.FlxSprite;

@@ -1,5 +1,6 @@
 package;
 
+import fukit.play.objects.*;
 import fukit.play.PlayStateSwitcher;
 import fukit.states.NewMenuState;
 import flixel.FlxG;
@@ -28,8 +29,7 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'schoolEvil':
 				stageSuffix = '-pixel';
 				daBf = 'bf-pixel-dead';
-			default:
-				daBf = 'bf';
+			default: daBf = 'bf';
 		}
 
 		super();

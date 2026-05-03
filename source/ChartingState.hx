@@ -1,5 +1,6 @@
 package;
 
+import fukit.play.objects.*;
 import fukit.play.PlayStateSwitcher;
 import flixel.FlxBasic;
 import flixel.addons.ui.FlxUIText;

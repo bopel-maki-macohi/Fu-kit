@@ -1,5 +1,6 @@
 package;
 
+import fukit.play.objects.*;
 import openfl.net.FileReference;
 import sys.FileSystem;
 import sys.io.File;

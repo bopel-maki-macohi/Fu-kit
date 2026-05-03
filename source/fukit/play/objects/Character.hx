@@ -1,4 +1,4 @@
-package;
+package fukit.play.objects;
 
 import lime.utils.Assets;
 import flixel.math.FlxPoint;
