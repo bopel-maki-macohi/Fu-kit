@@ -35,8 +35,8 @@ class FolirSong extends SongComponent
 		switch (game.curSong)
 		{
 			case 'termination':
-				bgShader.baseBrightness = 1000;
-				charShader.baseBrightness = -1000;
+				bgShader.baseBrightness = 500;
+				charShader.setAdjustColor(0, -23, 30, -12);
 
 				FlxG.camera.bgColor = FlxColor.WHITE;
 
@@ -79,7 +79,13 @@ class FolirSong extends SongComponent
 				var len:Float = (Conductor.stepCrochet / 1000) * (255 - step);
 
 				terminationTween_bgShader = FlxTween.tween(bgShader, {baseBrightness: 0}, len, {ease: FlxEase.sineInOut});
-				terminationTween_charShader = FlxTween.tween(charShader, {baseBrightness: 0}, len, {ease: FlxEase.sineInOut});
+
+				terminationTween_charShader = FlxTween.tween(charShader, {
+					baseHue: 0,
+					baseContrast: 0,
+					baseSaturation: 0
+				}, len, {ease: FlxEase.sineInOut});
+
 				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: 1.05}, len, {ease: FlxEase.sineInOut});
 			}
 			if (step == 256)
