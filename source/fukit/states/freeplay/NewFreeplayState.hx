@@ -24,6 +24,7 @@ class NewFreeplayState extends MusicBeatSubstate
 	public var scoreBox:ScoreBox;
 
 	public var albumSprite:FreeplayAlbum;
+	public var albumText:FlxText;
 
 	override public function new()
 	{
@@ -82,6 +83,9 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		albumSprite.screenCenter();
 		albumSprite.x += albumSprite.width;
+
+		albumText = new FlxText(0, 0, 0, 'ALBUM GOES HERE', 24);
+		add(albumText);
 
 		scoreBox = new ScoreBox();
 		add(scoreBox);
@@ -145,6 +149,10 @@ class NewFreeplayState extends MusicBeatSubstate
 
 			albumSprite.screenCenter();
 			albumSprite.x += albumSprite.width * .25;
+
+			albumText.text = ('album: ' + albumSprite.album).toUpperCase();
+			albumText.x = albumSprite.x;
+			albumText.y = albumSprite.y + albumSprite.height + 16;
 		}
 	}
 
@@ -175,6 +183,8 @@ class NewFreeplayState extends MusicBeatSubstate
 		updateScoreText();
 
 		songMenuListCamFollowOBJ.y = 0 + songMenuList.members[songMenuList.curSelect].y;
+
+		albumText.alpha = albumSprite.alpha;
 
 		if (controls.BACK && songMenuList.canSelect)
 			leave();
@@ -231,7 +241,7 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
-		FlxTween.tween(albumSprite, {alpha: 0}, 1, {
+		FlxTween.tween(albumSprite, {alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}
