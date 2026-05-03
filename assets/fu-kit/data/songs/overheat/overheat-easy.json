@@ -1241,6 +1241,15 @@
 				"mustHitSection": false,
 				"sectionNotes": [],
 				"typeOfSection": 0
+			},
+			{
+				"altAnim": false,
+				"bpm": 150,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionNotes": [],
+				"typeOfSection": 0
 			}
 		],
 		"bpm": 150,
