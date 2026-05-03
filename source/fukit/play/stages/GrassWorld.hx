@@ -1,5 +1,6 @@
 package fukit.play.stages;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import fukit.play.components.StageComponent;
 
@@ -16,7 +17,7 @@ class GrassWorld extends StageComponent
 
 		PlayState.curStage = 'grassworld';
 
-		sky = new FlxSprite(0, 0, Paths.image('stages/grassworld/sky', 'fu-kit'));
+		sky = new FlxSprite(0, 0).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0x33CCFF);
 		ground = new FlxSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
 
 		sky.scrollFactor.set();
