@@ -72,11 +72,11 @@ class Character extends FlxAnimate
 			case 'folir-pissed':
 				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
 
-				addByPrefix('idle', 'folir anim idle', 24);
-				addByPrefix('singLEFT', 'folir anim left', 24);
-				addByPrefix('singDOWN', 'folir anim down', 24);
-				addByPrefix('singUP', 'folir anim up', 24);
-				addByPrefix('singRIGHT', 'folir anim right', 24);
+				addByPrefix('idle', 'folir pissed anim idle', 24);
+				addByPrefix('singLEFT', 'folir pissed anim left', 24);
+				addByPrefix('singDOWN', 'folir pissed anim down', 24);
+				addByPrefix('singUP', 'folir pissed anim up', 24);
+				addByPrefix('singRIGHT', 'folir pissed anim right', 24);
 
 				dadStartingCamPosOffsets.set(202, 60);
 
@@ -227,7 +227,7 @@ class Character extends FlxAnimate
 	{
 		if (!isPlayer)
 		{
-			if (anim?.name.startsWith('sing'))
+			if (anim?.name?.startsWith('sing'))
 				holdTimer += elapsed;
 
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
@@ -259,7 +259,7 @@ class Character extends FlxAnimate
 		switch (curCharacter)
 		{
 			case 'gf':
-				if (anim?.name.startsWith('hair'))
+				if (anim?.name?.startsWith('hair'))
 					return;
 
 				danced = !danced;

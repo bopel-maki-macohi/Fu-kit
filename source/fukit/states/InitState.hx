@@ -126,7 +126,7 @@ class InitState extends FlxState
 			if (CHARTING != '1')
 				PlayState.SONG = Song.loadFromJson(Highscore.formatSong(CHARTING, diff), CHARTING) ?? null;
 
-			if (SONG != '1')
+			if (SONG != null && SONG != '1')
 				PlayState.SONG = Song.loadFromJson(Highscore.formatSong(SONG, diff), SONG) ?? null;
 
 			if (PlayState.SONG == null)
@@ -136,7 +136,7 @@ class InitState extends FlxState
 				if (CHARTING != '1')
 					PlayState.SONG.song = CHARTING;
 
-				if (SONG != '1')
+				if (SONG != null && SONG != '1')
 					PlayState.SONG.song = SONG;
 			}
 
