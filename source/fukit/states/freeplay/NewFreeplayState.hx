@@ -107,10 +107,6 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
-		FlxTween.tween(scoreBox.box, {alpha: .6}, 1, {
-			ease: FlxEase.expoInOut,
-		});
-
 		songMenuListCam = new FlxCamera(0, 0);
 		FlxG.cameras.add(songMenuListCam, false);
 		songMenuListCam.bgColor.alpha = 0;
@@ -204,10 +200,6 @@ class NewFreeplayState extends MusicBeatSubstate
 		});
 
 		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width}, .5, {
-			ease: FlxEase.expoInOut,
-		});
-
-		FlxTween.tween(scoreBox.box, {alpha: 0}, .5, {
 			ease: FlxEase.expoInOut,
 		});
 	}

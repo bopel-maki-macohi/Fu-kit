@@ -129,7 +129,7 @@ class NewStoryMode extends MusicBeatSubstate
 		scoreBox.x = FlxG.width + scoreBox.width;
 		scoreBox.y = FlxG.height - scoreBox.height;
 
-		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width, alpha: .6}, 1, {
+		FlxTween.tween(scoreBox, {x: FlxG.width - scoreBox.width}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 
@@ -220,7 +220,7 @@ class NewStoryMode extends MusicBeatSubstate
 
 		FlxTween.cancelTweensOf(scoreBox);
 
-		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width, alpha: .6}, 1, {
+		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 	}

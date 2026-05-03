@@ -67,7 +67,7 @@ class ScoreBox extends FlxTypedGroup<FlxSprite>
 		box = new FukitSprite();
 		box.makeGraphic(320, 160, FlxColor.BLACK);
 		add(box);
-		box.alpha = 0;
+		box.alpha = .6;
 
 		textField = new FlxText(0, 0, box.width, 'Bob', 32);
 		add(textField);
