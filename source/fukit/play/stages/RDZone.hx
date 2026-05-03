@@ -11,5 +11,7 @@ class RDZone extends StageComponent
         if (game == null) return;
 
         game.defaultCamZoom = .75;
+
+		remove(game.gf);
 	}
 }
