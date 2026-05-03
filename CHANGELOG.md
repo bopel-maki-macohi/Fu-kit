@@ -19,7 +19,7 @@ Hi
     - New Main Menu : Intention was to make it similar to Mario World title
     - New Title State : It's a splash text scene now
 
-- Grass World sky is now a generated 2160x1440 graphic
+- Grass World sky is now a generated graphic scaled up instead of a texture
 
 - Animation Debug now allows you to export character offset text files via F4
 - Animation Debug now allows you to leave (to the main menu) via ESCAPE

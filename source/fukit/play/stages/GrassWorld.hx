@@ -1,5 +1,7 @@
 package fukit.play.stages;
 
+import flixel.util.FlxColor;
+import flixel.system.frontEnds.BitmapFrontEnd;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import fukit.play.components.StageComponent;
@@ -17,8 +19,11 @@ class GrassWorld extends StageComponent
 
 		PlayState.curStage = 'grassworld';
 
-		sky = new FlxSprite(0, 0).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0x33CCFF);
+		sky = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x33CCFF'));
 		ground = new FlxSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
+
+		sky.scale.set(2, 2);
+		sky.updateHitbox();
 
 		sky.scrollFactor.set();
 		sky.screenCenter();
