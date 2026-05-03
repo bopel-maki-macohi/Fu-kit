@@ -37,7 +37,7 @@ class LoadingState extends MusicBeatState
 	{
 		logo = new Logo();
 		logo.setPosition(-150, -100);
-		
+
 		logo.playAnim('logoBumpin');
 		logo.updateHitbox();
 

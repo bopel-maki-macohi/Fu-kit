@@ -1,7 +1,6 @@
 package fukit.objects;
 
 // class yoinked from UPDOG
-
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxPool.IFlxPooled;

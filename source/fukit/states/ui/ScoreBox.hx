@@ -71,7 +71,7 @@ class ScoreBox extends FlxTypedGroup<FukitSprite>
 		textField = new FlxText(0, 0, box.width, 'Bob', 32);
 		add(textField);
 
-        textField.alignment = CENTER;
+		textField.alignment = CENTER;
 	}
 
 	override function update(elapsed:Float)

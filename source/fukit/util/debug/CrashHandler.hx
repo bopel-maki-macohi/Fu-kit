@@ -67,18 +67,16 @@ class CrashHandler
 		{
 			switch (item)
 			{
-				case FilePos(s, file, line, column):
-					errorMessage += '- ${file}:${line}\n';
+				case FilePos(s, file, line, column): errorMessage += '- ${file}:${line}\n';
 
-				default:
-					errorMessage += '- ${item}\n';
+				default: errorMessage += '- ${item}\n';
 			}
 		}
 
 		errorMessage += '\n$spacing\n';
-		
+
 		errorMessage += 'Mod version: ${Global.watermarkText}\n';
-		
+
 		errorMessage += '\n$spacing\n';
 
 		errorMessage += 'Crash log saved to "$path"\n';

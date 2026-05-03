@@ -259,7 +259,7 @@ class Controls extends FlxActionSet
 
 		for (action in digitalActions)
 			byName[action.name] = action;
-			
+
 		if (scheme == null)
 			scheme = None;
 		setKeyboardScheme(scheme, false);
@@ -345,16 +345,11 @@ class Controls extends FlxActionSet
 				func(_down, PRESSED);
 				func(_downP, JUST_PRESSED);
 				func(_downR, JUST_RELEASED);
-			case ACCEPT:
-				func(_accept, JUST_PRESSED);
-			case BACK:
-				func(_back, JUST_PRESSED);
-			case PAUSE:
-				func(_pause, JUST_PRESSED);
-			case RESET:
-				func(_reset, JUST_PRESSED);
-			case CHEAT:
-				func(_cheat, JUST_PRESSED);
+			case ACCEPT: func(_accept, JUST_PRESSED);
+			case BACK: func(_back, JUST_PRESSED);
+			case PAUSE: func(_pause, JUST_PRESSED);
+			case RESET: func(_reset, JUST_PRESSED);
+			case CHEAT: func(_cheat, JUST_PRESSED);
 		}
 	}
 
@@ -397,7 +392,7 @@ class Controls extends FlxActionSet
 			for (input in action.inputs)
 			{
 				if (device == null || isDevice(input, device))
-				byName[name].add(cast input);
+					byName[name].add(cast input);
 			}
 		}
 		#end
@@ -413,15 +408,13 @@ class Controls extends FlxActionSet
 				#else
 				for (gamepad in controls.gamepadsAdded)
 					if (gamepadsAdded.indexOf(gamepad) == -1)
-					  gamepadsAdded.push(gamepad);
+						gamepadsAdded.push(gamepad);
 				#end
 
 				mergeKeyboardScheme(controls.keyboardScheme);
 
-			case Gamepad(id):
-				gamepadsAdded.push(id);
-			case Keys:
-				mergeKeyboardScheme(controls.keyboardScheme);
+			case Gamepad(id): gamepadsAdded.push(id);
+			case Keys: mergeKeyboardScheme(controls.keyboardScheme);
 		}
 	}
 
@@ -436,10 +429,8 @@ class Controls extends FlxActionSet
 		{
 			switch (keyboardScheme)
 			{
-				case None:
-					keyboardScheme = scheme;
-				default:
-					keyboardScheme = Custom;
+				case None: keyboardScheme = scheme;
+				default: keyboardScheme = Custom;
 			}
 		}
 	}
@@ -493,7 +484,7 @@ class Controls extends FlxActionSet
 			removeKeyboard();
 
 		keyboardScheme = scheme;
-		
+
 		#if (haxe >= "4.0.0")
 		switch (scheme)
 		{
@@ -579,7 +570,7 @@ class Controls extends FlxActionSet
 	public function addGamepad(id:Int, ?buttonMap:Map<Control, Array<FlxGamepadInputID>>):Void
 	{
 		gamepadsAdded.push(id);
-		
+
 		#if (haxe >= "4.0.0")
 		for (control => buttons in buttonMap)
 			inline bindButtons(control, id, buttons);
@@ -633,7 +624,7 @@ class Controls extends FlxActionSet
 		]);
 		#else
 		addGamepadLiteral(id, [
-			//Swap A and B for switch
+			// Swap A and B for switch
 			Control.ACCEPT => [B],
 			Control.BACK => [A],
 			Control.UP => [DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP],
@@ -641,7 +632,7 @@ class Controls extends FlxActionSet
 			Control.LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT],
 			Control.RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT],
 			Control.PAUSE => [START],
-			//Swap Y and X for switch
+			// Swap Y and X for switch
 			Control.RESET => [Y],
 			Control.CHEAT => [X]
 		]);
@@ -718,10 +709,8 @@ class Controls extends FlxActionSet
 	{
 		switch (device)
 		{
-			case Keys:
-				setKeyboardScheme(None);
-			case Gamepad(id):
-				removeGamepad(id);
+			case Keys: setKeyboardScheme(None);
+			case Gamepad(id): removeGamepad(id);
 		}
 	}
 

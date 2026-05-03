@@ -19,16 +19,16 @@ class RainShader extends FlxRuntimeShader
 
 	function set_uTime(uTime:Float):Float
 	{
-        setFloat('uTime', uTime);
+		setFloat('uTime', uTime);
 
 		return uTime;
 	}
 
 	/**
 	 * 0 - 1
-     * 
-     * 0 - none
-     * 1 - max
+	 * 
+	 * 0 - none
+	 * 1 - max
 	 */
 	public var uIntensity(get, set):Float;
 
@@ -39,11 +39,11 @@ class RainShader extends FlxRuntimeShader
 
 	function set_uIntensity(uIntensity:Float):Float
 	{
-        setFloat('uIntensity', uIntensity);
+		setFloat('uIntensity', uIntensity);
 
 		return uIntensity;
 	}
-	
+
 	public var uCameraBounds(get, set):Array<Float>;
 
 	function get_uCameraBounds():Array<Float>
@@ -53,7 +53,7 @@ class RainShader extends FlxRuntimeShader
 
 	function set_uCameraBounds(uCameraBounds:Array<Float>):Array<Float>
 	{
-        setFloatArray('uCameraBounds', uCameraBounds);
+		setFloatArray('uCameraBounds', uCameraBounds);
 
 		return uCameraBounds;
 	}
@@ -67,11 +67,11 @@ class RainShader extends FlxRuntimeShader
 
 	function set_uScale(uScale:Float):Float
 	{
-        setFloat('uScale', uScale);
+		setFloat('uScale', uScale);
 
 		return uScale;
 	}
-	
+
 	public var uScreenResolution(get, set):Array<Float>;
 
 	function get_uScreenResolution():Array<Float>
@@ -81,7 +81,7 @@ class RainShader extends FlxRuntimeShader
 
 	function set_uScreenResolution(uScreenResolution:Array<Float>):Array<Float>
 	{
-        setFloatArray('uScreenResolution', uScreenResolution);
+		setFloatArray('uScreenResolution', uScreenResolution);
 
 		return uScreenResolution;
 	}

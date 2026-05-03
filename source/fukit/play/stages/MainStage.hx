@@ -11,7 +11,7 @@ class MainStage extends StageComponent
 
 		if (game != null)
 			game.defaultCamZoom = 0.9;
-		
+
 		PlayState.curStage = 'stage';
 
 		var bg:FukitSprite = new FukitSprite(-600, -200, loadGraphic(Paths.image('stageback')));

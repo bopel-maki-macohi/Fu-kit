@@ -10,11 +10,11 @@ class RainEmitter extends CustomEmitter
 	public function new(x:Float = 0, y:Float = 0, width:Float = 0)
 	{
 		super(x, y);
-		
-        this.width = width;
+
+		this.width = width;
 
 		particleClass = RainParticle;
-        
+
 		launchAngle.set(60, 100);
 		lifespan.set(8); // fuck it
 
