@@ -154,7 +154,8 @@ class ChartingState extends MusicBeatState
 		add(dummyArrow);
 
 		var tabs = [
-			{name: "Song", label: 'Song'},
+			{name: "Song2", label: 'Song Part 2'},
+			{name: "Song1", label: 'Song Part 1'},
 			{name: "Section", label: 'Section'},
 			{name: "Note", label: 'Note'}
 		];
@@ -169,6 +170,7 @@ class ChartingState extends MusicBeatState
 		addSongUI();
 		addSectionUI();
 		addNoteUI();
+		addSongUI2();
 
 		add(curRenderedNotes);
 		add(curRenderedSustains);
@@ -176,6 +178,25 @@ class ChartingState extends MusicBeatState
 		updateCharacters();
 
 		super.create();
+	}
+
+	function addSongUI2()
+	{
+		var tab_group_song = new FlxUI(null, UI_box);
+		tab_group_song.name = "Song2";
+
+		UI_box.addGroup(tab_group_song);
+
+		var stages:Array<String> = CoolUtil.coolTextFile(Paths.txt('stageList'));
+
+		var stageDD = new FlxUIDropDownMenu(10, 20, FlxUIDropDownMenu.makeStrIdLabelArray(stages, true), function(stage:String)
+		{
+			_song.stage = stages[Std.parseInt(stage)];
+		});
+		stageDD.selectedLabel = _song.stage ?? 'none';
+
+		tab_group_song.add(new FlxText(stageDD.x, stageDD.y - 16, 0, 'Stage', 16));
+		tab_group_song.add(stageDD);
 	}
 
 	function addSongUI():Void
@@ -259,7 +280,7 @@ class ChartingState extends MusicBeatState
 		player2DropDown.selectedLabel = _song.player2;
 
 		var tab_group_song = new FlxUI(null, UI_box);
-		tab_group_song.name = "Song";
+		tab_group_song.name = "Song1";
 		tab_group_song.add(UI_songTitle);
 		tab_group_song.add(restart);
 		tab_group_song.add(check_voices);

@@ -11,7 +11,10 @@ Hi
     - World 1 now has dialogue!
 
 - MENU UPDATES!
-    - Chart Editor Changes : There is a player and opponent character there, they just boppin'
+    - Chart Editor Changes
+        - Added Song (Part 2) tab (og song tab is now Song Part 1)
+            - Added Stage list dropdown
+        - There is a player and opponent character there, they just boppin'
     - New Story Mode Menu : Stylized and world stages are there now
     - New Freeplay Menu : It's stylized now and it's cool
     - New Options Menu

@@ -11,6 +11,8 @@ class StringToStage
 		{
 			case 'grassworld': return new GrassWorld();
 			case 'grassworld_arpebody': return new GrassWorldArpeBody();
+			
+			case 'rdzone': return new RDZone();
 
 			case 'stage': return new MainStage();
 		}

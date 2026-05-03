@@ -1,2 +1,5 @@
+none
 stage
 grassworld
+grassworld_arpebody
+rdzone
