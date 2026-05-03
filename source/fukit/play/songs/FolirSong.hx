@@ -53,7 +53,7 @@ class FolirSong extends SongComponent
 				FlxG.camera.zoom = .9;
 
 				game.camFollow.screenCenter();
-				game.camFollow.y += 160;
+				game.camFollow.y += 170;
 
 				game.camHUD.alpha = 0;
 		}
@@ -69,6 +69,7 @@ class FolirSong extends SongComponent
 	var charTween:FlxTween;
 
 	var camTween:FlxTween;
+	var camZoomTween:FlxTween;
 	var hudTween:FlxTween;
 
 	override function onStepHit(step:Int)
@@ -84,6 +85,9 @@ class FolirSong extends SongComponent
 				camTween = FlxTween.tween(game.camFollow, {
 					x: game.dad.getGraphicMidpoint().x - 150,
 					y: game.dad.getGraphicMidpoint().y - 140,
+				}, len, {ease: FlxEase.sineInOut});
+
+				camZoomTween = FlxTween.tween(FlxG.camera, {
 					zoom: game.defaultCamZoom,
 				}, len, {ease: FlxEase.sineInOut});
 			}
@@ -99,6 +103,37 @@ class FolirSong extends SongComponent
 			{
 				game.defaultCamMove = true;
 			}
+
+			if (step == 288)
+			{
+				game.defaultCamMove = false;
+
+				var len:Float = (Conductor.stepCrochet / 1000) * (304 - step);
+
+				game.camFollow.screenCenter();
+				game.camFollow.y += 170;
+
+				camZoomTween = FlxTween.tween(FlxG.camera, {
+					zoom: .8,
+				}, len, {ease: FlxEase.sineInOut});
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 0}, len, {ease: FlxEase.sineInOut});
+			}
+
+			if (step == 448)
+			{
+				var len:Float = (Conductor.stepCrochet / 1000) * (478 - step);
+
+				camZoomTween = FlxTween.tween(FlxG.camera, {
+					zoom: game.defaultCamZoom,
+				}, len, {ease: FlxEase.sineInOut});
+
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 0}, len, {ease: FlxEase.sineInOut});
+			}
+
+			if (step == 480)
+			{
+				game.defaultCamMove = true;
+			}
 		}
 
 		if (game?.curSong == 'termination')
@@ -109,7 +144,7 @@ class FolirSong extends SongComponent
 
 				var len:Float = (Conductor.stepCrochet / 1000) * (64 - step);
 
-				camTween = FlxTween.tween(FlxG.camera, {zoom: .5}, len, {ease: FlxEase.quadInOut});
+				camZoomTween = FlxTween.tween(FlxG.camera, {zoom: .5}, len, {ease: FlxEase.quadInOut});
 			}
 
 			if (step == 120)
@@ -135,7 +170,7 @@ class FolirSong extends SongComponent
 					baseSaturation: 0
 				}, len, {ease: FlxEase.sineInOut});
 
-				camTween = FlxTween.tween(FlxG.camera, {zoom: game.defaultCamZoom}, len, {ease: FlxEase.sineInOut});
+				camZoomTween = FlxTween.tween(FlxG.camera, {zoom: game.defaultCamZoom}, len, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 256)
@@ -150,7 +185,7 @@ class FolirSong extends SongComponent
 	{
 		super.onPause();
 
-		for (tween in [bgShaderTween, charTween, camTween, hudTween])
+		for (tween in [bgShaderTween, charTween, camTween, camZoomTween, hudTween])
 			if (tween != null)
 				tween.active = false;
 	}
@@ -159,7 +194,7 @@ class FolirSong extends SongComponent
 	{
 		super.onUnpause();
 
-		for (tween in [bgShaderTween, charTween, camTween, hudTween])
+		for (tween in [bgShaderTween, charTween, camTween, camZoomTween, hudTween])
 			if (tween != null)
 				tween.active = true;
 	}
