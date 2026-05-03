@@ -26,7 +26,7 @@ class RMRFSong extends RDSong
 	{
 		super.onStepHit(step);
 
-		if (game?.curSong != 'rmrf')
+		if (game?.curSong != 'rm -rf')
 			return;
 
 		switch (step)
