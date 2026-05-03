@@ -16,7 +16,7 @@ class HealthIcon extends FlxSprite
 
 		switch (char)
 		{
-			case 'arpe', 'arpe-worried', 'arpe-withered', 'folir': makeBaseFuKitIcon(char, isPlayer);
+			case 'arpe', 'arpe-worried', 'arpe-withered', 'folir', 'folir-pissed': makeBaseFuKitIcon(char, isPlayer);
 
 			default: makeDefaultIcon(char, isPlayer);
 		}
