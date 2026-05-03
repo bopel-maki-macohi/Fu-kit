@@ -1,5 +1,6 @@
 package fukit.states.storymode;
 
+import fukit.objects.FukitSprite;
 import flixel.FlxObject;
 import flixel.FlxCamera;
 import fukit.play.StringToStage;
@@ -19,7 +20,7 @@ import flixel.FlxSprite;
 
 class NewStoryMode extends MusicBeatSubstate
 {
-	public var blackBar:FlxSprite;
+	public var blackBar:FukitSprite;
 
 	public var worldsMenuList:MenuList;
 	public var worldStages:Array<String> = [];
@@ -42,7 +43,7 @@ class NewStoryMode extends MusicBeatSubstate
 	{
 		super.create();
 
-		blackBar = new FlxSprite().makeGraphic(Math.round(FlxG.width * 1.5), Math.round(FlxG.height * 0.5), FlxColor.BLACK);
+		blackBar = new FukitSprite().makeGraphic(Math.round(FlxG.width * 1.5), Math.round(FlxG.height * 0.5), FlxColor.BLACK);
 		blackBar.alpha = 0;
 
 		FlxTween.tween(blackBar, {alpha: 1}, 1, {

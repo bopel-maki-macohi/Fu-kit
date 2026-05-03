@@ -1,15 +1,10 @@
 package;
 
-import flixel.FlxSprite;
+import fukit.objects.FukitSprite;
 import flixel.util.FlxColor;
 
-class HealthIcon extends FlxSprite
+class HealthIcon extends FukitSprite
 {
-	/**
-	 * Used for FreeplayState! If you use it elsewhere, prob gonna annoying
-	 */
-	public var sprTracker:FlxSprite;
-
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
@@ -24,14 +19,6 @@ class HealthIcon extends FlxSprite
 		animation.play(char);
 
 		scrollFactor.set();
-	}
-
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-
-		if (sprTracker != null)
-			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
 	}
 
 	function makeBaseFuKitIcon(char:String = 'bf', isPlayer:Bool = false)

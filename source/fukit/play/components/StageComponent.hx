@@ -1,7 +1,6 @@
 package fukit.play.components;
 
 import flixel.FlxSprite;
-import flixel.FlxSprite;
 
 enum StageObjectLayer
 {

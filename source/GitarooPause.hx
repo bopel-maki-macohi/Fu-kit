@@ -1,15 +1,15 @@
 package;
 
+import fukit.objects.FukitSprite;
 import fukit.play.PlayStateSwitcher;
 import fukit.states.NewMenuState;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 class GitarooPause extends MusicBeatState
 {
-	var replayButton:FlxSprite;
-	var cancelButton:FlxSprite;
+	var replayButton:FukitSprite;
+	var cancelButton:FukitSprite;
 
 	var replaySelect:Bool = false;
 
@@ -23,28 +23,28 @@ class GitarooPause extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('pauseAlt/pauseBG'));
+		var bg:FukitSprite = new FukitSprite().loadGraphic(Paths.image('pauseAlt/pauseBG'));
 		add(bg);
 
-		var bf:FlxSprite = new FlxSprite(0, 30);
-		bf.frames = Paths.getSparrowAtlas('pauseAlt/bfLol');
-		bf.animation.addByPrefix('lol', "funnyThing", 13);
-		bf.animation.play('lol');
+		var bf:FukitSprite = new FukitSprite(0, 30);
+		bf.loadTexture(Paths.getSparrowAtlas('pauseAlt/bfLol'));
+		bf.addByPrefix('lol', "funnyThing", 13);
+		bf.playAnim('lol');
 		add(bf);
 		bf.screenCenter(X);
 
-		replayButton = new FlxSprite(FlxG.width * 0.28, FlxG.height * 0.7);
-		replayButton.frames = Paths.getSparrowAtlas('pauseAlt/pauseUI');
-		replayButton.animation.addByPrefix('selected', 'bluereplay', 0, false);
+		replayButton = new FukitSprite(FlxG.width * 0.28, FlxG.height * 0.7);
+		replayButton.loadTexture(Paths.getSparrowAtlas('pauseAlt/pauseUI'));
+		replayButton.addByPrefix('selected', 'bluereplay', 0, false);
 		replayButton.animation.appendByPrefix('selected', 'yellowreplay');
-		replayButton.animation.play('selected');
+		replayButton.playAnim('selected');
 		add(replayButton);
 
-		cancelButton = new FlxSprite(FlxG.width * 0.58, replayButton.y);
-		cancelButton.frames = Paths.getSparrowAtlas('pauseAlt/pauseUI');
-		cancelButton.animation.addByPrefix('selected', 'bluecancel', 0, false);
+		cancelButton = new FukitSprite(FlxG.width * 0.58, replayButton.y);
+		cancelButton.loadTexture(Paths.getSparrowAtlas('pauseAlt/pauseUI'));
+		cancelButton.addByPrefix('selected', 'bluecancel', 0, false);
 		cancelButton.animation.appendByPrefix('selected', 'cancelyellow');
-		cancelButton.animation.play('selected');
+		cancelButton.playAnim('selected');
 		add(cancelButton);
 
 		changeThing();

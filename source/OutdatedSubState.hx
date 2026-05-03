@@ -1,9 +1,9 @@
 package;
 
+import fukit.objects.FukitSprite;
 import fukit.states.NewMenuState;
 import fukit.Global;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
@@ -18,7 +18,8 @@ class OutdatedSubState extends MusicBeatState
 	override function create()
 	{
 		super.create();
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FukitSprite = new FukitSprite();
+		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
 			"Fu-Kit is Outdated!\n"

@@ -1,14 +1,14 @@
 package fukit.states.ui;
 
+import fukit.objects.FukitSprite;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.text.FlxText;
-import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
-class ScoreBox extends FlxTypedGroup<FlxSprite>
+class ScoreBox extends FlxTypedGroup<FukitSprite>
 {
-	public var box:FlxSprite;
+	public var box:FukitSprite;
 	public var textField:FlxText;
 
 	public var x(get, set):Float;
@@ -63,7 +63,7 @@ class ScoreBox extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 
-		box = new FlxSprite();
+		box = new FukitSprite();
 		box.makeGraphic(320, 160, FlxColor.BLACK);
 		add(box);
 		box.alpha = 0;

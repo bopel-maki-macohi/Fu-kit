@@ -8,7 +8,6 @@ import fukit.states.options.NewOptionsMenu;
 import fukit.objects.Logo;
 import flixel.FlxG;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
 import flixel.text.FlxText;
 import fukit.states.ui.MenuList;
 import flixel.tweens.FlxEase;
@@ -19,7 +18,7 @@ class NewMenuState extends MusicBeatState
 {
 	public var backdrop:FlxBackdrop;
 
-	public var blackBox:FlxSprite;
+	public var blackBox:FukitSprite;
 	public var menuList:MenuList;
 
 	public var logo:Logo;
@@ -53,7 +52,8 @@ class NewMenuState extends MusicBeatState
 
 		backdrop.antialiasing = false;
 
-		blackBox = new FlxSprite().makeGraphic(240, 320, FlxColor.BLACK);
+		blackBox = new FukitSprite();
+		blackBox.makeGraphic(240, 320, FlxColor.BLACK);
 		blackBox.screenCenter();
 		add(blackBox);
 		blackBox.alpha = .3;

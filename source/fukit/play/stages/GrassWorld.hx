@@ -1,17 +1,17 @@
 package fukit.play.stages;
 
+import fukit.objects.FukitSprite;
 import flixel.util.FlxColor;
 import flixel.system.frontEnds.BitmapFrontEnd;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import fukit.play.components.StageComponent;
 
 using StringTools;
 
 class GrassWorld extends StageComponent
 {
-	public var sky:FlxSprite;
-	public var ground:FlxSprite;
+	public var sky:FukitSprite;
+	public var ground:FukitSprite;
 
 	override function makeStage()
 	{
@@ -19,8 +19,9 @@ class GrassWorld extends StageComponent
 
 		PlayState.curStage = 'grassworld';
 
-		sky = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x33CCFF'));
-		ground = new FlxSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
+		sky = new FukitSprite(0, 0);
+		sky.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x33CCFF'));
+		ground = new FukitSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
 
 		sky.scale.set(2, 2);
 		sky.updateHitbox();

@@ -3,10 +3,8 @@ package fukit.play.objects;
 import fukit.objects.FukitSprite;
 import lime.utils.Assets;
 import flixel.math.FlxPoint;
-import animate.FlxAnimate;
 import animate.FlxAnimateFrames;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 using StringTools;

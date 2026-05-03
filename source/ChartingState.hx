@@ -1,5 +1,6 @@
 package;
 
+import fukit.objects.FukitSprite;
 import fukit.play.objects.*;
 import fukit.play.PlayStateSwitcher;
 import flixel.FlxBasic;
@@ -27,7 +28,6 @@ import flixel.math.FlxPoint;
 import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
-import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import haxe.Json;
 import lime.utils.Assets;
@@ -57,19 +57,19 @@ class ChartingState extends MusicBeatState
 
 	var bpmTxt:FlxText;
 
-	var strumLine:FlxSprite;
+	var strumLine:FukitSprite;
 	var curSong:String = 'Dadbattle';
 	var amountSteps:Int = 0;
 	var bullshitUI:FlxGroup;
 	var writingNotesText:FlxText;
-	var highlight:FlxSprite;
+	var highlight:FukitSprite;
 
 	var GRID_SIZE:Int = 40;
 
-	var dummyArrow:FlxSprite;
+	var dummyArrow:FukitSprite;
 
 	var curRenderedNotes:FlxTypedGroup<Note>;
-	var curRenderedSustains:FlxTypedGroup<FlxSprite>;
+	var curRenderedSustains:FlxTypedGroup<FukitSprite>;
 
 	var gridBG:FlxSprite;
 
@@ -82,7 +82,7 @@ class ChartingState extends MusicBeatState
 	var curSelectedNote:Array<Dynamic>;
 
 	var tempBpm:Int = 0;
-	var gridBlackLine:FlxSprite;
+	var gridBlackLine:FukitSprite;
 	var vocals:FlxSound;
 
 	var player2:Character = new Character(0, 0, "dad");
@@ -114,11 +114,12 @@ class ChartingState extends MusicBeatState
 		leftIcon.setPosition(0, -100);
 		rightIcon.setPosition(gridBG.width / 2, -100);
 
-		gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
+		gridBlackLine = new FukitSprite(gridBG.x + gridBG.width / 2);
+		gridBlackLine.makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
 		add(gridBlackLine);
 
 		curRenderedNotes = new FlxTypedGroup<Note>();
-		curRenderedSustains = new FlxTypedGroup<FlxSprite>();
+		curRenderedSustains = new FlxTypedGroup<FukitSprite>();
 
 		if (PlayState.SONG != null)
 			_song = PlayState.SONG;
@@ -143,10 +144,12 @@ class ChartingState extends MusicBeatState
 		bpmTxt.scrollFactor.set();
 		add(bpmTxt);
 
-		strumLine = new FlxSprite(0, 50).makeGraphic(Std.int(FlxG.width / 2), 4);
+		strumLine = new FukitSprite(0, 50);
+		strumLine.makeGraphic(Std.int(FlxG.width / 2), 4);
 		add(strumLine);
 
-		dummyArrow = new FlxSprite().makeGraphic(GRID_SIZE, GRID_SIZE);
+		dummyArrow = new FukitSprite();
+		dummyArrow.makeGraphic(GRID_SIZE, GRID_SIZE);
 		add(dummyArrow);
 
 		var tabs = [
@@ -947,7 +950,8 @@ class ChartingState extends MusicBeatState
 		add(gridBG);
 
 		remove(gridBlackLine);
-		gridBlackLine = new FlxSprite(gridBG.x + gridBG.width / 2).makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
+		gridBlackLine = new FukitSprite(gridBG.x + gridBG.width / 2);
+		gridBlackLine.makeGraphic(2, Std.int(gridBG.height), FlxColor.BLACK);
 		add(gridBlackLine);
 
 		while (curRenderedNotes.members.length > 0)
@@ -1012,9 +1016,9 @@ class ChartingState extends MusicBeatState
 
 			if (daSus > 0)
 			{
-				var sustainVis:FlxSprite = new FlxSprite(note.x + (GRID_SIZE / 2),
-					note.y + GRID_SIZE).makeGraphic(8,
-						Math.floor(FlxMath.remapToRange(daSus, 0, Conductor.stepCrochet * _song.notes[curSection].lengthInSteps, 0, gridBG.height)));
+				var sustainVis:FukitSprite = new FukitSprite(note.x + (GRID_SIZE / 2), note.y + GRID_SIZE);
+				sustainVis.makeGraphic(8,
+					Math.floor(FlxMath.remapToRange(daSus, 0, Conductor.stepCrochet * _song.notes[curSection].lengthInSteps, 0, gridBG.height)));
 				curRenderedSustains.add(sustainVis);
 			}
 		}

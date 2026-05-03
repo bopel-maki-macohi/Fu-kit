@@ -6,7 +6,6 @@ import lime.utils.Assets;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.addons.text.FlxTypeText;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
@@ -19,7 +18,7 @@ using StringTools;
 
 class DialogueBox extends FlxSpriteGroup
 {
-	var box:FlxSprite;
+	var box:FukitSprite;
 
 	var curCharacter:String = '';
 
@@ -35,14 +34,15 @@ class DialogueBox extends FlxSpriteGroup
 
 	var portrait:FukitSprite;
 
-	var handSelect:FlxSprite;
-	var bgFade:FlxSprite;
+	var handSelect:FukitSprite;
+	var bgFade:FukitSprite;
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
 		super();
 
-		bgFade = new FlxSprite(-200, -200).makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
+		bgFade = new FukitSprite(-200, -200);
+		bgFade.makeGraphic(Std.int(FlxG.width * 1.3), Std.int(FlxG.height * 1.3), 0xFFB3DFd8);
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
 		add(bgFade);
@@ -53,7 +53,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		this.dialogueList = dialogueList;
 
-		box = new FlxSprite(0, 0);
+		box = new FukitSprite(0, 0);
 		box.makeGraphic(Math.round(FlxG.width * 0.9), Math.round(FlxG.height * 0.4));
 
 		box.screenCenter();
@@ -65,7 +65,7 @@ class DialogueBox extends FlxSpriteGroup
 
 		add(box);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9);
+		handSelect = new FukitSprite(FlxG.width * 0.9, FlxG.height * 0.9);
 		add(handSelect);
 		handSelect.loadGraphic(Paths.image('UI/dialogue/continueHand'));
 

@@ -1,7 +1,7 @@
 package;
 
+import fukit.objects.FukitSprite;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
@@ -12,7 +12,7 @@ using StringTools;
 /**
  * Loosley based on FlxTypeText lolol
  */
-class Alphabet extends FlxSpriteGroup
+class Alphabet extends FlxTypedSpriteGroup<FukitSprite>
 {
 	public var delay:Float = 0.05;
 	public var paused:Bool = false;
@@ -155,7 +155,6 @@ class Alphabet extends FlxSpriteGroup
 
 			if (AlphaCharacter.alphabet.indexOf(splitWords[loopNum].toLowerCase()) != -1 || isNumber || isSymbol)
 				// if (AlphaCharacter.alphabet.contains(splitWords[loopNum].toLowerCase()) || isNumber || isSymbol)
-
 			{
 				if (lastSprite != null && !xPosResetted)
 				{
@@ -232,7 +231,7 @@ class Alphabet extends FlxSpriteGroup
 	}
 }
 
-class AlphaCharacter extends FlxSprite
+class AlphaCharacter extends FukitSprite
 {
 	public static var alphabet:String = "abcdefghijklmnopqrstuvwxyz";
 
@@ -253,8 +252,8 @@ class AlphaCharacter extends FlxSprite
 
 	public function createBold(letter:String)
 	{
-		animation.addByPrefix(letter, letter.toUpperCase() + " bold", 24);
-		animation.play(letter);
+		addByPrefix(letter, letter.toUpperCase() + " bold", 24, true);
+		playAnim(letter);
 		updateHitbox();
 	}
 
@@ -266,8 +265,8 @@ class AlphaCharacter extends FlxSprite
 			letterCase = 'capital';
 		}
 
-		animation.addByPrefix(letter, letter + " " + letterCase, 24);
-		animation.play(letter);
+		addByPrefix(letter, letter + " " + letterCase, 24, true);
+		playAnim(letter);
 		updateHitbox();
 
 		FlxG.log.add('the row' + row);
@@ -278,8 +277,8 @@ class AlphaCharacter extends FlxSprite
 
 	public function createNumber(letter:String):Void
 	{
-		animation.addByPrefix(letter, letter, 24);
-		animation.play(letter);
+		addByPrefix(letter, letter, 24, true);
+		playAnim(letter);
 
 		updateHitbox();
 	}
@@ -289,19 +288,19 @@ class AlphaCharacter extends FlxSprite
 		switch (letter)
 		{
 			case '.':
-				animation.addByPrefix(letter, 'period', 24);
-				animation.play(letter);
+				addByPrefix(letter, 'period', 24, true);
+				playAnim(letter);
 				y += 50;
 			case "'":
-				animation.addByPrefix(letter, 'apostraphie', 24);
-				animation.play(letter);
+				addByPrefix(letter, 'apostraphie', 24, true);
+				playAnim(letter);
 				y -= 0;
 			case "?":
-				animation.addByPrefix(letter, 'question mark', 24);
-				animation.play(letter);
+				addByPrefix(letter, 'question mark', 24, true);
+				playAnim(letter);
 			case "!":
-				animation.addByPrefix(letter, 'exclamation point', 24);
-				animation.play(letter);
+				addByPrefix(letter, 'exclamation point', 24, true);
+				playAnim(letter);
 		}
 
 		updateHitbox();

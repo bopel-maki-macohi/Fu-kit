@@ -1,11 +1,11 @@
 package fukit.states.options;
 
+import fukit.objects.FukitSprite;
 import fukit.states.options.components.*;
 import flixel.math.FlxMath;
 import openfl.Lib;
 import Controls.KeyboardScheme;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
@@ -20,7 +20,7 @@ class NewOptionsMenu extends MusicBeatSubstate
 
 	public var currentMenu:String = '';
 
-	public var blackBox:FlxSprite;
+	public var blackBox:FukitSprite;
 
 	override public function new()
 	{
@@ -118,7 +118,8 @@ class NewOptionsMenu extends MusicBeatSubstate
 	{
 		super.create();
 
-		blackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+		blackBox = new FukitSprite();
+		blackBox.makeGraphic(1, 1, FlxColor.BLACK);
 		add(blackBox);
 		blackBox.alpha = 0;
 

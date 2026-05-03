@@ -1,5 +1,6 @@
 package fukit.states.freeplay;
 
+import fukit.objects.FukitSprite;
 import fukit.states.ui.ScoreBox;
 import flixel.FlxObject;
 import flixel.FlxCamera;
@@ -10,7 +11,6 @@ import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
 import fukit.states.ui.MenuList;
 
 class NewFreeplayState extends MusicBeatSubstate
@@ -18,8 +18,8 @@ class NewFreeplayState extends MusicBeatSubstate
 	public var songMenuList:MenuList;
 	public var difficultyMenuList:MenuList;
 
-	public var songBlackBox:FlxSprite;
-	public var difficultyBlackBox:FlxSprite;
+	public var songBlackBox:FukitSprite;
+	public var difficultyBlackBox:FukitSprite;
 
 	public var scoreBox:ScoreBox;
 
@@ -34,14 +34,16 @@ class NewFreeplayState extends MusicBeatSubstate
 	{
 		super.create();
 
-		songBlackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+		songBlackBox = new FukitSprite();
+		songBlackBox.makeGraphic(1, 1, FlxColor.BLACK);
 		add(songBlackBox);
 		songBlackBox.alpha = 0;
 
 		songMenuList = new MenuList(Vertical);
 		add(songMenuList);
 
-		difficultyBlackBox = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+		difficultyBlackBox = new FukitSprite();
+		difficultyBlackBox.makeGraphic(1, 1, FlxColor.BLACK);
 		add(difficultyBlackBox);
 		difficultyBlackBox.alpha = 0;
 

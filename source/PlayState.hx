@@ -1,5 +1,6 @@
 package;
 
+import fukit.objects.FukitSprite;
 import CoolUtil;
 import fukit.play.components.StageComponent;
 import fukit.play.StringToStage;
@@ -25,7 +26,6 @@ import Song.SwagSong;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -63,7 +63,7 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
-	public static var songPosBG:FlxSprite;
+	public static var songPosBG:FukitSprite;
 	public static var songPosBar:FlxBar;
 
 	public static var rep:Replay;
@@ -90,14 +90,14 @@ class PlayState extends MusicBeatState
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
 
-	public var strumLine:FlxSprite;
+	public var strumLine:FukitSprite;
 
 	public var camFollow:FlxObject;
 
 	public static var prevCamFollow:FlxObject;
 
-	public var strumLineNotes:FlxTypedGroup<FlxSprite>;
-	public var playerStrums:FlxTypedGroup<FlxSprite>;
+	public var strumLineNotes:FlxTypedGroup<FukitSprite>;
+	public var playerStrums:FlxTypedGroup<FukitSprite>;
 
 	public var camZooming:Bool = false;
 	public var curSong:String = "";
@@ -115,7 +115,7 @@ class PlayState extends MusicBeatState
 	public var totalPlayed:Int = 0;
 	public var ss:Bool = false;
 
-	public var healthBarBG:FlxSprite;
+	public var healthBarBG:FukitSprite;
 	public var healthBar:FlxBar;
 	public var songPositionBar:Float = 0;
 
@@ -351,16 +351,17 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000;
 
-		strumLine = new FlxSprite(0, 50).makeGraphic(FlxG.width, 10);
+		strumLine = new FukitSprite(0, 50);
+		strumLine.makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
 
 		if (FlxG.save.data.downscroll)
 			strumLine.y = FlxG.height - 165;
 
-		strumLineNotes = new FlxTypedGroup<FlxSprite>();
+		strumLineNotes = new FlxTypedGroup<FukitSprite>();
 		add(strumLineNotes);
 
-		playerStrums = new FlxTypedGroup<FlxSprite>();
+		playerStrums = new FlxTypedGroup<FukitSprite>();
 
 		generateSong(SONG.song);
 
@@ -387,7 +388,8 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.songPosition) // I dont wanna talk about this code :(
 		{
-			songPosBG = new FlxSprite(0, 10).loadGraphic(Paths.image('healthBar'));
+			songPosBG = new FukitSprite(0, 10);
+			songPosBG.loadGraphic(Paths.image('healthBar'));
 			if (FlxG.save.data.downscroll)
 				songPosBG.y = FlxG.height * 0.9 + 45;
 			songPosBG.screenCenter(X);
@@ -406,7 +408,8 @@ class PlayState extends MusicBeatState
 			songName.cameras = [camHUD];
 		}
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+		healthBarBG = new FukitSprite(0, FlxG.height * 0.9);
+		healthBarBG.loadGraphic(Paths.image('healthBar'));
 		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
@@ -539,7 +542,8 @@ class PlayState extends MusicBeatState
 	{
 		if (image != null)
 		{
-			var countdownSprite:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
+			var countdownSprite:FukitSprite = new FukitSprite();
+			countdownSprite.loadGraphic(Paths.image(image));
 			countdownSprite.scrollFactor.set();
 			countdownSprite.updateHitbox();
 
@@ -591,7 +595,8 @@ class PlayState extends MusicBeatState
 			remove(songPosBar);
 			remove(songName);
 
-			songPosBG = new FlxSprite(0, 10).loadGraphic(Paths.image('healthBar'));
+			songPosBG = new FukitSprite(0, 10);
+			songPosBG.loadGraphic(Paths.image('healthBar'));
 			if (FlxG.save.data.downscroll)
 				songPosBG.y = FlxG.height * 0.9 + 45;
 			songPosBG.screenCenter(X);
@@ -1764,7 +1769,7 @@ class PlayState extends MusicBeatState
 				boyfriend.playAnim('idle');
 		}
 
-		playerStrums.forEach(function(spr:FlxSprite)
+		playerStrums.forEach(function(spr:FukitSprite)
 		{
 			if (pressArray[spr.ID] && spr.animation.curAnim.name != 'confirm')
 				spr.animation.play('pressed');
@@ -1926,7 +1931,7 @@ class PlayState extends MusicBeatState
 		boyfriend.playSingAnim(note);
 
 		if (!loadRep)
-			playerStrums.forEach(function(spr:FlxSprite)
+			playerStrums.forEach(function(spr:FukitSprite)
 			{
 				if (Math.abs(note.noteData) == spr.ID)
 				{
@@ -2233,14 +2238,14 @@ class PlayState extends MusicBeatState
 		return luaSprites.get(id);
 	}
 
-	public static var luaSprites:Map<String, FlxSprite> = [];
+	public static var luaSprites:Map<String, FukitSprite> = [];
 
 	function makeLuaSprite(spritePath:String, toBeCalled:String, drawBehind:Bool)
 	{
 		#if sys
 		var data:BitmapData = BitmapData.fromFile(Sys.getCwd() + "assets/data/" + PlayState.SONG.song.toLowerCase() + '/' + spritePath + ".png");
 
-		var sprite:FlxSprite = new FlxSprite(0, 0);
+		var sprite:FukitSprite = new FukitSprite(0, 0);
 		var imgWidth:Float = FlxG.width / data.width;
 		var imgHeight:Float = FlxG.height / data.height;
 		var scale:Float = imgWidth <= imgHeight ? imgWidth : imgHeight;
