@@ -99,7 +99,7 @@ class FolirSong extends SongComponent
 				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 			}
 
-			if (step == 144)
+			if (step == 175)
 			{
 				game.defaultCamMove = true;
 			}
