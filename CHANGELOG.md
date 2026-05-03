@@ -6,9 +6,8 @@ Hi
 
 - Added Focus State before you startup the game, this fixes some things related to focus at a specific time
 
-- SONGS!
-    - WORLD 2 WITH 3 NEW SONGS! TERMINATION, OVERHEAT, AND rm -rf!!!!!!
-    - World 1 now has dialogue!
+- ADDED WORLD 2 WITH 3 NEW SONGS! TERMINATION, OVERHEAT, AND rm -rf!!!!!!
+- WORLD 1 NOW HAS DIALOGUE!
 
 - MENU UPDATES!
     - Chart Editor Changes
