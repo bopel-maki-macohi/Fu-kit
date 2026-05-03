@@ -26,9 +26,11 @@ class FukitSprite extends FlxAnimate
 	{
 		anim.play(AnimName, Force, Reversed, Frame);
 
-		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
+		{
+			var daOffset = animOffsets.get(AnimName);
 			offset.set(daOffset[0], daOffset[1]);
+		}
 		else
 			offset.set(0, 0);
 	}
