@@ -65,12 +65,6 @@ class Character extends FlxAnimate
 				addByPrefix('singUP', 'folir anim up', 24);
 				addByPrefix('singRIGHT', 'folir anim right', 24);
 
-				addOffset('idle', 0, 0);
-				addOffset('singLEFT', 250, 40);
-				addOffset('singDOWN', 170, -60);
-				addOffset('singUP', -40, 200);
-				addOffset('singRIGHT', 10, 180);
-
 				dadStartingCamPosOffsets.set(202, 60);
 
 				playAnim('idle');
@@ -109,18 +103,6 @@ class Character extends FlxAnimate
 				addByPrefix('singUP-alt', 'arpe anim alt up', 24);
 				addByPrefix('singRIGHT-alt', 'arpe anim alt right', 24);
 
-				addOffset('idle', 0, 0);
-
-				addOffset('singDOWN', -5, -190);
-				addOffset('singRIGHT', 20, -30);
-				addOffset('singUP', 80, 40);
-				addOffset('singLEFT', 60, -30);
-
-				addOffset('singDOWN-alt', -5, -190);
-				addOffset('singRIGHT-alt', 20, -30);
-				addOffset('singUP-alt', 80, 40);
-				addOffset('singLEFT-alt', 60, -30);
-
 				dadStartingCamPosOffsets.set(202, 60);
 
 				playAnim('idle');
@@ -141,20 +123,6 @@ class Character extends FlxAnimate
 				anim.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "");
 				addByPrefix('scared', 'GF FEAR', 24);
 
-				addOffset('cheer');
-				addOffset('sad', -2, -2);
-				addOffset('danceLeft', 0, -9);
-				addOffset('danceRight', 0, -9);
-
-				addOffset("singUP", 0, 4);
-				addOffset("singRIGHT", 0, -20);
-				addOffset("singLEFT", 0, -19);
-				addOffset("singDOWN", 0, -20);
-				addOffset('hairBlow', 45, -8);
-				addOffset('hairFall', 0, -9);
-
-				addOffset('scared', -2, -17);
-
 				playAnim('danceRight');
 
 				if (PlayState.isStoryMode)
@@ -168,12 +136,6 @@ class Character extends FlxAnimate
 				addByPrefix('singRIGHT', 'Dad Sing Note RIGHT');
 				addByPrefix('singDOWN', 'Dad Sing Note DOWN');
 				addByPrefix('singLEFT', 'Dad Sing Note LEFT');
-
-				addOffset('idle');
-				addOffset("singUP", -6, 50);
-				addOffset("singRIGHT", 0, 27);
-				addOffset("singLEFT", -10, 10);
-				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
 
@@ -200,21 +162,6 @@ class Character extends FlxAnimate
 				addByPrefix('deathConfirm', "BF Dead confirm");
 
 				addByPrefix('scared', 'BF idle shaking', 24);
-
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
-				addOffset("hey", 7, 4);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
-				addOffset('scared', -4);
 
 				playAnim('idle');
 
