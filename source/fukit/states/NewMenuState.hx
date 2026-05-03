@@ -129,9 +129,16 @@ class NewMenuState extends MusicBeatState
 
 	function transitionTweens(comingBack:Bool)
 	{
-		FlxTween.cancelTweensOf(logo);
-		FlxTween.cancelTweensOf(blackBox);
-		FlxTween.cancelTweensOf(menuList);
+		try
+		{
+			FlxTween.cancelTweensOf(logo);
+			FlxTween.cancelTweensOf(blackBox);
+			FlxTween.cancelTweensOf(menuList);
+		}
+		catch (e)
+		{
+			trace(e);
+		}
 
 		var translationOffsets:Float = FlxG.width;
 
