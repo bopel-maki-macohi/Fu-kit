@@ -1,5 +1,6 @@
 package fukit.util.debug;
 
+import fukit.util.macros.PositionMacro;
 import haxe.display.Protocol.Methods;
 import lime.app.Application;
 import sys.io.File;
@@ -62,7 +63,11 @@ class CrashHandler
 
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
 
-		errorMessage += 'Callstack:\n';
+		for (item in CallStack.callStack()) {
+			callStack.push(item);
+		}
+
+		errorMessage += 'Exception + Call stack:\n';
 		for (item in callStack)
 		{
 			switch (item)
