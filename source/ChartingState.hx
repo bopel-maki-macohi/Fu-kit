@@ -193,9 +193,9 @@ class ChartingState extends MusicBeatState
 		{
 			_song.stage = stages[Std.parseInt(stage)];
 		});
-		stageDD.selectedLabel = _song.stage ?? 'none';
+		stageDD.selectedLabel = _song?.stage ?? 'none';
 
-		tab_group_song.add(new FlxText(stageDD.x, stageDD.y - 16, 0, 'Stage', 16));
+		tab_group_song.add(new FlxText(stageDD.x, stageDD.y - 16, 0, 'Stage', 8));
 		tab_group_song.add(stageDD);
 	}
 

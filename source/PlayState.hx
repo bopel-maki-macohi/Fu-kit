@@ -347,11 +347,6 @@ class PlayState extends MusicBeatState
 
 		add(frontShit);
 
-		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + dad.dadStartingCamPosOffsets.x,
-			dad.getGraphicMidpoint().y + dad.dadStartingCamPosOffsets.y);
-
-		Conductor.songPosition = -5000;
-
 		strumLine = new FukitSprite(0, 50);
 		strumLine.makeGraphic(FlxG.width, 10);
 		strumLine.scrollFactor.set();
@@ -365,27 +360,6 @@ class PlayState extends MusicBeatState
 		playerStrums = new FlxTypedGroup<FukitSprite>();
 
 		generateSong(SONG.song);
-
-		camFollow = new FlxObject(0, 0, 1, 1);
-
-		camFollow.setPosition(camPos.x, camPos.y);
-
-		if (prevCamFollow != null)
-		{
-			camFollow = prevCamFollow;
-			prevCamFollow = null;
-		}
-
-		add(camFollow);
-
-		FlxG.camera.follow(camFollow, LOCKON, 0.04);
-		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
-		FlxG.camera.zoom = defaultCamZoom;
-		FlxG.camera.focusOn(camFollow.getPosition());
-
-		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
-
-		FlxG.fixedTimestep = false;
 
 		if (FlxG.save.data.songPosition) // I dont wanna talk about this code :(
 		{
@@ -469,6 +443,21 @@ class PlayState extends MusicBeatState
 
 		add(frontUIShit);
 
+		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + dad.dadStartingCamPosOffsets.x,
+			dad.getGraphicMidpoint().y + dad.dadStartingCamPosOffsets.y);
+
+		camFollow = new FlxObject(0, 0, 1, 1);
+
+		camFollow.setPosition(camPos.x, camPos.y);
+
+		if (prevCamFollow != null)
+		{
+			camFollow = prevCamFollow;
+			prevCamFollow = null;
+		}
+
+		add(camFollow);
+
 		if (SONG.stage != null)
 			stage = StringToStage.convert(SONG.stage);
 
@@ -478,6 +467,15 @@ class PlayState extends MusicBeatState
 			case 'new world', 'wetway', 'rust': new World1Song();
 			case 'termination', 'overheat': new FolirSong();
 		}
+
+		FlxG.camera.follow(camFollow, LOCKON, 0.04);
+		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
+		FlxG.camera.zoom = defaultCamZoom;
+		FlxG.camera.focusOn(camFollow.getPosition());
+
+		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
+
+		FlxG.fixedTimestep = false;
 
 		if (startingSong && !inCutscene)
 			startCountdown();
@@ -1515,20 +1513,22 @@ class PlayState extends MusicBeatState
 			ratingSprite.camera = camHUD;
 			add(ratingSprite);
 
-			onPause.add(() -> {
+			onPause.add(() ->
+			{
 				if (ratingSpriteTween != null)
 					ratingSpriteTween.active = false;
 			});
 
-			onUnpause.add(() -> {
+			onUnpause.add(() ->
+			{
 				if (ratingSpriteTween != null)
 					ratingSpriteTween.active = true;
 			});
 		}
 
 		ratingSprite.setRating(daRating);
-		
-		ratingSprite.scale.set(.5,.5);
+
+		ratingSprite.scale.set(.5, .5);
 		ratingSprite.updateHitbox();
 
 		ratingSprite.x = FlxG.width - ratingSprite.width - 32;
