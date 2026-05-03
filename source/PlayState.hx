@@ -543,7 +543,7 @@ class PlayState extends MusicBeatState
 		if (image != null)
 		{
 			var countdownSprite:FukitSprite = new FukitSprite();
-			countdownSprite.loadGraphic(Paths.image(image));
+			countdownSprite.loadGraphic(Paths.image('ui/countdown/$image'));
 			countdownSprite.scrollFactor.set();
 			countdownSprite.updateHitbox();
 
@@ -562,7 +562,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (introSFX != null)
-			FlxG.sound.play(Paths.sound(introSFX), 0.6);
+			FlxG.sound.play(Paths.sound('ui/countdown/$introSFX'), 0.6);
 	}
 
 	var previousFrameTime:Int = 0;

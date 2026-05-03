@@ -189,17 +189,19 @@ class DialogueBox extends FlxSpriteGroup
 
 		// portrait type
 
+		var path:String = 'UI/dialogue/portraits/$curCharacter';
+		
 		switch (portraitType)
 		{
 			case 'animateatlas', 'textureatlas', 'animate atlas', 'texture atlas':
-				portrait.loadTexture(Paths.getAnimateAtlas('dialogue/$curCharacter', Paths.currentLevel));
+				portrait.loadTexture(Paths.getAnimateAtlas(path, Paths.currentLevel));
 				animated = true;
 
 			case 'sparrow', 'sparrowatlas', 'sparrow atlas':
-				portrait.loadTexture(Paths.getSparrowAtlas('dialogue/$curCharacter', Paths.currentLevel));
+				portrait.loadTexture(Paths.getSparrowAtlas(path, Paths.currentLevel));
 				animated = true;
 
-			default: portrait.loadGraphic(Paths.image('dialogue/$curCharacter', Paths.currentLevel));
+			default: portrait.loadGraphic(Paths.image(path, Paths.currentLevel));
 		}
 
 		if (animated)

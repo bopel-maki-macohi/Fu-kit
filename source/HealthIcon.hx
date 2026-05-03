@@ -23,7 +23,7 @@ class HealthIcon extends FukitSprite
 
 	function makeBaseFuKitIcon(char:String = 'bf', isPlayer:Bool = false)
 	{
-		loadGraphic(Paths.image('icons/fu-kit_baseIcon', 'fu-kit'), true, 150, 150);
+		loadGraphic(Paths.image('UI/icons/fu-kit_baseIcon', 'fu-kit'), true, 150, 150);
 		animation.add(char, [0, 1], 0, false, isPlayer);
 
 		color = switch (char)
@@ -44,7 +44,7 @@ class HealthIcon extends FukitSprite
 
 	function makeDefaultIcon(char:String = 'bf', isPlayer:Bool = false)
 	{
-		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
+		loadGraphic(Paths.image('UI/icons/iconGrid'), true, 150, 150);
 
 		animation.add('bf', [0, 1], 0, false, isPlayer);
 		animation.add('bf-car', [0, 1], 0, false, isPlayer);
