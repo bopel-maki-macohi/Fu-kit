@@ -80,7 +80,7 @@ class FolirSong extends SongComponent
 		{
 			if (step == 128)
 			{
-				var len:Float = (Conductor.stepCrochet / 1000) * (144 - step);
+				var len:Float = (Conductor.stepCrochet / 1000) * (174 - step);
 
 				camTween = FlxTween.tween(game.camFollow, {
 					x: game.dad.getGraphicMidpoint().x - 150,
