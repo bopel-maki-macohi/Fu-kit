@@ -53,7 +53,7 @@ class FolirSong extends SongComponent
 		}
 
 		stage.sky.shader = stage.ground.shader = bgShader;
-		
+
 		game.dad.shader = game.boyfriend.shader = charShader;
 	}
 
@@ -120,6 +120,11 @@ class FolirSong extends SongComponent
 				}, len, {ease: FlxEase.sineInOut});
 
 				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
+				
+				camTween = FlxTween.tween(game.camFollow, {
+					x: game.dad.getMidpoint().x + 150,
+					y: game.dad.getMidpoint().y - 100,
+				}, len, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 480)
