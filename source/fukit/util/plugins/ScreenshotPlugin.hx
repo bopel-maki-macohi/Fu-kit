@@ -1,4 +1,4 @@
-package fukit.plugins;
+package fukit.util.plugins;
 
 import fukit.states.freeplay.NewFreeplayState;
 import fukit.util.DateUtil;

@@ -1,4 +1,4 @@
-package fukit.debug;
+package fukit.util.debug;
 
 import haxe.display.Protocol.Methods;
 import lime.app.Application;
