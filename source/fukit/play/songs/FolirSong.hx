@@ -146,6 +146,7 @@ class FolirSong extends SongComponent
 				charTween = FlxTween.tween(charShader, {
 					baseBrightness: -500,
 				}, lenShaders, {ease: FlxEase.sineInOut});
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 0}, lenShaders, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 672)
@@ -156,6 +157,8 @@ class FolirSong extends SongComponent
 
 				bgShader.setAdjustColor(0, 0, 0, 0);
 				charShader.setAdjustColor(0, 0, 0, 0);
+
+				game.camHUD.alpha = 1;
 
 				game.camMove(false);
 			}
@@ -171,6 +174,8 @@ class FolirSong extends SongComponent
 
 				game.camFollow.screenCenter();
 				game.camFollow.y += 200;
+
+				game.camHUD.alpha = 0;
 
 				FlxG.camera.focusOn(game.camFollow.getPosition());
 
