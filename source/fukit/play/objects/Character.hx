@@ -1,5 +1,6 @@
 package fukit.play.objects;
 
+import fukit.objects.FukitSprite;
 import lime.utils.Assets;
 import flixel.math.FlxPoint;
 import animate.FlxAnimate;
@@ -10,9 +11,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 using StringTools;
 
-class Character extends FlxAnimate
+class Character extends FukitSprite
 {
-	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
@@ -212,15 +212,6 @@ class Character extends FlxAnimate
 		}
 	}
 
-	public function addByPrefix(name:String, prefix:String, frameRate = 24.0, looped = false):Void
-		anim.addByPrefix(name, prefix, frameRate, looped);
-
-	function loadTexture(texture:FlxAtlasFrames)
-		loadTextures([texture]);
-
-	function loadTextures(textures:Array<FlxAtlasFrames>)
-		frames = FlxAnimateFrames.combineAtlas(textures);
-
 	var dadVar:Float = 4;
 
 	override function update(elapsed:Float)
@@ -273,15 +264,9 @@ class Character extends FlxAnimate
 		}
 	}
 
-	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
+	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		anim.play(AnimName, Force, Reversed, Frame);
-
-		var daOffset = animOffsets.get(AnimName);
-		if (animOffsets.exists(AnimName))
-			offset.set(daOffset[0], daOffset[1]);
-		else
-			offset.set(0, 0);
+		super.playAnim(AnimName, Force, Reversed, Frame);
 
 		if (curCharacter == 'gf')
 		{
@@ -294,51 +279,8 @@ class Character extends FlxAnimate
 		}
 	}
 
-	public function addOffset(name:String, x:Float = 0, y:Float = 0)
+	override public function parseOffsets(path:String)
 	{
-		animOffsets[name] = [x, y];
-	}
-
-	public function parseOffsets(offsetFile:String)
-	{
-		final path:String = Paths.txt('characters/$offsetFile');
-
-		if (!Assets.exists(path))
-			return;
-
-		var parsed:Array<String> = CoolUtil.coolTextFile(path);
-
-		for (line in parsed)
-		{
-			var spaceSplit:Array<String> = line.split(' ');
-
-			var anim:String = spaceSplit[0];
-
-			var x:Float = Std.parseFloat(spaceSplit[1] ?? '0');
-			var y:Float = Std.parseFloat(spaceSplit[2] ?? '0');
-
-			addOffset(anim, x, y);
-		}
-	}
-
-	public function createOffsetsFile():String
-	{
-		var file:String = '';
-
-		// trace(anim.getNameList());
-
-		for (animName in anim.getNameList())
-		{
-			var line:String = '$animName';
-
-			if (animOffsets.exists(animName))
-				line += ' ${animOffsets[animName][0]} ${animOffsets[animName][1]}';
-			else
-				line += ' 0 0';
-
-			file += '$line\n';
-		}
-
-		return file;
+		super.parseOffsets('characters/$path');
 	}
 }

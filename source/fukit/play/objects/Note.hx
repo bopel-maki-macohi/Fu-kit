@@ -1,5 +1,6 @@
 package fukit.play.objects;
 
+import fukit.objects.FukitSprite;
 import flixel.addons.effects.FlxSkewedSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -12,7 +13,7 @@ import polymod.format.ParseRules.TargetSignatureElement;
 
 using StringTools;
 
-class Note extends FlxSprite
+class Note extends FukitSprite
 {
 	public var strumTime:Float = 0;
 
@@ -51,7 +52,7 @@ class Note extends FlxSprite
 		y -= 2000;
 		this.strumTime = strumTime;
 
-		if (this.strumTime < 0 )
+		if (this.strumTime < 0)
 			this.strumTime = 0;
 
 		this.noteData = noteData;
@@ -61,42 +62,35 @@ class Note extends FlxSprite
 		switch (daStage)
 		{
 			default:
-				frames = Paths.getSparrowAtlas('NOTE_assets');
+				loadTexture(Paths.getSparrowAtlas('NOTE_assets'));
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
+				addByPrefix('greenScroll', 'green0');
+				addByPrefix('redScroll', 'red0');
+				addByPrefix('blueScroll', 'blue0');
+				addByPrefix('purpleScroll', 'purple0');
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
+				addByPrefix('purpleholdend', 'pruple end hold');
+				addByPrefix('greenholdend', 'green hold end');
+				addByPrefix('redholdend', 'red hold end');
+				addByPrefix('blueholdend', 'blue hold end');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
+				addByPrefix('purplehold', 'purple hold piece');
+				addByPrefix('greenhold', 'green hold piece');
+				addByPrefix('redhold', 'red hold piece');
+				addByPrefix('bluehold', 'blue hold piece');
 
 				setGraphicSize(Std.int(width * 0.7));
 				updateHitbox();
 				antialiasing = true;
 		}
 
+		this.x += swagWidth * noteData;
 		switch (noteData)
 		{
-			case 0:
-				x += swagWidth * 0;
-				animation.play('purpleScroll');
-			case 1:
-				x += swagWidth * 1;
-				animation.play('blueScroll');
-			case 2:
-				x += swagWidth * 2;
-				animation.play('greenScroll');
-			case 3:
-				x += swagWidth * 3;
-				animation.play('redScroll');
+			case 0: animation.play('purpleScroll');
+			case 1: animation.play('blueScroll');
+			case 2: animation.play('greenScroll');
+			case 3: animation.play('redScroll');
 		}
 
 		// trace(prevNote);
@@ -104,7 +98,7 @@ class Note extends FlxSprite
 		// we make sure its downscroll and its a SUSTAIN NOTE (aka a trail, not a note)
 		// and flip it so it doesn't look weird.
 		// THIS DOESN'T FUCKING FLIP THE NOTE, CONTRIBUTERS DON'T JUST COMMENT THIS OUT JESUS
-		if (FlxG.save.data.downscroll && sustainNote) 
+		if (FlxG.save.data.downscroll && sustainNote)
 			flipY = true;
 
 		if (isSustainNote && prevNote != null)
@@ -116,14 +110,10 @@ class Note extends FlxSprite
 
 			switch (noteData)
 			{
-				case 2:
-					animation.play('greenholdend');
-				case 3:
-					animation.play('redholdend');
-				case 1:
-					animation.play('blueholdend');
-				case 0:
-					animation.play('purpleholdend');
+				case 2: animation.play('greenholdend');
+				case 3: animation.play('redholdend');
+				case 1: animation.play('blueholdend');
+				case 0: animation.play('purpleholdend');
 			}
 
 			updateHitbox();
@@ -137,17 +127,12 @@ class Note extends FlxSprite
 			{
 				switch (prevNote.noteData)
 				{
-					case 0:
-						prevNote.animation.play('purplehold');
-					case 1:
-						prevNote.animation.play('bluehold');
-					case 2:
-						prevNote.animation.play('greenhold');
-					case 3:
-						prevNote.animation.play('redhold');
+					case 0: prevNote.animation.play('purplehold');
+					case 1: prevNote.animation.play('bluehold');
+					case 2: prevNote.animation.play('greenhold');
+					case 3: prevNote.animation.play('redhold');
 				}
 
-				
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.8 * FlxG.save.data.scrollSpeed;
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();

@@ -1,5 +1,7 @@
 package;
 
+import fukit.objects.Logo;
+import fukit.objects.FukitSprite;
 import animate.FlxAnimate;
 import fukit.play.cutscenes.*;
 import lime.app.Promise;
@@ -23,8 +25,7 @@ class LoadingState extends MusicBeatState
 	var stopMusic = false;
 	var callbacks:MultiCallback;
 
-	var logo:FlxAnimate;
-	var danceLeft = false;
+	var logo:Logo;
 
 	function new(target:FlxState, stopMusic:Bool)
 	{
@@ -35,10 +36,10 @@ class LoadingState extends MusicBeatState
 
 	override function create()
 	{
-		logo = new FlxAnimate(-150, -100);
-		logo.frames = Paths.animateAtlas('UI/logo', 'fu-kit');
-		logo.anim.addByPrefix('bump', 'logoBumpin', 24);
-		logo.anim.play('bump');
+		logo = new Logo();
+		logo.setPosition(-150, -100);
+		
+		logo.playAnim('logoBumpin');
 		logo.updateHitbox();
 
 		add(logo);
@@ -96,13 +97,7 @@ class LoadingState extends MusicBeatState
 	{
 		super.beatHit();
 
-		logo.animation.play('bump');
-		danceLeft = !danceLeft;
-
-		if (danceLeft)
-			gfDance.animation.play('danceRight');
-		else
-			gfDance.animation.play('danceLeft');
+		logo.playAnim('logoBumpin');
 	}
 
 	override function update(elapsed:Float)

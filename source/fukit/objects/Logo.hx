@@ -2,13 +2,13 @@ package fukit.objects;
 
 import animate.FlxAnimate;
 
-class Logo extends FlxAnimate
+class Logo extends FukitSprite
 {
 	override public function new()
 	{
 		super();
 
-		frames = Paths.getAnimateAtlas('UI/logo', 'fu-kit');
-		anim.addByFrameLabel('logoBumpin', 'logoBumpin', 24, false);
+		loadTexture(Paths.getAnimateAtlas('UI/logo', 'fu-kit'));
+		addByFrameLabel('logoBumpin', 'logoBumpin');
 	}
 }

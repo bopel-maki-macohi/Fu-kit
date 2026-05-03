@@ -1,5 +1,6 @@
 package;
 
+import fukit.objects.FukitSprite;
 import animate.FlxAnimate;
 import lime.utils.Assets;
 import flixel.tweens.FlxEase;
@@ -32,7 +33,7 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var finishThing:Void->Void;
 
-	var portrait:FlxAnimate;
+	var portrait:FukitSprite;
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
@@ -58,7 +59,7 @@ class DialogueBox extends FlxSpriteGroup
 		box.screenCenter();
 		box.y = (FlxG.height * 0.9) - box.height;
 
-		portrait = new FlxAnimate(-20, 40);
+		portrait = new FukitSprite(-20, 40);
 		add(portrait);
 		portrait.visible = false;
 
@@ -191,11 +192,11 @@ class DialogueBox extends FlxSpriteGroup
 		switch (portraitType)
 		{
 			case 'animateatlas', 'textureatlas', 'animate atlas', 'texture atlas':
-				portrait.frames = Paths.getAnimateAtlas('dialogue/$curCharacter', Paths.currentLevel);
+				portrait.loadTexture(Paths.getAnimateAtlas('dialogue/$curCharacter', Paths.currentLevel));
 				animated = true;
 
 			case 'sparrow', 'sparrowatlas', 'sparrow atlas':
-				portrait.frames = Paths.getSparrowAtlas('dialogue/$curCharacter', Paths.currentLevel);
+				portrait.loadTexture(Paths.getSparrowAtlas('dialogue/$curCharacter', Paths.currentLevel));
 				animated = true;
 
 			default: portrait.loadGraphic(Paths.image('dialogue/$curCharacter', Paths.currentLevel));
@@ -205,8 +206,8 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			switch (animationType)
 			{
-				case 'prefix': portrait.anim.addByPrefix('anim', animationName, 24, false);
-				case 'framelabel': portrait.anim.addByFrameLabel('anim', animationName, 24, false);
+				case 'prefix': portrait.addByPrefix('anim', animationName, 24, false);
+				case 'framelabel': portrait.addByFrameLabel('anim', animationName, 24, false);
 			}
 			portrait.anim.play('anim');
 		}

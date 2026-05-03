@@ -1,8 +1,8 @@
 package fukit.play.objects;
 
-import flixel.FlxSprite;
+import fukit.objects.FukitSprite;
 
-class StaticNote extends FlxSprite
+class StaticNote extends FukitSprite
 {
 	override public function new(i:Int = 0, ?x:Float = 0, ?y:Float = 0)
 	{
@@ -21,13 +21,13 @@ class StaticNote extends FlxSprite
 	public function loadAsset()
 	{
 		var dir = ['left', 'down', 'up', 'right'];
-        
-		frames = Paths.getSparrowAtlas('NOTE_assets');
+
+		loadTexture(Paths.getSparrowAtlas('NOTE_assets'));
 		setGraphicSize(Std.int(width * 0.7));
 
-		animation.addByPrefix('static', 'arrow${dir[ID].toUpperCase()}');
-		animation.addByPrefix('pressed', '${dir[ID].toLowerCase()} press', 24, false);
-		animation.addByPrefix('confirm', '${dir[ID].toLowerCase()} confirm', 24, false);
+		addByPrefix('static', 'arrow${dir[ID].toUpperCase()}');
+		addByPrefix('pressed', '${dir[ID].toLowerCase()} press');
+		addByPrefix('confirm', '${dir[ID].toLowerCase()} confirm');
 
 		this.x += Note.swagWidth * ID;
 	}
