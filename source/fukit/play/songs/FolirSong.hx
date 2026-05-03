@@ -48,7 +48,7 @@ class FolirSong extends SongComponent
 
 				game.camHUD.alpha = 0;
 
-			case 'overheat': 
+			case 'overheat':
 				game.defaultCamMove = false;
 				FlxG.camera.zoom = .9;
 
@@ -65,10 +65,11 @@ class FolirSong extends SongComponent
 		game.boyfriend.shader = charShader;
 	}
 
-	var terminationTween_bgShader:FlxTween;
-	var terminationTween_charShader:FlxTween;
-	var terminationTween_camShader:FlxTween;
-	var terminationTween_hudShader:FlxTween;
+	var bgShaderTween:FlxTween;
+	var charTween:FlxTween;
+
+	var camTween:FlxTween;
+	var hudTween:FlxTween;
 
 	override function onStepHit(step:Int)
 	{
@@ -78,12 +79,20 @@ class FolirSong extends SongComponent
 		{
 			if (step == 128)
 			{
-				// target: step 144
+				var len:Float = (Conductor.stepCrochet / 1000) * (144 - step);
 
+				camTween = FlxTween.tween(game.camFollow, {
+					x: game.dad.getGraphicMidpoint().x - 150,
+					y: game.dad.getGraphicMidpoint().y - 140,
+					zoom: game.defaultCamZoom,
+				}, len, {ease: FlxEase.sineInOut});
+			}
+
+			if (step == 128)
+			{
 				var len:Float = (Conductor.stepCrochet / 1000) * (143 - step);
 
-				terminationTween_hudShader = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
-				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: game.defaultCamZoom}, len, {ease: FlxEase.sineInOut});
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 144)
@@ -94,13 +103,13 @@ class FolirSong extends SongComponent
 
 		if (game?.curSong == 'termination')
 		{
-			if (step <= 10 && terminationTween_camShader == null)
+			if (step <= 10 && camTween == null)
 			{
 				// target: step 64
 
 				var len:Float = (Conductor.stepCrochet / 1000) * (64 - step);
 
-				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: .5}, len, {ease: FlxEase.quadInOut});
+				camTween = FlxTween.tween(FlxG.camera, {zoom: .5}, len, {ease: FlxEase.quadInOut});
 			}
 
 			if (step == 120)
@@ -109,7 +118,7 @@ class FolirSong extends SongComponent
 
 				var len:Float = (Conductor.stepCrochet / 1000) * (255 - step);
 
-				terminationTween_hudShader = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
+				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 160)
@@ -118,15 +127,15 @@ class FolirSong extends SongComponent
 
 				var len:Float = (Conductor.stepCrochet / 1000) * (255 - step);
 
-				terminationTween_bgShader = FlxTween.tween(bgShader, {baseBrightness: 0}, len, {ease: FlxEase.sineInOut});
+				bgShaderTween = FlxTween.tween(bgShader, {baseBrightness: 0}, len, {ease: FlxEase.sineInOut});
 
-				terminationTween_charShader = FlxTween.tween(charShader, {
+				charTween = FlxTween.tween(charShader, {
 					baseHue: 0,
 					baseContrast: 0,
 					baseSaturation: 0
 				}, len, {ease: FlxEase.sineInOut});
 
-				terminationTween_camShader = FlxTween.tween(FlxG.camera, {zoom: game.defaultCamZoom}, len, {ease: FlxEase.sineInOut});
+				camTween = FlxTween.tween(FlxG.camera, {zoom: game.defaultCamZoom}, len, {ease: FlxEase.sineInOut});
 			}
 
 			if (step == 256)
@@ -141,12 +150,7 @@ class FolirSong extends SongComponent
 	{
 		super.onPause();
 
-		for (tween in [
-			terminationTween_bgShader,
-			terminationTween_charShader,
-			terminationTween_camShader,
-			terminationTween_hudShader
-		])
+		for (tween in [bgShaderTween, charTween, camTween, hudTween])
 			if (tween != null)
 				tween.active = false;
 	}
@@ -155,12 +159,7 @@ class FolirSong extends SongComponent
 	{
 		super.onUnpause();
 
-		for (tween in [
-			terminationTween_bgShader,
-			terminationTween_charShader,
-			terminationTween_camShader,
-			terminationTween_hudShader
-		])
+		for (tween in [bgShaderTween, charTween, camTween, hudTween])
 			if (tween != null)
 				tween.active = true;
 	}
