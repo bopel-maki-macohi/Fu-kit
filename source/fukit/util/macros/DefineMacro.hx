@@ -1,5 +1,7 @@
 package fukit.util.macros;
 
+import haxe.macro.Expr;
+
 class DefineMacro
 {
 	public static macro function defined(key:String):Expr
