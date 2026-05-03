@@ -6,7 +6,7 @@ class StaticNote extends FukitSprite
 {
 	override public function new(i:Int = 0, ?x:Float = 0, ?y:Float = 0)
 	{
-		super(0, y);
+		super(x, y);
 
 		this.ID = i;
 
