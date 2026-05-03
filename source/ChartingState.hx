@@ -2,6 +2,7 @@ package;
 
 import fukit.objects.FukitSprite;
 import fukit.play.objects.*;
+import fukit.play.objects.ui.*;
 import fukit.play.PlayStateSwitcher;
 import flixel.FlxBasic;
 import flixel.addons.ui.FlxUIText;

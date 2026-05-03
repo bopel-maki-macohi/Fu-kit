@@ -5,6 +5,7 @@ import CoolUtil;
 import fukit.play.components.StageComponent;
 import fukit.play.StringToStage;
 import fukit.play.objects.*;
+import fukit.play.objects.ui.*;
 import fukit.states.options.NewOptionsMenu;
 import fukit.states.NewMenuState;
 import fukit.Global;
@@ -389,7 +390,7 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.songPosition) // I dont wanna talk about this code :(
 		{
 			songPosBG = new FukitSprite(0, 10);
-			songPosBG.loadGraphic(Paths.image('healthBar'));
+			songPosBG.loadGraphic(Paths.image('UI/healthBar'));
 			if (FlxG.save.data.downscroll)
 				songPosBG.y = FlxG.height * 0.9 + 45;
 			songPosBG.screenCenter(X);
@@ -409,7 +410,7 @@ class PlayState extends MusicBeatState
 		}
 
 		healthBarBG = new FukitSprite(0, FlxG.height * 0.9);
-		healthBarBG.loadGraphic(Paths.image('healthBar'));
+		healthBarBG.loadGraphic(Paths.image('UI/healthBar'));
 		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
 		healthBarBG.screenCenter(X);
@@ -431,13 +432,6 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 
-		if (FlxG.save.data.songPosition)
-		{
-			add(songPosBG);
-			add(songPosBar);
-			add(songName);
-		}
-
 		add(healthBarBG);
 		add(healthBar);
 
@@ -445,6 +439,13 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 
 		add(scoreTxt);
+
+		if (FlxG.save.data.songPosition)
+		{
+			add(songPosBG);
+			add(songPosBar);
+			add(songName);
+		}
 
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -543,7 +544,7 @@ class PlayState extends MusicBeatState
 		if (image != null)
 		{
 			var countdownSprite:FukitSprite = new FukitSprite();
-			countdownSprite.loadGraphic(Paths.image('ui/countdown/$image'));
+			countdownSprite.loadGraphic(Paths.image('UI/countdown/$image'));
 			countdownSprite.scrollFactor.set();
 			countdownSprite.updateHitbox();
 
@@ -562,7 +563,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (introSFX != null)
-			FlxG.sound.play(Paths.sound('ui/countdown/$introSFX'), 0.6);
+			FlxG.sound.play(Paths.sound('UI/countdown/$introSFX'), 0.6);
 	}
 
 	var previousFrameTime:Int = 0;

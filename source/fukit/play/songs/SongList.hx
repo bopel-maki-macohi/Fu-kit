@@ -36,7 +36,7 @@ class SongListManager
 		worldSongLists = [];
 		songList = [];
 
-		var songListPath:String = Paths.json('ui/songList', 'fu-kit');
+		var songListPath:String = Paths.json('UI/songList', 'fu-kit');
 
 		if (!Assets.exists(songListPath))
 			return;

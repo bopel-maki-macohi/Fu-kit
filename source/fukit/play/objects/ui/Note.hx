@@ -1,4 +1,4 @@
-package fukit.play.objects;
+package fukit.play.objects.ui;
 
 import fukit.objects.FukitSprite;
 import flixel.addons.effects.FlxSkewedSprite;

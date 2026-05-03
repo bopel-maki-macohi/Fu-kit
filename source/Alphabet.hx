@@ -244,7 +244,7 @@ class AlphaCharacter extends FukitSprite
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
-		var tex = Paths.getSparrowAtlas('ui/alphabet');
+		var tex = Paths.getSparrowAtlas('UI/alphabet');
 		frames = tex;
 
 		antialiasing = true;

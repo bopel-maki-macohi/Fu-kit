@@ -24,25 +24,25 @@ class GitarooPause extends MusicBeatState
 			FlxG.sound.music.stop();
 
 		var bg:FukitSprite = new FukitSprite();
-		bg.loadGraphic(Paths.image('ui/pauseAlt/pauseBG'));
+		bg.loadGraphic(Paths.image('UI/pauseAlt/pauseBG'));
 		add(bg);
 
 		var bf:FukitSprite = new FukitSprite(0, 30);
-		bf.loadTexture(Paths.getSparrowAtlas('ui/pauseAlt/bfLol'));
+		bf.loadTexture(Paths.getSparrowAtlas('UI/pauseAlt/bfLol'));
 		bf.addByPrefix('lol', "funnyThing", 13);
 		bf.playAnim('lol');
 		add(bf);
 		bf.screenCenter(X);
 
 		replayButton = new FukitSprite(FlxG.width * 0.28, FlxG.height * 0.7);
-		replayButton.loadTexture(Paths.getSparrowAtlas('ui/pauseAlt/pauseUI'));
+		replayButton.loadTexture(Paths.getSparrowAtlas('UI/pauseAlt/pauseUI'));
 		replayButton.addByPrefix('selected', 'bluereplay', 0, false);
 		replayButton.animation.appendByPrefix('selected', 'yellowreplay');
 		replayButton.playAnim('selected');
 		add(replayButton);
 
 		cancelButton = new FukitSprite(FlxG.width * 0.58, replayButton.y);
-		cancelButton.loadTexture(Paths.getSparrowAtlas('ui/pauseAlt/pauseUI'));
+		cancelButton.loadTexture(Paths.getSparrowAtlas('UI/pauseAlt/pauseUI'));
 		cancelButton.addByPrefix('selected', 'bluecancel', 0, false);
 		cancelButton.animation.appendByPrefix('selected', 'cancelyellow');
 		cancelButton.playAnim('selected');
