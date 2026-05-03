@@ -6,7 +6,7 @@ Hi
 
 - Added Focus State before you startup the game, this fixes some things related to focus at a specific time
 
-- GAMEPLAY!
+- SONGS!
     - WORLD 2 WITH 3 NEW SONGS! TERMINATION, OVERHEAT, AND rm -rf!!!!!!
     - World 1 now has dialogue!
 
@@ -28,6 +28,7 @@ Hi
     - New Main Menu : Intention was to make it similar to Mario World title
     - New Title State : It's a splash text scene now
 
+- Rating popups are back in the bottom right corner of the screen
 - Fixed Opponent not bopping on every beat
 - Grass World sky is now a generated graphic scaled up instead of a texture
 
