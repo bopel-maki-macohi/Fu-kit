@@ -39,15 +39,11 @@ class OutdatedSubState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (controls.ACCEPT)
+		if (controls.ACCEPT || controls.BACK)
 		{
-			FlxG.openURL("https://github.com/bopel-maki-macohi/Fu-kit/releases/latest");
+			if (controls.ACCEPT)
+				FlxG.openURL("https://github.com/bopel-maki-macohi/Fu-kit/releases/latest");
 
-			leftState = true;
-			FlxG.switchState(() -> new SplashTextState());
-		}
-		if (controls.BACK)
-		{
 			leftState = true;
 			FlxG.switchState(() -> new SplashTextState());
 		}
