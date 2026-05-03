@@ -93,7 +93,7 @@ class InitState extends FlxState
 
 		FlxG.mouse.visible = false;
 
-		FlxG.stage.window.title = Global.modVer;
+		FlxG.stage.window.title = Global.watermarkText;
 
 		FlxG.switchState(() -> new FocusState());
 	}
