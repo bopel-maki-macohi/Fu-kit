@@ -197,10 +197,6 @@ class FlxTween implements IFlxDestroyable
 	 */
 	public static function tween(Object:Dynamic, Values:Dynamic, Duration:Float = 1, ?Options:TweenOptions):VarTween
 	{
-        #if debug
-        trace('About to tween ${VariableMacro.nameof(Object)}');
-        #end
-
 		return globalManager.tween(Object, Values, Duration, Options);
 	}
 
