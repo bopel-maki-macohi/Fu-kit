@@ -1,5 +1,6 @@
 package fukit.play.songs.world2;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -72,6 +73,13 @@ class RMRFSong extends RDSong
 				charShaderTween = FlxTween.tween(stage.charShader, {
 					baseBrightness: -100
 				}, duration * 2);
+
+				
+			case 608:
+				game.camHUD.alpha = 0;
+				stage.charShader.baseBrightness = -10000;
+
+				FlxG.camera.flash(FlxColor.RED, (Conductor.crochet / 1000) * (640 / step));
 		}
 	}
 
