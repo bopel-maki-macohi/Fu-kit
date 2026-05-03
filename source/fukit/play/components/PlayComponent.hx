@@ -1,6 +1,6 @@
 package fukit.play.components;
 
-import fukit.play.objects.Note;
+import fukit.play.objects.ui.Note;
 import flixel.math.FlxMath;
 import flixel.FlxG;
 

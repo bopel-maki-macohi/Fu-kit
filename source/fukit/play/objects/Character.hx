@@ -1,5 +1,6 @@
 package fukit.play.objects;
 
+import fukit.play.objects.ui.Note;
 import fukit.objects.FukitSprite;
 import lime.utils.Assets;
 import flixel.math.FlxPoint;

@@ -21,6 +21,7 @@ class RatingSprite extends FukitSprite
 
 	public function setRating(rating:Rating)
 	{
-		loadGraphic(Paths.image('UI/popup/$rating'));
+		loadGraphic(Paths.image('UI/popups/$rating'));
+		updateHitbox();
 	}
 }

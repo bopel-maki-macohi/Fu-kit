@@ -1508,7 +1508,43 @@ class PlayState extends MusicBeatState
 			songScore += Math.round(score);
 			songScoreDef += Math.round(ConvertScore.convertScore(noteDiff));
 		}
+
+		if (ratingSprite == null)
+		{
+			ratingSprite = new RatingSprite();
+			ratingSprite.camera = camHUD;
+			add(ratingSprite);
+
+			onPause.add(() -> {
+				if (ratingSpriteTween != null)
+					ratingSpriteTween.active = false;
+			});
+
+			onUnpause.add(() -> {
+				if (ratingSpriteTween != null)
+					ratingSpriteTween.active = true;
+			});
+		}
+
+		ratingSprite.setRating(daRating);
+		
+		ratingSprite.scale.set(.5,.5);
+		ratingSprite.updateHitbox();
+
+		ratingSprite.x = FlxG.width - ratingSprite.width - 32;
+		ratingSprite.y = FlxG.height - ratingSprite.height - 32;
+
+		if (FlxG.save.data.downscroll)
+			ratingSprite.y = 32;
+
+		FlxTween.cancelTweensOf(ratingSprite);
+
+		ratingSprite.alpha = 1;
+		ratingSpriteTween = FlxTween.tween(ratingSprite, {alpha: 0}, 1, {startDelay: 2});
 	}
+
+	public var ratingSprite:RatingSprite;
+	public var ratingSpriteTween:FlxTween;
 
 	public function NearlyEquals(value1:Float, value2:Float, unimportantDifference:Float = 10):Bool
 	{

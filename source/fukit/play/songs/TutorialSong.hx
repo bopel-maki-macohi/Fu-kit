@@ -1,6 +1,6 @@
 package fukit.play.songs;
 
-import fukit.play.objects.Note;
+import fukit.play.objects.ui.Note;
 import fukit.play.stages.MainStage;
 import flixel.tweens.FlxEase;
 import flixel.FlxG;
