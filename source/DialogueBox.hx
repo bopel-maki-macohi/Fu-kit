@@ -25,12 +25,12 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var dialogueList:Array<String> = [];
 	public var swagDialogue:FlxTypeText;
+	public var swagYoudontfuckingknowAnything:FlxText;
 
 	public var finishThing:Void->Void;
 
 	public var portrait:FukitSprite;
 
-	public var handSelect:FukitSprite;
 	public var bgFade:FukitSprite;
 
 	public var onLine:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
@@ -64,21 +64,20 @@ class DialogueBox extends FlxSpriteGroup
 
 		add(box);
 
-		handSelect = new FukitSprite(FlxG.width * 0.9, FlxG.height * 0.9);
-		add(handSelect);
-		handSelect.loadGraphic(Paths.image('UI/dialogue/continueHand'));
-
-		handSelect.scale.set(2, 2);
-		handSelect.updateHitbox();
-		handSelect.antialiasing = false;
-
-		handSelect.x = box.x + box.width - handSelect.width;
-		handSelect.y = box.y + box.height - handSelect.height;
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(box.width) - 10, "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
-		swagDialogue.color = 0xFF0A0219;
+		swagDialogue.font = Paths.font('pixel.otf');
+		swagDialogue.color = FlxColor.BLACK;
 		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+		
+		swagYoudontfuckingknowAnything = new FlxText(0, 0, 0, 'ENTER to continue', 32);
+		swagYoudontfuckingknowAnything.font = swagDialogue.font;
+		swagYoudontfuckingknowAnything.color = FlxColor.BLACK;
+
+		swagYoudontfuckingknowAnything.x = 10;
+		swagYoudontfuckingknowAnything.y = FlxG.height - swagYoudontfuckingknowAnything.height - 10;
+
+		add(swagYoudontfuckingknowAnything);
 		add(swagDialogue);
 
 		swagDialogue.x = box.x + 10;
@@ -98,7 +97,7 @@ class DialogueBox extends FlxSpriteGroup
 			dialogueStarted = true;
 		}
 
-		if (FlxG.keys.justPressed.ANY && dialogueStarted == true)
+		if (FlxG.keys.justPressed.ENTER && dialogueStarted == true)
 		{
 			FlxG.sound.play(Paths.sound('clickText'), 0.8);
 
