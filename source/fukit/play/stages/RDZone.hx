@@ -47,11 +47,4 @@ class RDZone extends StageComponent
 
 		game.boyfriend.x += 360;
 	}
-
-	override function onCreate()
-	{
-		super.onCreate();
-
-		game.applyMiddleScroll();
-	}
 }

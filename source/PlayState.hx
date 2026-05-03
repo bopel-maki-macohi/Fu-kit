@@ -70,8 +70,6 @@ class PlayState extends MusicBeatState
 	public static var rep:Replay;
 	public static var loadRep:Bool = false;
 
-	public static var noteBools:Array<Bool> = [false, false, false, false];
-
 	public var songLength:Float = 0;
 
 	#if windows
@@ -188,6 +186,7 @@ class PlayState extends MusicBeatState
 
 	public static var onOpponentNote:FlxTypedSignal<Note->Void> = new FlxTypedSignal<Note->Void>();
 	public static var onPlayerNote:FlxTypedSignal<Note->Void> = new FlxTypedSignal<Note->Void>();
+	public static var onNoteMiss:FlxTypedSignal<Int->Note->Void> = new FlxTypedSignal<Int->Note->Void>();
 
 	public static var onPause:FlxSignal = new FlxSignal();
 	public static var onUnpause:FlxSignal = new FlxSignal();
@@ -211,6 +210,7 @@ class PlayState extends MusicBeatState
 			onCamMove,
 			onOpponentNote,
 			onPlayerNote,
+			onNoteMiss,
 			onPause,
 			onUnpause,
 		];
@@ -466,6 +466,7 @@ class PlayState extends MusicBeatState
 			case 'tutorial': new TutorialSong();
 			case 'new world', 'wetway', 'rust': new World1Song();
 			case 'termination', 'overheat': new FolirSong();
+			case 'rm -rf': new RDSong();
 		}
 
 		FlxG.camera.follow(camFollow, LOCKON, 0.04);
@@ -488,8 +489,12 @@ class PlayState extends MusicBeatState
 		super.create();
 	}
 
+	public var middleScroll:Bool = false;
+
 	public function applyMiddleScroll()
 	{
+		middleScroll = true;
+
 		for (staticNote in strumLineNotes)
 		{
 			if (!playerStrums.members.contains(staticNote))
@@ -740,7 +745,11 @@ class PlayState extends MusicBeatState
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else {}
+				else
+				{
+					if (middleScroll)
+						swagNote.visible = false;
+				}
 			}
 			daBeats += 1;
 		}
@@ -1834,6 +1843,8 @@ class PlayState extends MusicBeatState
 		boyfriend.playSingAnim((daNote == null) ? new Note(0, direction, null, false) : daNote, 'miss');
 
 		updateAccuracy();
+
+		onNoteMiss.dispatch(direction, daNote);
 	}
 
 	function updateAccuracy()

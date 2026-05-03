@@ -45,6 +45,7 @@ class PlayComponent
 
 		PlayState.onOpponentNote.add(onOpponentNote);
 		PlayState.onPlayerNote.add(onPlayerNote);
+		PlayState.onNoteMiss.add(onNoteMiss);
 
 		PlayState.onPause.add(onPause);
 		PlayState.onUnpause.add(onUnpause);
@@ -67,6 +68,8 @@ class PlayComponent
 	public function onOpponentNote(note:Note) {}
 
 	public function onPlayerNote(note:Note) {}
+
+	public function onNoteMiss(direction:Int, note:Note) {}
 
 	public function onPause() {}
 
