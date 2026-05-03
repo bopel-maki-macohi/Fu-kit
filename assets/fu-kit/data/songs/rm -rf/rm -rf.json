@@ -1760,51 +1760,6 @@
 				"mustHitSection": true,
 				"sectionNotes": [],
 				"typeOfSection": 0
-			},
-			{
-				"altAnim": false,
-				"bpm": 125,
-				"changeBPM": false,
-				"lengthInSteps": 16,
-				"mustHitSection": true,
-				"sectionNotes": [],
-				"typeOfSection": 0
-			},
-			{
-				"altAnim": false,
-				"bpm": 125,
-				"changeBPM": false,
-				"lengthInSteps": 16,
-				"mustHitSection": true,
-				"sectionNotes": [],
-				"typeOfSection": 0
-			},
-			{
-				"altAnim": false,
-				"bpm": 125,
-				"changeBPM": false,
-				"lengthInSteps": 16,
-				"mustHitSection": true,
-				"sectionNotes": [],
-				"typeOfSection": 0
-			},
-			{
-				"altAnim": false,
-				"bpm": 125,
-				"changeBPM": false,
-				"lengthInSteps": 16,
-				"mustHitSection": true,
-				"sectionNotes": [],
-				"typeOfSection": 0
-			},
-			{
-				"altAnim": false,
-				"bpm": 125,
-				"changeBPM": false,
-				"lengthInSteps": 16,
-				"mustHitSection": true,
-				"sectionNotes": [],
-				"typeOfSection": 0
 			}
 		],
 		"bpm": 125,
