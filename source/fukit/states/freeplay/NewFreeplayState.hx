@@ -116,6 +116,12 @@ class NewFreeplayState extends MusicBeatSubstate
 			ease: FlxEase.expoInOut,
 		});
 
+		albumSprite.alpha = 0;
+
+		FlxTween.tween(albumSprite, {alpha: 1}, 1, {
+			ease: FlxEase.expoInOut,
+		});
+
 		songMenuListCam = new FlxCamera(0, 0);
 		FlxG.cameras.add(songMenuListCam, false);
 		songMenuListCam.bgColor.alpha = 0;
@@ -134,7 +140,12 @@ class NewFreeplayState extends MusicBeatSubstate
 	function onSongSelectionChange()
 	{
 		if (albumSprite != null)
+		{
 			albumSprite.setAlbum(FreeplayAlbum?.albums[songMenuList?.curSelect ?? 0] ?? null);
+
+			albumSprite.screenCenter();
+			albumSprite.x += albumSprite.width * .25;
+		}
 	}
 
 	public var songMenuListCam:FlxCamera;
@@ -192,6 +203,8 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		FlxTween.cancelTweensOf(scoreBox);
 
+		FlxTween.cancelTweensOf(albumSprite);
+
 		songMenuList.canSelect = false;
 
 		FlxTween.tween(songMenuList, {x: -FlxG.width}, .5, {
@@ -215,6 +228,10 @@ class NewFreeplayState extends MusicBeatSubstate
 		});
 
 		FlxTween.tween(scoreBox, {x: FlxG.width + scoreBox.width}, .5, {
+			ease: FlxEase.expoInOut,
+		});
+
+		FlxTween.tween(albumSprite, {alpha: 0}, 1, {
 			ease: FlxEase.expoInOut,
 		});
 	}
