@@ -20,7 +20,7 @@ class FukitSprite extends FlxAnimate
 	public function loadTextures(textures:Array<FlxAtlasFrames>)
 		frames = FlxAnimateFrames.combineAtlas(textures);
 
-	public var animOffsets:Map<String, Array<Dynamic>>;
+	public var animOffsets:Map<String, Array<Dynamic>> = [];
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{

@@ -47,7 +47,7 @@ class Character extends FukitSprite
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		animOffsets = new Map<String, Array<Dynamic>>();
+		animOffsets = [];
 
 		camFocusPosOffsets = FlxPoint.weak(0, 0);
 		dadStartingCamPosOffsets = FlxPoint.weak(0, 0);
