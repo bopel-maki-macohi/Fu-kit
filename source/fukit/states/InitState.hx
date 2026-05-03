@@ -15,6 +15,7 @@ import flixel.FlxG;
 import lime.app.Application;
 import Discord.DiscordClient;
 import flixel.FlxState;
+import fukit.util.macros.DefineMacro;
 
 class InitState extends FlxState
 {
@@ -91,22 +92,48 @@ class InitState extends FlxState
 
 		FlxG.mouse.visible = false;
 
-		#if FREEPLAY
-		FlxG.switchState(() -> new NewMenuState('Freeplay'));
-		#elseif CHARTING
-		FlxG.switchState(() -> new ChartingState());
-		#elseif ANIMDEBUG
-		FlxG.switchState(() -> new AnimationDebug('folir'));
-		#elseif SONG
-		fukit.Global.goIntoSong('Termination', #if DIFF_EASY 0 #elseif DIFF_NORMAL 1 #else 2 #end, 0);
-		#elseif STORYMENU
-		FlxG.switchState(() -> new NewMenuState('Story Mode'));
-		#elseif OPTIONS
-		FlxG.switchState(() -> new NewMenuState('Options'));
-		#elseif MAINMENU
-		FlxG.switchState(() -> new NewMenuState());
-		#else
-		FlxG.switchState(() -> new SplashTextState());
-		#end
+		moveStates();
+	}
+
+	public function moveStates()
+	{
+		var MAINMENU:String = DefineMacro.definedValue('MAINMENU').toLowerCase();
+		var CHARTING:String = DefineMacro.definedValue('CHARTING').toLowerCase();
+		var ANIMDEBUG:String = DefineMacro.definedValue('ANIMDEBUG').toLowerCase();
+		var SONG:String = DefineMacro.definedValue('SONG').toLowerCase();
+		var SONG_DIFFICULTY:String = DefineMacro.definedValue('SONG_DIFFICULTY').toLowerCase();
+
+		var diff:Int = CoolUtil.difficultyArray.indexOf(SONG_DIFFICULTY?.toUpperCase() ?? 'NORMAL');
+
+		if (diff == -1)
+			diff = 1;
+
+		if (MAINMENU != null)
+		{
+			switch (MAINMENU)
+			{
+				case 'story', 'storymode', 'storymenu', 'story mode', 'story menu': FlxG.switchState(() -> new NewMenuState('Story Mode'));
+				case 'freeplay', 'free play': FlxG.switchState(() -> new NewMenuState('Freeplay'));
+				case 'settings', 'options', 'config', 'configerations': FlxG.switchState(() -> new NewMenuState('Options'));
+
+				default: FlxG.switchState(() -> new NewMenuState());
+			}
+		}
+		else if (CHARTING != null)
+		{
+			if (CHARTING != '1')
+				PlayState.SONG = Song.loadFromJson(Highscore.formatSong(CHARTING, diff), CHARTING) ?? null;
+
+			if (SONG != '1')
+				PlayState.SONG = Song.loadFromJson(Highscore.formatSong(SONG, diff), SONG) ?? null;
+
+			FlxG.switchState(() -> new ChartingState());
+		}
+		else if (ANIMDEBUG != null)
+			FlxG.switchState(() -> new AnimationDebug(ANIMDEBUG ?? 'bf'));
+		else if (SONG != null && SONG != '1')
+			fukit.Global.goIntoSong(SONG, diff, 0);
+		else
+			FlxG.switchState(() -> new SplashTextState());
 	}
 }
