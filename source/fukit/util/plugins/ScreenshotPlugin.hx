@@ -1,5 +1,6 @@
 package fukit.util.plugins;
 
+import openfl.utils.Object;
 import fukit.states.freeplay.NewFreeplayState;
 import fukit.util.DateUtil;
 import openfl.desktop.Clipboard;
@@ -74,12 +75,18 @@ class ScreenshotPlugin extends FlxBasic
 			FileSystem.createDirectory(SCREENSHOT_DIRECTORY);
 
 		var data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
-		var bytes:ByteArray = data.encode(data.rect, new PNGEncoderOptions());
+
+		if (encoder == null)
+			encoder = new PNGEncoderOptions();
+
+		var bytes:ByteArray = data.encode(data.rect, encoder);
 
 		File.saveBytes(path, bytes);
 
 		return data;
 	}
+
+	public var encoder:Object;
 
 	function performScreenshot()
 	{
