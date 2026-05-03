@@ -114,7 +114,7 @@ class InitState extends FlxState
 			{
 				case 'story', 'storymode', 'storymenu', 'story mode', 'story menu': FlxG.switchState(() -> new NewMenuState('Story Mode'));
 				case 'freeplay', 'free play': FlxG.switchState(() -> new NewMenuState('Freeplay'));
-				case 'settings', 'options', 'config', 'configerations': FlxG.switchState(() -> new NewMenuState('Options'));
+				case 'settings', 'options', 'config', 'configurations': FlxG.switchState(() -> new NewMenuState('Options'));
 
 				default: FlxG.switchState(() -> new NewMenuState());
 			}
