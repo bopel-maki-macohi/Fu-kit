@@ -2,13 +2,7 @@
 
 Hi
 
-## Unreleased - 5/2026
-
-### World 1 Binary Remix
-
-### Chorus Kit 1
-
-### Misc
+## 2.1 - 5/4/2026
 
 - In the Story Mode and Freeplay the starting difficulty is now HARD
 - The main menu transition is faster when there is a (valid) starting entry

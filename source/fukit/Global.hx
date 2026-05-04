@@ -25,7 +25,7 @@ class Global
 	}
 
 	public static final kadeEngineVer:String = '1.4.2';
-	public static final fukitEngineVer:String = '3.0';
+	public static final fukitEngineVer:String = '2.1';
 
 	public static var watermarkText(get, never):String;
 
