@@ -249,10 +249,10 @@ class AssetFrontEnd
 		#end
 
 		#if FLX_STANDARD_ASSETS_DIRECTORY
-		return Paths.exists(id, type.toOpenFlType());
+		return Assets.exists(id, type.toOpenFlType());
 		#else
 		if (useOpenflAssets(id))
-			return Paths.exists(id, type.toOpenFlType());
+			return Assets.exists(id, type.toOpenFlType());
 		// Can't verify contents match expected type without
 		return sys.FileSystem.exists(getPath(id));
 		#end
