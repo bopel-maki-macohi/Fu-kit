@@ -1,10 +1,16 @@
 package fukit.data;
 
+enum abstract CharacterAtlasType(String) from String to String
+{
+	var animate = 'animate';
+	var sparrow = 'sparrow';
+}
+
 typedef CharacterJson =
 {
 	?textures:Array<String>,
 
-	atlasType:String,
+	atlasType:CharacterAtlasType,
 
 	animations:Array<CharacterJsonAnimation>,
 
@@ -12,7 +18,7 @@ typedef CharacterJson =
 	?offsetFiles:Array<String>,
 
 	?flipX:Bool,
-    ?dadVar:Float,
+	?dadVar:Float,
 }
 
 typedef CharacterJsonAnimation =

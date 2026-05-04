@@ -4,6 +4,14 @@ Hi
 
 ## Unreleased - 5/2026
 
+### World 1 Binary Remix
+
+### Chorus Kit 1
+
+### Misc
+
+- Added CHARACTER JSON PARSING
+
 ## 2.0.1 - 5/3/2026
 
 - Screenshot fancy preview is enabled in freeplay again

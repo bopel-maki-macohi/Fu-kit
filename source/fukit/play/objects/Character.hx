@@ -1,5 +1,7 @@
 package fukit.play.objects;
 
+import haxe.Json;
+import fukit.data.CharacterJson;
 import fukit.play.objects.ui.Note;
 import fukit.objects.FukitSprite;
 import lime.utils.Assets;
@@ -168,32 +170,10 @@ class Character extends FukitSprite
 
 				dadVar = 6.1;
 
-			case 'bf':
-				loadTexture(Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared'));
-
-				addByPrefix('idle', 'BF idle dance');
-				addByPrefix('singUP', 'BF NOTE UP0');
-				addByPrefix('singLEFT', 'BF NOTE LEFT0');
-				addByPrefix('singRIGHT', 'BF NOTE RIGHT0');
-				addByPrefix('singDOWN', 'BF NOTE DOWN0');
-				addByPrefix('singUPmiss', 'BF NOTE UP MISS');
-				addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS');
-				addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS');
-				addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS');
-				addByPrefix('hey', 'BF HEY!!');
-
-				addByPrefix('firstDeath', "BF dies");
-				addByPrefix('deathLoop', "BF Dead Loop", true);
-				addByPrefix('deathConfirm', "BF Dead confirm");
-
-				addByPrefix('scared', 'BF idle shaking');
-
-				playAnim('idle');
-
-				flipX = true;
+			default: parseCharacterJson(curCharacter);
 		}
 
-		parseOffsets(character);
+		parseOffsets(curCharacter);
 
 		for (animName in getAnimList())
 			if (animOffsets[animName] == null)
@@ -294,5 +274,96 @@ class Character extends FukitSprite
 	override public function parseOffsets(path:String)
 	{
 		super.parseOffsets('characters/$path');
+	}
+
+	public function parseCharacterJson(character:String)
+	{
+		var path:String = Paths.json('characters/$character');
+
+		if (!Assets.exists(path))
+		{
+			trace('$character has no json at $path');
+			return;
+		}
+
+		var data:CharacterJson = null;
+
+		try
+		{
+			data = Json.parse(Assets.getText(path));
+		}
+		catch (e)
+		{
+			FlxG.stage.window.alert('$e', 'Character JSON Parsing Error');
+			return;
+		}
+
+		if (data.textures == null)
+			return;
+		if (data.animations == null)
+			return;
+		if (data.atlasType == null)
+			return;
+
+		if (data.offsetFiles == null)
+			data.offsetFiles = [character];
+
+		var textures:Array<FlxAtlasFrames> = [];
+
+		var atlasType = data.atlasType;
+		for (texturePath in data.textures)
+		{
+			var FAF:FlxAtlasFrames = null;
+
+			switch (atlasType)
+			{
+				case animate: FAF = Paths.getAnimateAtlas(texturePath);
+				case sparrow: FAF = Paths.getSparrowAtlas(texturePath);
+			}
+
+			if (FAF != null)
+				textures.push(FAF);
+		}
+
+		loadTextures(textures);
+
+		for (animData in data.animations)
+		{
+			if (animData.name == null)
+				continue;
+
+			final animateAnim:Bool = atlasType == animate && animData.framelabel != null;
+			final sparrowAnim:Bool = atlasType == sparrow && animData.prefix != null;
+
+			if (animData.indices != null)
+			{
+				if (animateAnim)
+					anim.addByFrameLabelIndices(animData.name, animData.framelabel, animData.indices, 24, animData?.looping ?? false);
+				else if (sparrowAnim)
+					anim.addByIndices(animData.name, animData.prefix, animData.indices, '', 24, animData?.looping ?? false);
+			}
+			else
+			{
+				if (animateAnim)
+					addByFrameLabel(animData.name, animData.framelabel, 24, animData?.looping ?? false);
+				else if (sparrowAnim)
+					addByPrefix(animData.name, animData.prefix, 24, animData?.looping ?? false);
+			}
+		}
+
+		this.flipX = data?.flipX ?? false;
+		this.dadVar = data?.dadVar ?? 4;
+
+		for (offsetFile in data.offsetFiles)
+			parseOffsets(offsetFile);
+
+		if (data.dadStartingCamPosOffsets != null)
+		{
+			if (data.dadStartingCamPosOffsets.length >= 1)
+				dadStartingCamPosOffsets.x += data.dadStartingCamPosOffsets[0];
+
+			if (data.dadStartingCamPosOffsets.length > 1)
+				dadStartingCamPosOffsets.y += data.dadStartingCamPosOffsets[1];
+		}
 	}
 }
