@@ -1,24 +1,14 @@
-# Misc
+# Misc (Pre-update work)
 
 - Character JSONS
-    - Character Registry to replace `characterList.txt`
-
-- Re-export as animate atlases
-    - Arpe
-    - Arpe-worried
-    - Arpe-withered
-    - Folir
-    - Folir-Pissed
-    - Girlfriend
-        - Only dance, cheer, and sing anims
-    - Daddy Dearest
-
-# 2.5
+  - Character Registry to replace `characterList.txt`
 
 - Discord RPC
 - Customizable Keybinds
 
 - Marathon Mode (Forgot it for v2)
+
+# 2.5
 
 ## Chorus Kit 1
 
@@ -65,7 +55,7 @@
 - Uncept Song
 
 - Running Executable Song
-    - Ends with them all in lava
+  - Ends with them all in lava
 
 - End Task Song
 
@@ -75,7 +65,7 @@
 - Uncept Chart
 
 - Running Executable Chart
-    - Mechanic: Avoid Termination Notes
+  - Mechanic: Avoid Termination Notes
 
 - End Task Chart
 
@@ -85,9 +75,9 @@
 - Uncept Char
 
 - Running Executable RD Char
-    - Fake running: Cut off legs
+  - Fake running: Cut off legs
 - Running Executable BF Char
-    - Fake running: Cut off legs
+  - Fake running: Cut off legs
 
 - End Task Char
 
@@ -105,8 +95,8 @@
 - Funny Business Chart
 
 - Comedy Show Chart
-    - Middle scroll
-    - Player sings for both BF & Tril
+  - Middle scroll
+  - Player sings for both BF & Tril
 
 - Funny Money Chart
 
@@ -130,4 +120,3 @@
 - Folir Chill Char
 
 - Grass World Stage BG But Arpe is there (as gf)
-
