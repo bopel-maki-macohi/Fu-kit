@@ -62,6 +62,9 @@ class NewStoryMode extends MusicBeatSubstate
 		difficultyMenuList.regenItems();
 		difficultyMenuList.x = -FlxG.width;
 
+		difficultyMenuList.curSelect = difficultyMenuList.itemKeys.indexOf('HARD');
+		difficultyMenuList.onSelectionChange.dispatch();
+
 		worldsMenuList = new MenuList(Horizontal);
 
 		worldsMenuList.addItem = item -> Global.addTextMenuListItem(worldsMenuList, item, 0, 0);

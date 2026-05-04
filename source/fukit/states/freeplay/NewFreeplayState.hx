@@ -93,6 +93,9 @@ class NewFreeplayState extends MusicBeatSubstate
 
 		songMenuList.regenItems();
 		difficultyMenuList.regenItems();
+		
+		difficultyMenuList.curSelect = difficultyMenuList.itemKeys.indexOf('HARD');
+		difficultyMenuList.onSelectionChange.dispatch();
 
 		scoreBox.x = FlxG.width + scoreBox.width;
 		scoreBox.y = FlxG.height - scoreBox.height;

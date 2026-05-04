@@ -10,7 +10,8 @@ Hi
 
 ### Misc
 
-- The main menu transition is faster when there is a starting entry
+- In the Story Mode and Freeplay the starting difficulty is now HARD
+- The main menu transition is faster when there is a (valid) starting entry
 - Characters bop with the countdown again
 - Re-exported the following as animate atlases (offsets might've changed):
     - Arpe
