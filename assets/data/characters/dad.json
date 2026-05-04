@@ -1,28 +1,28 @@
 {
     "textures": [
-        "characters/misc/dad"
+        "characters/father"
     ],
     "atlasType": "animate",
     "animations": [
         {
             "name": "idle",
-            "framelabel": "idle"
+            "framelabel": "Idle"
         },
         {
             "name": "singLEFT",
-            "framelabel": "singLEFT"
+            "framelabel": "Left"
         },
         {
             "name": "singDOWN",
-            "framelabel": "singDOWN"
+            "framelabel": "Down"
         },
         {
             "name": "singUP",
-            "framelabel": "singUP"
+            "framelabel": "Up"
         },
         {
             "name": "singRIGHT",
-            "framelabel": "singRIGHT"
+            "framelabel": "Right"
         }
     ],
     "dadStartingCamPosOffsets": [

@@ -59,42 +59,6 @@ class Character extends FukitSprite
 
 		switch (curCharacter)
 		{
-			case 'gf':
-				// GIRLFRIEND CODE
-				loadTexture(Paths.getSparrowAtlas('characters/GF_assets'));
-
-				addByPrefix('cheer', 'GF Cheer');
-				addByPrefix('singLEFT', 'GF left note');
-				addByPrefix('singRIGHT', 'GF Right Note');
-				addByPrefix('singUP', 'GF Up Note');
-				addByPrefix('singDOWN', 'GF Down Note');
-				anim.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], '', 24, false);
-				anim.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], '', 24, false);
-				anim.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], '', 24, false);
-				anim.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], '', 24, false);
-				anim.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], '', 24, false);
-				addByPrefix('scared', 'GF FEAR');
-
-				playAnim('danceRight');
-
-				if (PlayState.isStoryMode)
-					dadStartingCamPosOffsets.x += 600;
-
-			case 'dad':
-				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST'));
-
-				addByPrefix('idle', 'Dad idle dance');
-				addByPrefix('singUP', 'Dad Sing Note UP');
-				addByPrefix('singRIGHT', 'Dad Sing Note RIGHT');
-				addByPrefix('singDOWN', 'Dad Sing Note DOWN');
-				addByPrefix('singLEFT', 'Dad Sing Note LEFT');
-
-				playAnim('idle');
-
-				dadStartingCamPosOffsets.x += 400;
-
-				dadVar = 6.1;
-
 			default: parseCharacterJson(curCharacter);
 		}
 
