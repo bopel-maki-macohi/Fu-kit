@@ -1,0 +1,38 @@
+{
+    "texture": "characters/gf",
+    "atlasType": "animate",
+    "animations": [
+        {
+            "name": "danceLeft",
+            "framelabel": "danceLeft"
+        },
+        {
+            "name": "danceRight",
+            "framelabel": "danceRight"
+        },
+        {
+            "name": "cheer",
+            "framelabel": "cheer"
+        },
+        {
+            "name": "singLEFT",
+            "framelabel": "singLEFT"
+        },
+        {
+            "name": "singDOWN",
+            "framelabel": "singDOWN"
+        },
+        {
+            "name": "singUP",
+            "framelabel": "singUP"
+        },
+        {
+            "name": "singRIGHT",
+            "framelabel": "singRIGHT"
+        }
+    ],
+    "dadStartingCamPosOffsets": [
+        600,
+        0
+    ]
+}

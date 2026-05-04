@@ -1,0 +1,60 @@
+{
+    "texture": "characters/bf",
+    "atlasType": "animate",
+    "flipX": true,
+    "animations": [
+        {
+            "name": "idle",
+            "framelabel": "idle"
+        },
+        {
+            "name": "singLEFT",
+            "framelabel": "singLEFT"
+        },
+        {
+            "name": "singDOWN",
+            "framelabel": "singDOWN"
+        },
+        {
+            "name": "singUP",
+            "framelabel": "singUP"
+        },
+        {
+            "name": "singRIGHT",
+            "framelabel": "singRIGHT"
+        },
+        {
+            "name": "singLEFTmiss",
+            "framelabel": "singLEFTmiss"
+        },
+        {
+            "name": "singDOWNmiss",
+            "framelabel": "singDOWNmiss"
+        },
+        {
+            "name": "singUPmiss",
+            "framelabel": "singUPmiss"
+        },
+        {
+            "name": "singRIGHTmiss",
+            "framelabel": "singRIGHTmiss"
+        },
+        {
+            "name": "hey",
+            "framelabel": "hey"
+        },
+        {
+            "name": "firstDeath",
+            "framelabel": "firstDeath"
+        },
+        {
+            "name": "deathLoop",
+            "framelabel": "deathLoop",
+            "looping": true
+        },
+        {
+            "name": "deathConfirm",
+            "framelabel": "deathConfirm"
+        }
+    ]
+}
