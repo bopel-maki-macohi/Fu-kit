@@ -24,13 +24,13 @@ class Paths
 
 		if (currentLevel != null)
 		{
-			var levelPath = getLibraryPathForce(file, currentLevel);
+			var levelPath = getLibraryPath(file, currentLevel);
 			if (exists(levelPath))
 				return levelPath;
 		}
 
-		var fukitPath = getLibraryPathForce(file, 'fu-kit');
-		var sharedPath = getLibraryPathForce(file, 'shared');
+		var fukitPath = getLibraryPath(file, 'fu-kit');
+		var sharedPath = getLibraryPath(file, 'shared');
 
 		if (exists(fukitPath))
 			return fukitPath;
