@@ -1,7 +1,6 @@
 {
     "textures": [
-        "characters/arpe/withered",
-        "characters/arpe/withered_alts"
+        "characters/arpe/withered"
     ],
     "atlasType": "animate",
     "animations": [
