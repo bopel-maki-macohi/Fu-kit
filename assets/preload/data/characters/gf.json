@@ -1,5 +1,8 @@
 {
-    "texture": "characters/gf",
+    "textures": [
+        "characters/gf_og/regular",
+        "characters/gf_og/singing"
+    ],
     "atlasType": "animate",
     "animations": [
         {

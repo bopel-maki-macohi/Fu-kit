@@ -1,7 +1,7 @@
 {
     "textures": [
-        "characters/bf",
-        "characters/bf-dead"
+        "characters/bf_og/regular",
+        "characters/bf_og/dead"
     ],
     "atlasType": "animate",
     "flipX": true,

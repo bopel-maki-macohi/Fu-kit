@@ -1,5 +1,5 @@
 {
-    "texture": "characters/folir",
+    "texture": "characters/folir/regular",
     "atlasType": "animate",
     "animations": [
         {

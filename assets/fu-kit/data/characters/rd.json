@@ -1,5 +1,5 @@
 {
-    "texture": "characters/rd",
+    "texture": "characters/rd/regular",
     "atlasType": "animate",
     "animations": [
         {
