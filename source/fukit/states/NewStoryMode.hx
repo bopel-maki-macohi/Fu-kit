@@ -1,4 +1,4 @@
-package fukit.states.storymode;
+package fukit.states;
 
 import fukit.objects.FukitSprite;
 import flixel.FlxObject;

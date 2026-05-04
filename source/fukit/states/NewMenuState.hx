@@ -1,7 +1,6 @@
 package fukit.states;
 
 import fukit.objects.FukitSprite;
-import fukit.states.storymode.NewStoryMode;
 import fukit.states.freeplay.NewFreeplayState;
 import flixel.util.FlxTimer;
 import flixel.FlxSubState;
@@ -60,6 +59,7 @@ class NewMenuState extends MusicBeatState
 		menuList = new MenuList(Vertical);
 
 		menuList.addEntry('Story Mode', storymodeOption);
+		menuList.addEntry('Marathon Mode', marathonOption);
 		menuList.addEntry('Freeplay', freeplayOption);
 		menuList.addEntry('Options', optionsOption);
 		menuList.addEntry('Exit', exitOption);
@@ -101,6 +101,13 @@ class NewMenuState extends MusicBeatState
 		super.beatHit();
 
 		logo.anim.play('logoBumpin');
+	}
+
+	function marathonOption()
+	{
+		FlxG.sound.play(Paths.sound('confirmMenu'));
+		transitionTweens(false);
+		openSubState(new MarathonModeState());
 	}
 
 	function storymodeOption()
