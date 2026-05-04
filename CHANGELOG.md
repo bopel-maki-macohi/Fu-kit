@@ -10,6 +10,8 @@ Hi
 
 ### Misc
 
+- The crash handler now includes the build date in the crash log
+
 - Removed asset librarys
     - No more `assets/shared`, `assets/fu-kit`, `assets/preload`, its all `assets/`
 - Fixed Crash Handler Crashes when trying to get the current substate

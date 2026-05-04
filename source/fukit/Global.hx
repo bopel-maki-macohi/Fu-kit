@@ -17,11 +17,11 @@ class Global
 		return Application.current.meta.get('version');
 	}
 
-	public static var buildModVer(get, never):String;
+	public static var buildDate(get, never):String;
 
-	static function get_buildModVer():String
+	static function get_buildDate():String
 	{
-		return '$modVer ${BuildDate.generate()}';
+		return BuildDate.generate();
 	}
 
 	public static final kadeEngineVer:String = '1.4.2';

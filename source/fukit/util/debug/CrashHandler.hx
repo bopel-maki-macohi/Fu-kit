@@ -72,6 +72,7 @@ class CrashHandler
 		errorMessage += '\n$spacing\n';
 
 		errorMessage += 'Mod version: ${Global.watermarkText}\n\n';
+		errorMessage += ' - Build Date: ${Global.buildDate}\n\n';
 		
 		if (FlxG?.state != null)
 			errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state))?.replace('.', '/') + '.hx' ?? 'None (how tf)'}\n';
