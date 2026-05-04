@@ -7,11 +7,10 @@ Turn your volume down to like half or a fourth.
 
 This mod is me just saying fuck it and going WILD.
 
-## Specs
+## Credits
 
-Base Engine: Kade Engine 1.4.2
-
-Developer(s): Maki
+Maki - Programming, Art, Animation, Music Design
+Kade Dev - Kade Engine 1.4.2 & 1.5
 
 ## Compiling
 
