@@ -59,5 +59,9 @@
             "name": "deathConfirm",
             "framelabel": "Death Confirm"
         }
+    ],
+    "generalOffsets": [
+        17,
+        32
     ]
 }

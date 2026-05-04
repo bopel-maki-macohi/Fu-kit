@@ -44,6 +44,7 @@ class Character extends FukitSprite
 
 	public var dadStartingCamPosOffsets:FlxPoint;
 	public var camFocusPosOffsets:FlxPoint;
+	public var generalOffsets:FlxPoint;
 
 	public function setCharacter(character:String = 'bf', isPlayer:Bool = false)
 	{
@@ -54,6 +55,7 @@ class Character extends FukitSprite
 
 		camFocusPosOffsets = FlxPoint.weak(0, 0);
 		dadStartingCamPosOffsets = FlxPoint.weak(0, 0);
+		generalOffsets = FlxPoint.weak(0, 0);
 
 		switch (curCharacter)
 		{
@@ -305,7 +307,7 @@ class Character extends FukitSprite
 		if (data.atlasType == null)
 			return;
 
-		if (data.offsetFiles == null)
+		if (data.offsetFiles == null || data.offsetFiles == [])
 			data.offsetFiles = [character];
 
 		var textures:Array<FlxAtlasFrames> = [];
@@ -365,5 +367,28 @@ class Character extends FukitSprite
 			if (data.dadStartingCamPosOffsets.length > 1)
 				dadStartingCamPosOffsets.y += data.dadStartingCamPosOffsets[1];
 		}
+
+		if (data.camFocusPosOffsets != null)
+		{
+			if (data.camFocusPosOffsets.length >= 1)
+				camFocusPosOffsets.x += data.camFocusPosOffsets[0];
+
+			if (data.camFocusPosOffsets.length > 1)
+				camFocusPosOffsets.y += data.camFocusPosOffsets[1];
+		}
+
+		if (data.generalOffsets != null)
+		{
+			if (data.generalOffsets.length >= 1)
+				generalOffsets.x += data.generalOffsets[0];
+
+			if (data.generalOffsets.length > 1)
+				generalOffsets.y += data.generalOffsets[1];
+		}
+	}
+
+	override function addOffset(name:String, x:Float = 0, y:Float = 0)
+	{
+		super.addOffset(name, x + generalOffsets.x, y + generalOffsets.y);
 	}
 }

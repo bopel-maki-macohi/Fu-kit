@@ -15,6 +15,8 @@ typedef CharacterJson =
 	animations:Array<CharacterJsonAnimation>,
 
 	?dadStartingCamPosOffsets:Array<Float>,
+	?generalOffsets:Array<Float>,
+	?camFocusPosOffsets:Array<Float>,
 	?offsetFiles:Array<String>,
 
 	?flipX:Bool,
