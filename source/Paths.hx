@@ -20,6 +20,9 @@ class Paths
 
 	static function getPath(file:String, library:Null<String>)
 	{
+		if (currentLevel == null)
+			setCurrentLevel('fu-kit');
+
 		if (library != null)
 			return getLibraryPath(file, library);
 
