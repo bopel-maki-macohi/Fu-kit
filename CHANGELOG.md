@@ -2,7 +2,7 @@
 
 Hi
 
-## 2.0 - 5/2026
+## 2.0 - 5/3/2026
 
 - Added Focus State before you startup the game, this fixes some things related to focus at a specific time
 
