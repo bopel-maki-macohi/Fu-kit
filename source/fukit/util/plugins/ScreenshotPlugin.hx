@@ -103,8 +103,9 @@ class ScreenshotPlugin extends FlxBasic
 		if (Std.isOfType(FlxG.state, PlayState))
 			fancyPreviewEnabled = false;
 
-		if (Std.isOfType(FlxG.state?.subState, NewFreeplayState))
-			fancyPreviewEnabled = false;
+		// why?
+		// if (Std.isOfType(FlxG.state?.subState, NewFreeplayState))
+		// 	fancyPreviewEnabled = false;
 
 		if (fancyPreviewEnabled)
 			showFancyPreview(data);

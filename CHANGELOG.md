@@ -2,8 +2,9 @@
 
 Hi
 
-## Unreleased
+## Unreleased - 5/3/2026
 
+- Screenshot fancy preview is enabled in freeplay again
 - Fixed crashes with tweens
 - 2.0 changelog now has a fixed date
 
