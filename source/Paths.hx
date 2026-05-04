@@ -20,9 +20,6 @@ class Paths
 
 	static function getPath(file:String, library:Null<String>)
 	{
-		if (currentLevel == null)
-			setCurrentLevel('fu-kit');
-
 		if (library != null)
 			return getLibraryPath(file, library);
 
@@ -33,7 +30,11 @@ class Paths
 				return levelPath;
 		}
 
+		var fukitPath = getLibraryPathForce(file, 'fu=kit');
 		var sharedPath = getLibraryPathForce(file, 'shared');
+
+		if (OpenFlAssets.exists(fukitPath))
+			return fukitPath;
 
 		if (OpenFlAssets.exists(sharedPath))
 			return sharedPath;
