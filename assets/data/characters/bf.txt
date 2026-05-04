@@ -1,0 +1,3 @@
+deathConfirm 22 15
+deathLoop 22 15
+firstDeath 22 15
