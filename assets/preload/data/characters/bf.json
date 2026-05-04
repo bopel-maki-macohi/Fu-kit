@@ -44,20 +44,20 @@
         },
         {
             "name": "hey",
-            "framelabel": "hey"
+            "framelabel": "Hey"
         },
         {
             "name": "firstDeath",
-            "framelabel": "firstDeath"
+            "framelabel": "Death Intro"
         },
         {
             "name": "deathLoop",
-            "framelabel": "deathLoop",
+            "framelabel": "Death Loop",
             "looping": true
         },
         {
             "name": "deathConfirm",
-            "framelabel": "deathConfirm"
+            "framelabel": "Death Confirm"
         }
     ]
 }
