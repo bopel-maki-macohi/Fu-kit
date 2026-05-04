@@ -9,7 +9,6 @@
     - Arpe-withered
     - Folir
     - Folir-Pissed
-    - Boyfriend
     - Girlfriend
         - Only dance, cheer, and sing anims
     - Daddy Dearest

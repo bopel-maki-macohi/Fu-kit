@@ -95,6 +95,9 @@ class InitState extends FlxState
 
 		FlxG.stage.window.title = Global.watermarkText.split('/')[0].trim();
 
+		if (DefineMacro.defined('debug'))
+			FlxG.stage.window.title += ' (${Global.buildDate})';
+
 		FlxG.switchState(() -> new FocusState());
 	}
 
