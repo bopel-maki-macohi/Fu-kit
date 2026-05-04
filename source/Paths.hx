@@ -43,7 +43,7 @@ class Paths
 
 	public static function exists(path:String)
 	{
-		return Assets.exists(path) || FileSystem.exists(path.split(':')[1]);
+		return Assets.exists(path) || FileSystem.exists(path?.split(':')[1] ?? '');
 	}
 
 	static public function getLibraryPath(file:String, library = "preload")
