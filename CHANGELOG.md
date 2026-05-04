@@ -10,6 +10,16 @@ Hi
 
 ### Misc
 
+- Re-exported the following as animate atlases
+    - Arpe
+    - Arpe-worried
+    - Arpe-withered
+    - Folir
+    - Folir-Pissed
+    - Girlfriend
+        - Only dance, cheer, and sing anims
+    - Daddy Dearest
+    - (RD Was already an atlas)
 - The crash handler now includes the build type (debug or release, maybe more stuff l8r down the line) in the crash log
 - The crash handler now includes the build date in the crash log
 
