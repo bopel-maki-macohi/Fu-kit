@@ -27,13 +27,21 @@ class MarathonModeState extends MusicBeatSubstate
 		difficultyMenuList.curSelect = difficultyMenuList.itemKeys.indexOf('HARD');
 		difficultyMenuList.onSelectionChange.dispatch();
 
+		difficultyMenuList.canSelect = false;
 		FlxTween.tween(difficultyMenuList, {y: -(FlxG.height / 4)}, 1, {
 			ease: FlxEase.expoInOut,
+			onComplete: t ->
+			{
+				difficultyMenuList.canSelect = true;
+			}
 		});
 	}
 
 	override function update(elapsed:Float)
 	{
+		if (controls.BACK && difficultyMenuList.canSelect)
+			leave();
+
 		super.update(elapsed);
 	}
 
