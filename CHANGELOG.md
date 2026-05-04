@@ -4,6 +4,7 @@ Hi
 
 ## Unreleased
 
+- Fixed crashes with tweens
 - 2.0 changelog now has a fixed date
 
 ## 2.0 - 5/3/2026
