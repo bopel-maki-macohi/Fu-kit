@@ -74,12 +74,12 @@ class Paths
 
 	inline static public function voices(song:String)
 	{
-		return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
+		return getPath('songs/${song.toLowerCase()}/Voices.$SOUND_EXT');
 	}
 
 	inline static public function inst(song:String)
 	{
-		return 'songs:assets/songs/${song.toLowerCase()}/Inst.$SOUND_EXT';
+		return getPath('songs/${song.toLowerCase()}/Inst.$SOUND_EXT');
 	}
 
 	inline static public function image(key:String)
