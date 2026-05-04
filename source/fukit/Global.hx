@@ -1,12 +1,12 @@
 package fukit;
 
+import fukit.util.macros.BuildDate;
 import fukit.play.PlayStateSwitcher;
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import fukit.states.ui.MenuList;
 import lime.app.Application;
 import flixel.FlxG;
-import flixel.util.FlxTimer;
 
 class Global
 {
@@ -15,6 +15,13 @@ class Global
 	static function get_modVer():String
 	{
 		return Application.current.meta.get('version');
+	}
+
+	public static var buildModVer(get, never):String;
+
+	static function get_buildModVer():String
+	{
+		return '$modVer ${BuildDate.generate()}';
 	}
 
 	public static final kadeEngineVer:String = '1.4.2';
