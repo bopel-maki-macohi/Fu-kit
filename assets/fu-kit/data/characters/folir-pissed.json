@@ -1,5 +1,7 @@
 {
-    "texture": "characters/folir/pissed",
+    "textures": [
+        "characters/folir/pissed"
+    ],
     "atlasType": "animate",
     "animations": [
         {

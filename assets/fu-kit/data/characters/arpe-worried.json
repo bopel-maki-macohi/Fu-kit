@@ -1,5 +1,7 @@
 {
-    "texture": "characters/arpe/worried",
+    "textures": [
+        "characters/arpe/worried"
+    ],
     "atlasType": "animate",
     "animations": [
         {

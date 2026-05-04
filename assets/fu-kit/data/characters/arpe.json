@@ -1,5 +1,7 @@
 {
-    "texture": "characters/arpe/regular",
+    "textures": [
+        "characters/arpe/regular"
+    ],
     "atlasType": "animate",
     "animations": [
         {

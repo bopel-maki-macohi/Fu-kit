@@ -1,5 +1,7 @@
 {
-    "texture": "characters/misc/dad",
+    "textures": [
+        "characters/misc/dad"
+    ],
     "atlasType": "animate",
     "animations": [
         {
