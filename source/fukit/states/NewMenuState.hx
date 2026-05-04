@@ -50,7 +50,7 @@ class NewMenuState extends MusicBeatState
 		backdrop.antialiasing = false;
 
 		blackBox = new FukitSprite();
-		blackBox.makeGraphic(240, 340, FlxColor.BLACK);
+		blackBox.makeGraphic(240, 320, FlxColor.BLACK);
 		blackBox.screenCenter();
 		blackBox.alpha = .3;
 
@@ -59,12 +59,11 @@ class NewMenuState extends MusicBeatState
 		menuList = new MenuList(Vertical);
 
 		menuList.addEntry('Story Mode', storymodeOption);
-		menuList.addEntry('Marathon Mode', marathonOption);
 		menuList.addEntry('Freeplay', freeplayOption);
 		menuList.addEntry('Options', optionsOption);
 		menuList.addEntry('Exit', exitOption);
 
-		menuList.addItem = item -> Global.addTextMenuListItem(menuList, item, blackBox.y - 20, blackBox.x);
+		menuList.addItem = item -> Global.addTextMenuListItem(menuList, item, blackBox.y, blackBox.x);
 		menuList.onSelectionChange.add(() -> Global.onTextSelectionChange(menuList));
 
 		menuList.regenItems();
@@ -101,13 +100,6 @@ class NewMenuState extends MusicBeatState
 		super.beatHit();
 
 		logo.anim.play('logoBumpin');
-	}
-
-	function marathonOption()
-	{
-		FlxG.sound.play(Paths.sound('confirmMenu'));
-		transitionTweens(false);
-		openSubState(new MarathonModeState());
 	}
 
 	function storymodeOption()

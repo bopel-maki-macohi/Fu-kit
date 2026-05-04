@@ -124,7 +124,6 @@ class InitState extends FlxState
 				case 'story', 'storymode', 'storymenu', 'story mode', 'story menu': FlxG.switchState(() -> new NewMenuState('Story Mode'));
 				case 'freeplay', 'free play': FlxG.switchState(() -> new NewMenuState('Freeplay'));
 				case 'settings', 'options', 'config', 'configurations': FlxG.switchState(() -> new NewMenuState('Options'));
-				case 'marathon', 'marathon mode': FlxG.switchState(() -> new NewMenuState('Marathon Mode'));
 
 				default: FlxG.switchState(() -> new NewMenuState());
 			}
