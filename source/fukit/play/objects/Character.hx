@@ -280,7 +280,7 @@ class Character extends FukitSprite
 	{
 		var path:String = Paths.json('characters/$character');
 
-		if (!Assets.exists(path))
+		if (!Paths.exists(path))
 		{
 			trace('$character has no json at $path');
 			return;

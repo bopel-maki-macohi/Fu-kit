@@ -50,7 +50,7 @@ class SongListManager
 		var songListPath:String = Paths.json('songs/songList', 'fu-kit');
 		trace(songListPath);
 
-		if (!Assets.exists(songListPath))
+		if (!Paths.exists(songListPath))
 			return;
 
 		try

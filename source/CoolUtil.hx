@@ -24,7 +24,7 @@ class CoolUtil
 
 	public static function coolTextFile(path:String):Array<String>
 	{
-		if (!Assets.exists(path))
+		if (!Paths.exists(path))
 		{
 			trace('$path doesnt exist');
 			return [];

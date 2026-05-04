@@ -45,7 +45,7 @@ class Song
 		var chartPath:String = Paths.json('songs/' + folder.toLowerCase() + '/' + jsonInput.toLowerCase());
 
 		trace(chartPath);
-		if (!Assets.exists(chartPath))
+		if (!Paths.exists(chartPath))
 			return null;
 
 		var rawJson = Assets.getText(chartPath).trim();

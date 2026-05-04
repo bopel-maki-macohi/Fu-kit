@@ -52,7 +52,7 @@ class FukitSprite extends FlxAnimate
 	{
 		final path:String = Paths.txt('$path');
 
-		if (!Assets.exists(path))
+		if (!Paths.exists(path))
 			return;
 
 		var parsed:Array<String> = CoolUtil.coolTextFile(path);
