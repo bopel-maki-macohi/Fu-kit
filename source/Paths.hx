@@ -19,25 +19,6 @@ class Paths
 
 	static function getPath(file:String, library:Null<String>)
 	{
-		if (library != null)
-			return getLibraryPath(file, library);
-
-		if (currentLevel != null)
-		{
-			var levelPath = getLibraryPath(file, currentLevel);
-			if (exists(levelPath))
-				return levelPath;
-		}
-
-		var fukitPath = getLibraryPath(file, 'fu-kit');
-		var sharedPath = getLibraryPath(file, 'shared');
-
-		if (exists(fukitPath))
-			return fukitPath;
-
-		if (exists(sharedPath))
-			return sharedPath;
-
 		return getPreloadPath(file);
 	}
 

@@ -10,7 +10,8 @@ Hi
 
 ### Misc
 
-- Removed librarys
+- Removed asset librarys
+    - No more `assets/shared`, `assets/fu-kit`, `assets/preload`, its all `assets/`
 - Fixed Crash Handler Crashes when trying to get the current substate
 - Added CHARACTER JSON PARSING
 
