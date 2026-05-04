@@ -1,3 +1,19 @@
+# Misc
+
+- Character JSONS
+    - Character Registry to replace `characterList.txt`
+
+- Re-export as animate atlases
+    - Arpe
+    - Arpe-worried
+    - Arpe-withered
+    - Folir
+    - Folir-Pissed
+    - Boyfriend
+    - Girlfriend
+        - Only dance, cheer, and sing anims
+    - Daddy Dearest
+
 # 2.5
 
 - Discord RPC

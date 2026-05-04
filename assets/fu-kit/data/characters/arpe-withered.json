@@ -1,0 +1,34 @@
+{
+    "texture": "characters/arpe",
+    "atlasType": "animate",
+    "animations": [
+        {
+            "name": "idle",
+            "framelabel": "idle"
+        },
+        {
+            "name": "singLEFT",
+            "framelabel": "singLEFT"
+        },
+        {
+            "name": "singDOWN",
+            "framelabel": "singDOWN"
+        },
+        {
+            "name": "singUP",
+            "framelabel": "singUP"
+        },
+        {
+            "name": "singRIGHT",
+            "framelabel": "singRIGHT"
+        }
+    ],
+    "dadStartingCamPosOffsets": [
+        202,
+        60
+    ],
+    "offsetFiles": [
+        "arpe",
+        "arpe-withered"
+    ]
+}
