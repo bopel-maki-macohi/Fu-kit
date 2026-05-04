@@ -17,7 +17,9 @@ class PlayStateSwitcher
 		var curSong:String = PlayState.SONG.song.toLowerCase();
 
 		FlxG.sound.cache(Paths.inst(curSong));
-		FlxG.sound.cache(Paths.voices(curSong));
+
+		if (PlayState.SONG.needsVoices)
+			FlxG.sound.cache(Paths.voices(curSong));
 
 		if (!allowCutscenes)
 			return target;
