@@ -16,7 +16,9 @@ Hi
             - Added Stage list dropdown
         - There is a player and opponent character there, they just boppin'
     - New Story Mode Menu : Stylized and world stages are there now
-    - New Freeplay Menu : It's stylized now and it's cool
+    - New Freeplay Menu
+        - It displays albums!
+        - It's stylized now and it's cool
     - New Options Menu
         - Added Ghost Tapping Option in the Gameplay Category, it's toggable now and it's off by default
         - The Watermark Option has been removed
