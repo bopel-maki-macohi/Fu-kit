@@ -72,8 +72,11 @@ class CrashHandler
 		errorMessage += '\n$spacing\n';
 
 		errorMessage += 'Mod version: ${Global.watermarkText}\n\n';
-		errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state)).replace('.', '/') + '.hx' ?? 'None (how tf)'}\n';
-		errorMessage += 'Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState)).replace('.', '/') + '.hx' ?? 'None'}\n';
+		
+		if (FlxG?.state != null)
+			errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state))?.replace('.', '/') + '.hx' ?? 'None (how tf)'}\n';
+		if (FlxG?.state?.subState != null)
+			errorMessage += 'Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState))?.replace('.', '/') + '.hx' ?? 'None'}\n';
 
 		errorMessage += '\n$spacing\n';
 

@@ -10,6 +10,7 @@ Hi
 
 ### Misc
 
+- Fixed Crash Handler Crashes when trying to get the current substate
 - Added CHARACTER JSON PARSING
 
 ## 2.0.1 - 5/3/2026
