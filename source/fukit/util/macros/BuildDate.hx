@@ -1,5 +1,6 @@
 package fukit.util.macros;
 
+import haxe.macro.Expr;
 class BuildDate
 {
     public static macro function generate():Expr
