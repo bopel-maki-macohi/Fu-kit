@@ -41,10 +41,7 @@ class NewMenuState extends MusicBeatState
 
 	override function create()
 	{
-		super.create();
-
 		backdrop = new FlxBackdrop(Paths.image('tile'));
-		add(backdrop);
 		backdrop.scale.set(6, 6);
 		backdrop.velocity.set(backdropXSpeed, backdropYSpeed);
 
@@ -56,13 +53,11 @@ class NewMenuState extends MusicBeatState
 		blackBox = new FukitSprite();
 		blackBox.makeGraphic(240, 320, FlxColor.BLACK);
 		blackBox.screenCenter();
-		add(blackBox);
 		blackBox.alpha = .3;
 
 		blackBox.y += 160;
 
 		menuList = new MenuList(Vertical);
-		add(menuList);
 
 		menuList.addEntry('Story Mode', storymodeOption);
 		menuList.addEntry('Freeplay', freeplayOption);
@@ -75,12 +70,21 @@ class NewMenuState extends MusicBeatState
 		menuList.regenItems();
 
 		logo = new Logo();
-		add(logo);
 
 		logo.screenCenter();
 		logo.y = -32;
 
 		persistentUpdate = true;
+
+		if (startingEntry != null && menuList.itemKeys.contains(startingEntry))
+			transIn.duration *= .25;
+
+		super.create();
+
+		add(backdrop);
+		add(blackBox);
+		add(menuList);
+		add(logo);
 
 		if (startingEntry != null)
 		{

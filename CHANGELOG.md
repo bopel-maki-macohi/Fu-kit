@@ -10,6 +10,7 @@ Hi
 
 ### Misc
 
+- The main menu transition is faster when there is a starting entry
 - Characters bop with the countdown again
 - Re-exported the following as animate atlases (offsets might've changed):
     - Arpe
