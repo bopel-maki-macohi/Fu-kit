@@ -47,7 +47,7 @@ class SongListManager
 		songList = [];
 		FreeplayAlbum.albums = [];
 
-		var songListPath:String = Paths.json('songs/songList', 'fu-kit');
+		var songListPath:String = Paths.json('songs/songList');
 		trace(songListPath);
 
 		if (!Paths.exists(songListPath))

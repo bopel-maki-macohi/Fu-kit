@@ -21,7 +21,7 @@ class GrassWorld extends StageComponent
 
 		sky = new FukitSprite(0, 0);
 		sky.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('0x33CCFF'));
-		ground = new FukitSprite(0, 0, Paths.image('stages/grassworld/ground', 'fu-kit'));
+		ground = new FukitSprite(0, 0, Paths.image('stages/grassworld/ground'));
 
 		sky.scale.set(2, 2);
 		sky.updateHitbox();

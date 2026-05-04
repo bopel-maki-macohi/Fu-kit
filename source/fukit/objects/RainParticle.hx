@@ -9,7 +9,7 @@ class RainParticle extends FlxParticle
 	{
 		super();
 
-		frames = Paths.getSparrowAtlas('stages/rain', 'fu-kit');
+		frames = Paths.getSparrowAtlas('stages/rain');
 		animation.addByPrefix('rain', 'rain', 0);
 
 		reset(0, 0);

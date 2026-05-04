@@ -22,7 +22,7 @@ class SplashTextState extends MusicBeatState
 
 		Conductor.changeBPM(75);
 
-		FlxG.sound.playMusic(Paths.music('StartupJingle', 'fu-kit'), 1.0, false);
+		FlxG.sound.playMusic(Paths.music('StartupJingle'), 1.0, false);
 		FlxG.sound.music.onComplete = onEnd;
 	}
 

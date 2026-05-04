@@ -110,7 +110,7 @@ class ScreenshotPlugin extends FlxBasic
 		if (fancyPreviewEnabled)
 			showFancyPreview(data);
 
-		FlxG.sound.play(Paths.sound('screenshot', 'shared'));
+		FlxG.sound.play(Paths.sound('screenshot'));
 	}
 
 	public function showFancyPreview(data:BitmapData)

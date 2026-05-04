@@ -8,7 +8,7 @@ class Logo extends FukitSprite
 	{
 		super();
 
-		loadTexture(Paths.getAnimateAtlas('UI/logo', 'fu-kit'));
+		loadTexture(Paths.getAnimateAtlas('UI/logo'));
 		addByFrameLabel('logoBumpin', 'logoBumpin');
 	}
 }

@@ -23,7 +23,7 @@ class HealthIcon extends FukitSprite
 
 	function makeBaseFuKitIcon(char:String, isPlayer:Bool = false)
 	{
-		loadGraphic(Paths.image('UI/icons/fu-kit_baseIcon', 'fu-kit'), true, 150, 150);
+		loadGraphic(Paths.image('UI/icons/fu-kit_baseIcon'), true, 150, 150);
 		anim.add(char, [0, 1], 0, false, isPlayer);
 
 		color = switch (char)

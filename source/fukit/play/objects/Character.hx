@@ -58,7 +58,7 @@ class Character extends FukitSprite
 		switch (curCharacter)
 		{
 			case 'rd':
-				loadTexture(Paths.getAnimateAtlas('characters/$curCharacter', 'fu-kit'));
+				loadTexture(Paths.getAnimateAtlas('characters/$curCharacter'));
 
 				addByFrameLabel('idle', 'idle');
 				addByFrameLabel('singLEFT', 'singLEFT');
@@ -71,7 +71,7 @@ class Character extends FukitSprite
 				playAnim('idle');
 
 			case 'folir':
-				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
+				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter'));
 
 				addByPrefix('idle', 'folir anim idle');
 				addByPrefix('singLEFT', 'folir anim left');
@@ -84,7 +84,7 @@ class Character extends FukitSprite
 				playAnim('idle');
 
 			case 'folir-pissed':
-				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
+				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter'));
 
 				addByPrefix('idle', 'folir pissed anim idle');
 				addByPrefix('singLEFT', 'folir pissed anim left');
@@ -97,7 +97,7 @@ class Character extends FukitSprite
 				playAnim('idle');
 
 			case 'arpe', 'arpe-worried':
-				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter', 'fu-kit'));
+				loadTexture(Paths.getSparrowAtlas('characters/$curCharacter'));
 
 				addByPrefix('idle', 'arpe anim idle');
 
@@ -114,8 +114,8 @@ class Character extends FukitSprite
 
 			case 'arpe-withered':
 				loadTextures([
-					Paths.getSparrowAtlas('characters/arpe-withered', 'fu-kit'),
-					Paths.getSparrowAtlas('characters/arpe-withered-alt', 'fu-kit')
+					Paths.getSparrowAtlas('characters/arpe-withered'),
+					Paths.getSparrowAtlas('characters/arpe-withered-alt')
 				]);
 
 				addByPrefix('idle', 'arpe anim idle');
@@ -136,7 +136,7 @@ class Character extends FukitSprite
 
 			case 'gf':
 				// GIRLFRIEND CODE
-				loadTexture(Paths.getSparrowAtlas('characters/GF_assets', 'shared'));
+				loadTexture(Paths.getSparrowAtlas('characters/GF_assets'));
 
 				addByPrefix('cheer', 'GF Cheer');
 				addByPrefix('singLEFT', 'GF left note');
@@ -156,7 +156,7 @@ class Character extends FukitSprite
 					dadStartingCamPosOffsets.x += 600;
 
 			case 'dad':
-				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST', 'shared'));
+				loadTexture(Paths.getSparrowAtlas('characters/DADDY_DEAREST'));
 
 				addByPrefix('idle', 'Dad idle dance');
 				addByPrefix('singUP', 'Dad Sing Note UP');

@@ -1277,12 +1277,12 @@ class ChartingState extends MusicBeatState
 				{
 					if (hitSoundPlayer && note.mustPress)
 					{
-						FlxG.sound.play(Paths.sound('CLAP', 'shared'));
+						FlxG.sound.play(Paths.sound('CLAP'));
 						hitSoundPlayer = false;
 					}
 					else if (hitSoundOpp && !note.mustPress)
 					{
-						FlxG.sound.play(Paths.sound('CLAP', 'shared'));
+						FlxG.sound.play(Paths.sound('CLAP'));
 						hitSoundOpp = false;
 					}
 				}

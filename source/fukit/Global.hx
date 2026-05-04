@@ -54,7 +54,7 @@ class Global
 			return;
 
 		Conductor.changeBPM(120);
-		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'));
+		FlxG.sound.playMusic(Paths.music('MainTheme'));
 	}
 
 	public static function addTextMenuListItem(menuList:MenuList, item:String, ?verticalOffset:Float = 0, ?horizontalOffset:Float = 0)

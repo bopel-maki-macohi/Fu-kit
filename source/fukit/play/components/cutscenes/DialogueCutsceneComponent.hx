@@ -29,7 +29,7 @@ class DialogueCutsceneComponent extends CutsceneComponent
 
 	public function makeMusic()
 	{
-		FlxG.sound.playMusic(Paths.music('MainTheme', 'fu-kit'), 0);
+		FlxG.sound.playMusic(Paths.music('MainTheme'), 0);
 		FlxG.sound.music.fadeIn(1, 0, 0.8);
 	}
 
