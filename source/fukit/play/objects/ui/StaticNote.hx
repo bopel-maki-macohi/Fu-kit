@@ -22,7 +22,7 @@ class StaticNote extends FukitSprite
 	{
 		var dir = ['left', 'down', 'up', 'right'];
 
-		loadTexture(Paths.getSparrowAtlas('NOTE_assets'));
+		loadTexture(Paths.getSparrowAtlas('UI/NOTE_assets'));
 		setGraphicSize(Std.int(width * 0.7));
 
 		addByPrefix('static', 'arrow${dir[ID].toUpperCase()}');

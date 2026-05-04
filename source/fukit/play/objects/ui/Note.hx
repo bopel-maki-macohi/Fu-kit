@@ -61,7 +61,7 @@ class Note extends FukitSprite
 		switch (daStage)
 		{
 			default:
-				loadTexture(Paths.getSparrowAtlas('NOTE_assets'));
+				loadTexture(Paths.getSparrowAtlas('UI/NOTE_assets'));
 
 				addByPrefix('greenScroll', 'green0');
 				addByPrefix('redScroll', 'red0');
