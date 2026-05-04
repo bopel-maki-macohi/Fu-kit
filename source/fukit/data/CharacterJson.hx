@@ -8,16 +8,20 @@ typedef CharacterJson =
 
 	animations:Array<CharacterJsonAnimation>,
 
-    ?dadStartingCamPosOffsets:Array<Float>,
+	?dadStartingCamPosOffsets:Array<Float>,
 	?offsetFiles:Array<String>,
+
+	?flipX:Bool,
+    ?dadVar:Float,
 }
 
-typedef CharacterJsonAnimation = {
-    name:String,
-    
-    ?framelabel:String,
-    ?prefix:String,
-    ?indices:Array<Int>,
+typedef CharacterJsonAnimation =
+{
+	name:String,
 
-    ?looping:Bool,
+	?framelabel:String,
+	?prefix:String,
+	?indices:Array<Int>,
+
+	?looping:Bool,
 }
