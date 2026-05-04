@@ -10,6 +10,7 @@ Hi
 
 ### Misc
 
+- Characters bop with the countdown again
 - Re-exported the following as animate atlases (offsets might've changed):
     - Arpe
     - Arpe-worried

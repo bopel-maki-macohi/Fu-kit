@@ -535,6 +535,10 @@ class PlayState extends MusicBeatState
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
+			gf.dance();
+			dad.dance();
+			boyfriend.dance();
+
 			if (swagCounter != 4)
 				onCountdownStep.dispatch(swagCounter);
 
