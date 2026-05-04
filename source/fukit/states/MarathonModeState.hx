@@ -53,6 +53,10 @@ class MarathonModeState extends MusicBeatSubstate
 
 		FlxTween.tween(difficultyMenuList, {y: -FlxG.height}, .5, {
 			ease: FlxEase.expoInOut,
+			onComplete: t ->
+			{
+				close();
+			}
 		});
 	}
 }
