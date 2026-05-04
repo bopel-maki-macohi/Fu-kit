@@ -1,4 +1,0 @@
-singUP-alt 80 40
-singLEFT-alt 60 -30
-singDOWN-alt -5 -190
-singRIGHT-alt 20 -30
