@@ -18,7 +18,7 @@ class Paths
 		currentLevel = name.toLowerCase();
 	}
 
-	static function getPath(file:String, library:Null<String> = 'shared')
+	static function getPath(file:String, library:Null<String>)
 	{
 		if (library != null)
 			return getLibraryPath(file, library);
