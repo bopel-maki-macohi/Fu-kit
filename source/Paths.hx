@@ -30,7 +30,7 @@ class Paths
 				return levelPath;
 		}
 
-		var fukitPath = getLibraryPathForce(file, 'fu=kit');
+		var fukitPath = getLibraryPathForce(file, 'fu-kit');
 		var sharedPath = getLibraryPathForce(file, 'shared');
 
 		if (OpenFlAssets.exists(fukitPath))
