@@ -1,5 +1,6 @@
 package;
 
+import sys.FileSystem;
 import animate.FlxAnimateFrames;
 import lime.utils.Assets;
 import flixel.FlxG;
@@ -24,20 +25,25 @@ class Paths
 		if (currentLevel != null)
 		{
 			var levelPath = getLibraryPathForce(file, currentLevel);
-			if (Assets.exists(levelPath))
+			if (exists(levelPath))
 				return levelPath;
 		}
 
 		var fukitPath = getLibraryPathForce(file, 'fu-kit');
 		var sharedPath = getLibraryPathForce(file, 'shared');
 
-		if (Assets.exists(fukitPath))
+		if (exists(fukitPath))
 			return fukitPath;
 
-		if (Assets.exists(sharedPath))
+		if (exists(sharedPath))
 			return sharedPath;
 
 		return getPreloadPath(file);
+	}
+
+	public static function exists(path:String)
+	{
+		return Assets.exists(path) || FileSystem.exists(path.split(':')[1]);
 	}
 
 	static public function getLibraryPath(file:String, library = "preload")
@@ -150,7 +156,7 @@ class Paths
 		var graphicKey:String = Paths.animateAtlas(key, library);
 
 		// Validate asset path.
-		if (!Assets.exists('${graphicKey}/Animation.json'))
+		if (!exists('${graphicKey}/Animation.json'))
 			throw 'No Animation.json file exists at the specified path (${graphicKey})';
 
 		return FlxAnimateFrames.fromAnimate(graphicKey);
