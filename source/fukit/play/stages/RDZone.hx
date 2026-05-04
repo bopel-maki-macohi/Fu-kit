@@ -42,7 +42,6 @@ class RDZone extends StageComponent
 
 		game.camFollow.screenCenter(X);
 
-		game.dad.y += 120;
 		game.dad.x -= 360;
 
 		game.boyfriend.x += 360;

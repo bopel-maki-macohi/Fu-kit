@@ -27,9 +27,10 @@
     ],
     "dadStartingCamPosOffsets": [
         202,
-        60
+        -60
     ],
-    "offsetFiles": [
-        "arpe"
+    "generalOffsets": [
+        0,
+        -80
     ]
 }

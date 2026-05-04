@@ -10,7 +10,7 @@ Hi
 
 ### Misc
 
-- Re-exported the following as animate atlases
+- Re-exported the following as animate atlases (offsets might've changed):
     - Arpe
     - Arpe-worried
     - Arpe-withered

@@ -46,6 +46,7 @@ class AnimationDebug extends FlxState
 		add(gridBG);
 
 		char = new Character(0, 0, daAnim);
+		char.generalOffsets.set();
 		char.screenCenter();
 		char.debugMode = true;
 
@@ -54,6 +55,7 @@ class AnimationDebug extends FlxState
 		curAnim = char.anim.getNameList().indexOf(char.anim.name);
 
 		charGhost = new Character(0, 0, daAnim);
+		charGhost.generalOffsets.set();
 		charGhost.screenCenter();
 		charGhost.debugMode = true;
 		charGhost.flipX = false;

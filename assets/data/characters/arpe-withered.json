@@ -23,14 +23,30 @@
         {
             "name": "singRIGHT",
             "framelabel": "singRIGHT"
+        },
+        {
+            "name": "singLEFT-alt",
+            "framelabel": "singLEFT-alt"
+        },
+        {
+            "name": "singDOWN-alt",
+            "framelabel": "singDOWN-alt"
+        },
+        {
+            "name": "singUP-alt",
+            "framelabel": "singUP-alt"
+        },
+        {
+            "name": "singRIGHT-alt",
+            "framelabel": "singRIGHT-alt"
         }
     ],
     "dadStartingCamPosOffsets": [
         202,
-        60
+        -60
     ],
-    "offsetFiles": [
-        "arpe",
-        "arpe-withered"
+    "generalOffsets": [
+        0,
+        -80
     ]
 }

@@ -46,10 +46,5 @@ class GrassWorld extends StageComponent
 			return;
 
 		game.remove(game.gf);
-
-		if (game.dad.curCharacter.startsWith('folir'))
-			game.dad.y += 120 + 100;
-		if (game.dad.curCharacter.startsWith('arpe'))
-			game.dad.y += 120;
 	}
 }

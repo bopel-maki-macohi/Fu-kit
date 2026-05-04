@@ -75,8 +75,8 @@ class FolirWorld2Songs extends SongComponent
 				var len:Float = (Conductor.stepCrochet / 1000) * (174 - step);
 
 				camTween = FlxTween.tween(game.camFollow, {
-					x: game.dad.getMidpoint().x + 150,
-					y: game.dad.getMidpoint().y - 100,
+					x: game.getCamMoveTarget(false).x,
+					y: game.getCamMoveTarget(false).y,
 				}, len, {ease: FlxEase.sineInOut});
 
 				camZoomTween = FlxTween.tween(FlxG.camera, {
@@ -122,8 +122,8 @@ class FolirWorld2Songs extends SongComponent
 				hudTween = FlxTween.tween(game.camHUD, {alpha: 1}, len, {ease: FlxEase.sineInOut});
 
 				camTween = FlxTween.tween(game.camFollow, {
-					x: game.dad.getMidpoint().x + 150,
-					y: game.dad.getMidpoint().y - 100,
+					x: game.getCamMoveTarget(false).x,
+					y: game.getCamMoveTarget(false).y,
 				}, len, {ease: FlxEase.sineInOut});
 			}
 

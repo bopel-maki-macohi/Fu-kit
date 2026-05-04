@@ -27,6 +27,10 @@
     ],
     "dadStartingCamPosOffsets": [
         202,
-        60
+        -60
+    ],
+    "generalOffsets": [
+        0,
+        -80
     ]
 }

@@ -147,7 +147,16 @@ class Character extends FukitSprite
 
 	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		super.playAnim(AnimName, Force, Reversed, Frame);
+		anim.play(AnimName, Force, Reversed, Frame);
+
+		offset.set(generalOffsets.x, generalOffsets.y);
+		if (animOffsets.exists(AnimName))
+		{
+			var daOffset = animOffsets.get(AnimName);
+			
+			offset.x += daOffset[0];
+			offset.y += daOffset[1];
+		}
 
 		if (curCharacter == 'gf')
 		{
@@ -272,10 +281,5 @@ class Character extends FukitSprite
 			if (data.generalOffsets.length > 1)
 				generalOffsets.y += data.generalOffsets[1];
 		}
-	}
-
-	override function addOffset(name:String, x:Float = 0, y:Float = 0)
-	{
-		super.addOffset(name, x + generalOffsets.x, y + generalOffsets.y);
 	}
 }

@@ -369,11 +369,8 @@ class PlayState extends MusicBeatState
 			songPosBG.screenCenter(X);
 			songPosBG.scrollFactor.set();
 
-			songPosBar = new FlxBar(songPosBG.x
-				+ 4, songPosBG.y
-				+ 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
-				'songPositionBar', 0, songLength
-				/ 1000);
+			songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
+				'songPositionBar', 0, songLength / 1000);
 			songPosBar.numDivisions = 1000;
 			songPosBar.scrollFactor.set();
 			songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
@@ -1320,30 +1317,34 @@ class PlayState extends MusicBeatState
 
 	public var defaultCamMove:Bool = true;
 
+	public function getCamMoveTarget(playerCam:Bool)
+	{
+		if (playerCam)
+			return FlxPoint.weak(dad.getMidpoint().x
+				+ 150
+				+ dad.camFocusPosOffsets.x
+				+ (lua != null ? getVar("followXOffset", "float") : 0),
+				dad.getMidpoint().y
+				+ dad.camFocusPosOffsets.y
+				- 100
+				+ (lua != null ? getVar("followYOffset", "float") : 0));
+
+		return FlxPoint.weak(boyfriend.getMidpoint().x
+			- 100
+			+ boyfriend.camFocusPosOffsets.x
+			+ (lua != null ? getVar("followXOffset", "float") : 0),
+			boyfriend.getMidpoint().y
+			- 100
+			+ boyfriend.camFocusPosOffsets.y
+			+ (lua != null ? getVar("followYOffset", "float") : 0));
+	}
+
 	public function camMove(playerCam:Bool)
 	{
 		if (!defaultCamMove)
 			return;
 
-		if (!playerCam)
-		{
-			camFollow.setPosition(dad.getMidpoint().x
-				+ 150
-				+ (lua != null ? getVar("followXOffset", "float") : 0),
-				dad.getMidpoint().y
-				- 100
-				+ (lua != null ? getVar("followYOffset", "float") : 0));
-		}
-
-		if (playerCam)
-		{
-			camFollow.setPosition(boyfriend.getMidpoint().x
-				- 100
-				+ (lua != null ? getVar("followXOffset", "float") : 0),
-				boyfriend.getMidpoint().y
-				- 100
-				+ (lua != null ? getVar("followYOffset", "float") : 0));
-		}
+		camFollow.setPosition(getCamMoveTarget(playerCam).x, getCamMoveTarget(playerCam).y);
 
 		onCamMove.dispatch(playerCam);
 	}
