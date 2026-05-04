@@ -17,7 +17,6 @@ Hi
     - Folir
     - Folir-Pissed
     - Girlfriend
-        - Only dance, cheer, and sing anims
     - Daddy Dearest
     - (RD Was already an atlas)
 - The crash handler now includes the build type (debug or release, maybe more stuff l8r down the line) in the crash log
