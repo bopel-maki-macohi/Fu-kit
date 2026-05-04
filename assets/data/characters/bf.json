@@ -8,7 +8,7 @@
     "animations": [
         {
             "name": "idle",
-            "framelabel": "idle"
+            "framelabel": "Idle"
         },
         {
             "name": "singLEFT",
