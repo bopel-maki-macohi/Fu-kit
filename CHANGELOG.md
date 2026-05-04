@@ -10,6 +10,7 @@ Hi
 
 ### Misc
 
+- Removed librarys
 - Fixed Crash Handler Crashes when trying to get the current substate
 - Added CHARACTER JSON PARSING
 
