@@ -70,7 +70,7 @@ class SongListManager
 
 		for (song in songListData.songs)
 		{
-			trace('${song.name} (${songListData.worlds[song?.world]?.header ?? 'None'})');
+			// trace('${song.name} (${songListData.worlds[song?.world]?.header ?? 'None'})');
 
 			songList.push(song);
 
@@ -79,6 +79,8 @@ class SongListManager
 
 			FreeplayAlbum.albums.push(song?.album ?? null);
 		}
+
+		trace('${songList.length} song(s) via $songListPath path');
 
 		if (songListData.albums != null)
 		{

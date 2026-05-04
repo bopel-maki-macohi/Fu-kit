@@ -1,8 +1,5 @@
 # Misc (Pre-update work)
 
-- Character JSONS
-  - Character Registry to replace `characterList.txt`
-
 - Discord RPC
 - Customizable Keybinds
 

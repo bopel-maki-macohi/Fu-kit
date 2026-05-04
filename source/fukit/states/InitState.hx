@@ -1,5 +1,6 @@
 package fukit.states;
 
+import fukit.data.CharacterRegistry;
 import fukit.play.PlayStateSwitcher;
 import fukit.play.songs.SongList;
 import flixel.math.FlxRect;
@@ -90,6 +91,7 @@ class InitState extends FlxState
 			new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
 
 		SongListManager.reloadSongList();
+		CharacterRegistry.reloadCharacterRegistry();
 
 		FlxG.mouse.visible = false;
 
