@@ -10,6 +10,7 @@ Hi
 
 ### Misc
 
+- The crash handler now includes the build type (debug or release, maybe more stuff l8r down the line) in the crash log
 - The crash handler now includes the build date in the crash log
 
 - Removed asset librarys

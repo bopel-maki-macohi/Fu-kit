@@ -1,6 +1,5 @@
 package fukit.util.debug;
 
-import fukit.util.macros.PositionMacro;
 import haxe.display.Protocol.Methods;
 import lime.app.Application;
 import sys.io.File;
@@ -72,12 +71,15 @@ class CrashHandler
 		errorMessage += '\n$spacing\n';
 
 		errorMessage += 'Mod version: ${Global.watermarkText}\n\n';
-		errorMessage += ' - Build Date: ${Global.buildDate}\n\n';
-		
+		errorMessage += ' - Build Date: ${Global.buildDate}\n';
+		errorMessage += ' - Build Type: ${#if debug 'Debug' #else 'Release' #end}\n\n';
+
 		if (FlxG?.state != null)
+		{
 			errorMessage += 'Current State: ${Type.getClassName(Type.getClass(FlxG?.state))?.replace('.', '/') + '.hx' ?? 'None (how tf)'}\n';
-		if (FlxG?.state?.subState != null)
-			errorMessage += 'Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState))?.replace('.', '/') + '.hx' ?? 'None'}\n';
+			if (FlxG?.state?.subState != null)
+				errorMessage += ' - Current Substate: ${Type.getClassName(Type.getClass(FlxG?.state?.subState))?.replace('.', '/') + '.hx' ?? 'None'}\n';
+		}
 
 		errorMessage += '\n$spacing\n';
 
