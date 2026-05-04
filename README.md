@@ -5,7 +5,8 @@ they're gonna be shit and they're gonna hurt your ears, so uhm.
 
 Turn your volume down to like half or a fourth.
 
-This mod is me just saying fuck it and going WILD.
+This mod is me just saying fuck it and going WILD,
+but also this mod is me having made an FNF Engine with Kade Engine that I like, so that's cool.
 
 ## Credits
 
